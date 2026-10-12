@@ -177,13 +177,17 @@
     if (inUI(e)) return;
     if (e.pointerType === 'pen') {
       st.penDown++; st.suppressClick = performance.now() + 600; showUI(true);
+      if (st.touch) st.touch.sawPen = true;   // palm landed first, then the Pencil: that touch is a palm
       if (onStage(e)) startStroke(e);
       return;
     }
     if (e.pointerType === 'touch') {
       if (st.penDown || performance.now() - st.penUpAt < 400) { e.preventDefault(); e.stopPropagation(); st.suppressClick = performance.now() + 600; return; }
       if (!onStage(e) || interactive(e)) return;
-      if (!st.touch) st.touch = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now() };
+      // A resting hand shows up as a large contact; never treat it as a tap or swipe.
+      if ((e.width || 0) > 44 || (e.height || 0) > 44) { st.suppressClick = performance.now() + 800; return; }
+      if (!st.touch) st.touch = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(), sawPen: false };
+      else { st.touch.multi = true; }   // a second finger/palm while one is down: not a clean tap
       st.suppressClick = performance.now() + 800;
       return;
     }
@@ -192,8 +196,11 @@
   function onUp(e) {
     if (e.pointerType === 'pen') { st.penDown = Math.max(0, st.penDown - 1); st.penUpAt = performance.now(); endStroke(e); scheduleHide(); return; }
     if (e.pointerType === 'touch' && st.touch && st.touch.id === e.pointerId) {
-      const dx = e.clientX - st.touch.x, dy = e.clientY - st.touch.y, dt = performance.now() - st.touch.t; st.touch = null;
+      const T = st.touch, dx = e.clientX - T.x, dy = e.clientY - T.y, dt = performance.now() - T.t; st.touch = null;
       if (st.penDown || performance.now() - st.penUpAt < 400) return;
+      // Palm rejection: the Pencil was used during this touch, more than one contact was down,
+      // or the contact grew large while resting. Real taps/swipes are short and clean.
+      if (T.sawPen || T.multi || (e.width || 0) > 44 || (e.height || 0) > 44 || dt > 700) return;
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.3) nav(dx < 0 ? 1 : -1);
       else if (Math.hypot(dx, dy) < 18 && dt < 600) nav(e.clientX < window.innerWidth / 2 ? -1 : 1);
       return;
@@ -222,6 +229,10 @@
 
   /* ---------- UI ---------- */
   const ui = { root: null, shown: false, panelOpen: false, hideT: 0, btn: {} };
+  // Pinned toolbar: always on screen, dimmed when idle. Default on for the presenter (publish set up), off for students.
+  const LS_PIN = 'deck-ink-pinned';
+  const isPinned = () => { const v = localStorage.getItem(LS_PIN); return v == null ? canPublish() : v === '1'; };
+  const presenting = () => document.documentElement.classList.contains('deck-presenting');
   const ic = name => `<span style="font-family:'Material Symbols Outlined';font-size:22px;line-height:1;font-weight:300">${name}</span>`;
   function btnCss(active) { return `display:flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:12px;border:0;cursor:pointer;color:${active ? '#000' : '#e8e8e8'};background:${active ? '#80b9ff' : 'transparent'};padding:0;position:relative`; }
   function buildUI() {
@@ -255,6 +266,7 @@
         <button data-act="load" title="Load ink.json">${ic('upload_file')}</button>
         <button data-act="publish" title="Publish ink to GitHub">${ic('cloud_upload')}</button>
         <button data-act="settings" title="Publish settings">${ic('settings')}</button>
+        <button data-act="pin" title="Keep toolbar on screen">${ic('keep')}</button>
         <span data-dot title="Unpublished changes" style="display:none;width:8px;height:8px;border-radius:50%;background:#ffa4e7;margin:0 8px 0 4px;box-shadow:0 0 8px #ffa4e7"></span>
         <input data-file type="file" accept="application/json,.json" style="display:none">
       </div>`;
@@ -270,7 +282,9 @@
     });
     r.querySelector('[data-file]').addEventListener('change', importFile);
     window.addEventListener('mousemove', e => { if (e.clientY > window.innerHeight - 70) showUI(false); }, { passive: true });
+    window.addEventListener('deckpresent', () => { syncUI(); if (isPinned()) scheduleHide(1500); });
     syncUI();
+    if (isPinned()) { ui.shown = true; scheduleHide(10); }
   }
   function syncUI() {
     if (!ui.root) return;
@@ -279,6 +293,11 @@
     const h = ui.root.querySelector('[data-act="hide"]'); h.innerHTML = ic(st.hidden ? 'visibility_off' : 'visibility'); h.style.color = st.hidden ? '#777' : '#e8e8e8';
     ui.root.querySelector('[data-act="publish"]').style.display = canPublish() ? 'flex' : 'none';
     ui.root.querySelector('[data-bar]').style.borderColor = st.drawMode ? '#80b9ff' : '#2e2e2e';
+    const pin = ui.root.querySelector('[data-act="pin"]');
+    pin.innerHTML = ic(isPinned() ? 'keep' : 'keep_off'); pin.style.color = isPinned() ? '#80b9ff' : '#e8e8e8';
+    pin.title = isPinned() ? 'Toolbar stays on screen (tap to auto-hide)' : 'Toolbar auto-hides (tap to keep on screen)';
+    // While presenting, keep only the drawing tools: file and settings buttons are for prep, not the audience.
+    ['download', 'load', 'settings'].forEach(a => { ui.root.querySelector(`[data-act="${a}"]`).style.display = presenting() ? 'none' : 'flex'; });
     updateDot();
   }
   function updateDot() { const d = ui.root && ui.root.querySelector('[data-dot]'); if (d) d.style.display = st.dirty ? 'block' : 'none'; }
@@ -291,6 +310,7 @@
     clearTimeout(ui.hideT);
     ui.hideT = setTimeout(() => {
       if (st.drawMode || ui.panelOpen || st.penDown || (ui.root && ui.root.matches(':hover'))) return scheduleHide(ms);
+      if (isPinned()) { ui.root.style.transform = 'translate(-50%,0)'; ui.root.style.opacity = '0.4'; return; }   // pinned: stay, but quietly
       ui.shown = false; ui.root.style.transform = 'translate(-50%,140%)'; ui.root.style.opacity = '0';
     }, ms);
   }
@@ -317,6 +337,7 @@
     else if (a === 'download') download();
     else if (a === 'load') ui.root.querySelector('[data-file]').click();
     else if (a === 'publish') publish();
+    else if (a === 'pin') { localStorage.setItem(LS_PIN, isPinned() ? '0' : '1'); syncUI(); toast(isPinned() ? 'Toolbar stays on screen' : 'Toolbar auto-hides'); scheduleHide(); }
     else if (a === 'settings') togglePanel(!ui.panelOpen);
     else if (a === 'cfgsave') {
       const c = cfg(); ui.root.querySelectorAll('[data-cfg]').forEach(i => { c[i.dataset.cfg] = i.value.trim(); });
@@ -402,6 +423,15 @@
     }).observe(stage, { childList: true, subtree: false });
     buildUI(); boot();
   }
+  // A resting hand must not select text or images, start an image drag, or open the iOS callout.
+  const noSelect = document.createElement('style');
+  noSelect.textContent = `deck-stage, deck-stage * { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    deck-stage img, deck-stage svg, deck-stage video { -webkit-user-drag: none; user-drag: none; }`;
+  (document.head || document.documentElement).appendChild(noSelect);
+  const inDeck = e => e.composedPath().some(n => n.tagName === 'DECK-STAGE');
+  document.addEventListener('selectstart', e => { if (inDeck(e) && !interactive(e)) e.preventDefault(); }, true);
+  document.addEventListener('dragstart', e => { if (inDeck(e)) e.preventDefault(); }, true);
+  document.addEventListener('contextmenu', e => { if ((st.penDown || st.live) && inDeck(e)) e.preventDefault(); }, true);
   window.addEventListener('pointerdown', onDown, { capture: true, passive: false });
   window.addEventListener('pointermove', e => { if (st.live) moveStroke(e); }, { capture: true, passive: false });
   window.addEventListener('pointerup', onUp, true);

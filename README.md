@@ -4,10 +4,12 @@ Static site for the lecture decks, served by GitHub Pages.
 
 ```
 index.html                      lecture list (edit to add lectures)
+shared/deck-ink.js              Apple Pencil ink layer (used by every lecture)
+shared/present.js               present mode: P or the top-right button
 lectures/01-introduction/       one folder per lecture
   index.html                    the deck (exported from Claude Design, renamed)
   support.js, deck-stage.js,    deck runtime from the export
-  image-slot.js, deck-ink.js
+  image-slot.js
   uploads/, images/             media the deck uses
   ink.json                      published ink (created by the deck's Publish button)
 ```
@@ -16,7 +18,9 @@ lectures/01-introduction/       one folder per lecture
 
 1. Export the deck from Claude Design as multiple files.
 2. Make `lectures/NN-short-name/`, copy the export in, and rename `Lecture NN.dc.html` to `index.html`.
-3. In that `index.html`, set `<meta name="deck-id" content="aa228v-lectureNN">` so each lecture keeps its own ink.
+3. In that `index.html`, set `<meta name="deck-id" content="aa228v-lectureNN">` so each lecture keeps its own ink,
+   delete the export's own `deck-ink.js`, and point the script tags at the shared copies:
+   `<script src="../../shared/deck-ink.js"></script>` and `<script src="../../shared/present.js"></script>`.
 4. Add a line for it in the top-level `index.html`.
 
 ## Publishing ink from the iPad (one-time setup per device)
@@ -33,6 +37,12 @@ lectures/01-introduction/       one folder per lecture
 3. After writing, tap **Publish**. Students see the ink about a minute later.
 
 The token is stored only in that device's browser. "Forget token" in the same panel removes it.
+
+## Presenting
+
+- **P** (or the Present button that appears near the top-right corner) goes full screen and hides the thumbnails; **P** or **Esc** leaves.
+- The ink toolbar's pin button switches between "always on screen" (dimmed when idle) and "auto-hide". It starts pinned on a device where publishing is set up.
+- Palm rejection: a hand resting on the iPad never selects images or changes slides; only short, clean finger taps and swipes navigate.
 
 ## Notes
 
