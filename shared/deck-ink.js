@@ -9,6 +9,21 @@
   const UI_FONT = "'Gill Sans','Gill Sans MT',Cabin,sans-serif";
   const INTERACTIVE = 'a, button, input, select, textarea, label, video[controls], [role="button"], [data-goto], [contenteditable]:not([contenteditable="false"])';
 
+  // Contacts wider than this (CSS px) are treated as a resting hand. iPad fingertips report roughly 40-55 px.
+  const PALM_PX = 90;
+  // Add ?inkdebug to the address to see what the iPad reports for each touch (for troubleshooting).
+  const DEBUG = /[?&#]inkdebug/.test(location.href);
+  let dbgBox = null;
+  function dbg(msg) {
+    if (!DEBUG) return;
+    if (!dbgBox) {
+      dbgBox = document.createElement('div');
+      dbgBox.style.cssText = 'position:fixed;top:8px;left:8px;z-index:2147483647;max-width:46vw;padding:8px 10px;border-radius:8px;background:rgba(0,0,0,.8);color:#9f9;font:12px/1.35 ui-monospace,Menlo,monospace;pointer-events:none;white-space:pre-wrap';
+      document.body.appendChild(dbgBox);
+    }
+    const lines = (dbgBox.textContent ? dbgBox.textContent.split('\n') : []).concat(`${(performance.now() / 1000).toFixed(2)}  ${msg}`);
+    dbgBox.textContent = lines.slice(-14).join('\n');
+  }
   const st = {
     stage: null, secs: [], idx: 0,
     tool: 'pen', color: COLORS[0], drawMode: false, hidden: localStorage.getItem(LS_HIDE) === '1',
@@ -219,16 +234,24 @@
       // A quick, still tap with the laser advances (or, at the far left edge, goes back),
       // so the Pencil alone can drive the lecture. Pointing and dragging never navigate.
       const quick = performance.now() - L.t0 < 300 && L.far < 14;
+      dbg(`laser up after ${Math.round(performance.now() - L.t0)}ms, moved ${Math.round(L.far)}px: ${quick ? 'tap' : 'pointing'}`);
       if (quick) { laser.until = 0; nav(L.x0 < window.innerWidth * 0.12 ? -1 : 1); }
       return;
     }
     if (st.tool === 'eraser') { if (L.erased) commit(st.idx); return; }
     pushUndo(st.idx); setStrokes(st.idx, strokesOf(st.idx).concat([L.s])); render(st.idx); commit(st.idx);
   }
-  function nav(dir) { window.dispatchEvent(new KeyboardEvent('keydown', { key: dir > 0 ? 'ArrowRight' : 'ArrowLeft', bubbles: true, cancelable: true })); }
+  function nav(dir) {
+    dbg(`navigate ${dir > 0 ? 'forward' : 'back'}`);
+    // Dispatch from the body, like a real key press, so window capture listeners (the deck's build
+    // engine) run before bubble listeners (deck-stage's slide change), exactly as with a keyboard.
+    const key = dir > 0 ? 'ArrowRight' : 'ArrowLeft';
+    (document.body || document.documentElement).dispatchEvent(new KeyboardEvent('keydown', { key, code: key, bubbles: true, cancelable: true, composed: true }));
+  }
 
   function onDown(e) {
     if (inUI(e)) return;
+    dbg(`${e.pointerType} down  ${Math.round(e.width || 0)}x${Math.round(e.height || 0)}  tool=${st.tool}  onSlide=${onStage(e)}`);
     if (e.pointerType === 'pen') {
       st.penDown++; st.suppressClick = performance.now() + 600; showUI(true);
       if (st.touch) st.touch.sawPen = true;   // palm landed first, then the Pencil: that touch is a palm
@@ -239,7 +262,7 @@
       if (st.penDown || performance.now() - st.penUpAt < 400) { e.preventDefault(); e.stopPropagation(); st.suppressClick = performance.now() + 600; return; }
       if (!onStage(e) || interactive(e)) return;
       // A resting hand shows up as a large contact; never treat it as a tap or swipe.
-      if ((e.width || 0) > 44 || (e.height || 0) > 44) { st.suppressClick = performance.now() + 800; return; }
+      if (Math.max(e.width || 0, e.height || 0) > PALM_PX) { dbg(`touch down ${Math.round(e.width)}x${Math.round(e.height)}: palm, ignored`); st.suppressClick = performance.now() + 800; return; }
       if (!st.touch) st.touch = { id: e.pointerId, x: e.clientX, y: e.clientY, t: performance.now(), sawPen: false };
       else { st.touch.multi = true; }   // a second finger/palm while one is down: not a clean tap
       st.suppressClick = performance.now() + 800;
@@ -254,7 +277,8 @@
       if (st.penDown || performance.now() - st.penUpAt < 400) return;
       // Palm rejection: the Pencil was used during this touch, more than one contact was down,
       // or the contact grew large while resting. Real taps/swipes are short and clean.
-      if (T.sawPen || T.multi || (e.width || 0) > 44 || (e.height || 0) > 44 || dt > 700) return;
+      const why = T.sawPen ? 'pencil used during touch' : T.multi ? 'several contacts' : Math.max(e.width || 0, e.height || 0) > PALM_PX ? 'palm-sized' : dt > 700 ? 'held too long' : '';
+      if (why) { dbg(`touch up after ${Math.round(dt)}ms: ignored (${why})`); return; }
       if (Math.abs(dx) > 60 && Math.abs(dx) > Math.abs(dy) * 1.3) nav(dx < 0 ? 1 : -1);
       else if (Math.hypot(dx, dy) < 18 && dt < 600) nav(e.clientX < window.innerWidth / 2 ? -1 : 1);
       return;
