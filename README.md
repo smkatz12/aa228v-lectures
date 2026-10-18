@@ -41,6 +41,7 @@ The token is stored only in that device's browser. "Forget token" in the same pa
 ## Presenting
 
 - **P** (or the Present button that appears near the top-right corner) goes full screen and hides the thumbnails; **P** or **Esc** leaves.
+- Laser pointer: the target button in the ink toolbar, or **L**. It follows the Pencil (and its hover on iPads that support Pencil hover) or the mouse in draw mode, fades when lifted, and is never saved. **L** again returns to the pen.
 - The ink toolbar's pin button switches between "always on screen" (dimmed when idle) and "auto-hide". It starts pinned on a device where publishing is set up.
 - Palm rejection: a hand resting on the iPad never selects images or changes slides; only short, clean finger taps and swipes navigate.
 

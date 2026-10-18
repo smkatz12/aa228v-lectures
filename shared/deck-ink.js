@@ -139,13 +139,54 @@
   const interactive = e => e.composedPath().some(n => n.matches && n.matches(INTERACTIVE));
   const curSec = () => st.secs[st.idx];
 
+  /* ---------- laser pointer (never saved) ---------- */
+  const laser = { cv: null, ctx: null, pts: [], raf: 0, until: 0, dot: null };
+  function laserSetup() {
+    if (laser.cv) return;
+    const cv = document.createElement('canvas');
+    cv.setAttribute('data-ink-laser', '');
+    cv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483500';
+    document.body.appendChild(cv); laser.cv = cv; laser.ctx = cv.getContext('2d');
+    const size = () => { const r = devicePixelRatio || 1; cv.width = innerWidth * r; cv.height = innerHeight * r; laser.ctx.setTransform(r, 0, 0, r, 0, 0); };
+    size(); addEventListener('resize', size);
+  }
+  // Add a point; the dot lingers ~linger ms after the last point, the trail fades over 280 ms.
+  function laserAt(x, y, linger = 450) {
+    laserSetup();
+    const t = performance.now();
+    laser.pts.push([x, y, t]); laser.until = t + linger;
+    if (!laser.raf) laser.raf = requestAnimationFrame(laserFrame);
+  }
+  function laserFrame(now) {
+    const c = laser.ctx, TRAIL = 280;
+    c.clearRect(0, 0, innerWidth, innerHeight);
+    laser.pts = laser.pts.filter(p => now - p[2] < TRAIL);
+    const P = laser.pts;
+    for (let i = 1; i < P.length; i++) {
+      const a = 1 - (now - P[i][2]) / TRAIL;
+      c.strokeStyle = `rgba(255,59,48,${(a * 0.55).toFixed(3)})`; c.lineWidth = 3 + 5 * a; c.lineCap = 'round';
+      c.beginPath(); c.moveTo(P[i - 1][0], P[i - 1][1]); c.lineTo(P[i][0], P[i][1]); c.stroke();
+    }
+    if (now < laser.until && laser.last) {
+      const fade = Math.min(1, (laser.until - now) / 150), [x, y] = laser.last;
+      const g = c.createRadialGradient(x, y, 0, x, y, 22);
+      g.addColorStop(0, `rgba(255,255,255,${fade})`); g.addColorStop(0.18, `rgba(255,80,70,${fade})`);
+      g.addColorStop(0.45, `rgba(255,40,30,${0.45 * fade})`); g.addColorStop(1, 'rgba(255,40,30,0)');
+      c.fillStyle = g; c.beginPath(); c.arc(x, y, 22, 0, 7); c.fill();
+    }
+    if (now < laser.until || laser.pts.length) laser.raf = requestAnimationFrame(laserFrame);
+    else { laser.raf = 0; c.clearRect(0, 0, innerWidth, innerHeight); }
+  }
+  function laserPoint(e, linger) { laser.last = [e.clientX, e.clientY]; laserAt(e.clientX, e.clientY, linger); }
+
   function startStroke(e) {
     const sec = curSec(); if (!sec) return;
-    if (st.hidden) { st.hidden = false; localStorage.setItem(LS_HIDE, '0'); renderAll(); syncUI(); }
+    if (st.hidden && st.tool !== 'laser') { st.hidden = false; localStorage.setItem(LS_HIDE, '0'); renderAll(); syncUI(); }
     e.preventDefault(); e.stopPropagation();
     try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (_) {}
     const p = toSlide(e, sec), pr = e.pointerType === 'pen' ? (e.pressure || 0.5) : 0.5;
     st.live = { id: e.pointerId, sec, last: p };
+    if (st.tool === 'laser') { st.live.laser = true; laserPoint(e, 100000); return; }
     if (st.tool === 'eraser') { eraseAt(p); return; }
     const s = st.tool === 'hl' ? { t: 'hl', c: st.color, w: 30, p: [[f(p[0]), f(p[1]), 0.5]] } : { t: 'pen', c: st.color, w: 7, p: [[f(p[0]), f(p[1]), +pr.toFixed(2)]] };
     st.live.s = s; st.live.el = strokeEl(s); layer(st.idx).appendChild(st.live.el);
@@ -153,6 +194,7 @@
   function moveStroke(e) {
     const L = st.live; if (!L || e.pointerId !== L.id) return;
     e.preventDefault();
+    if (L.laser) { const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; for (const ev of (evs.length ? evs : [e])) laserPoint(ev, 100000); return; }
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     for (const ev of (evs.length ? evs : [e])) {
       const p = toSlide(ev, L.sec);
@@ -168,6 +210,7 @@
   function endStroke(e) {
     const L = st.live; if (!L || e.pointerId !== L.id) return;
     st.live = null;
+    if (L.laser) { laser.until = performance.now() + 450; return; }
     if (st.tool === 'eraser') { if (L.erased) commit(st.idx); return; }
     pushUndo(st.idx); setStrokes(st.idx, strokesOf(st.idx).concat([L.s])); render(st.idx); commit(st.idx);
   }
@@ -218,6 +261,12 @@
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'z' && (st.drawMode || ui.shown)) { e.preventDefault(); e.stopImmediatePropagation(); undo(); return; }
     if (e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === 'd' || e.key === 'D') { e.preventDefault(); e.stopImmediatePropagation(); setDraw(!st.drawMode); return; }
+    if (e.key === 'l' || e.key === 'L') {
+      e.preventDefault(); e.stopImmediatePropagation();
+      if (st.tool === 'laser') { st.tool = st.prevTool || 'pen'; }
+      else { st.prevTool = st.tool; st.tool = 'laser'; }
+      syncUI(); showUI(true); toast(st.tool === 'laser' ? 'Laser pointer' : 'Pen'); return;
+    }
     if (e.key === 'Escape' && (st.drawMode || ui.panelOpen)) { e.preventDefault(); e.stopImmediatePropagation(); if (ui.panelOpen) togglePanel(false); else setDraw(false); }
   }
   function setDraw(on) {
@@ -255,6 +304,7 @@
         <button data-tool="pen" title="Pen (Apple Pencil always draws · D toggles mouse drawing)">${ic('stylus')}</button>
         <button data-tool="hl" title="Highlighter">${ic('ink_highlighter')}</button>
         <button data-tool="eraser" title="Stroke eraser">${ic('ink_eraser')}</button>
+        <button data-tool="laser" title="Laser pointer (L): follows the Pencil, nothing is saved">${ic('my_location')}</button>
         <div style="width:1px;height:26px;background:#333;margin:0 6px"></div>
         ${COLORS.map(c => `<button data-color="${c}" title="${c}" style="width:34px;height:44px;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0"><span style="display:block;width:20px;height:20px;border-radius:50%;background:${c}"></span></button>`).join('')}
         <div style="width:1px;height:26px;background:#333;margin:0 6px"></div>
@@ -276,7 +326,7 @@
     r.addEventListener('click', e => {
       const b = e.target.closest('button'); if (!b) return; e.stopPropagation();
       if (b.dataset.tool) { st.tool = b.dataset.tool; if (st.tool === 'eraser') {} syncUI(); }
-      else if (b.dataset.color) { st.color = b.dataset.color; if (st.tool === 'eraser') st.tool = 'pen'; syncUI(); }
+      else if (b.dataset.color) { st.color = b.dataset.color; if (st.tool === 'eraser' || st.tool === 'laser') st.tool = 'pen'; syncUI(); }
       else act(b.dataset.act, b);
       b.blur();
     });
@@ -433,7 +483,12 @@
   document.addEventListener('dragstart', e => { if (inDeck(e)) e.preventDefault(); }, true);
   document.addEventListener('contextmenu', e => { if ((st.penDown || st.live) && inDeck(e)) e.preventDefault(); }, true);
   window.addEventListener('pointerdown', onDown, { capture: true, passive: false });
-  window.addEventListener('pointermove', e => { if (st.live) moveStroke(e); }, { capture: true, passive: false });
+  window.addEventListener('pointermove', e => {
+    if (st.live) { moveStroke(e); return; }
+    if (st.tool !== 'laser' || inUI(e) || !onStage(e)) return;
+    // Apple Pencil hover (no contact) on supported iPads, or a mouse while drawing mode is on
+    if ((e.pointerType === 'pen' && e.buttons === 0) || (e.pointerType === 'mouse' && st.drawMode)) laserPoint(e, 350);
+  }, { capture: true, passive: false });
   window.addEventListener('pointerup', onUp, true);
   window.addEventListener('pointercancel', onCancel, true);
   window.addEventListener('click', onClick, true);
