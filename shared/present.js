@@ -1,4 +1,7 @@
-/* Present mode for <deck-stage> lecture decks.
+/* present.js — part of lecture-deck-tools (MIT license)
+   https://github.com/smkatz12/lecture-deck-tools
+
+   Present mode for <deck-stage> slide decks exported from Claude Design.
    P (or the button in the top-right corner) enters full screen and hides the
    thumbnail rail and other chrome; P or Esc leaves it. deck-stage already
    knows how to present: it listens for the {__omelette_presenting} message,
@@ -16,7 +19,7 @@
     'position:fixed', 'top:14px', 'right:14px', 'z-index:2147483600',
     'display:flex', 'align-items:center', 'gap:6px', 'padding:8px 14px 8px 10px',
     'border-radius:999px', 'border:1px solid #333', 'background:rgba(18,18,18,.9)', 'color:#eee',
-    "font:14px/1 'Gill Sans','Gill Sans MT',Cabin,sans-serif", 'letter-spacing:.12em', 'text-transform:uppercase',
+    `font:14px/1 ${(window.DeckInkConfig || {}).font || "'Gill Sans','Gill Sans MT',Cabin,sans-serif"}`, 'letter-spacing:.12em', 'text-transform:uppercase',
     'cursor:pointer', 'opacity:0', 'transition:opacity .25s', 'touch-action:manipulation', '-webkit-tap-highlight-color:transparent',
   ].join(';');
 

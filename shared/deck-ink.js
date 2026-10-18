@@ -1,12 +1,22 @@
-/* Deck ink: Apple Pencil / mouse annotation layer for <deck-stage> decks.
-   Ink is vector data in slide coordinates, keyed by 1-based slide number. */
+/* deck-ink.js — part of lecture-deck-tools (MIT license)
+   https://github.com/smkatz12/lecture-deck-tools
+
+   Apple Pencil / mouse ink, laser pointer and Pencil/tap navigation for
+   <deck-stage> slide decks exported from Claude Design.
+   Ink is vector data in 1920x1080 slide coordinates, keyed by 1-based slide number.
+
+   Optional settings, set before this script loads:
+     <meta name="deck-id" content="my-course-lecture01">   one per deck; keeps each deck's ink separate
+     <script>window.DeckInkConfig = { colors: ['#fff', '#ffd166'], font: 'Avenir, sans-serif' };</script> */
 (() => {
   if (window.__deckInkLoaded) return; window.__deckInkLoaded = true;
-  const DECK_ID = document.querySelector('meta[name="deck-id"]')?.content || 'aa228v-lecture01';
+  const OPT = window.DeckInkConfig || {};
+  const DECK_ID = document.querySelector('meta[name="deck-id"]')?.content
+    || ('deck:' + location.pathname.replace(/\/(index\.html?)?$/i, '') || 'deck');
   const VERSION = 1, W = 1920, H = 1080, NS = 'http://www.w3.org/2000/svg';
   const LS = 'deck-ink:' + DECK_ID, LS_CFG = 'deck-ink-cfg', LS_HIDE = 'deck-ink-hidden:' + DECK_ID;
-  const COLORS = ['#ffffff', '#c3b8ff', '#80b9ff', '#ffa4e7', '#f5d58a'];
-  const UI_FONT = "'Gill Sans','Gill Sans MT',Cabin,sans-serif";
+  const COLORS = Array.isArray(OPT.colors) && OPT.colors.length ? OPT.colors : ['#ffffff', '#c3b8ff', '#80b9ff', '#ffa4e7', '#f5d58a'];
+  const UI_FONT = OPT.font || "'Gill Sans','Gill Sans MT',Cabin,sans-serif";
   const INTERACTIVE = 'a, button, input, select, textarea, label, video[controls], [role="button"], [data-goto], [contenteditable]:not([contenteditable="false"])';
 
   // Contacts wider than this (CSS px) are treated as a resting hand. iPad fingertips report roughly 40-55 px.
@@ -244,7 +254,7 @@
     if (L.laser) {
       laser.until = performance.now() + 450;
       // A quick, still tap with the laser advances (or, at the far left edge, goes back),
-      // so the Pencil alone can drive the lecture. Pointing and dragging never navigate.
+      // so the Pencil alone can drive the talk. Pointing and dragging never navigate.
       const quick = performance.now() - L.t0 < 300 && L.far < 14;
       dbg(`laser up after ${Math.round(performance.now() - L.t0)}ms, moved ${Math.round(L.far)}px: ${quick ? 'tap' : 'pointing'}`);
       if (quick) { laser.until = 0; nav(L.x0 < window.innerWidth * 0.12 ? -1 : 1); }
@@ -339,7 +349,7 @@
       <div data-msg style="position:absolute;bottom:64px;left:50%;transform:translateX(-50%);white-space:nowrap;padding:8px 14px;border-radius:10px;background:#161616;border:1px solid #333;color:#fff;font-size:15px;letter-spacing:.04em;opacity:0;transition:opacity .2s;pointer-events:none"></div>
       <div data-panel style="display:none;position:absolute;bottom:64px;left:50%;transform:translateX(-50%);width:380px;padding:18px;border-radius:16px;background:#121212;border:1px solid #333;color:#ddd;font-size:14px;letter-spacing:.03em;box-shadow:0 10px 40px rgba(0,0,0,.6)">
         <div style="font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:#fff;margin-bottom:12px">Publish settings</div>
-        ${['repo|Repository (owner/name)|e.g. sisl/aa228v-slides', 'branch|Branch|main', 'path|Folder path|leave blank: uses this lecture\'s folder', 'token|Personal access token|github_pat_…'].map(x => { const [k, l, ph] = x.split('|'); return `<label style="display:block;margin-bottom:10px;color:#aaa">${l}<input data-cfg="${k}" ${k === 'token' ? 'type="password"' : ''} placeholder="${ph}" autocomplete="off" spellcheck="false" style="display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:8px 10px;border-radius:8px;border:1px solid #3a3a3a;background:#0a0a0a;color:#fff;font:14px/1.3 ui-monospace,Menlo,monospace"></label>`; }).join('')}
+        ${['repo|Repository (owner/name)|e.g. your-name/your-slides', 'branch|Branch|main', 'path|Folder path|leave blank: uses this lecture\'s folder', 'token|Personal access token|github_pat_…'].map(x => { const [k, l, ph] = x.split('|'); return `<label style="display:block;margin-bottom:10px;color:#aaa">${l}<input data-cfg="${k}" ${k === 'token' ? 'type="password"' : ''} placeholder="${ph}" autocomplete="off" spellcheck="false" style="display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:8px 10px;border-radius:8px;border:1px solid #3a3a3a;background:#0a0a0a;color:#fff;font:14px/1.3 ui-monospace,Menlo,monospace"></label>`; }).join('')}
         <div style="font-size:12px;color:#888;line-height:1.4;margin:2px 0 12px">Stored on this device only. The token needs <em>Contents: read &amp; write</em> on the repo.</div>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button data-act="cfgsave" style="flex:1;padding:9px;border-radius:9px;border:0;background:#80b9ff;color:#000;font:inherit;cursor:pointer">Save</button>
@@ -489,7 +499,7 @@
       if (g.ok) sha = (await g.json()).sha;
       else if (g.status !== 404) throw new Error(await ghErr(g));
       const doc = docOut();
-      const body = { message: `Update lecture ink (${Object.keys(doc.slides).length} slides)`, content: b64(JSON.stringify(doc)), branch };
+      const body = { message: `Update ink (${Object.keys(doc.slides).length} slides)`, content: b64(JSON.stringify(doc)), branch };
       if (sha) body.sha = sha;
       const p = await fetch(api, { method: 'PUT', headers: { ...H, 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       if (!p.ok) throw new Error(await ghErr(p));

@@ -4,8 +4,9 @@ Static site for the lecture decks, served by GitHub Pages.
 
 ```
 index.html                      lecture list (edit to add lectures)
-shared/deck-ink.js              Apple Pencil ink layer (used by every lecture)
+shared/deck-ink.js              ink, laser pointer, Pencil/tap navigation (used by every lecture)
 shared/present.js               present mode: P or the top-right button
+                                (both copied from lecture-deck-tools; see shared/README.md)
 lectures/01-introduction/       one folder per lecture
   index.html                    the deck (exported from Claude Design, renamed)
   support.js, deck-stage.js,    deck runtime from the export
@@ -49,3 +50,4 @@ The token is stored only in that device's browser. "Forget token" in the same pa
 
 - Ink is keyed by slide number, so inserting or reordering slides after publishing shifts existing ink.
 - The decks load React from unpkg.com and fonts from Google Fonts when they open, so they need an internet connection.
+- The ink, laser, navigation and present-mode code is maintained separately in [lecture-deck-tools](https://github.com/smkatz12/lecture-deck-tools); `shared/` holds a pinned copy.
