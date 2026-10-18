@@ -150,7 +150,11 @@
 
   /* ---------- input ---------- */
   const inUI = e => e.composedPath().some(n => n === ui.root);
-  const onStage = e => st.stage && e.composedPath().includes(st.stage);
+  // Taps on the deck's own chrome (thumbnail rail, slide-count overlay, menus) belong to that chrome:
+  // never draw there, never treat them as slide taps, never swallow their clicks.
+  const CHROME = ['rail', 'rail-resize', 'thumb', 'overlay', 'ctxmenu', 'confirm-backdrop'];
+  const inChrome = e => e.composedPath().some(n => n.classList && CHROME.some(c => n.classList.contains(c)));
+  const onStage = e => st.stage && e.composedPath().includes(st.stage) && !inChrome(e);
   const interactive = e => e.composedPath().some(n => n.matches && n.matches(INTERACTIVE));
   const curSec = () => st.secs[st.idx];
 
@@ -160,10 +164,18 @@
     if (laser.cv) return;
     const cv = document.createElement('canvas');
     cv.setAttribute('data-ink-laser', '');
-    cv.style.cssText = 'position:fixed;inset:0;width:100vw;height:100vh;pointer-events:none;z-index:2147483500';
+    cv.style.cssText = 'position:fixed;left:0;top:0;pointer-events:none;z-index:2147483500';
     document.body.appendChild(cv); laser.cv = cv; laser.ctx = cv.getContext('2d');
-    const size = () => { const r = devicePixelRatio || 1; cv.width = innerWidth * r; cv.height = innerHeight * r; laser.ctx.setTransform(r, 0, 0, r, 0, 0); };
+    // Size the canvas to exactly the visible viewport in CSS pixels, so canvas and pointer coordinates
+    // match 1:1. (100vh on iPad Safari is taller than the visible area and would stretch the drawing.)
+    const size = () => {
+      const r = devicePixelRatio || 1, w = window.innerWidth, h = window.innerHeight;
+      cv.style.width = w + 'px'; cv.style.height = h + 'px';
+      cv.width = Math.round(w * r); cv.height = Math.round(h * r); laser.ctx.setTransform(r, 0, 0, r, 0, 0);
+    };
     size(); addEventListener('resize', size);
+    if (window.visualViewport) visualViewport.addEventListener('resize', size);
+    document.addEventListener('fullscreenchange', () => setTimeout(size, 50));
   }
   // Add a point; the dot lingers ~linger ms after the last point, the trail fades over 280 ms.
   function laserAt(x, y, linger = 450) {
@@ -287,7 +299,7 @@
   }
   function onCancel(e) { if (e.pointerType === 'pen') { st.penDown = Math.max(0, st.penDown - 1); st.penUpAt = performance.now(); endStroke(e); } if (st.touch && st.touch.id === e.pointerId) st.touch = null; }
   function onClick(e) {
-    if (inUI(e)) return;
+    if (inUI(e) || inChrome(e)) return;
     if (performance.now() < st.suppressClick && !(interactive(e) && !st.live)) { e.preventDefault(); e.stopImmediatePropagation(); }
   }
   function onKey(e) {
