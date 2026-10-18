@@ -186,7 +186,7 @@
     try { e.target.setPointerCapture && e.target.setPointerCapture(e.pointerId); } catch (_) {}
     const p = toSlide(e, sec), pr = e.pointerType === 'pen' ? (e.pressure || 0.5) : 0.5;
     st.live = { id: e.pointerId, sec, last: p };
-    if (st.tool === 'laser') { st.live.laser = true; laserPoint(e, 100000); return; }
+    if (st.tool === 'laser') { Object.assign(st.live, { laser: true, t0: performance.now(), x0: e.clientX, y0: e.clientY, far: 0 }); laserPoint(e, 100000); return; }
     if (st.tool === 'eraser') { eraseAt(p); return; }
     const s = st.tool === 'hl' ? { t: 'hl', c: st.color, w: 30, p: [[f(p[0]), f(p[1]), 0.5]] } : { t: 'pen', c: st.color, w: 7, p: [[f(p[0]), f(p[1]), +pr.toFixed(2)]] };
     st.live.s = s; st.live.el = strokeEl(s); layer(st.idx).appendChild(st.live.el);
@@ -194,7 +194,11 @@
   function moveStroke(e) {
     const L = st.live; if (!L || e.pointerId !== L.id) return;
     e.preventDefault();
-    if (L.laser) { const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e]; for (const ev of (evs.length ? evs : [e])) laserPoint(ev, 100000); return; }
+    if (L.laser) {
+      const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
+      for (const ev of (evs.length ? evs : [e])) { laserPoint(ev, 100000); L.far = Math.max(L.far, Math.hypot(ev.clientX - L.x0, ev.clientY - L.y0)); }
+      return;
+    }
     const evs = e.getCoalescedEvents ? e.getCoalescedEvents() : [e];
     for (const ev of (evs.length ? evs : [e])) {
       const p = toSlide(ev, L.sec);
@@ -210,7 +214,14 @@
   function endStroke(e) {
     const L = st.live; if (!L || e.pointerId !== L.id) return;
     st.live = null;
-    if (L.laser) { laser.until = performance.now() + 450; return; }
+    if (L.laser) {
+      laser.until = performance.now() + 450;
+      // A quick, still tap with the laser advances (or, at the far left edge, goes back),
+      // so the Pencil alone can drive the lecture. Pointing and dragging never navigate.
+      const quick = performance.now() - L.t0 < 300 && L.far < 14;
+      if (quick) { laser.until = 0; nav(L.x0 < window.innerWidth * 0.12 ? -1 : 1); }
+      return;
+    }
     if (st.tool === 'eraser') { if (L.erased) commit(st.idx); return; }
     pushUndo(st.idx); setStrokes(st.idx, strokesOf(st.idx).concat([L.s])); render(st.idx); commit(st.idx);
   }
