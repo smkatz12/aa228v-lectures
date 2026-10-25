@@ -1,0 +1,2907 @@
+# AA228V Lecture 04 — Property Specification: slide-by-slide content
+
+Extracted from the Keynote deck `04_Property_Specification_post.key` (127 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/04-property-specification/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/04-property-specification/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as Lecture 01: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Handwritten ink from past lectures (slide 33) has been left out on purpose; the deck's own ink layer handles writing.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#ffa4e7`, `#80cfb9`, `#c3b8ff`, `#fab0ae`, `#000000`, `#0072fe`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- heading (spaced caps) 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 30pt [4%,73% → 43%,87%]: LECTURE 04: PROPERTY SPECIFICATION / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- text 36pt [50%,50% → 50%,50%]: Property specification allows us to [[formally specify|#80b9ff]] what a system [[should do|#80b9ff]].
+
+## Slide 3
+- heading (spaced caps) 50pt [12%,18% → 88%,24%]: PROPERTIES OF SYSTEMS
+- text 36pt [36%,65% → 42%,70%]: Metrics
+- text 36pt [56%,65% → 67%,70%]: Specifications
+- vector icon `shape-13b45b23.svg` [57%,74% → 61%,81%]
+- vector icon `shape-10224f3b.svg` [64%,74% → 67%,81%]
+- vector icon `shape-2cf93382.svg` [36%,72% → 42%,83%]
+- group [43%,31% → 57%,40%]
+  - rounded box (outline) [43%,31% → 57%,40%]
+  - text 36pt [44%,33% → 56%,38%]: System Behavior
+- group [31%,53% → 46%,62%]
+  - rounded box (outline) [31%,53% → 46%,62%]
+  - text 36pt [32%,55% → 45%,60%]: Real Number
+- group [54%,53% → 69%,62%]
+  - rounded box (outline) [54%,53% → 69%,62%]
+  - text 36pt [55%,56% → 68%,60%]: Boolean Value
+- arrow #ffffff [39%,41% → 50%,52%]
+- arrow #ffffff [50%,41% → 60%,52%]
+- **Builds:** click 1: arrow #ffffff — draws in; then: group — fades up from dark; click 2: text 36pt — appears; with previous: vector icon `shape-2cf93382.svg` — appears; click 3: arrow #ffffff — draws in; then: group — fades up from dark; click 4: text 36pt — appears; with previous: vector icon `shape-10224f3b.svg` — appears; with previous: vector icon `shape-13b45b23.svg` — appears
+
+## Slide 4
+- heading (spaced caps) 50pt [12%,8% → 88%,14%]: PROPERTIES OF SYSTEMS
+- text 36pt [32%,20% → 68%,25%]: Sometimes we derive [[specifications|#fab0ae]] from [[metrics|#80b9ff]].
+- text 36pt [16%,46% → 38%,54%]: {miss distance between our aircraft and intruder aircraft |#80b9ff}
+- text 36pt [24%,41% → 30%,45%]: {metric:|#80b9ff}
+- vector icon `shape-6db0789c.svg` [22%,57% → 26%,60%]
+- vector icon `shape-6db0789c.svg` [26%,69% → 30%,72%]
+- arrow #80b9ff [26%,59% → 26%,71%]
+- arrow #80b9ff [26%,59% → 36%,59%]
+- arrow #80b9ff [15%,71% → 26%,71%]
+- vector icon `shape-6db0789c.svg` [22%,57% → 26%,60%]
+- vector icon `shape-6db0789c.svg` [26%,69% → 30%,72%]
+- arrow #80b9ff [26%,59% → 26%,71%]
+- arrow #80b9ff [26%,59% → 36%,59%]
+- arrow #80b9ff [15%,71% → 26%,71%]
+- vector icon `shape-6db0789c.svg` [22%,57% → 26%,60%]
+- vector icon `shape-6db0789c.svg` [26%,69% → 30%,72%]
+- arrow #80b9ff [26%,59% → 26%,71%]
+- arrow #80b9ff [26%,59% → 36%,59%]
+- arrow #80b9ff [15%,71% → 26%,71%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 5
+- arrow #80b9ff [62%,72% → 72%,72%]
+- vector icon `shape-6db0789c.svg` [72%,69% → 76%,72%]
+- heading (spaced caps) 50pt [12%,8% → 88%,14%]: PROPERTIES OF SYSTEMS
+- text 36pt [32%,20% → 68%,25%]: Sometimes we derive [[specifications|#fab0ae]] from [[metrics|#80b9ff]].
+- text 36pt [16%,46% → 38%,54%]: {miss distance between our aircraft and intruder aircraft |#80b9ff}
+- text 36pt [24%,41% → 30%,45%]: {metric:|#80b9ff}
+- vector icon `shape-6db0789c.svg` [22%,57% → 26%,60%]
+- vector icon `shape-6db0789c.svg` [26%,69% → 30%,72%]
+- arrow #80b9ff [26%,59% → 26%,71%]
+- arrow #80b9ff [26%,59% → 36%,59%]
+- arrow #80b9ff [15%,71% → 26%,71%]
+- vector icon `shape-6db0789c.svg` [68%,58% → 72%,61%]
+- arrow #80b9ff [72%,60% → 72%,72%]
+- arrow #80b9ff [72%,60% → 83%,60%]
+- vector icon `shape-16bc40a5.svg` [71%,63% → 73%,69%]
+- text 36pt [61%,46% → 83%,54%]: {the miss distance must be greater than 50 meters|#fab0ae}
+- text 36pt [67%,41% → 77%,45%]: {specification:|#fab0ae}
+- arrow #ffffff [40%,59% → 58%,59%]
+- arrow #80b9ff [72%,60% → 72%,72%]
+- vector icon `shape-6db0789c.svg` [68%,58% → 72%,61%]
+- arrow #80b9ff [72%,60% → 83%,60%]
+- vector icon `shape-6db0789c.svg` [72%,69% → 76%,72%]
+- arrow #80b9ff [62%,72% → 72%,72%]
+- vector icon `shape-16bc40a5.svg` [71%,63% → 73%,69%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 6
+- heading (spaced caps) 50pt [12%,8% → 88%,14%]: PROPERTIES OF SYSTEMS
+- text 36pt [11%,28% → 48%,32%]: Sometimes we derive [[specifications|#fab0ae]] from [[metrics|#80b9ff]].
+- text 36pt [6%,46% → 27%,54%]: {miss distance between our aircraft and intruder aircraft |#80b9ff}
+- text 36pt [14%,41% → 19%,45%]: {metric:|#80b9ff}
+- vector icon `shape-6db0789c.svg` [11%,57% → 15%,60%]
+- vector icon `shape-6db0789c.svg` [15%,69% → 20%,72%]
+- arrow #80b9ff [15%,59% → 15%,71%]
+- arrow #80b9ff [15%,59% → 26%,59%]
+- arrow #80b9ff [5%,71% → 15%,71%]
+- vector icon `shape-6db0789c.svg` [46%,58% → 50%,61%]
+- arrow #80b9ff [50%,60% → 50%,72%]
+- arrow #80b9ff [50%,60% → 61%,60%]
+- vector icon `shape-6db0789c.svg` [50%,69% → 54%,72%]
+- arrow #80b9ff [39%,72% → 50%,72%]
+- vector icon `shape-16bc40a5.svg` [49%,63% → 51%,69%]
+- text 36pt [39%,46% → 61%,54%]: {the miss distance must be greater than 50 meters|#fab0ae}
+- text 36pt [45%,41% → 55%,45%]: {specification:|#fab0ae}
+- arrow #ffffff [28%,59% → 38%,59%]
+- text 36pt [52%,28% → 89%,32%]: Sometimes we derive [[metrics|#56b4e9]] from [[specifications|#fab0ae]].
+- text 36pt [71%,46% → 96%,54%]: {probability that the miss distance is greater than 50 meters|#80b9ff}
+- text 36pt [81%,41% → 86%,45%]: {metric:|#80b9ff}
+- arrow #ffffff [62%,60% → 72%,60%]
+- arrow #80b9ff [83%,60% → 83%,72%]
+- vector icon `shape-6db0789c.svg` [79%,58% → 83%,61%]
+- arrow #80b9ff [83%,60% → 94%,60%]
+- vector icon `shape-6db0789c.svg` [83%,69% → 87%,72%]
+- arrow #80b9ff [73%,72% → 83%,72%]
+- vector icon `shape-16bc40a5.svg` [82%,63% → 84%,69%]
+- vector icon `shape-7735e59d.svg` [79%,61% → 83%,64%]
+- vector icon `shape-6db0789c.svg` [79%,59% → 83%,62%]
+- vector icon `shape-7735e59d.svg` [79%,63% → 83%,66%]
+- vector icon `shape-6db0789c.svg` [79%,56% → 83%,59%]
+
+## Slide 7
+- image `test-5636.svg` [15%,33% → 80%,86%]
+- heading (spaced caps) 50pt [12%,8% → 88%,14%]: PROPERTIES OF SYSTEMS
+- text 36pt [31%,24% → 44%,29%]: single trajectory
+- text 36pt [59%,24% → 75%,29%]: multiple trajectories
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: METRICS
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: SPECIFICATIONS
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 92%,75%]: REACHABILITY
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-5%,30% → 71%,35%]: PROPERTIES OF SYSTEMS
+- **Builds:** click 1: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 9
+- heading (spaced caps) 36pt [30%,48% → 104%,52%]: METRICS
+- heading (spaced caps) 36pt [42%,48% → 115%,52%]: {FOR STOCHASTIC SYSTEMS|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- image `test-893.svg` [28%,24% → 72%,89%]
+- text 48pt [39%,12% → 74%,18%]: distribution over trajectories: $p(\tau)$
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- image `test-893.svg` [4%,34% → 37%,84%]
+- text 48pt [8%,22% → 43%,28%]: distribution over trajectories: $p(\tau)$
+- arrow #ffffff [39%,53% → 68%,53%]
+- equation $f(\tau) = \text{miss distance}(\tau)$ (52pt, #ffffff) [41%,44% → 66%,49%]
+- text 48pt [64%,22% → 99%,28%]: distribution over miss distances
+- image `test-1082.svg` [69%,43% → 96%,76%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- text 36pt [66%,24% → 78%,32%]: expected miss distance
+- equation $\mathbb E_{\tau \sim p(\cdot)}[f(\tau)] = \int f(\tau)p(\tau) \ d\tau$ (67pt, #ffffff) [6%,29% → 43%,43%]
+- text on a #f3cf80 filled box 36pt [8%,66% → 41%,76%]: {Note: |#000000}{more on this in chapter 7!|#000000}
+- text on a #f3cf80 filled box 36pt [8%,47% → 41%,61%]: {Note: |#000000}{if $f(\tau)$ is a binary metric, the expectation will be a probability.|#000000}
+- image `test-1082.svg` [55%,32% → 96%,81%]
+- image `test-1068.svg` [55%,31% → 96%,81%]
+- **Builds:** click 1: image `test-1068.svg` — appears; with previous: text 36pt — appears; click 2: equation $\mathbb E_{\tau \sim p(\cdot)}[f(\tau)] = \int f(\tau)p(\tau) \ d\tau$ — appears; click 3: text on a #f3cf80 filled box 36pt — appears; click 4: text on a #f3cf80 filled box 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 13
+- text 36pt [41%,32% → 53%,40%]: expected miss distance
+- image `test-1053.svg` [5%,42% → 32%,73%]
+- image `test-1061.svg` [68%,18% → 95%,73%]
+- image `test-1068.svg` [36%,39% → 64%,73%]
+- text 36pt [10%,36% → 22%,44%]: expected miss distance
+- text 36pt [73%,14% → 86%,22%]: expected miss distance
+- text 36pt [46%,11% → 50%,15%]: Expected value often is [[not enough|#80b9ff]] to summarize a distribution.
+- text 36pt [26%,82% → 74%,86%]: These distributions have the same [[expected value|#80b9ff]] but differ in their [[variance|#80b9ff]].
+- **Builds:** click 1: text 36pt — appears
+
+## Slide 14
+- text 42pt [50%,50% → 50%,50%]: In [[safety-critical|#80b9ff]] settings, we often want more [[conservative|#80b9ff]] metrics that focus on [[worst-case|#80b9ff]] outcomes.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 15
+- text 36pt [12%,9% → 88%,13%]: In [[safety-critical|#80b9ff]] settings, we often want more [[conservative|#80b9ff]] metrics that focus on [[worst-case|#80b9ff]] outcomes.
+- text 42pt [24%,48% → 76%,52%]: [[Risk metric:|#80b9ff]] metric in which higher values indicate worse outcomes.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- text 36pt [12%,9% → 88%,13%]: In [[safety-critical|#80b9ff]] settings, we often want more [[conservative|#80b9ff]] metrics that focus on [[worst-case|#80b9ff]] outcomes.
+- text 36pt [24%,17% → 76%,21%]: [[Risk metric:|#80b9ff]] metric in which higher values indicate worse outcomes.
+- text 42pt [26%,48% → 74%,52%]: e.g.  loss of separation: $f(\tau) = 2000 \text{ meters } - \text{ miss distance}(\tau)$
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- text 36pt [12%,9% → 88%,13%]: In [[safety-critical|#80b9ff]] settings, we often want more [[conservative|#80b9ff]] metrics that focus on [[worst-case|#80b9ff]] outcomes.
+- text 36pt [24%,17% → 76%,21%]: [[Risk metric:|#80b9ff]] metric in which higher values indicate worse outcomes.
+- text 36pt [30%,25% → 70%,31%]: e.g.  loss of separation: $f(\tau) = 2000 \text{ meters } - \text{ miss distance}(\tau)$
+- image `test-1264.svg` [16%,39% → 84%,72%]
+- line #80b9ff [18%,40% → 22%,40%]
+- text 30pt [22%,38% → 32%,42%]: {expected value|#80b9ff}
+- text 36pt [6%,73% → 14%,77%]: most risky
+- arrow #ffffff [16%,75% → 83%,75%]
+- text 36pt [85%,73% → 93%,77%]: least risky
+- image `test-1307.svg` [16%,39% → 84%,72%]
+- text 30pt [22%,42% → 41%,46%]: {value at risk (VaR) $(\alpha = 0.7)$|#c3b8ff}
+- line #c3b8ff [18%,44% → 22%,44%]
+- text 36pt [48%,85% → 52%,89%]: The [[value at risk (VaR)|#c3b8ff]] is the highest value that the risk is guaranteed not to exceed with probability $\alpha$.
+- text 36pt [48%,91% → 51%,95%]: i.e. the $\alpha$-quantile of the distribution over the risk metric
+- text 36pt [7%,77% → 14%,82%]: {high VaR|#c3b8ff}
+- text 36pt [85%,77% → 92%,82%]: {low VaR|#c3b8ff}
+- **Builds:** click 1: arrow #ffffff — draws in; then: text 36pt — appears; with previous: text 36pt — appears; click 2: image `test-1307.svg` — appears; with previous: text 30pt — appears; with previous: line #c3b8ff — appears; click 3: text 36pt — appears; click 4: text 36pt — appears; click 5: text 36pt — appears; with previous: text 36pt — appears
+
+## Slide 18
+- text 36pt [12%,9% → 88%,13%]: In [[safety-critical|#80b9ff]] settings, we often want more [[conservative|#80b9ff]] metrics that focus on [[worst-case|#80b9ff]] outcomes.
+- text 36pt [24%,17% → 76%,21%]: [[Risk metric:|#80b9ff]] metric in which higher values indicate worse outcomes.
+- text 36pt [30%,25% → 70%,31%]: e.g.  loss of separation: $f(\tau) = 2000 \text{ meters } - \text{ miss distance}(\tau)$
+- image `test-1264.svg` [16%,39% → 84%,72%]
+- line #80b9ff [18%,40% → 22%,40%]
+- text 30pt [22%,38% → 32%,42%]: {expected value|#80b9ff}
+- text 36pt [6%,73% → 14%,77%]: most risky
+- arrow #ffffff [16%,75% → 83%,75%]
+- text 36pt [85%,73% → 93%,77%]: least risky
+- image `test-1307.svg` [16%,39% → 84%,72%]
+- text 30pt [22%,42% → 41%,46%]: {value at risk (VaR) $(\alpha = 0.7)$|#c3b8ff}
+- line #c3b8ff [18%,44% → 22%,44%]
+- text 36pt [7%,77% → 14%,82%]: {high VaR|#c3b8ff}
+- text 36pt [85%,77% → 92%,82%]: {low VaR|#c3b8ff}
+- image `test-1390.svg` [16%,35% → 84%,72%]
+- line #c3b8ff [18%,48% → 22%,48%]
+- text 30pt [22%,46% → 49%,50%]: {conditional value at risk (CVaR) $(\alpha = 0.7)$|#c3b8ff}
+- equation $\text{CVaR}_\alpha[f(\tau)] = \mathbb{E}_{\tau \sim p(\cdot)}[f(\tau) \mid f(\tau) \geq \text{VaR}_\alpha[f(\tau)]]$ (36pt, #c3b8ff) [29%,83% → 63%,86%]
+- text 36pt [31%,88% → 61%,93%]: {i.e. the mean of the top $\alpha$-quantile risks|#c3b8ff}
+- text 36pt [7%,82% → 14%,87%]: {high CVaR|#c3b8ff}
+- text 36pt [86%,82% → 92%,87%]: {low CVaR|#c3b8ff}
+- **Builds:** click 1: equation $\text{CVaR}_\alpha[f(\tau)] = \mathbb{E}_{\tau \sim p(\cdot)}[f(\tau) \mid f(\tau) \geq \text{VaR}_\alpha[f(\tau)]]$ — appears; click 2: text 36pt — appears; click 3: text 36pt — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- text 42pt [12%,35% → 38%,41%]: {value at risk (VaR) $(\alpha = 0.7)$|#c3b8ff}
+- text 42pt [53%,35% → 90%,41%]: {conditional value at risk (CVaR) $(\alpha = 0.7)$|#c3b8ff}
+- text 36pt [6%,49% → 44%,65%]: “What is the value that the risk is guaranteed not to exceed with probability 0.7?” / The higher this value is, the worse the situation.
+- text 48pt [48%,7% → 52%,11%]: Some intuition for VaR and CVaR
+- text 36pt [52%,49% → 91%,65%]: “I don’t just want the expected value - I want the expected value of the worst-case outcomes.” / The higher this value is, the worse the situation.
+- text on a #80b9ff filled box 32pt [39%,79% → 58%,87%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: text on a #80b9ff filled box 32pt — appears
+
+## Slide 20
+- heading (spaced caps) 36pt [51%,48% → 124%,52%]: METRICS
+- heading (spaced caps) 36pt [35%,48% → 109%,52%]: {COMPOSITE|#80b9ff}
+
+## Slide 21
+- text 36pt [33%,11% → 67%,15%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- image `test-1574.svg` [25%,21% → 67%,93%]
+- text 36pt [74%,28% → 92%,48%]: A system design is [[Pareto optimal|#80b9ff]] if we cannot improve one metric without worsening another.
+- text 36pt [52%,44% → 65%,48%]: Pareto optimal?
+- arrow #ffffff [56%,50% → 58%,56%]
+- vector icon `shape-d1878e97.svg` [65%,44% → 67%,48%]
+- **Builds:** click 1: text 36pt — appears; click 2: arrow #ffffff — draws in; with previous: text 36pt — appears; click 3: vector icon `shape-d1878e97.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 22
+- text 36pt [33%,11% → 67%,15%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- image `test-1574.svg` [25%,21% → 67%,93%]
+- text 36pt [74%,28% → 92%,48%]: A system design is [[Pareto optimal|#80b9ff]] if we cannot improve one metric without worsening another.
+- text 36pt [52%,44% → 65%,48%]: Pareto optimal?
+- arrow #ffffff [55%,50% → 58%,64%]
+- vector icon `shape-aefd3cf5.svg` [65%,44% → 67%,48%]
+- **Builds:** click 1: vector icon `shape-aefd3cf5.svg` — appears
+
+## Slide 23
+- image `test-1638.svg` [25%,21% → 67%,93%]
+- text 36pt [33%,11% → 67%,15%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [74%,28% → 92%,48%]: A system design is [[Pareto optimal|#80b9ff]] if we cannot improve one metric without worsening another.
+- text 36pt [74%,56% → 92%,72%]: The [[Pareto frontier|#80b9ff]] is the subset of all designs that are Pareto optimal.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 24
+- image `test-1638.svg` [25%,21% → 67%,93%]
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [74%,28% → 92%,48%]: A system design is [[Pareto optimal|#80b9ff]] if we cannot improve one metric without worsening another.
+- text 36pt [74%,56% → 92%,72%]: The [[Pareto frontier|#80b9ff]] is the subset of all designs that are Pareto optimal.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+
+## Slide 25
+- image `test-1686.svg` [25%,21% → 67%,93%]
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 26
+- image `test-1686.svg` [8%,21% → 50%,93%]
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+- text 36pt [65%,24% → 84%,29%]: Weighted Sum Method:
+- equation $f(\tau) = \sum_{i=1}^n w_i f_i(\tau) = \mathbf w^\top \mathbf f(\tau)$ (55pt, #ffffff) [59%,33% → 89%,47%]
+- equation $$\mathbf w = [w_1, \ldots, w_n]$$ (52pt, #ffffff) [53%,51% → 71%,55%]
+- equation $\mathbf f(\tau) = [f_1(\tau), \ldots, f_n(\tau)]$ (50pt, #ffffff) [74%,51% → 96%,55%]
+
+## Slide 27
+- image `test-1747.svg` [8%,21% → 50%,93%]
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+- text 36pt [65%,24% → 84%,29%]: Weighted Sum Method:
+- equation $f(\tau) = \sum_{i=1}^n w_i f_i(\tau) = \mathbf w^\top \mathbf f(\tau)$ (55pt, #ffffff) [59%,33% → 89%,47%]
+- equation $$\mathbf w = [w_1, \ldots, w_n]$$ (52pt, #ffffff) [53%,51% → 71%,55%]
+- equation $\mathbf f(\tau) = [f_1(\tau), \ldots, f_n(\tau)]$ (50pt, #ffffff) [74%,51% → 96%,55%]
+
+## Slide 28
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+- image `test-1686.svg` [8%,21% → 50%,93%]
+- text 36pt [65%,24% → 84%,29%]: Goal Distance Metric:
+- equation $f(\tau) = \| \mathbf f(\tau) - f_{\text{goal}} \|_p$ (50pt, #ffffff) [63%,35% → 86%,41%]
+- shape (outline) [17%,72% → 21%,80%]
+- equation $f_\text{goal} = \text{utopia point}$ (36pt, #fffb00) [6%,91% → 21%,95%]
+- arrow #fffb00 [12%,81% → 17%,90%]
+- **Builds:** click 1: equation $f_\text{goal} = \text{utopia point}$ — appears; with previous: shape (outline) — appears; with previous: arrow #fffb00 — draws in
+
+## Slide 29
+- image `test-1789.svg` [8%,21% → 50%,93%]
+- text 36pt [33%,4% → 67%,9%]: Metrics are often [[at odds|#80b9ff]] with one another.
+- text 36pt [33%,13% → 67%,17%]: [[Composite metrics|#80b9ff]] allow us to create a single metric to select a point on the Pareto frontier.
+- text 36pt [65%,24% → 84%,29%]: Goal Distance Metric:
+- equation $f(\tau) = \| \mathbf f(\tau) - f_{\text{goal}} \|_p$ (50pt, #ffffff) [63%,35% → 86%,41%]
+- shape (outline) [17%,72% → 21%,80%]
+- equation $f_\text{goal} = \text{utopia point}$ (36pt, #fffb00) [6%,91% → 21%,95%]
+- arrow #fffb00 [12%,81% → 17%,90%]
+- text 36pt [64%,56% → 85%,60%]: Why not combine the two?
+- text 36pt [61%,63% → 88%,67%]: Weighted Exponential Sum Metric:
+- equation $f(\tau) = \sum_{i=1}^n w_i (\mathbf f_i(\tau) - f_{\text{goal}})^p$ (46pt, #ffffff) [62%,70% → 87%,81%]
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: equation $f(\tau) = \sum_{i=1}^n w_i (\mathbf f_i(\tau) - f_{\text{goal}})^p$ — appears
+
+## Slide 30
+- text 36pt [50%,50% → 50%,50%]: How do we pick the weights?
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 31
+- text 36pt [39%,45% → 61%,49%]: How do we pick the weights?
+- text 36pt [37%,51% → 63%,55%]: One option is [[preference elicitation|#80b9ff]].
+
+## Slide 32
+- text 36pt [48%,7% → 52%,12%]: Candy Example
+- text 36pt [11%,27% → 34%,40%]: M&Ms $(w_1)$ / Sour Patch Kids $(w_2)$ / Skittles $(w_3)$
+- text 36pt [8%,19% → 60%,24%]: We want to learn a weight vector over the following three candies:
+- text 36pt [8%,43% → 37%,47%]: We will do so using [[pairwise queries|#80b9ff]].
+- equation $\mathbf w = [w_1, w_2, w_3]$ (43pt, #ffffff) [42%,31% → 56%,35%]
+- text on a #80b9ff filled box 32pt [39%,55% → 59%,63%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — appears
+
+## Slide 33
+
+## Slide 34
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: METRICS
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: SPECIFICATIONS
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 92%,75%]: REACHABILITY
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-5%,30% → 71%,35%]: PROPERTIES OF SYSTEMS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- heading (spaced caps) 36pt [47%,48% → 120%,52%]: SPECIFICATIONS
+- heading (spaced caps) 36pt [35%,48% → 108%,52%]: {LOGICAL|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 36
+- heading (spaced caps) 36pt [47%,5% → 120%,10%]: SPECIFICATIONS
+- heading (spaced caps) 36pt [35%,5% → 108%,10%]: {LOGICAL|#80b9ff}
+- text 36pt [13%,39% → 77%,44%]: A [[logical specification|#80b9ff]] formally defines an operating requirement for a system using a
+- text 36pt [77%,39% → 88%,44%]: [[logical formula|#80b9ff]]
+- text 36pt [88%,39% → 89%,44%]: .
+- text 36pt [77%,39% → 88%,44%]: [[logical formula|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 37
+- heading (spaced caps) 36pt [47%,5% → 120%,10%]: SPECIFICATIONS
+- heading (spaced caps) 36pt [35%,5% → 108%,10%]: {LOGICAL|#80b9ff}
+- text 36pt [13%,39% → 77%,44%]: A [[logical specification|#80b9ff]] formally defines an operating requirement for a system using a
+- text 36pt [77%,39% → 88%,44%]: [[logical formula|#80b9ff]]
+- text 36pt [88%,39% → 89%,44%]: .
+- text 36pt [25%,50% → 35%,54%]: [[logical formula|#80b9ff]]
+- text 36pt [23%,50% → 24%,54%]: A
+- text 36pt [36%,50% → 82%,54%]: is a precise expression that evaluates to either true or false.
+- vector icon `shape-f4c9780e.svg` [72%,55% → 75%,59%]
+- vector icon `shape-37b66fed.svg` [78%,54% → 81%,60%]
+
+## Slide 38
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: PROPOSITIONAL LOGIC
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 39
+- heading (spaced caps) 50pt [12%,7% → 88%,13%]: PROPOSITIONAL LOGIC
+- text 36pt [48%,18% → 52%,23%]: A [[proposition|#80b9ff]] is a statement that evaluates to either true or false.
+- text 36pt [27%,18% → 35%,23%]: [[proposition|#80b9ff]]
+- text 36pt [22%,26% → 78%,30%]: An[[ atomic proposition|#80b9ff]] is a proposition that cannot be broken down further.
+- text 36pt [24%,26% → 38%,30%]: [[atomic proposition|#80b9ff]]
+- vector icon `shape-feeda1a8.svg` [10%,22% → 19%,34%]
+- equation $(A \wedge B) \wedge \neg C$ (83pt, #ffffff) [39%,54% → 61%,60%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- heading (spaced caps) 50pt [12%,7% → 88%,13%]: PROPOSITIONAL LOGIC
+- text 36pt [48%,18% → 52%,23%]: A [[proposition|#80b9ff]] is a statement that evaluates to either true or false.
+- text 36pt [46%,70% → 54%,75%]: [[proposition|#80b9ff]]
+- text 36pt [22%,26% → 78%,30%]: An[[ atomic proposition|#80b9ff]] is a proposition that cannot be broken down further.
+- text 36pt [24%,26% → 38%,30%]: [[atomic proposition|#80b9ff]]
+- vector icon `shape-feeda1a8.svg` [10%,22% → 19%,34%]
+- equation $(A \wedge B) \wedge \neg C$ (83pt, #ffffff) [39%,54% → 61%,60%]
+- image `noun-bracket-2376717-80b9ff.png` [39%,56% → 61%,76%]
+- text 36pt [24%,26% → 38%,30%]: [[atomic proposition|#80b9ff]]
+- text 36pt [24%,26% → 38%,30%]: [[atomic proposition|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 41
+- heading (spaced caps) 50pt [12%,7% → 88%,13%]: PROPOSITIONAL LOGIC
+- text 36pt [48%,18% → 52%,23%]: A [[proposition|#80b9ff]] is a statement that evaluates to either true or false.
+- text 36pt [46%,70% → 54%,75%]: [[proposition|#80b9ff]]
+- text 36pt [22%,26% → 78%,30%]: An[[ atomic proposition|#80b9ff]] is a proposition that cannot be broken down further.
+- text 36pt [59%,37% → 73%,42%]: [[atomic proposition|#80b9ff]]
+- vector icon `shape-feeda1a8.svg` [10%,22% → 19%,34%]
+- equation $(A \wedge B) \wedge \neg C$ (83pt, #ffffff) [39%,54% → 61%,60%]
+- image `noun-bracket-2376717-80b9ff.png` [39%,56% → 61%,76%]
+- text 36pt [43%,43% → 57%,48%]: [[atomic proposition|#80b9ff]]
+- text 36pt [33%,37% → 47%,42%]: [[atomic proposition|#80b9ff]]
+- arrow #ffffff [40%,42% → 41%,53%]
+- arrow #ffffff [49%,48% → 51%,52%]
+- arrow #ffffff [61%,43% → 66%,51%]
+- text 48pt [39%,83% → 61%,89%]: “A and B and not C”
+- **Builds:** click 1: text 48pt — appears
+
+## Slide 42
+- heading (spaced caps) 50pt [12%,7% → 88%,13%]: PROPOSITIONAL LOGIC
+- group [13%,39% → 26%,64%]
+  - line #ffffff [14%,64% → 26%,64%]
+  - line #ffffff [14%,47% → 26%,47%]
+  - equation $P$ (36pt, #ffffff) [16%,49% → 17%,51%]
+  - equation $\neg P$ (36pt, #80b9ff) [22%,49% → 24%,51%]
+  - text 36pt [14%,53% → 18%,57%]: true
+  - text 36pt [14%,58% → 18%,63%]: false
+  - text 36pt [21%,53% → 25%,57%]: {false|#80b9ff}
+  - text 36pt [21%,58% → 24%,63%]: {true|#80b9ff}
+  - line #ffffff [14%,53% → 26%,53%]
+  - text 36pt [13%,39% → 26%,44%]: Negation (“not”)
+- group [35%,17% → 54%,52%]
+  - line #ffffff [35%,52% → 54%,52%]
+  - line #ffffff [35%,24% → 54%,24%]
+  - equation $P$ (36pt, #ffffff) [37%,26% → 38%,28%]
+  - equation $Q$ (36pt, #ffffff) [43%,26% → 44%,29%]
+  - text 36pt [36%,30% → 40%,34%]: true
+  - text 36pt [36%,41% → 40%,45%]: false
+  - text 36pt [42%,35% → 45%,40%]: false
+  - text 36pt [42%,30% → 45%,34%]: true
+  - line #ffffff [35%,30% → 54%,30%]
+  - equation $P \wedge Q$ (36pt, #80b9ff) [48%,26% → 53%,29%]
+  - text 36pt [36%,35% → 40%,40%]: true
+  - text 36pt [42%,46% → 45%,51%]: false
+  - text 36pt [36%,46% → 40%,51%]: false
+  - text 36pt [42%,41% → 45%,45%]: true
+  - text 36pt [48%,35% → 52%,40%]: {false|#80b9ff}
+  - text 36pt [48%,30% → 52%,34%]: {true|#80b9ff}
+  - text 36pt [48%,47% → 52%,51%]: {false|#80b9ff}
+  - text 36pt [48%,41% → 52%,46%]: {false|#80b9ff}
+  - text 36pt [36%,17% → 52%,22%]: Conjunction (“and”)
+- group [64%,17% → 83%,52%]
+  - line #ffffff [64%,52% → 83%,52%]
+  - line #ffffff [64%,24% → 83%,24%]
+  - equation $P$ (36pt, #ffffff) [66%,26% → 68%,28%]
+  - equation $Q$ (36pt, #ffffff) [72%,26% → 73%,29%]
+  - text 36pt [65%,30% → 69%,34%]: true
+  - text 36pt [65%,41% → 69%,45%]: false
+  - text 36pt [71%,35% → 75%,40%]: false
+  - text 36pt [71%,30% → 75%,34%]: true
+  - line #ffffff [64%,29% → 83%,29%]
+  - equation $P \vee Q$ (36pt, #80b9ff) [78%,26% → 82%,29%]
+  - text 36pt [65%,35% → 69%,40%]: true
+  - text 36pt [71%,46% → 75%,51%]: false
+  - text 36pt [65%,46% → 69%,51%]: false
+  - text 36pt [71%,41% → 75%,45%]: true
+  - text 36pt [78%,35% → 81%,40%]: {true|#80b9ff}
+  - text 36pt [78%,30% → 81%,34%]: {true|#80b9ff}
+  - text 36pt [78%,46% → 81%,51%]: {false|#80b9ff}
+  - text 36pt [78%,41% → 81%,45%]: {true|#80b9ff}
+  - text 36pt [66%,17% → 81%,22%]: Disjunction (“or”)
+- group [35%,57% → 54%,92%]
+  - line #ffffff [35%,92% → 54%,92%]
+  - line #ffffff [35%,65% → 54%,65%]
+  - equation $P$ (36pt, #ffffff) [37%,66% → 38%,69%]
+  - equation $Q$ (36pt, #ffffff) [43%,66% → 44%,69%]
+  - text 36pt [36%,70% → 40%,75%]: true
+  - text 36pt [36%,81% → 40%,86%]: false
+  - text 36pt [42%,76% → 45%,80%]: false
+  - text 36pt [42%,70% → 45%,75%]: true
+  - line #ffffff [35%,70% → 54%,70%]
+  - equation $P \rightarrow Q$ (36pt, #80b9ff) [48%,66% → 53%,69%]
+  - text 36pt [36%,76% → 40%,80%]: true
+  - text 36pt [42%,87% → 45%,91%]: false
+  - text 36pt [36%,87% → 40%,91%]: false
+  - text 36pt [42%,81% → 45%,86%]: true
+  - text 36pt [48%,76% → 52%,80%]: {false|#80b9ff}
+  - text 36pt [48%,70% → 52%,75%]: {true|#80b9ff}
+  - text 36pt [48%,87% → 52%,92%]: {true|#80b9ff}
+  - text 36pt [48%,81% → 52%,86%]: {true|#80b9ff}
+  - text 36pt [36%,57% → 53%,61%]: Implication (“if-then”)
+- group [62%,56% → 85%,92%]
+  - line #ffffff [64%,92% → 83%,92%]
+  - line #ffffff [64%,64% → 83%,64%]
+  - equation $P$ (36pt, #ffffff) [66%,66% → 68%,68%]
+  - equation $Q$ (36pt, #ffffff) [72%,66% → 73%,69%]
+  - text 36pt [65%,70% → 69%,74%]: true
+  - text 36pt [65%,81% → 69%,85%]: false
+  - text 36pt [71%,75% → 75%,80%]: false
+  - text 36pt [71%,70% → 75%,74%]: true
+  - line #ffffff [64%,70% → 83%,70%]
+  - equation $P \leftrightarrow Q$ (36pt, #80b9ff) [77%,66% → 82%,69%]
+  - text 36pt [65%,75% → 69%,80%]: true
+  - text 36pt [71%,86% → 75%,91%]: false
+  - text 36pt [65%,86% → 69%,91%]: false
+  - text 36pt [71%,81% → 75%,85%]: true
+  - text 36pt [78%,75% → 81%,80%]: {false|#80b9ff}
+  - text 36pt [78%,70% → 81%,74%]: {true|#80b9ff}
+  - text 36pt [78%,86% → 81%,91%]: {true|#80b9ff}
+  - text 36pt [78%,81% → 81%,85%]: {false|#80b9ff}
+  - text 36pt [62%,56% → 85%,61%]: Biconditional (“if and only if”)
+- **Builds:** click 1: group — appears; click 2: group — appears; click 3: group — appears; click 4: group — appears; click 5: group — appears
+
+## Slide 43
+- rounded box (outline) [7%,20% → 93%,91%]
+- heading (spaced caps) 50pt [12%,7% → 88%,13%]: PROPOSITIONAL LOGIC
+- text 36pt [11%,32% → 55%,37%]: Express the following statement using propositional logic:
+- text 42pt [46%,24% → 54%,29%]: Example
+- text 36pt [23%,40% → 77%,45%]: “If the agent is in a safe state, then the agent is not in a collision state”
+- text 36pt [11%,48% → 27%,53%]: Atomic propositions:
+- text 36pt [16%,55% → 38%,60%]: $S$: the agent is in a safe state
+- text 36pt [16%,61% → 41%,66%]: $C$: the agent is in a collision state
+- equation $S \rightarrow \neg C$ (77pt, #ffffff) [43%,75% → 57%,80%]
+- line #ffffff [42%,73% → 58%,82%]
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: text 36pt — appears; click 4: line #ffffff — appears; with previous: equation $S \rightarrow \neg C$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 44
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: PROPOSITIONAL LOGIC
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 45
+- heading (spaced caps) 50pt [12%,41% → 88%,47%]: PROPOSITIONAL LOGIC
+- heading (spaced caps) 50pt [12%,57% → 88%,64%]: FIRST-ORDER LOGIC
+- arrow #ffffff [50%,49% → 50%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 46
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- text 36pt [23%,17% → 77%,21%]: First-order logic adds [[variables|#80b9ff]], [[predicates|#80b9ff]], and [[quantifiers|#80b9ff]] to propositional logic.
+- text 36pt [37%,17% → 43%,21%]: [[variable|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 47
+- text 36pt [41%,32% → 59%,37%]: {e.g. let the variable $x$ represent the state of an agent|#ffa4e7}
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- text 36pt [23%,17% → 77%,21%]: First-order logic adds [[variables|#80b9ff]], [[predicates|#80b9ff]], and [[quantifiers|#80b9ff]] to propositional logic.
+- text 36pt [40%,24% → 45%,29%]: [[variable|#80b9ff]]
+- text 36pt [45%,24% → 60%,29%]: : object in a domain
+- text 36pt [44%,17% → 51%,21%]: [[predicate|#80b9ff]]
+- **Builds:** click 1: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 48
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- text 36pt [23%,17% → 77%,21%]: First-order logic adds [[variables|#80b9ff]], [[predicates|#80b9ff]], and [[quantifiers|#80b9ff]] to propositional logic.
+- text 36pt [40%,24% → 45%,29%]: [[variable|#80b9ff]]
+- text 36pt [45%,24% → 60%,29%]: : object in a domain
+- text 36pt [41%,32% → 59%,37%]: {e.g. let the variable $x$ represent the state of an agent|#ffa4e7}
+- text 36pt [27%,40% → 34%,45%]: [[predicate|#80b9ff]]
+- text 36pt [34%,40% → 73%,45%]: : function that evaluates propositions over variables
+- text 36pt [23%,48% → 77%,57%]: {e.g. the predicate $P(x)$ returns true if the agent is in a safe state,|#ffa4e7} / {and the predicate $Q(x)$ returns true if the agent is in a collision state. |#ffa4e7}
+- group [19%,60% → 81%,91%]
+  - rounded box (outline) [19%,60% → 81%,91%]
+  - text 42pt [46%,61% → 54%,67%]: Example
+  - text 36pt [23%,69% → 77%,74%]: “If the agent is in a safe state, then the agent is not in a collision state”
+  - equation $P(x) \rightarrow \neg Q(x)$ (77pt, #ffffff) [39%,80% → 61%,86%]
+  - line #ffffff [38%,78% → 62%,87%]
+- text 36pt [55%,17% → 63%,21%]: [[quantifiers|#80b9ff]]
+- **Builds:** click 1: text 36pt — appears; click 2: group — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 49
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- text 36pt [23%,17% → 77%,21%]: First-order logic adds [[variables|#80b9ff]], [[predicates|#80b9ff]], and [[quantifiers|#80b9ff]] to propositional logic.
+- text 36pt [22%,25% → 30%,29%]: [[quantifiers|#80b9ff]]
+- text 36pt [30%,25% → 78%,29%]: allow us to evaluate propositions over a collection of variables
+- text 36pt [22%,33% → 78%,37%]: {Universal Quantifier $\forall$ (“for all”):|#c3b8ff} all variables must satisfy the proposition.
+- text 36pt [48%,41% → 52%,45%]: {e.g. “all states are safe states” is written as $\forall x \ P(x)$|#ffa4e7}
+- text 36pt [22%,49% → 78%,54%]: {Existential Quantifier $\exists$ (“there exists”):|#c3b8ff} at least one variable in the domain satisfies the proposition.
+- text 36pt [31%,57% → 69%,62%]: {e.g. “at least one state is a safe state” is written as $\exists x \ P(x)$|#ffa4e7}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: text 36pt — appears; click 4: text 36pt — appears
+
+## Slide 50
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- rounded box (outline) [7%,15% → 93%,91%]
+- text 42pt [46%,17% → 54%,23%]: Example
+- image `test-2684.svg` [13%,29% → 40%,77%]
+- text 36pt [55%,39% → 75%,43%]: $O(x)$: $x$ is an obstacle state
+- text 36pt [50%,27% → 80%,35%]: “for all states in the trajectory, the agent does not hit an obstacle”
+- equation $\psi_1 = \forall x \ \neg O(x)$ (77pt, #ffffff) [53%,50% → 77%,57%]
+- line #ffffff [52%,48% → 77%,58%]
+- image `test-2743.svg` [53%,61% → 76%,85%]
+- **Builds:** click 1: text 36pt — appears; click 2: line #ffffff — appears; with previous: equation $\psi_1 = \forall x \ \neg O(x)$ — appears; click 3: image `test-2743.svg` — appears
+
+## Slide 51
+- heading (spaced caps) 50pt [12%,5% → 88%,11%]: FIRST-ORDER LOGIC
+- rounded box (outline) [7%,15% → 93%,91%]
+- text 42pt [46%,17% → 54%,23%]: Example
+- text 36pt [55%,36% → 75%,41%]: $O(x)$: $x$ is an obstacle state
+- text 36pt [50%,27% → 80%,35%]: “the agent must reach a goal state and avoid the obstacle state.”
+- equation $\psi_2 = (\forall x \ \neg O(x)) \wedge (\exists x \ G(x))$ (52pt, #ffffff) [49%,51% → 80%,55%]
+- line #ffffff [48%,48% → 81%,58%]
+- image `test-2754.svg` [13%,29% → 40%,77%]
+- text 36pt [55%,41% → 75%,46%]: $G(x)$: $x$ is a goal state
+- image `test-2807.svg` [53%,60% → 77%,85%]
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: line #ffffff — appears; with previous: equation $\psi_2 = (\forall x \ \neg O(x)) \wedge (\exists x \ G(x))$ — appears; click 4: image `test-2807.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 52
+- heading (spaced caps) 50pt [12%,41% → 88%,47%]: PROPOSITIONAL LOGIC
+- heading (spaced caps) 50pt [12%,57% → 88%,64%]: FIRST-ORDER LOGIC
+- arrow #ffffff [50%,49% → 50%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 53
+- heading (spaced caps) 50pt [12%,30% → 88%,37%]: PROPOSITIONAL LOGIC
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: FIRST-ORDER LOGIC
+- arrow #ffffff [50%,38% → 50%,45%]
+- heading (spaced caps) 50pt [12%,63% → 88%,70%]: TEMPORAL LOGIC
+- arrow #ffffff [50%,55% → 50%,62%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 54
+- heading (spaced caps) 50pt [12%,42% → 88%,48%]: TEMPORAL LOGIC
+- text 36pt [23%,53% → 77%,58%]: Temporal logic extends first-order logic to specify properties [[over time|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 55
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,6% → 74%,12%]: {LINEAR|#80b9ff}
+- text 36pt [34%,17% → 66%,21%]: Properties over linear sequences of states:
+- text 36pt [17%,40% → 25%,45%]: “always $P$”
+- equation $\square P$ (36pt, #ffffff) [20%,34% → 23%,37%]
+- text 36pt [11%,47% → 31%,56%]: “$P$ is true at [[all|#80b9ff]] time steps in the future”
+- text 36pt [14%,25% → 20%,30%]: {\square|#ffa4e7}
+- arrow #ffa4e7 [18%,30% → 20%,33%]
+- image `test-2949.svg` [7%,62% → 32%,84%]
+- line #ffffff [35%,26% → 35%,94%]
+- equation $\lozenge P$ (36pt, #ffffff) [50%,34% → 53%,38%]
+- text 36pt [46%,40% → 57%,45%]: “eventually $P$”
+- text 36pt [41%,47% → 61%,56%]: “$P$ is true at [[some|#80b9ff]] time step in the future”
+- text 36pt [45%,26% → 52%,31%]: {\lozenge|#ffa4e7}
+- arrow #ffa4e7 [49%,31% → 50%,34%]
+- image `test-2993.svg` [38%,62% → 62%,84%]
+- line #ffffff [65%,26% → 65%,94%]
+- equation $P \mathcal U Q$ (36pt, #ffffff) [80%,30% → 84%,33%]
+- text 36pt [78%,35% → 87%,40%]: “$P$ until $Q$”
+- text 36pt [69%,42% → 95%,55%]: “$Q$ is true at [[some|#80b9ff]] time step in the future and $P$ is true [[at least|#80b9ff]] until $Q$ becomes true.”
+- image `test-3049.svg` [68%,58% → 93%,88%]
+- **Builds:** click 1: equation $\square P$ — appears; with previous: text 36pt — appears; click 2: text 36pt — appears; with previous: arrow #ffa4e7 — draws in; click 3: text 36pt — appears; click 4: image `test-2949.svg` — appears; click 5: equation $\lozenge P$ — appears; with previous: text 36pt — appears; click 6: arrow #ffa4e7 — draws in; with previous: text 36pt — appears; click 7: text 36pt — appears; click 8: image `test-2993.svg` — appears; click 9: equation $P \mathcal U Q$ — appears; with previous: text 36pt — appears; click 10: text 36pt — appears; click 11: image `test-3049.svg` — appears
+
+## Slide 56
+- rounded box (outline) [7%,15% → 93%,91%]
+- image `test-3066.svg` [13%,29% → 40%,77%]
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,6% → 74%,12%]: {LINEAR|#80b9ff}
+- text 42pt [46%,17% → 54%,23%]: Example
+- text 36pt [50%,26% → 80%,38%]: “eventually reach the goal after passing through the checkpoint and always avoid the obstacle”
+- text 36pt [47%,42% → 82%,47%]: $F(s_t):$ the state $s$ at time $t$ contains an obstacle
+- text 36pt [47%,48% → 84%,52%]: $G(s_t):$ the state $s$ at time $t$ is the goal
+- text 36pt [47%,53% → 84%,58%]: $C(s_t):$ the state $s$ at time $t$ is the checkpoint
+- equation $\psi = \lozenge G \wedge \neg G \mathcal U C \wedge \square \neg F$ (48pt, #ffffff) [51%,64% → 78%,69%]
+- text 24pt [54%,77% → 62%,83%]: eventually reach the goal
+- arrow #ffffff [58%,71% → 58%,77%]
+- line #ffffff [56%,63% → 60%,70%]
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: text 36pt — appears; click 4: equation $\psi = \lozenge G \wedge \neg G \mathcal U C \wedge \square \neg F$ — appears; click 5: line #ffffff — fades up from dark; with previous: text 24pt — fades up from dark; with previous: arrow #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 57
+- rounded box (outline) [7%,15% → 93%,91%]
+- image `test-3066.svg` [13%,29% → 40%,77%]
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,6% → 74%,12%]: {LINEAR|#80b9ff}
+- text 42pt [46%,17% → 54%,23%]: Example
+- text 36pt [50%,26% → 80%,38%]: “eventually reach the goal after passing through the checkpoint and always avoid the obstacle”
+- text 36pt [47%,42% → 82%,47%]: $F(s_t):$ the state $s$ at time $t$ contains an obstacle
+- text 36pt [47%,48% → 84%,52%]: $G(s_t):$ the state $s$ at time $t$ is the goal
+- text 36pt [47%,53% → 84%,58%]: $C(s_t):$ the state $s$ at time $t$ is the checkpoint
+- text 24pt [62%,77% → 70%,88%]: don’t reach the goal until you have reached the checkpoint
+- arrow #ffffff [66%,71% → 66%,77%]
+- line #ffffff [62%,63% → 70%,70%]
+- equation $\psi = \lozenge G \wedge \neg G \mathcal U C \wedge \square \neg F$ (48pt, #ffffff) [51%,64% → 78%,69%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 58
+- rounded box (outline) [7%,15% → 93%,91%]
+- image `test-3066.svg` [13%,29% → 40%,77%]
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,6% → 74%,12%]: {LINEAR|#80b9ff}
+- text 42pt [46%,17% → 54%,23%]: Example
+- text 36pt [50%,26% → 80%,38%]: “eventually reach the goal after passing through the checkpoint and always avoid the obstacle”
+- text 36pt [47%,42% → 82%,47%]: $F(s_t):$ the state $s$ at time $t$ contains an obstacle
+- text 36pt [47%,48% → 84%,52%]: $G(s_t):$ the state $s$ at time $t$ is the goal
+- text 36pt [47%,53% → 84%,58%]: $C(s_t):$ the state $s$ at time $t$ is the checkpoint
+- text 24pt [71%,77% → 80%,83%]: always don’t be in the obstacle
+- arrow #ffffff [75%,71% → 75%,77%]
+- line #ffffff [72%,63% → 79%,70%]
+- equation $\psi = \lozenge G \wedge \neg G \mathcal U C \wedge \square \neg F$ (48pt, #ffffff) [51%,64% → 78%,69%]
+
+## Slide 59
+- rounded box (outline) [7%,15% → 93%,91%]
+- image `test-3194.svg` [13%,29% → 40%,77%]
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,6% → 74%,12%]: {LINEAR|#80b9ff}
+- text 42pt [46%,17% → 54%,23%]: Example
+- text 36pt [50%,26% → 80%,38%]: “eventually reach the goal after passing through the checkpoint and always avoid the obstacle”
+- text 36pt [47%,42% → 82%,47%]: $F(s_t):$ the state $s$ at time $t$ contains an obstacle
+- text 36pt [47%,48% → 84%,52%]: $G(s_t):$ the state $s$ at time $t$ is the goal
+- text 36pt [47%,53% → 84%,58%]: $C(s_t):$ the state $s$ at time $t$ is the checkpoint
+- equation $\psi = \lozenge G \wedge \neg G \mathcal U C \wedge \square \neg F$ (48pt, #ffffff) [51%,64% → 78%,69%]
+
+## Slide 60
+- text 36pt [50%,50% → 50%,50%]: {A pink slide!|#000000}
+- text 36pt [45%,53% → 55%,57%]: {Just to wake you up.|#000000}
+
+## Slide 61
+- heading (spaced caps) 50pt [20%,47% → 96%,53%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,47% → 74%,53%]: {LINEAR|#80b9ff}
+- heading (spaced caps) 50pt [-3%,37% → 73%,43%]: {SIGNAL|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 62
+- heading (spaced caps) 50pt [20%,47% → 96%,53%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-2%,58% → 74%,64%]: {LINEAR|#80b9ff}
+- heading (spaced caps) 50pt [-3%,47% → 73%,53%]: {SIGNAL|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 63
+- heading (spaced caps) 50pt [20%,40% → 96%,46%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,40% → 73%,46%]: {SIGNAL|#80b9ff}
+- text 36pt [48%,49% → 52%,54%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 64
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,17% → 69%,22%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [17%,83% → 83%,83%]
+- arrow #ffffff [17%,34% → 17%,83%]
+- text 36pt [48%,91% → 52%,95%]: Time
+- text 36pt [10%,54% → 13%,62%]: Value
+- vector icon `shape-96381820.svg` [21%,72% → 22%,75%]
+- vector icon `shape-96381820.svg` [26%,65% → 28%,68%]
+- vector icon `shape-96381820.svg` [33%,63% → 34%,65%]
+- vector icon `shape-96381820.svg` [45%,53% → 46%,55%]
+- vector icon `shape-96381820.svg` [52%,57% → 54%,60%]
+- vector icon `shape-96381820.svg` [57%,43% → 59%,46%]
+- vector icon `shape-96381820.svg` [67%,38% → 69%,41%]
+- line #ffffff [22%,71% → 22%,76%]
+- line #ffffff [27%,64% → 27%,69%]
+- line #ffffff [33%,62% → 33%,66%]
+- line #ffffff [45%,52% → 45%,56%]
+- line #ffffff [53%,56% → 53%,61%]
+- line #ffffff [58%,42% → 58%,47%]
+- line #ffffff [68%,37% → 68%,42%]
+- **Builds:** click 1: arrow #ffffff — draws in; with previous: arrow #ffffff — draws in; click 2: text 36pt — appears; click 3: text 36pt — appears; click 4: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark; with previous: vector icon `shape-96381820.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 65
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,17% → 69%,22%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [17%,83% → 83%,83%]
+- arrow #ffffff [17%,34% → 17%,83%]
+- text 36pt [48%,91% → 52%,95%]: Time
+- text 36pt [10%,54% → 13%,62%]: Value
+- vector icon `shape-96381820.svg` [21%,72% → 22%,75%]
+- vector icon `shape-96381820.svg` [26%,65% → 28%,68%]
+- vector icon `shape-96381820.svg` [33%,63% → 34%,65%]
+- vector icon `shape-96381820.svg` [45%,53% → 46%,55%]
+- vector icon `shape-96381820.svg` [52%,57% → 54%,60%]
+- vector icon `shape-96381820.svg` [57%,43% → 59%,46%]
+- vector icon `shape-96381820.svg` [67%,38% → 69%,41%]
+- line #ffffff [22%,80% → 22%,85%]
+- line #ffffff [27%,80% → 27%,85%]
+- line #ffffff [33%,80% → 33%,85%]
+- line #ffffff [45%,80% → 45%,85%]
+- line #ffffff [53%,80% → 53%,85%]
+- line #ffffff [58%,80% → 58%,85%]
+- line #ffffff [68%,80% → 68%,85%]
+- equation $t_1$ (36pt, #ffffff) [21%,87% → 22%,89%]
+- equation $t_2$ (36pt, #ffffff) [26%,87% → 27%,89%]
+- equation $t_3$ (36pt, #ffffff) [33%,87% → 34%,89%]
+- equation $t_4$ (36pt, #ffffff) [45%,87% → 46%,89%]
+- equation $t_5$ (36pt, #ffffff) [52%,87% → 53%,89%]
+- equation $t_6$ (36pt, #ffffff) [58%,87% → 59%,89%]
+- equation $t_7$ (36pt, #ffffff) [67%,87% → 68%,89%]
+- line #ffffff [20%,73% → 23%,73%]
+- line #ffffff [32%,64% → 35%,64%]
+- line #ffffff [26%,66% → 28%,66%]
+- line #ffffff [51%,58% → 54%,58%]
+- line #ffffff [44%,54% → 47%,54%]
+- line #ffffff [57%,45% → 59%,45%]
+- line #ffffff [67%,40% → 69%,40%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 66
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,17% → 69%,22%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [17%,83% → 83%,83%]
+- arrow #ffffff [17%,34% → 17%,83%]
+- text 36pt [48%,91% → 52%,95%]: Time
+- text 36pt [10%,54% → 13%,62%]: Value
+- vector icon `shape-96381820.svg` [21%,72% → 22%,75%]
+- vector icon `shape-96381820.svg` [26%,65% → 28%,68%]
+- vector icon `shape-96381820.svg` [33%,63% → 34%,65%]
+- vector icon `shape-96381820.svg` [45%,53% → 46%,55%]
+- vector icon `shape-96381820.svg` [52%,57% → 54%,60%]
+- vector icon `shape-96381820.svg` [57%,43% → 59%,46%]
+- vector icon `shape-96381820.svg` [67%,38% → 69%,41%]
+- line #ffffff [22%,80% → 22%,85%]
+- line #ffffff [27%,80% → 27%,85%]
+- line #ffffff [33%,80% → 33%,85%]
+- line #ffffff [45%,80% → 45%,85%]
+- line #ffffff [53%,80% → 53%,85%]
+- line #ffffff [58%,80% → 58%,85%]
+- line #ffffff [68%,80% → 68%,85%]
+- equation $t_1$ (36pt, #ffffff) [21%,87% → 22%,89%]
+- equation $t_2$ (36pt, #ffffff) [26%,87% → 27%,89%]
+- equation $t_3$ (36pt, #ffffff) [33%,87% → 34%,89%]
+- equation $t_4$ (36pt, #ffffff) [45%,87% → 46%,89%]
+- equation $t_5$ (36pt, #ffffff) [52%,87% → 53%,89%]
+- equation $t_6$ (36pt, #ffffff) [58%,87% → 59%,89%]
+- equation $t_7$ (36pt, #ffffff) [67%,87% → 68%,89%]
+- line #ffffff [16%,73% → 19%,73%]
+- line #ffffff [16%,64% → 19%,64%]
+- line #ffffff [16%,66% → 19%,66%]
+- line #ffffff [16%,58% → 19%,58%]
+- line #ffffff [16%,54% → 19%,54%]
+- line #ffffff [16%,45% → 19%,45%]
+- line #ffffff [16%,40% → 19%,40%]
+- equation $v_1$ (36pt, #ffffff) [14%,72% → 16%,74%]
+- equation $v_2$ (36pt, #ffffff) [14%,65% → 16%,67%]
+- equation $v_3$ (40pt, #ffffff) [14%,63% → 16%,65%]
+- equation $v_5$ (40pt, #ffffff) [14%,57% → 16%,59%]
+- equation $v_4$ (40pt, #ffffff) [14%,52% → 16%,55%]
+- equation $v_6$ (40pt, #ffffff) [14%,43% → 16%,46%]
+- equation $v_7$ (40pt, #ffffff) [14%,38% → 16%,41%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 67
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,14% → 69%,19%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [26%,85% → 79%,85%]
+- arrow #ffffff [26%,45% → 26%,85%]
+- text 24pt [51%,91% → 54%,95%]: Time
+- text 24pt [21%,62% → 23%,68%]: Value
+- vector icon `shape-497ff0a3.svg` [29%,76% → 31%,78%]
+- vector icon `shape-497ff0a3.svg` [33%,70% → 35%,73%]
+- vector icon `shape-497ff0a3.svg` [39%,69% → 40%,71%]
+- vector icon `shape-497ff0a3.svg` [48%,60% → 50%,63%]
+- vector icon `shape-497ff0a3.svg` [54%,64% → 56%,66%]
+- vector icon `shape-497ff0a3.svg` [59%,53% → 60%,55%]
+- vector icon `shape-497ff0a3.svg` [66%,49% → 68%,51%]
+- line #ffffff [30%,83% → 30%,87%]
+- line #ffffff [34%,83% → 34%,87%]
+- line #ffffff [39%,83% → 39%,87%]
+- line #ffffff [49%,83% → 49%,87%]
+- line #ffffff [55%,83% → 55%,87%]
+- line #ffffff [59%,83% → 59%,87%]
+- line #ffffff [67%,83% → 67%,87%]
+- equation $t_1$ (29pt, #ffffff) [30%,88% → 30%,90%]
+- equation $t_2$ (29pt, #ffffff) [34%,88% → 35%,90%]
+- equation $t_3$ (29pt, #ffffff) [39%,88% → 40%,90%]
+- equation $t_4$ (29pt, #ffffff) [48%,88% → 49%,90%]
+- equation $t_5$ (29pt, #ffffff) [55%,88% → 55%,90%]
+- equation $t_6$ (29pt, #ffffff) [59%,88% → 60%,90%]
+- equation $t_7$ (29pt, #ffffff) [67%,88% → 68%,90%]
+- line #ffffff [25%,77% → 27%,77%]
+- line #ffffff [25%,70% → 27%,70%]
+- line #ffffff [25%,71% → 27%,71%]
+- line #ffffff [25%,65% → 27%,65%]
+- line #ffffff [25%,62% → 27%,62%]
+- line #ffffff [25%,54% → 27%,54%]
+- line #ffffff [25%,50% → 27%,50%]
+- equation $v_1$ (29pt, #ffffff) [24%,76% → 25%,78%]
+- equation $v_2$ (29pt, #ffffff) [24%,70% → 25%,72%]
+- equation $v_3$ (32pt, #ffffff) [24%,69% → 25%,71%]
+- equation $v_5$ (32pt, #ffffff) [24%,64% → 25%,66%]
+- equation $v_4$ (32pt, #ffffff) [24%,60% → 25%,62%]
+- equation $v_6$ (32pt, #ffffff) [24%,53% → 25%,55%]
+- equation $v_7$ (32pt, #ffffff) [24%,49% → 25%,51%]
+- group [20%,21% → 24%,27%]
+  - line #80b9ff [20%,21% → 24%,27%]
+  - text 36pt [21%,22% → 23%,26%]: {1|#80b9ff}
+- group [20%,30% → 24%,37%]
+  - line #80b9ff [20%,30% → 24%,37%]
+  - text 36pt [21%,31% → 23%,36%]: {2|#80b9ff}
+- text 36pt [25%,21% → 68%,26%]: allows us to specify properties over a time interval $[a, b]$
+- text 36pt [71%,21% → 79%,26%]: {e.g. $\lozenge_{[a,b]}P$|#ffa4e7}
+- equation $a$ (28pt, #ffa4e7) [76%,25% → 76%,26%]
+- equation $b$ (29pt, #ffa4e7) [77%,24% → 78%,26%]
+- **Builds:** click 1: text 36pt — wipes in; click 2: text 36pt — appears; with previous: equation $b$ — appears; with previous: equation $a$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 68
+- vector icon `shape-6d34573f.svg` [45%,44% → 63%,85%]
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,14% → 69%,19%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [26%,85% → 79%,85%]
+- arrow #ffffff [26%,45% → 26%,85%]
+- text 24pt [51%,91% → 54%,95%]: Time
+- text 24pt [21%,62% → 23%,68%]: Value
+- vector icon `shape-497ff0a3.svg` [29%,76% → 31%,78%]
+- vector icon `shape-497ff0a3.svg` [33%,70% → 35%,73%]
+- vector icon `shape-497ff0a3.svg` [39%,69% → 40%,71%]
+- vector icon `shape-497ff0a3.svg` [48%,60% → 50%,63%]
+- vector icon `shape-497ff0a3.svg` [54%,64% → 56%,66%]
+- vector icon `shape-497ff0a3.svg` [59%,53% → 60%,55%]
+- vector icon `shape-497ff0a3.svg` [66%,49% → 68%,51%]
+- line #ffffff [30%,83% → 30%,87%]
+- line #ffffff [34%,83% → 34%,87%]
+- line #ffffff [39%,83% → 39%,87%]
+- line #ffffff [49%,83% → 49%,87%]
+- line #ffffff [55%,83% → 55%,87%]
+- line #ffffff [59%,83% → 59%,87%]
+- line #ffffff [67%,83% → 67%,87%]
+- equation $t_1$ (29pt, #ffffff) [30%,88% → 30%,90%]
+- equation $t_2$ (29pt, #ffffff) [34%,88% → 35%,90%]
+- equation $t_3$ (29pt, #ffffff) [39%,88% → 40%,90%]
+- equation $t_4$ (29pt, #ffffff) [48%,88% → 49%,90%]
+- equation $t_5$ (29pt, #ffffff) [55%,88% → 55%,90%]
+- equation $t_6$ (29pt, #ffffff) [59%,88% → 60%,90%]
+- equation $t_7$ (29pt, #ffffff) [67%,88% → 68%,90%]
+- line #ffffff [25%,77% → 27%,77%]
+- line #ffffff [25%,70% → 27%,70%]
+- line #ffffff [25%,71% → 27%,71%]
+- line #ffffff [25%,65% → 27%,65%]
+- line #ffffff [25%,62% → 27%,62%]
+- line #ffffff [25%,54% → 27%,54%]
+- line #ffffff [25%,50% → 27%,50%]
+- equation $v_1$ (29pt, #ffffff) [24%,76% → 25%,78%]
+- equation $v_2$ (29pt, #ffffff) [24%,70% → 25%,72%]
+- equation $v_3$ (32pt, #ffffff) [24%,69% → 25%,71%]
+- equation $v_5$ (32pt, #ffffff) [24%,64% → 25%,66%]
+- equation $v_4$ (32pt, #ffffff) [24%,60% → 25%,62%]
+- equation $v_6$ (32pt, #ffffff) [24%,53% → 25%,55%]
+- equation $v_7$ (32pt, #ffffff) [24%,49% → 25%,51%]
+- group [20%,21% → 24%,27%]
+  - line #80b9ff [20%,21% → 24%,27%]
+  - text 36pt [21%,22% → 23%,26%]: {1|#80b9ff}
+- group [20%,30% → 24%,37%]
+  - line #80b9ff [20%,30% → 24%,37%]
+  - text 36pt [21%,31% → 23%,36%]: {2|#80b9ff}
+- text 36pt [25%,21% → 68%,26%]: allows us to specify properties over a time interval $[a, b]$
+- text 36pt [71%,21% → 79%,26%]: {e.g. $\lozenge_{[a,b]}P$|#ffa4e7}
+- line #ffa4e7 [45%,83% → 45%,87%]
+- equation $a$ (28pt, #ffa4e7) [44%,88% → 45%,89%]
+- line #ffa4e7 [63%,83% → 63%,86%]
+- equation $b$ (29pt, #ffa4e7) [62%,88% → 63%,90%]
+- **Builds:** click 1: vector icon `shape-6d34573f.svg` — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 69
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,14% → 69%,19%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [26%,85% → 79%,85%]
+- arrow #ffffff [26%,45% → 26%,85%]
+- text 24pt [51%,91% → 54%,95%]: Time
+- text 24pt [21%,62% → 23%,68%]: Value
+- vector icon `shape-497ff0a3.svg` [29%,76% → 31%,78%]
+- vector icon `shape-497ff0a3.svg` [33%,70% → 35%,73%]
+- vector icon `shape-497ff0a3.svg` [39%,69% → 40%,71%]
+- vector icon `shape-497ff0a3.svg` [48%,60% → 50%,63%]
+- vector icon `shape-497ff0a3.svg` [54%,64% → 56%,66%]
+- vector icon `shape-497ff0a3.svg` [59%,53% → 60%,55%]
+- vector icon `shape-497ff0a3.svg` [66%,49% → 68%,51%]
+- line #ffffff [30%,83% → 30%,87%]
+- line #ffffff [34%,83% → 34%,87%]
+- line #ffffff [39%,83% → 39%,87%]
+- line #ffffff [49%,83% → 49%,87%]
+- line #ffffff [55%,83% → 55%,87%]
+- line #ffffff [59%,83% → 59%,87%]
+- line #ffffff [67%,83% → 67%,87%]
+- equation $t_1$ (29pt, #ffffff) [30%,88% → 30%,90%]
+- equation $t_2$ (29pt, #ffffff) [34%,88% → 35%,90%]
+- equation $t_3$ (29pt, #ffffff) [39%,88% → 40%,90%]
+- equation $t_4$ (29pt, #ffffff) [48%,88% → 49%,90%]
+- equation $t_5$ (29pt, #ffffff) [55%,88% → 55%,90%]
+- equation $t_6$ (29pt, #ffffff) [59%,88% → 60%,90%]
+- equation $t_7$ (29pt, #ffffff) [67%,88% → 68%,90%]
+- line #ffffff [25%,77% → 27%,77%]
+- line #ffffff [25%,70% → 27%,70%]
+- line #ffffff [25%,71% → 27%,71%]
+- line #ffffff [25%,65% → 27%,65%]
+- line #ffffff [25%,62% → 27%,62%]
+- line #ffffff [25%,54% → 27%,54%]
+- line #ffffff [25%,50% → 27%,50%]
+- equation $v_1$ (29pt, #ffffff) [24%,76% → 25%,78%]
+- equation $v_2$ (29pt, #ffffff) [24%,70% → 25%,72%]
+- equation $v_3$ (32pt, #ffffff) [24%,69% → 25%,71%]
+- equation $v_5$ (32pt, #ffffff) [24%,64% → 25%,66%]
+- equation $v_4$ (32pt, #ffffff) [24%,60% → 25%,62%]
+- equation $v_6$ (32pt, #ffffff) [24%,53% → 25%,55%]
+- equation $v_7$ (32pt, #ffffff) [24%,49% → 25%,51%]
+- group [20%,21% → 24%,27%]
+  - line #80b9ff [20%,21% → 24%,27%]
+  - text 36pt [21%,22% → 23%,26%]: {1|#80b9ff}
+- group [20%,30% → 24%,37%]
+  - line #80b9ff [20%,30% → 24%,37%]
+  - text 36pt [21%,31% → 23%,36%]: {2|#80b9ff}
+- text 36pt [25%,21% → 68%,26%]: allows us to specify properties over a time interval $[a, b]$
+- text 36pt [25%,31% → 68%,36%]: allows us to map real-valued signals to truth values: $\mu_c(s_t)$ is true if $\mu(s_t) > c$
+- equation $c$ (36pt, #ffffff) [82%,33% → 82%,35%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 70
+- heading (spaced caps) 50pt [20%,6% → 96%,12%]: TEMPORAL LOGIC
+- heading (spaced caps) 50pt [-3%,6% → 73%,12%]: {SIGNAL|#80b9ff}
+- text 36pt [31%,14% → 69%,19%]: extends linear temporal logic to [[real-valued|#80b9ff]] signals
+- arrow #ffffff [26%,85% → 79%,85%]
+- arrow #ffffff [26%,45% → 26%,85%]
+- text 24pt [51%,91% → 54%,95%]: Time
+- text 24pt [21%,62% → 23%,68%]: Value
+- vector icon `shape-497ff0a3.svg` [29%,76% → 31%,78%]
+- vector icon `shape-497ff0a3.svg` [33%,70% → 35%,73%]
+- vector icon `shape-497ff0a3.svg` [39%,69% → 40%,71%]
+- vector icon `shape-497ff0a3.svg` [48%,60% → 50%,63%]
+- vector icon `shape-497ff0a3.svg` [54%,64% → 56%,66%]
+- vector icon `shape-497ff0a3.svg` [59%,53% → 60%,55%]
+- vector icon `shape-497ff0a3.svg` [66%,49% → 68%,51%]
+- line #ffffff [30%,83% → 30%,87%]
+- line #ffffff [34%,83% → 34%,87%]
+- line #ffffff [39%,83% → 39%,87%]
+- line #ffffff [49%,83% → 49%,87%]
+- line #ffffff [55%,83% → 55%,87%]
+- line #ffffff [59%,83% → 59%,87%]
+- line #ffffff [67%,83% → 67%,87%]
+- equation $t_1$ (29pt, #ffffff) [30%,88% → 30%,90%]
+- equation $t_2$ (29pt, #ffffff) [34%,88% → 35%,90%]
+- equation $t_3$ (29pt, #ffffff) [39%,88% → 40%,90%]
+- equation $t_4$ (29pt, #ffffff) [48%,88% → 49%,90%]
+- equation $t_5$ (29pt, #ffffff) [55%,88% → 55%,90%]
+- equation $t_6$ (29pt, #ffffff) [59%,88% → 60%,90%]
+- equation $t_7$ (29pt, #ffffff) [67%,88% → 68%,90%]
+- line #ffffff [25%,77% → 27%,77%]
+- line #ffffff [25%,70% → 27%,70%]
+- line #ffffff [25%,71% → 27%,71%]
+- line #ffffff [25%,65% → 27%,65%]
+- line #ffffff [25%,62% → 27%,62%]
+- line #ffffff [25%,54% → 27%,54%]
+- line #ffffff [25%,50% → 27%,50%]
+- equation $v_1$ (29pt, #ffffff) [24%,76% → 25%,78%]
+- equation $v_2$ (29pt, #ffffff) [24%,70% → 25%,72%]
+- equation $v_3$ (32pt, #ffffff) [24%,69% → 25%,71%]
+- equation $v_5$ (32pt, #ffffff) [24%,64% → 25%,66%]
+- equation $v_4$ (32pt, #ffffff) [24%,60% → 25%,62%]
+- equation $v_6$ (32pt, #ffffff) [24%,53% → 25%,55%]
+- equation $v_7$ (32pt, #ffffff) [24%,49% → 25%,51%]
+- group [20%,21% → 24%,27%]
+  - line #80b9ff [20%,21% → 24%,27%]
+  - text 36pt [21%,22% → 23%,26%]: {1|#80b9ff}
+- group [20%,30% → 24%,37%]
+  - line #80b9ff [20%,30% → 24%,37%]
+  - text 36pt [21%,31% → 23%,36%]: {2|#80b9ff}
+- text 36pt [25%,21% → 68%,26%]: allows us to specify properties over a time interval $[a, b]$
+- text 36pt [25%,31% → 68%,36%]: allows us to map real-valued signals to truth values: $\mu_c(s_t)$ is true if $\mu(s_t) > c$
+- equation $c$ (36pt, #ffa4e7) [24%,57% → 25%,58%]
+- line #ffa4e7 [25%,58% → 27%,58%]
+- vector icon `shape-c39422cd.svg` [26%,45% → 80%,58%]
+- **Builds:** click 1: vector icon `shape-c39422cd.svg` — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 71
+- text 36pt [50%,50% → 50%,50%]: {A white slide!|#000000}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 72
+- text 36pt [30%,6% → 40%,11%]: {A white slide!|#000000}
+- text 36pt [41%,6% → 70%,11%]: {To wake you up and show you a table.|#0072fe}
+- image `sandbox-page-18.svg` (cropped: show only 0–100% across and 25–78% down of the image) [15%,16% → 85%,89%]
+
+## Slide 73
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: IMPORTANT STUFF WE WILL USE FOR THE REST OF THE COURSE ABOUT TO HAPPEN!
+
+## Slide 74
+- image `test-3696.svg` [11%,27% → 83%,90%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [20%,27% → 44%,76%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [50%,27% → 82%,76%]
+- line #ffffff [47%,73% → 47%,77%]
+- equation $t$ (56pt, #ffffff) [47%,78% → 48%,81%]
+- equation $s_t$ (40pt, #ffffff) [47%,41% → 48%,44%]
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- equation $c$ (56pt, #ffffff) [18%,59% → 19%,61%]
+- vector icon `shape-8708cf8c.svg` [21%,27% → 80%,60%]
+- line #ffffff [20%,60% → 23%,60%]
+- **Builds:** click 1: black cover-up box (Keynote crop hack; just crop the media instead) — fades up from dark; with previous: black cover-up box (Keynote crop hack; just crop the media instead) — fades up from dark; then: line #ffffff — draws in; then: equation $t$ — appears; click 2: equation $s_t$ — appears; click 3: equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ — appears; click 4: text 42pt — appears; click 5: line #ffffff — draws in; then: equation $c$ — appears; click 6: vector icon `shape-8708cf8c.svg` — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 75
+- image `test-3696.svg` [11%,27% → 83%,90%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [20%,27% → 44%,76%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [50%,27% → 82%,76%]
+- line #ffffff [47%,73% → 47%,77%]
+- equation $t$ (56pt, #ffffff) [47%,78% → 48%,81%]
+- equation $s_t$ (40pt, #ffffff) [47%,41% → 48%,44%]
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- equation $c$ (56pt, #ffffff) [18%,39% → 19%,42%]
+- vector icon `shape-afce8b61.svg` [21%,27% → 80%,40%]
+- line #ffffff [20%,40% → 22%,40%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 76
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [6%,26% → 40%,56%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [11%,26% → 22%,49%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [25%,26% → 39%,49%]
+- line #ffffff [23%,48% → 23%,49%]
+- equation $t$ (25pt, #ffffff) [23%,50% → 23%,51%]
+- equation $s_t$ (19pt, #ffffff) [23%,33% → 23%,34%]
+- equation $c$ (25pt, #ffffff) [10%,32% → 10%,33%]
+- vector icon `shape-7fb2086a.svg` [11%,26% → 38%,33%]
+- line #ffffff [10%,33% → 12%,33%]
+- group [59%,26% → 93%,56%]
+  - image `test-3696.svg` [59%,26% → 93%,56%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [64%,26% → 75%,49%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [78%,26% → 92%,49%]
+  - line #ffffff [76%,48% → 76%,50%]
+  - equation $t$ (25pt, #ffffff) [76%,50% → 76%,51%]
+  - equation $s_t$ (19pt, #ffffff) [76%,33% → 76%,34%]
+  - equation $c$ (25pt, #ffffff) [63%,41% → 63%,42%]
+  - vector icon `shape-48f00231.svg` [64%,26% → 91%,42%]
+  - line #ffffff [64%,42% → 65%,42%]
+- text 36pt [1%,35% → 5%,40%]: This:
+- text 36pt [41%,35% → 59%,40%]: [[feels different|#80b9ff]] from this:
+- group [6%,64% → 40%,94%]
+  - image `test-3696.svg` [6%,64% → 40%,94%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [11%,64% → 22%,87%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [25%,64% → 39%,87%]
+  - line #ffffff [23%,86% → 23%,88%]
+  - equation $t$ (26pt, #ffffff) [23%,88% → 23%,89%]
+  - equation $s_t$ (18pt, #ffffff) [23%,71% → 23%,72%]
+  - equation $c$ (26pt, #ffffff) [10%,69% → 10%,70%]
+  - vector icon `shape-642b560c.svg` [11%,64% → 38%,69%]
+  - line #ffffff [10%,69% → 12%,69%]
+- group [59%,64% → 93%,94%]
+  - image `test-3696.svg` [59%,64% → 93%,94%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [64%,64% → 75%,87%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [78%,64% → 92%,87%]
+  - line #ffffff [76%,86% → 76%,88%]
+  - equation $t$ (26pt, #ffffff) [76%,88% → 76%,89%]
+  - equation $s_t$ (18pt, #ffffff) [76%,71% → 76%,72%]
+  - equation $c$ (26pt, #ffffff) [63%,65% → 63%,66%]
+  - vector icon `shape-42341f35.svg` [64%,64% → 91%,66%]
+  - line #ffffff [64%,66% → 65%,66%]
+- text 36pt [1%,74% → 5%,79%]: This:
+- text 36pt [41%,74% → 59%,79%]: [[feels different|#80b9ff]] from this:
+- **Builds:** click 1: text 36pt — slides in; with previous: group — slides in; click 2: text 36pt — slides in; with previous: group — slides in; click 3: text 36pt — slides in; with previous: group — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 77
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [48%,30% → 71%,50%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+- line #ffffff [59%,44% → 59%,46%]
+- equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+- equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+- equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+- vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+- line #ffffff [51%,34% → 52%,34%]
+- group [76%,30% → 98%,50%]
+  - image `test-3696.svg` [76%,30% → 98%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+  - line #ffffff [87%,44% → 87%,46%]
+  - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+  - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+  - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+  - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+  - line #ffffff [78%,40% → 79%,40%]
+- group [24%,30% → 47%,50%]
+  - image `test-3696.svg` [24%,30% → 47%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+  - line #ffffff [36%,44% → 36%,46%]
+  - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+  - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+  - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+  - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+  - line #ffffff [27%,33% → 28%,33%]
+- group [1%,30% → 24%,50%]
+  - image `test-3696.svg` [1%,30% → 24%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+  - line #ffffff [12%,44% → 12%,46%]
+  - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+  - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+  - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+  - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+  - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- text 54pt [83%,71% → 93%,86%]: {feeling pretty safe|#80cfb9} 😎
+- arrow #80cfb9 [88%,51% → 88%,70%]
+- **Builds:** click 1: arrow #80cfb9 — draws in; then: text 54pt — appears
+
+## Slide 78
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [1%,30% → 98%,50%]
+  - group [48%,30% → 71%,50%]
+    - image `test-3696.svg` [48%,30% → 71%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+    - line #ffffff [59%,44% → 59%,46%]
+    - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+    - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+    - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+    - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+    - line #ffffff [51%,34% → 52%,34%]
+  - group [76%,30% → 98%,50%]
+    - image `test-3696.svg` [76%,30% → 98%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+    - line #ffffff [87%,44% → 87%,46%]
+    - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+    - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+    - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+    - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+    - line #ffffff [78%,40% → 79%,40%]
+  - group [24%,30% → 47%,50%]
+    - image `test-3696.svg` [24%,30% → 47%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+    - line #ffffff [36%,44% → 36%,46%]
+    - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+    - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+    - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+    - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+    - line #ffffff [27%,33% → 28%,33%]
+  - group [1%,30% → 24%,50%]
+    - image `test-3696.svg` [1%,30% → 24%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+    - line #ffffff [12%,44% → 12%,46%]
+    - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+    - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+    - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+    - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+    - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- text 54pt [83%,71% → 93%,86%]: {feeling pretty safe|#80cfb9} 😎
+- arrow #80cfb9 [88%,51% → 88%,70%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 79
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [1%,30% → 98%,50%]
+  - group [48%,30% → 71%,50%]
+    - image `test-3696.svg` [48%,30% → 71%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+    - line #ffffff [59%,44% → 59%,46%]
+    - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+    - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+    - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+    - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+    - line #ffffff [51%,34% → 52%,34%]
+  - group [76%,30% → 98%,50%]
+    - image `test-3696.svg` [76%,30% → 98%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+    - line #ffffff [87%,44% → 87%,46%]
+    - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+    - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+    - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+    - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+    - line #ffffff [78%,40% → 79%,40%]
+  - group [24%,30% → 47%,50%]
+    - image `test-3696.svg` [24%,30% → 47%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+    - line #ffffff [36%,44% → 36%,46%]
+    - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+    - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+    - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+    - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+    - line #ffffff [27%,33% → 28%,33%]
+  - group [1%,30% → 24%,50%]
+    - image `test-3696.svg` [1%,30% → 24%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+    - line #ffffff [12%,44% → 12%,46%]
+    - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+    - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+    - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+    - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+    - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- text 54pt [56%,71% → 65%,86%]: {almost failing|#80cfb9} / 😅
+- arrow #80cfb9 [61%,51% → 61%,70%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 80
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [1%,30% → 98%,50%]
+  - group [48%,30% → 71%,50%]
+    - image `test-3696.svg` [48%,30% → 71%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+    - line #ffffff [59%,44% → 59%,46%]
+    - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+    - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+    - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+    - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+    - line #ffffff [51%,34% → 52%,34%]
+  - group [76%,30% → 98%,50%]
+    - image `test-3696.svg` [76%,30% → 98%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+    - line #ffffff [87%,44% → 87%,46%]
+    - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+    - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+    - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+    - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+    - line #ffffff [78%,40% → 79%,40%]
+  - group [24%,30% → 47%,50%]
+    - image `test-3696.svg` [24%,30% → 47%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+    - line #ffffff [36%,44% → 36%,46%]
+    - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+    - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+    - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+    - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+    - line #ffffff [27%,33% → 28%,33%]
+  - group [1%,30% → 24%,50%]
+    - image `test-3696.svg` [1%,30% → 24%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+    - line #ffffff [12%,44% → 12%,46%]
+    - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+    - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+    - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+    - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+    - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- text 54pt [32%,71% → 42%,86%]: {just barely failed|#fab0ae} / {😔|#80cfb9}
+- arrow #fab0ae [37%,51% → 37%,70%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 81
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [1%,30% → 98%,50%]
+  - group [48%,30% → 71%,50%]
+    - image `test-3696.svg` [48%,30% → 71%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+    - line #ffffff [59%,44% → 59%,46%]
+    - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+    - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+    - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+    - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+    - line #ffffff [51%,34% → 52%,34%]
+  - group [76%,30% → 98%,50%]
+    - image `test-3696.svg` [76%,30% → 98%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+    - line #ffffff [87%,44% → 87%,46%]
+    - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+    - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+    - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+    - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+    - line #ffffff [78%,40% → 79%,40%]
+  - group [24%,30% → 47%,50%]
+    - image `test-3696.svg` [24%,30% → 47%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+    - line #ffffff [36%,44% → 36%,46%]
+    - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+    - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+    - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+    - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+    - line #ffffff [27%,33% → 28%,33%]
+  - group [1%,30% → 24%,50%]
+    - image `test-3696.svg` [1%,30% → 24%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+    - line #ffffff [12%,44% → 12%,46%]
+    - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+    - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+    - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+    - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+    - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- text 54pt [9%,71% → 19%,86%]: {not even close|#fab0ae} / {😩|#80cfb9}
+- arrow #fab0ae [14%,51% → 14%,70%]
+
+## Slide 82
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [1%,30% → 98%,50%]
+  - group [48%,30% → 71%,50%]
+    - image `test-3696.svg` [48%,30% → 71%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+    - line #ffffff [59%,44% → 59%,46%]
+    - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+    - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+    - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+    - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+    - line #ffffff [51%,34% → 52%,34%]
+  - group [76%,30% → 98%,50%]
+    - image `test-3696.svg` [76%,30% → 98%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+    - line #ffffff [87%,44% → 87%,46%]
+    - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+    - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+    - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+    - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+    - line #ffffff [78%,40% → 79%,40%]
+  - group [24%,30% → 47%,50%]
+    - image `test-3696.svg` [24%,30% → 47%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+    - line #ffffff [36%,44% → 36%,46%]
+    - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+    - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+    - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+    - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+    - line #ffffff [27%,33% → 28%,33%]
+  - group [1%,30% → 24%,50%]
+    - image `test-3696.svg` [1%,30% → 24%,50%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+    - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+    - line #ffffff [12%,44% → 12%,46%]
+    - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+    - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+    - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+    - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+    - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [40%,80% → 60%,84%]
+- line #ffffff [39%,77% → 60%,86%]
+
+## Slide 83
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [48%,30% → 71%,50%]
+  - image `test-3696.svg` [48%,30% → 71%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [51%,30% → 58%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [60%,30% → 70%,45%]
+  - line #ffffff [59%,44% → 59%,46%]
+  - equation $t$ (17pt, #ffffff) [59%,46% → 60%,47%]
+  - equation $s_t$ (13pt, #ffffff) [59%,34% → 60%,35%]
+  - equation $c$ (17pt, #ffffff) [50%,34% → 51%,34%]
+  - vector icon `shape-7903c913.svg` [51%,30% → 70%,34%]
+  - line #ffffff [51%,34% → 52%,34%]
+- group [76%,30% → 98%,50%]
+  - image `test-3696.svg` [76%,30% → 98%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [79%,30% → 86%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [88%,30% → 98%,45%]
+  - line #ffffff [87%,44% → 87%,46%]
+  - equation $t$ (17pt, #ffffff) [87%,46% → 87%,47%]
+  - equation $s_t$ (13pt, #ffffff) [87%,34% → 87%,35%]
+  - equation $c$ (17pt, #ffffff) [78%,40% → 78%,41%]
+  - vector icon `shape-6e71937e.svg` [79%,30% → 98%,40%]
+  - line #ffffff [78%,40% → 79%,40%]
+- group [24%,30% → 47%,50%]
+  - image `test-3696.svg` [24%,30% → 47%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [27%,30% → 35%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [37%,30% → 46%,45%]
+  - line #ffffff [36%,44% → 36%,46%]
+  - equation $t$ (18pt, #ffffff) [35%,46% → 36%,47%]
+  - equation $s_t$ (12pt, #ffffff) [35%,34% → 36%,35%]
+  - equation $c$ (18pt, #ffffff) [26%,33% → 27%,34%]
+  - vector icon `shape-2a73c847.svg` [27%,30% → 46%,33%]
+  - line #ffffff [27%,33% → 28%,33%]
+- group [1%,30% → 24%,50%]
+  - image `test-3696.svg` [1%,30% → 24%,50%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [4%,30% → 11%,45%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [13%,30% → 23%,45%]
+  - line #ffffff [12%,44% → 12%,46%]
+  - equation $t$ (18pt, #ffffff) [12%,46% → 13%,47%]
+  - equation $s_t$ (12pt, #ffffff) [12%,34% → 13%,35%]
+  - equation $c$ (18pt, #ffffff) [3%,30% → 4%,31%]
+  - vector icon `shape-220ae42c.svg` [4%,30% → 23%,31%]
+  - line #ffffff [4%,31% → 5%,31%]
+- arrow #ffffff [2%,55% → 98%,55%]
+- text 36pt [43%,62% → 54%,67%]: Robustness $\rho$
+- line #ffffff [48%,53% → 48%,56%]
+- equation $0$ (36pt, #ffffff) [48%,57% → 49%,60%]
+- arrow #80cfb9 [49%,59% → 97%,59%]
+- text 36pt [23%,61% → 27%,65%]: {Failure|#fab0ae}
+- arrow #fab0ae [3%,59% → 48%,59%]
+- text 36pt [70%,61% → 76%,65%]: {Success|#80cfb9}
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [40%,80% → 60%,84%]
+- line #ffffff [39%,77% → 60%,86%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 84
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [35%,33% → 92%,83%]
+  - image `test-3696.svg` [35%,33% → 92%,83%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+  - line #ffffff [64%,69% → 64%,73%]
+  - equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+  - equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+  - equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+  - vector icon `shape-675044a1.svg` [43%,33% → 90%,59%]
+  - line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho$ (36pt, #ffffff) [65%,50% → 66%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 85
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [35%,6% → 63%,11%]
+- text 42pt [40%,13% → 58%,19%]: i.e. $P$ is true if $s_t > c$
+- group [35%,33% → 92%,83%]
+  - image `test-3696.svg` [35%,33% → 92%,83%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+  - line #ffffff [64%,69% → 64%,73%]
+  - equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+  - equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+  - equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+  - vector icon `shape-6bf414c8.svg` [43%,33% → 90%,59%]
+  - line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho$ (36pt, #ffffff) [65%,50% → 66%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 86
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [27%,6% → 56%,11%]
+- text 42pt [32%,13% → 51%,19%]: i.e. $P$ is true if $s_t > c$
+- group [35%,33% → 92%,83%]
+  - image `test-3696.svg` [35%,33% → 92%,83%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+  - black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+  - line #ffffff [64%,69% → 64%,73%]
+  - equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+  - equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+  - equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+  - vector icon `shape-675044a1.svg` [43%,33% → 90%,59%]
+  - line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho$ (36pt, #ffffff) [65%,50% → 66%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [62%,6% → 91%,11%]
+- text 42pt [67%,13% → 85%,19%]: i.e. Q is true if $s_t > d$
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [2%,53% → 12%,56%]
+
+## Slide 87
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [27%,6% → 56%,11%]
+- text 42pt [32%,13% → 51%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [35%,33% → 92%,83%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+- line #ffffff [64%,69% → 64%,73%]
+- equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+- equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+- equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+- vector icon `shape-675044a1.svg` [43%,33% → 90%,59%]
+- line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho_P$ (36pt, #ffffff) [65%,50% → 67%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [62%,6% → 91%,11%]
+- text 42pt [67%,13% → 85%,19%]: i.e. Q is true if $s_t > d$
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [2%,53% → 12%,56%]
+- equation $d$ (43pt, #ffffff) [41%,47% → 42%,49%]
+- line #ffffff [42%,48% → 44%,48%]
+- vector icon `shape-b69b24de.svg` [43%,33% → 90%,48%]
+- arrow #ffffff [64%,43% → 64%,48%]
+- equation $\rho_Q$ (36pt, #ffffff) [65%,44% → 67%,47%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 88
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [27%,6% → 56%,11%]
+- text 42pt [32%,13% → 51%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [35%,33% → 92%,83%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+- line #ffffff [64%,69% → 64%,73%]
+- equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+- equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+- equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+- vector icon `shape-675044a1.svg` [43%,33% → 90%,59%]
+- line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho_P$ (36pt, #ffffff) [65%,50% → 67%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [62%,6% → 91%,11%]
+- text 42pt [67%,13% → 85%,19%]: i.e. Q is true if $s_t > d$
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [2%,53% → 12%,56%]
+- equation $d$ (43pt, #ffffff) [41%,47% → 42%,49%]
+- line #ffffff [42%,48% → 44%,48%]
+- vector icon `shape-b69b24de.svg` [43%,33% → 90%,48%]
+- arrow #ffffff [64%,43% → 64%,48%]
+- equation $\rho_Q$ (36pt, #ffffff) [65%,44% → 67%,47%]
+- equation $= \min(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,53% → 31%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 89
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [27%,6% → 56%,11%]
+- text 42pt [32%,13% → 51%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [35%,33% → 92%,83%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+- line #ffffff [64%,69% → 64%,73%]
+- equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+- equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+- equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+- vector icon `shape-675044a1.svg` [43%,33% → 90%,59%]
+- line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho_P$ (36pt, #ffffff) [65%,50% → 67%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [62%,6% → 91%,11%]
+- text 42pt [67%,13% → 85%,19%]: i.e. Q is true if $s_t > d$
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [2%,53% → 12%,56%]
+- equation $d$ (43pt, #ffffff) [41%,47% → 42%,49%]
+- line #ffffff [42%,48% → 44%,48%]
+- vector icon `shape-b69b24de.svg` [43%,33% → 90%,48%]
+- arrow #ffffff [64%,43% → 64%,48%]
+- equation $\rho_Q$ (36pt, #ffffff) [65%,44% → 67%,47%]
+- equation $= \min(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,53% → 31%,56%]
+- equation $\rho(s_t, P \vee Q)$ (40pt, #ffffff) [2%,60% → 12%,64%]
+- equation $= \max(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,60% → 32%,64%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 90
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [27%,6% → 56%,11%]
+- text 42pt [32%,13% → 51%,19%]: i.e. $P$ is true if $s_t > c$
+- image `test-3696.svg` [35%,33% → 92%,83%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [42%,33% → 61%,72%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [66%,33% → 91%,72%]
+- line #ffffff [64%,69% → 64%,73%]
+- equation $t$ (43pt, #ffffff) [64%,74% → 64%,76%]
+- equation $s_t$ (33pt, #ffffff) [63%,44% → 64%,47%]
+- equation $c$ (43pt, #ffffff) [41%,58% → 42%,60%]
+- vector icon `shape-6bf414c8.svg` [43%,33% → 90%,59%]
+- line #ffffff [42%,59% → 44%,59%]
+- equation $\rho(s_t, P) = \mu(s_t) - c$ (51pt, #ffffff) [7%,23% → 27%,27%]
+- line #ffffff [6%,20% → 28%,29%]
+- arrow #ffffff [64%,44% → 64%,59%]
+- equation $\rho_P$ (36pt, #ffffff) [65%,50% → 67%,53%]
+- text 36pt [5%,33% → 29%,42%]: Robustness of propositional logic operators:
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [5%,45% → 12%,49%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [13%,45% → 22%,49%]
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (52pt, #ffffff) [62%,6% → 91%,11%]
+- text 42pt [67%,13% → 85%,19%]: i.e. Q is true if $s_t > d$
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [2%,53% → 12%,56%]
+- equation $d$ (43pt, #ffffff) [41%,47% → 42%,49%]
+- line #ffffff [42%,48% → 44%,48%]
+- vector icon `shape-b69b24de.svg` [43%,33% → 90%,48%]
+- arrow #ffffff [64%,43% → 64%,48%]
+- equation $\rho_Q$ (36pt, #ffffff) [65%,44% → 67%,47%]
+- equation $= \min(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,53% → 31%,56%]
+- equation $\rho(s_t, P \vee Q)$ (40pt, #ffffff) [2%,60% → 12%,64%]
+- equation $= \max(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,60% → 32%,64%]
+- equation $\rho(s_t, P \rightarrow Q)$ (40pt, #ffffff) [1%,67% → 11%,71%]
+- equation $= \max(-\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [12%,67% → 33%,71%]
+- text on a #f3cf80 filled box 36pt [6%,75% → 28%,85%]: {Note:|#000000}{ derive the last one in book exercises!|#000000}
+- **Builds:** click 1: text on a #f3cf80 filled box 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 91
+- image `test-3696.svg` [32%,35% → 92%,89%]
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (39pt, #ffffff) [24%,12% → 45%,16%]
+- text 42pt [24%,17% → 43%,23%]: i.e. $P$ is true if $s_t > c$
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (39pt, #ffffff) [51%,12% → 73%,16%]
+- text 42pt [53%,17% → 72%,23%]: i.e. Q is true if $s_t > d$
+- text 48pt [32%,3% → 68%,9%]: Robustness of Temporal Operators
+- vector icon `shape-c2b6b344.svg` [40%,35% → 90%,55%]
+- equation $c = 0$ (36pt, #ffffff) [91%,54% → 95%,56%]
+- vector icon `shape-a0d5b63f.svg` [40%,55% → 90%,75%]
+- equation $, \ \rho_P$ (39pt, #ffffff) [33%,48% → 34%,53%]
+- equation $\rho(s_t, \lozenge_{[a, b]}P) = \max_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ (38pt, #ffffff) [4%,36% → 29%,42%]
+- line #ffffff [40%,45% → 90%,45%]
+- **Builds:** click 1: equation $c = 0$ — fades up from dark; with previous: vector icon `shape-c2b6b344.svg` — fades up from dark; with previous: equation $, \ \rho_P$ — fades up from dark; with previous: vector icon `shape-a0d5b63f.svg` — fades up from dark; click 2: equation $\rho(s_t, \lozenge_{[a, b]}P) = \max_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ — appears; click 3: line #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 92
+- image `test-3696.svg` [32%,35% → 92%,89%]
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (39pt, #ffffff) [24%,12% → 45%,16%]
+- text 42pt [24%,17% → 43%,23%]: i.e. $P$ is true if $s_t > c$
+- equation $Q = \mu_d(s_t) \text{ where } \mu(s_t) = s_t$ (39pt, #ffffff) [51%,12% → 73%,16%]
+- text 42pt [53%,17% → 72%,23%]: i.e. Q is true if $s_t > d$
+- text 48pt [32%,3% → 68%,9%]: Robustness of Temporal Operators
+- vector icon `shape-c2b6b344.svg` [40%,35% → 90%,55%]
+- equation $c = 0$ (36pt, #ffffff) [91%,54% → 95%,56%]
+- vector icon `shape-a0d5b63f.svg` [40%,55% → 90%,75%]
+- equation $, \ \rho_P$ (39pt, #ffffff) [33%,48% → 34%,53%]
+- equation $\rho(s_t, \lozenge_{[a, b]}P) = \max_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ (38pt, #ffffff) [4%,36% → 29%,42%]
+- line #ffffff [40%,69% → 90%,69%]
+- equation $\rho(s_t, \square_{[a, b]}P) = \min_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ (38pt, #ffffff) [4%,48% → 29%,53%]
+- equation $\rho(s_t, P\mathcal U_{[a,b]}Q) = \max_{t^\prime \in [t+a,t+b]} \min\Bigl(\rho(s_{t^\prime},Q), \min_{t^{\prime\prime}\in[t,t^\prime]} \rho(s_{t^{\prime\prime}}, P)\Bigr)$ (23pt, #ffffff) [3%,59% → 30%,63%]
+- text on a #f3cf80 filled box 36pt [5%,69% → 28%,79%]: {Note:|#000000}{ think about this as an exercise.|#000000}
+- **Builds:** click 1: equation $\rho(s_t, P\mathcal U_{[a,b]}Q) = \max_{t^\prime \in [t+a,t+b]} \min\Bigl(\rho(s_{t^\prime},Q), \min_{t^{\prime\prime}\in[t,t^\prime]} \rho(s_{t^{\prime\prime}}, P)\Bigr)$ — appears; click 2: text on a #f3cf80 filled box 36pt — appears
+
+## Slide 93
+- text 36pt [50%,50% → 50%,50%]: Yay! But there is still one problem we need to solve:
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 94
+- text 36pt [30%,45% → 70%,50%]: Yay! But there is still one problem we need to solve:
+- text 36pt [30%,50% → 70%,55%]: Later in this course, we will want to take the [[gradient|#80b9ff]] of the robustness with respect to the trajectory inputs.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 95
+- text 36pt [30%,18% → 70%,22%]: Yay! But there is still one problem we need to solve:
+- text 36pt [8%,23% → 92%,28%]: Later in this course, we will want to take the [[gradient|#80b9ff]] of the robustness with respect to the trajectory inputs.
+- text 36pt [17%,29% → 83%,33%]: But all those [[maxes|#80b9ff]] and [[mins|#80b9ff]] in the robustness formulas result in not-so-nice gradients.
+- equation $\rho(s_t, \neg P)$ (40pt, #ffffff) [16%,50% → 23%,53%]
+- equation $= -\rho(s_t, P)$ (40pt, #ffffff) [24%,50% → 33%,53%]
+- equation $\rho(s_t, P \wedge Q)$ (40pt, #ffffff) [13%,57% → 23%,60%]
+- equation $= \min(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [23%,57% → 43%,60%]
+- equation $\rho(s_t, P \vee Q)$ (40pt, #ffffff) [13%,64% → 23%,68%]
+- equation $= \max(\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [23%,64% → 43%,68%]
+- equation $\rho(s_t, P \rightarrow Q)$ (40pt, #ffffff) [12%,72% → 23%,75%]
+- equation $= \max(-\rho(s_t, P), \rho(s_t, Q))$ (40pt, #ffffff) [23%,72% → 44%,75%]
+- text 36pt [21%,40% → 36%,45%]: Propositional Operators
+- equation $\rho(s_t, \lozenge_{[a, b]}P) = \max_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ (38pt, #ffffff) [56%,50% → 81%,56%]
+- equation $\rho(s_t, \square_{[a, b]}P) = \min_{t^\prime \in [t+a, t+b]} \rho(s_{t^\prime}, P)$ (38pt, #ffffff) [55%,61% → 81%,67%]
+- equation $\rho(s_t, P\mathcal U_{[a,b]}Q) = \max_{t^\prime \in [t+a,t+b]} \min\Bigl(\rho(s_{t^\prime},Q), \min_{t^{\prime\prime}\in[t,t^\prime]} \rho(s_{t^{\prime\prime}}, P)\Bigr)$ (23pt, #ffffff) [55%,72% → 82%,76%]
+- text 36pt [59%,40% → 78%,45%]: Temporal Operators
+- vector icon `shape-1b17b535.svg` [25%,56% → 29%,61%]
+- vector icon `shape-1b17b535.svg` [25%,64% → 29%,68%]
+- vector icon `shape-1b17b535.svg` [25%,71% → 29%,76%]
+- vector icon `shape-1b17b535.svg` [69%,50% → 73%,54%]
+- vector icon `shape-1b17b535.svg` [69%,61% → 73%,65%]
+- vector icon `shape-5909449b.svg` [64%,72% → 67%,76%]
+- vector icon `shape-5909449b.svg` [68%,72% → 70%,76%]
+- vector icon `shape-5909449b.svg` [74%,72% → 77%,76%]
+
+## Slide 96
+- image `test-3696.svg` [20%,32% → 80%,86%]
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (46pt, #ffffff) [21%,8% → 46%,12%]
+- text 42pt [24%,14% → 43%,20%]: i.e. $P$ is true if $s_t > c$
+- equation $c = 0$ (39pt, #80b9ff) [50%,8% → 54%,11%]
+- equation $\rho(s_1, \lozenge_{[1, 10]}P) = \max_{t \in [1, 10]} s_t$ (44pt, #80b9ff) [60%,11% → 83%,18%]
+- shape (outline) [48%,12% → 57%,17%]
+- line #80b9ff [28%,42% → 78%,42%]
+- equation $= s_5$ (44pt, #80b9ff) [74%,21% → 77%,24%]
+- **Builds:** click 1: shape (outline) — wipes in; with previous: equation $c = 0$ — slides in; click 2: equation $\rho(s_1, \lozenge_{[1, 10]}P) = \max_{t \in [1, 10]} s_t$ — slides in; click 3: equation $= s_5$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 97
+- equation $P = \mu_c(s_t) \text{ where } \mu(s_t) = s_t$ (46pt, #ffffff) [21%,8% → 46%,12%]
+- text 42pt [24%,14% → 43%,20%]: i.e. $P$ is true if $s_t > c$
+- equation $c = 0$ (39pt, #80b9ff) [50%,8% → 54%,11%]
+- equation $\rho(s_1, \lozenge_{[1, 10]}P) = \max_{t \in [1, 10]} s_t$ (44pt, #80b9ff) [60%,11% → 83%,18%]
+- shape (outline) [48%,12% → 57%,17%]
+- image `test-3696.svg` [2%,41% → 47%,81%]
+- line #80b9ff [8%,49% → 45%,49%]
+- equation $= s_5$ (44pt, #80b9ff) [74%,21% → 77%,24%]
+- image `test-4571.svg` [48%,40% → 95%,83%]
+- vector icon `shape-b2fac1a3.svg` [55%,71% → 57%,74%]
+- vector icon `shape-b2fac1a3.svg` [59%,71% → 61%,74%]
+- vector icon `shape-b2fac1a3.svg` [63%,71% → 65%,74%]
+- vector icon `shape-b2fac1a3.svg` [68%,71% → 69%,74%]
+- vector icon `shape-b2fac1a3.svg` [72%,49% → 74%,51%]
+- vector icon `shape-b2fac1a3.svg` [76%,71% → 77%,74%]
+- vector icon `shape-b2fac1a3.svg` [80%,71% → 82%,74%]
+- vector icon `shape-b2fac1a3.svg` [84%,71% → 86%,74%]
+- vector icon `shape-b2fac1a3.svg` [88%,71% → 90%,74%]
+- vector icon `shape-b2fac1a3.svg` [92%,71% → 94%,74%]
+- line #80b9ff [73%,50% → 73%,73%]
+- text 36pt [48%,89% → 52%,93%]: This is not a very interesting or useful gradient.
+- **Builds:** click 1: vector icon `shape-b2fac1a3.svg` — appears; click 2: vector icon `shape-b2fac1a3.svg` — appears; click 3: vector icon `shape-b2fac1a3.svg` — appears; click 4: vector icon `shape-b2fac1a3.svg` — appears; click 5: vector icon `shape-b2fac1a3.svg` — appears; with previous: line #80b9ff — appears; click 6: vector icon `shape-b2fac1a3.svg` — appears; click 7: vector icon `shape-b2fac1a3.svg` — appears; click 8: vector icon `shape-b2fac1a3.svg` — appears; click 9: vector icon `shape-b2fac1a3.svg` — appears; click 10: vector icon `shape-b2fac1a3.svg` — appears; click 11: text 36pt — wipes in
+
+## Slide 98
+- text 36pt [50%,50% → 50%,50%]: The fix: {smooth robustness|#80b9ff}
+- text 36pt [46%,48% → 61%,52%]: {smooth robustness|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 99
+- text 36pt [39%,8% → 61%,13%]: The fix: {smooth robustness|#80b9ff}
+- text 36pt [20%,16% → 35%,20%]: {smooth robustness|#80b9ff}
+- text 36pt [34%,16% → 81%,20%]: replaces the min and max operators in {softmin|#80b9ff} and {softmax|#80b9ff}
+- equation $\operatorname{softmin}(\mathbf s; w) = \frac{\sum_i^d s_i \exp(-s_i/w)}{\sum_j^d \exp(-s_j/w)}$ (52pt, #ffffff) [29%,29% → 65%,45%]
+- equation $\operatorname{softmax}(\mathbf s; w) = \frac{\sum_i^d s_i \exp(s_i/w)}{\sum_j^d \exp(s_j/w)}$ (52pt, #ffffff) [29%,49% → 64%,66%]
+- arrow #ffa4e7 [6%,75% → 92%,75%]
+- equation $w$ (86pt, #ffa4e7) [48%,79% → 51%,83%]
+- equation $0$ (50pt, #ffa4e7) [6%,77% → 8%,80%]
+- equation $\infty$ (50pt, #ffa4e7) [91%,77% → 93%,79%]
+- text 36pt [90%,66% → 94%,71%]: {mean|#ffa4e7}
+- text 36pt [4%,64% → 12%,73%]: {true min or max|#ffa4e7}
+- text on a #80b9ff filled box 32pt [72%,38% → 92%,46%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: equation $\operatorname{softmin}(\mathbf s; w) = \frac{\sum_i^d s_i \exp(-s_i/w)}{\sum_j^d \exp(-s_j/w)}$ — appears; with previous: equation $\operatorname{softmax}(\mathbf s; w) = \frac{\sum_i^d s_i \exp(s_i/w)}{\sum_j^d \exp(s_j/w)}$ — appears; click 2: equation $w$ — appears; then: equation $0$ — appears; then: arrow #ffa4e7 — draws in; then: equation $\infty$ — appears; click 3: text 36pt — appears; click 4: text 36pt — appears; click 5: text on a #80b9ff filled box 32pt — appears
+
+## Slide 100
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: METRICS
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: SPECIFICATIONS
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 92%,75%]: REACHABILITY
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-5%,30% → 71%,35%]: PROPERTIES OF SYSTEMS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 101
+- heading (spaced caps) 54pt [36%,47% → 109%,53%]: REACHABILITY
+- vector icon `shape-7b346d56.svg` [9%,61% → 23%,83%]
+- vector icon `shape-62bcb9f4.svg` [71%,15% → 86%,32%]
+- shape (outline) [19%,22% → 76%,78%]
+- text 36pt [77%,9% → 81%,13%]: Target Set $\mathcal S_T$
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 102
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- vector icon `shape-7b346d56.svg` [9%,61% → 23%,83%]
+- vector icon `shape-62bcb9f4.svg` [71%,15% → 86%,32%]
+- shape (outline) [19%,22% → 76%,78%]
+- text 36pt [77%,9% → 81%,13%]: Target Set $\mathcal S_T$
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- **Builds:** click 1: equation $\lozenge R(s_t)$ — slides in; click 2: line #ffffff — com.apple.iWork.Keynote.LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 103
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [35%,17% → 67%,22%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [49%,24% → 53%,27%]
+- line #ffffff [47%,22% → 55%,29%]
+- group [34%,31% → 68%,91%]
+  - image `test-4803.svg` [34%,31% → 68%,91%]
+  - equation $\mathcal S_T = \{(7, 8)\}$ (45pt, #ffffff) [51%,38% → 63%,41%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 104
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [35%,17% → 67%,22%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [34%,31% → 38%,34%]
+- line #ffffff [32%,29% → 40%,36%]
+- group [23%,39% → 49%,84%]
+  - image `test-4803.svg` [23%,39% → 49%,84%]
+  - equation $\mathcal S_T = \{(7, 8)\}$ (34pt, #ffffff) [36%,44% → 45%,47%]
+- group [53%,39% → 79%,84%]
+  - image `test-4832.svg` [53%,39% → 79%,84%]
+  - equation $\mathcal S_T = \{(5, 5)\}$ (34pt, #ffffff) [60%,57% → 69%,60%]
+- equation $\neg \lozenge R(s_t)$ (36pt, #ffffff) [63%,31% → 69%,34%]
+- line #ffffff [62%,29% → 70%,36%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 105
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [21%,30% → 54%,88%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [57%,59% → 72%,62%]
+- vector icon `shape-cff5f001.svg` [74%,55% → 79%,65%]
+- text 36pt [56%,31% → 79%,36%]: $G:$ the robot reaches the goal
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [57%,45% → 72%,49%]
+- text 36pt [56%,38% → 79%,42%]: $C:$ the robot reaches the checkpoint
+- line #ffffff [56%,52% → 87%,52%]
+- text 36pt [56%,68% → 93%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- **Builds:** click 1: line #ffffff — draws in; with previous: equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ — fades up from dark; click 2: vector icon `shape-cff5f001.svg` — fades up from dark; click 3: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 106
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [21%,30% → 54%,88%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 36pt [56%,31% → 79%,36%]: $G:$ the robot reaches the goal
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [57%,45% → 72%,49%]
+- text 36pt [56%,38% → 79%,42%]: $C:$ the robot reaches the checkpoint
+- line #ffffff [56%,52% → 87%,52%]
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- vector icon `shape-f86a22bb.svg` [57%,55% → 59%,62%]
+- text 36pt [60%,56% → 85%,61%]: {augment the state of the system|#80b9ff}
+- equation $\bar s = (s, q)$ (46pt, #80b9ff) [69%,63% → 77%,67%]
+- text 24pt [64%,72% → 68%,75%]: {grid cell|#80b9ff}
+- text 24pt [71%,71% → 97%,75%]: {if $q = q_1$, the checkpoint has not been reached yet|#80b9ff}
+- text 24pt [71%,75% → 97%,78%]: {if $q = q_2$, the checkpoint has been reached|#80b9ff}
+- arrow #80b9ff [76%,67% → 84%,71%]
+- arrow #80b9ff [67%,67% → 74%,72%]
+- equation $\mathcal S_T = \big\{\big((7, 8), q_1\big)\big\}$ (36pt, #80b9ff) [66%,83% → 80%,87%]
+- line #80b9ff [65%,82% → 81%,88%]
+- **Builds:** click 1: equation $\bar s = (s, q)$ — appears; click 2: text 24pt — appears; with previous: arrow #80b9ff — draws in; click 3: text 24pt — appears; with previous: text 24pt — appears; with previous: arrow #80b9ff — draws in; click 4: equation $\mathcal S_T = \big\{\big((7, 8), q_1\big)\big\}$ — appears; click 5: line #80b9ff — com.apple.iWork.Keynote.LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 107
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [21%,30% → 54%,88%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 36pt [56%,31% → 79%,36%]: $G:$ the robot reaches the goal
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [57%,45% → 72%,49%]
+- text 36pt [56%,38% → 79%,42%]: $C:$ the robot reaches the checkpoint
+- line #ffffff [56%,52% → 87%,52%]
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- vector icon `shape-f86a22bb.svg` [57%,55% → 59%,62%]
+- text 36pt [60%,56% → 85%,61%]: {augment the state of the system|#80b9ff}
+- equation $\bar s = (s, q)$ (46pt, #80b9ff) [69%,63% → 77%,67%]
+- text 24pt [64%,72% → 68%,75%]: {grid cell|#80b9ff}
+- text 24pt [71%,71% → 97%,75%]: {if $q = q_1$, the checkpoint has not been reached yet|#80b9ff}
+- text 24pt [71%,75% → 97%,78%]: {if $q = q_2$, the checkpoint has been reache|#80b9ff}
+- arrow #80b9ff [76%,67% → 84%,71%]
+- arrow #80b9ff [67%,67% → 74%,72%]
+- text on a #000000 filled box 32pt [60%,66% → 93%,80%]: There is a principled way to do this conversion for LTL specifications!
+- equation $\mathcal S_T = \big\{\big((7, 8), q_1\big)\big\}$ (36pt, #80b9ff) [66%,83% → 80%,87%]
+- line #80b9ff [65%,82% → 81%,88%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 108
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (21pt, #ffffff) [5%,42% → 14%,44%]
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 109
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- group [69%,59% → 74%,68%]
+  - line #80cfb9 [69%,59% → 74%,68%]
+  - equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- group [39%,58% → 44%,67%]
+  - line #ffffff [39%,58% → 44%,67%]
+  - equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- group [54%,48% → 59%,57%]
+  - line #fab0ae [54%,48% → 59%,57%]
+  - equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- group [54%,70% → 59%,79%]
+  - line #80b9ff [54%,70% → 59%,79%]
+  - equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- group [69%,58% → 74%,68%]
+  - line #80cfb9 [69%,58% → 74%,68%]
+  - equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- **Builds:** click 1: text 24pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 110
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [4%,83% → 6%,86%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 111
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [4%,79% → 6%,82%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 112
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [4%,75% → 6%,79%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 113
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,75% → 19%,79%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 114
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [20%,75% → 22%,79%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 115
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [20%,71% → 22%,75%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 116
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [20%,55% → 22%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 117
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,55% → 19%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 118
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,55% → 19%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 119
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [4%,83% → 6%,86%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 120
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [4%,55% → 6%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 121
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [15%,55% → 17%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 122
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,55% → 19%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 123
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,55% → 19%,59%]
+- line #80cfb9 [69%,59% → 74%,68%]
+- equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+- line #ffffff [39%,58% → 44%,67%]
+- equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+- line #fab0ae [54%,48% → 59%,57%]
+- equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+- line #80b9ff [54%,70% → 59%,79%]
+- equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+- arrow #ffffff [34%,63% → 39%,63%]
+- arrow #80b9ff [45%,65% → 54%,73%]
+- arrow #fab0ae [45%,54% → 54%,61%]
+- arrow #80cfb9 [60%,67% → 69%,74%]
+- arrow #80cfb9 [45%,63% → 69%,63%]
+- shape (outline) [40%,53% → 43%,60%]
+- equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+- line #80cfb9 [69%,58% → 74%,68%]
+- equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+- shape (outline) [70%,53% → 73%,60%]
+- shape (outline) [55%,78% → 59%,84%]
+- shape (outline) [55%,43% → 58%,49%]
+- equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+- equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+- equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+- equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+- equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+- equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+- equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+
+## Slide 124
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [4%,47% → 26%,87%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [4%,36% → 16%,38%]: $G:$ the robot reaches the goal
+- text 18pt [4%,38% → 19%,41%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (36pt, #ffffff) [49%,20% → 64%,23%]
+- shape (outline) [56%,25% → 58%,31%]
+- text 36pt [50%,33% → 63%,37%]: Büchi Automaton
+- text 24pt [67%,70% → 76%,73%]: {Accepting State|#80cfb9}
+- image `noun-robot-5280772-80b9ff.png` [17%,55% → 19%,59%]
+- group [34%,40% → 74%,86%]
+  - line #80cfb9 [69%,59% → 74%,68%]
+  - equation $q_4$ (36pt, #80cfb9) [71%,62% → 72%,64%]
+  - line #ffffff [39%,58% → 44%,67%]
+  - equation $q_1$ (36pt, #ffffff) [41%,62% → 42%,64%]
+  - line #fab0ae [54%,48% → 59%,57%]
+  - equation $q_2$ (36pt, #fab0ae) [56%,51% → 58%,54%]
+  - line #80b9ff [54%,70% → 59%,79%]
+  - equation $q_3$ (36pt, #80b9ff) [56%,74% → 57%,76%]
+  - arrow #ffffff [34%,63% → 39%,63%]
+  - arrow #80b9ff [45%,65% → 54%,73%]
+  - arrow #fab0ae [45%,54% → 54%,61%]
+  - arrow #80cfb9 [60%,67% → 69%,74%]
+  - arrow #80cfb9 [45%,63% → 69%,63%]
+  - shape (outline) [40%,53% → 43%,60%]
+  - equation $\neg C \wedge \neg G$ (27pt, #ffffff) [39%,50% → 44%,51%]
+  - line #80cfb9 [69%,58% → 74%,68%]
+  - equation $q_4$ (39pt, #80cfb9) [71%,62% → 72%,64%]
+  - shape (outline) [70%,53% → 73%,60%]
+  - shape (outline) [55%,78% → 59%,84%]
+  - shape (outline) [55%,43% → 58%,49%]
+  - equation $C \wedge G$ (27pt, #80cfb9) [55%,61% → 58%,63%]
+  - equation $C \wedge \neg G$ (27pt, #80b9ff) [51%,67% → 55%,69%]
+  - equation $G$ (27pt, #80cfb9) [63%,69% → 64%,70%]
+  - equation $\neg C \wedge G$ (27pt, #fab0ae) [46%,54% → 50%,56%]
+  - equation $\neg G$ (27pt, #80b9ff) [56%,85% → 58%,86%]
+  - equation $\top$ (27pt, #80cfb9) [71%,51% → 72%,52%]
+  - equation $\top$ (27pt, #fab0ae) [56%,40% → 57%,42%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 125
+- group [65%,41% → 75%,77%]
+  - rounded box (outline) [65%,41% → 75%,77%]
+  - equation $\mathcal S_T$ (36pt, #ffffff) [69%,43% → 71%,46%]
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [3%,13% → 35%,17%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [5%,21% → 9%,25%]
+- line #ffffff [3%,20% → 11%,26%]
+- image `test-4860.svg` [3%,46% → 15%,68%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [21%,23% → 33%,26%]: $G:$ the robot reaches the goal
+- text 18pt [21%,26% → 35%,28%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (22pt, #ffffff) [21%,29% → 31%,31%]
+- text 24pt [26%,40% → 35%,43%]: Büchi Automaton
+- group [20%,47% → 38%,67%]
+  - line #80cfb9 [36%,55% → 38%,59%]
+  - equation $q_4$ (16pt, #80cfb9) [37%,56% → 37%,57%]
+  - line #ffffff [23%,55% → 25%,59%]
+  - equation $q_1$ (16pt, #ffffff) [24%,56% → 24%,57%]
+  - line #fab0ae [29%,50% → 32%,54%]
+  - equation $q_2$ (16pt, #fab0ae) [30%,52% → 31%,53%]
+  - line #80b9ff [29%,60% → 32%,64%]
+  - equation $q_3$ (16pt, #80b9ff) [30%,61% → 31%,63%]
+  - arrow #ffffff [20%,57% → 23%,57%]
+  - arrow #80b9ff [25%,58% → 29%,61%]
+  - arrow #fab0ae [25%,53% → 29%,56%]
+  - arrow #80cfb9 [32%,59% → 36%,62%]
+  - arrow #80cfb9 [25%,57% → 36%,57%]
+  - shape (outline) [23%,53% → 25%,55%]
+  - equation $\neg C \wedge \neg G$ (12pt, #ffffff) [23%,51% → 25%,52%]
+  - line #80cfb9 [36%,55% → 38%,59%]
+  - equation $q_4$ (17pt, #80cfb9) [37%,56% → 37%,57%]
+  - shape (outline) [36%,53% → 38%,55%]
+  - shape (outline) [30%,63% → 31%,66%]
+  - shape (outline) [30%,48% → 31%,51%]
+  - equation $C \wedge G$ (12pt, #80cfb9) [30%,56% → 31%,57%]
+  - equation $C \wedge \neg G$ (12pt, #80b9ff) [28%,59% → 30%,59%]
+  - equation $G$ (12pt, #80cfb9) [33%,59% → 34%,60%]
+  - equation $\neg C \wedge G$ (12pt, #fab0ae) [26%,53% → 28%,54%]
+  - equation $\neg G$ (12pt, #80b9ff) [30%,66% → 31%,67%]
+  - equation $\top$ (12pt, #80cfb9) [37%,52% → 37%,52%]
+  - equation $\top$ (12pt, #fab0ae) [30%,47% → 31%,48%]
+- equation $\times$ (37pt, #ffffff) [17%,56% → 18%,58%]
+- text 24pt [5%,40% → 14%,43%]: System
+- text 24pt [56%,26% → 65%,29%]: Product System
+- equation $=$ (37pt, #ffffff) [41%,57% → 42%,57%]
+- image `sandbox-page-1.svg` (cropped: show only 9–61% across and 10–60% down of the image) [45%,31% → 76%,90%]
+- text 32pt [82%,61% → 86%,65%]: State
+- equation $(s, q) \in \mathcal S \times \mathcal Q$ (36pt, #ffffff) [78%,68% → 89%,70%]
+- text 32pt [80%,76% → 87%,80%]: Transitions
+- equation $T((s', q') \mid (s, q), a) = \begin{cases} T(s' \mid s, a) & \text{if } q' = \delta(q, L(s)) \\ 0 & \text{otherwise} \end{cases}$ (28pt, #ffffff) [69%,84% → 99%,90%]
+- **Builds:** click 1: image `sandbox-page-1.svg` (cropped: show only 9–61% across and 10–60% — slides in; with previous: text 24pt — slides in; click 2: text 32pt — appears; with previous: equation $(s, q) \in \mathcal S \times \mathcal Q$ — appears; click 3: text 32pt — appears; with previous: equation $T((s', q') \mid (s, q), a) = \begin{cases} T(s' \mid s, a) & \text{if } q' = \delta(q, L(s)) \\ 0 & \text{otherwise} \end{cases}$ — appears; click 4: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 126
+- group [65%,41% → 75%,77%]
+  - rounded box (outline) [65%,41% → 75%,77%]
+  - equation $\mathcal S_T$ (36pt, #ffffff) [69%,43% → 71%,46%]
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- heading (spaced caps) 54pt [3%,4% → 76%,10%]: REACHABILITY
+- text 36pt [67%,30% → 99%,35%]: $R(s_t):$ {true|#80cfb9} if $s_t \in \mathcal S_T$ and {false|#fab0ae} otherwise
+- equation $\lozenge R(s_t)$ (36pt, #ffffff) [81%,38% → 86%,42%]
+- line #ffffff [80%,37% → 87%,43%]
+- image `test-4860.svg` [3%,46% → 15%,68%]
+- equation $\mathcal S_T = \{(8, 3), (7, 8)\}?$ (36pt, #ffffff) [103%,59% → 118%,62%]
+- vector icon `shape-cff5f001.svg` [120%,55% → 125%,65%]
+- text 18pt [21%,23% → 33%,26%]: $G:$ the robot reaches the goal
+- text 18pt [21%,26% → 35%,28%]: $C:$ the robot reaches the checkpoint
+- text 36pt [102%,68% → 139%,84%]: This formulation fails to take into account that [[both|#80b9ff]] the checkpoint and goal must be reached and that they must be reached in a [[particular order|#80b9ff]].
+- equation $\psi = \lozenge G \wedge (\neg G \mathcal U C)$ (22pt, #ffffff) [21%,29% → 31%,31%]
+- text 24pt [26%,40% → 35%,43%]: Büchi Automaton
+- group [20%,47% → 38%,67%]
+  - line #80cfb9 [36%,55% → 38%,59%]
+  - equation $q_4$ (16pt, #80cfb9) [37%,56% → 37%,57%]
+  - line #ffffff [23%,55% → 25%,59%]
+  - equation $q_1$ (16pt, #ffffff) [24%,56% → 24%,57%]
+  - line #fab0ae [29%,50% → 32%,54%]
+  - equation $q_2$ (16pt, #fab0ae) [30%,52% → 31%,53%]
+  - line #80b9ff [29%,60% → 32%,64%]
+  - equation $q_3$ (16pt, #80b9ff) [30%,61% → 31%,63%]
+  - arrow #ffffff [20%,57% → 23%,57%]
+  - arrow #80b9ff [25%,58% → 29%,61%]
+  - arrow #fab0ae [25%,53% → 29%,56%]
+  - arrow #80cfb9 [32%,59% → 36%,62%]
+  - arrow #80cfb9 [25%,57% → 36%,57%]
+  - shape (outline) [23%,53% → 25%,55%]
+  - equation $\neg C \wedge \neg G$ (12pt, #ffffff) [23%,51% → 25%,52%]
+  - line #80cfb9 [36%,55% → 38%,59%]
+  - equation $q_4$ (17pt, #80cfb9) [37%,56% → 37%,57%]
+  - shape (outline) [36%,53% → 38%,55%]
+  - shape (outline) [30%,63% → 31%,66%]
+  - shape (outline) [30%,48% → 31%,51%]
+  - equation $C \wedge G$ (12pt, #80cfb9) [30%,56% → 31%,57%]
+  - equation $C \wedge \neg G$ (12pt, #80b9ff) [28%,59% → 30%,59%]
+  - equation $G$ (12pt, #80cfb9) [33%,59% → 34%,60%]
+  - equation $\neg C \wedge G$ (12pt, #fab0ae) [26%,53% → 28%,54%]
+  - equation $\neg G$ (12pt, #80b9ff) [30%,66% → 31%,67%]
+  - equation $\top$ (12pt, #80cfb9) [37%,52% → 37%,52%]
+  - equation $\top$ (12pt, #fab0ae) [30%,47% → 31%,48%]
+- equation $\times$ (37pt, #ffffff) [17%,56% → 18%,58%]
+- text 24pt [5%,40% → 14%,43%]: System
+- text 24pt [56%,26% → 65%,29%]: Product System
+- equation $=$ (37pt, #ffffff) [41%,57% → 42%,57%]
+- image `sandbox-page-1.svg` (cropped: show only 9–61% across and 10–60% down of the image) [45%,31% → 76%,90%]
+- text 32pt [82%,61% → 86%,65%]: State
+- equation $(s, q) \in \mathcal S \times \mathcal Q$ (36pt, #ffffff) [78%,68% → 89%,70%]
+- text 32pt [80%,76% → 87%,80%]: Transitions
+- equation $T((s', q') \mid (s, q), a) = \begin{cases} T(s' \mid s, a) & \text{if } q' = \delta(q, L(s)) \\ 0 & \text{otherwise} \end{cases}$ (28pt, #ffffff) [69%,84% → 99%,90%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 127
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: METRICS
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: SPECIFICATIONS
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 92%,75%]: REACHABILITY
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-5%,30% → 71%,35%]: PROPERTIES OF SYSTEMS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
