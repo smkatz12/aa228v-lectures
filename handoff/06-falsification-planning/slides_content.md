@@ -1,0 +1,1886 @@
+# AA228V Lectures 06/07 — Falsification Through Planning: slide-by-slide content
+
+Extracted from the Keynote deck `06_07_Falsification_Through_Planning.key` (76 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/06-falsification-planning/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/06-falsification-planning/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time, "(0.1 s later)" = after that pause).
+- A long run of images named `gNN-…` that appear one after another at the same spot, a fraction of a second apart, is a frame-by-frame animation: stack them and reveal them in turn with that timing (each frame stays as the next appears).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as Lecture 01: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#919191`, `#000000`, `#ffa4e7`, `#c3b8ff`, `#80cfb9`, `#1ba1ea`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- heading (spaced caps) 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 30pt [4%,73% → 43%,87%]: LECTURE 06/07: FALSIFICATION THROUGH PLANNING / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- rounded box (outline) [36%,23% → 64%,79%]
+- image `noun-save-1715647-80b9ff.png` [38%,26% → 62%,69%]
+- text 36pt [35%,14% → 65%,18%]: Why do we save our work periodically?
+- text 54pt [47%,69% → 53%,76%]: {SAVE|#80b9ff}
+
+## Slide 3
+- text 36pt [50%,50% → 50%,50%]: Sometimes, it is [[easier|#80b9ff]] to [[iteratively build something up|#80b9ff]] than to do it all at once.
+
+## Slide 4
+- equation $s$ (47pt, #ffffff) [40%,49% → 41%,51%]
+- equation $, \ \mathbf x$ (47pt, #ffffff) [42%,49% → 44%,51%]
+- text 36pt [39%,43% → 46%,47%]: minimize
+- equation $f($ (36pt, #ffffff) [48%,44% → 49%,47%]
+- text 36pt [38%,53% → 46%,57%]: subject to
+- equation $\text{Rollout}(s, \mathbf x)$ (36pt, #ffffff) [51%,54% → 60%,57%]
+- equation $)$ (36pt, #ffffff) [50%,44% → 51%,47%]
+- equation $\tau$ (36pt, #ffffff) [49%,45% → 50%,46%]
+- equation $\tau =$ (36pt, #ffffff) [48%,55% → 51%,56%]
+- text 36pt [42%,34% → 56%,38%]: {From last lecture:|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 5
+- equation $s$ (47pt, #ffffff) [40%,49% → 41%,51%]
+- equation $, \ \mathbf x$ (47pt, #ffffff) [42%,49% → 44%,51%]
+- text 36pt [39%,43% → 46%,47%]: minimize
+- equation $f($ (36pt, #ffffff) [48%,44% → 49%,47%]
+- equation $\text{Rollout}(s, \mathbf x)$ (36pt, #ffffff) [50%,44% → 59%,47%]
+- equation $)$ (36pt, #ffffff) [59%,44% → 59%,47%]
+- text 36pt [16%,56% → 84%,60%]: This optimization problem typically involves searching over a very high-dimensional space.
+- text 36pt [16%,63% → 34%,68%]: {e.g.  inverted pendulum:|#80b9ff}
+- equation $s \in \mathbb R^2,$ (36pt, #80b9ff) [35%,64% → 41%,67%]
+- equation $\mathbf x \in \mathbb R^{2d}$ (36pt, #80b9ff) [42%,64% → 48%,67%]
+- text 36pt [19%,69% → 60%,74%]: {For depth $d = 21$, the search space is $44$-dimensional!|#80b9ff}
+- group [19%,82% → 78%,91%]
+  - rounded box (outline) [19%,82% → 78%,91%]
+  - text 36pt [47%,84% → 50%,89%]: Planning algorithms allow us to iteratively build up a trajectory instead.
+- **Builds:** click 1: text 36pt — wipes in; click 2: equation $\mathbf x \in \mathbb R^{2d}$ — fades up from dark; with previous: equation $s \in \mathbb R^2,$ — fades up from dark; with previous: text 36pt — fades up from dark; click 3: text 36pt — slides in; click 4: group — fades up from dark
+
+## Slide 6
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 4: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 5: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 7
+- heading (spaced caps) 36pt [42%,48% → 118%,52%]: TREE SEARCH
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- heading (spaced caps) 36pt [15%,48% → 91%,52%]: TREE SEARCH
+- video `mykeltreedance.mp4` (plays 0.0s–19.2s, loops) [47%,-0% → 90%,101%]
+- **Builds:** then: video `mykeltreedance.mp4` (plays 0.0s–19.2s, loops) — video starts
+
+## Slide 9
+- text 36pt [29%,8% → 71%,12%]: The type of tree we are actually talking about in this lecture…
+- group [47%,22% → 53%,32%]
+  - line #ffffff [47%,22% → 53%,32%]
+  - equation $s$ (57pt, #ffffff) [49%,26% → 51%,28%]
+- group [38%,43% → 43%,52%]
+  - line #ffffff [38%,43% → 43%,52%]
+  - equation $s$ (57pt, #ffffff) [40%,46% → 41%,49%]
+- group [57%,43% → 62%,52%]
+  - line #ffffff [57%,43% → 62%,52%]
+  - equation $s$ (57pt, #ffffff) [59%,46% → 60%,49%]
+- group [52%,66% → 57%,75%]
+  - line #ffffff [52%,66% → 57%,75%]
+  - equation $s$ (57pt, #ffffff) [54%,69% → 55%,71%]
+- arrow #ffffff [41%,31% → 48%,43%]
+- arrow #ffffff [52%,31% → 59%,43%]
+- arrow #ffffff [56%,52% → 59%,66%]
+- equation $o, a, x$ (36pt, #ffffff) [40%,35% → 44%,36%]
+- equation $o, a, x$ (36pt, #ffffff) [56%,35% → 60%,36%]
+- equation $o, a, x$ (36pt, #ffffff) [52%,56% → 56%,58%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- text 36pt [29%,8% → 71%,12%]: The type of tree we are actually talking about in this lecture…
+- group [23%,29% → 28%,38%]
+  - line #ffffff [23%,29% → 28%,38%]
+  - equation $s$ (57pt, #ffffff) [25%,32% → 26%,35%]
+- group [14%,50% → 19%,59%]
+  - line #ffffff [14%,50% → 19%,59%]
+  - equation $s$ (57pt, #ffffff) [16%,53% → 17%,55%]
+- group [33%,50% → 38%,59%]
+  - line #ffffff [33%,50% → 38%,59%]
+  - equation $s$ (57pt, #ffffff) [35%,53% → 36%,55%]
+- group [28%,72% → 33%,81%]
+  - line #ffffff [28%,72% → 33%,81%]
+  - equation $s$ (57pt, #ffffff) [30%,76% → 31%,78%]
+- arrow #ffffff [17%,37% → 24%,50%]
+- arrow #ffffff [27%,37% → 34%,50%]
+- arrow #ffffff [32%,59% → 35%,72%]
+- equation $o, a, x$ (36pt, #ffffff) [16%,41% → 20%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [32%,41% → 36%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [28%,63% → 32%,65%]
+- image `test-9724.svg` [52%,26% → 86%,87%]
+- text 36pt [68%,20% → 71%,25%]: Continuum World
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- **Builds:** click 1: image `test-9736.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- text 36pt [26%,14% → 74%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [47%,29% → 53%,38%]
+  - line #ffffff [47%,29% → 53%,38%]
+  - equation $s$ (57pt, #ffffff) [49%,32% → 50%,35%]
+- group [38%,50% → 43%,59%]
+  - line #ffffff [38%,50% → 43%,59%]
+  - equation $s$ (57pt, #ffffff) [40%,53% → 41%,55%]
+- group [57%,50% → 62%,59%]
+  - line #ffffff [57%,50% → 62%,59%]
+  - equation $s$ (57pt, #ffffff) [59%,53% → 60%,55%]
+- group [52%,72% → 57%,81%]
+  - line #ffffff [52%,72% → 57%,81%]
+  - equation $s$ (57pt, #ffffff) [54%,76% → 55%,78%]
+- arrow #ffffff [41%,37% → 48%,50%]
+- arrow #ffffff [52%,37% → 59%,50%]
+- arrow #ffffff [56%,59% → 59%,72%]
+- equation $o, a, x$ (36pt, #ffffff) [40%,41% → 44%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [56%,41% → 60%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [52%,63% → 56%,65%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- arrow #ffffff [61%,59% → 64%,72%]
+- text 36pt [26%,14% → 74%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [47%,29% → 53%,38%]
+  - line #ffffff [47%,29% → 53%,38%]
+  - equation $s$ (57pt, #ffffff) [49%,32% → 50%,35%]
+- group [38%,50% → 43%,59%]
+  - line #ffffff [38%,50% → 43%,59%]
+  - equation $s$ (57pt, #ffffff) [40%,53% → 41%,55%]
+- group [57%,50% → 62%,59%]
+  - line #80b9ff [57%,50% → 62%,59%]
+  - equation $s$ (57pt, #80b9ff) [59%,53% → 60%,55%]
+- group [61%,73% → 67%,82%]
+  - line #ffffff [61%,73% → 67%,82%]
+  - equation $s$ (57pt, #ffffff) [64%,77% → 65%,79%]
+- arrow #ffffff [41%,37% → 48%,50%]
+- arrow #ffffff [52%,37% → 59%,50%]
+- arrow #ffffff [56%,59% → 59%,72%]
+- equation $o, a, x$ (36pt, #ffffff) [40%,41% → 44%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [56%,41% → 60%,43%]
+- equation $o, a, x$ (36pt, #ffffff) [52%,63% → 56%,65%]
+- group [52%,73% → 58%,82%]
+  - line #ffffff [52%,73% → 58%,82%]
+  - equation $s$ (57pt, #ffffff) [55%,77% → 56%,79%]
+- equation $o, a, x$ (36pt, #ffffff) [63%,64% → 67%,65%]
+- **Builds:** click 1: arrow #ffffff — draws in; with previous (0.5 s later): equation $o, a, x$ — appears; then: group — appears
+
+## Slide 13
+- text 36pt [26%,14% → 74%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [38%,29% → 67%,82%]
+  - arrow #ffffff [61%,59% → 64%,72%]
+  - group [47%,29% → 53%,38%]
+    - line #ffffff [47%,29% → 53%,38%]
+    - equation $s$ (57pt, #ffffff) [49%,32% → 50%,35%]
+  - group [38%,50% → 43%,59%]
+    - line #ffffff [38%,50% → 43%,59%]
+    - equation $s$ (57pt, #ffffff) [40%,53% → 41%,55%]
+  - group [57%,50% → 62%,59%]
+    - line #80b9ff [57%,50% → 62%,59%]
+    - equation $s$ (57pt, #80b9ff) [59%,53% → 60%,55%]
+  - group [61%,73% → 67%,82%]
+    - line #ffffff [61%,73% → 67%,82%]
+    - equation $s$ (57pt, #ffffff) [64%,77% → 65%,79%]
+  - arrow #ffffff [41%,37% → 48%,50%]
+  - arrow #ffffff [52%,37% → 59%,50%]
+  - arrow #ffffff [56%,59% → 59%,72%]
+  - equation $o, a, x$ (36pt, #ffffff) [40%,41% → 44%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [56%,41% → 60%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [52%,63% → 56%,65%]
+  - group [52%,73% → 58%,82%]
+    - line #ffffff [52%,73% → 58%,82%]
+    - equation $s$ (57pt, #ffffff) [55%,77% → 56%,79%]
+  - equation $o, a, x$ (36pt, #ffffff) [63%,64% → 67%,65%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 14
+- text 36pt [26%,14% → 74%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [61%,29% → 90%,82%]
+  - arrow #ffffff [84%,59% → 87%,72%]
+  - group [71%,29% → 76%,38%]
+    - line #ffffff [71%,29% → 76%,38%]
+    - equation $s$ (57pt, #ffffff) [73%,32% → 74%,35%]
+  - group [61%,50% → 66%,59%]
+    - line #ffffff [61%,50% → 66%,59%]
+    - equation $s$ (57pt, #ffffff) [63%,53% → 64%,55%]
+  - group [80%,50% → 86%,59%]
+    - line #80b9ff [80%,50% → 86%,59%]
+    - equation $s$ (57pt, #80b9ff) [83%,53% → 84%,55%]
+  - group [85%,73% → 90%,82%]
+    - line #ffffff [85%,73% → 90%,82%]
+    - equation $s$ (57pt, #ffffff) [87%,77% → 88%,79%]
+  - arrow #ffffff [65%,37% → 72%,50%]
+  - arrow #ffffff [75%,37% → 82%,50%]
+  - arrow #ffffff [79%,59% → 82%,72%]
+  - equation $o, a, x$ (36pt, #ffffff) [63%,41% → 67%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [79%,41% → 84%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [75%,63% → 79%,65%]
+  - group [76%,73% → 81%,82%]
+    - line #ffffff [76%,73% → 81%,82%]
+    - equation $s$ (57pt, #ffffff) [78%,77% → 79%,79%]
+  - equation $o, a, x$ (36pt, #ffffff) [86%,64% → 90%,65%]
+- group [28%,29% → 53%,82%]
+  - group [38%,29% → 43%,38%]
+    - line #ffffff [38%,29% → 43%,38%]
+    - equation $s$ (57pt, #ffffff) [40%,32% → 41%,35%]
+  - group [28%,50% → 33%,59%]
+    - line #ffffff [28%,50% → 33%,59%]
+    - equation $s$ (57pt, #ffffff) [30%,53% → 31%,55%]
+  - group [47%,50% → 53%,59%]
+    - line #80b9ff [47%,50% → 53%,59%]
+    - equation $s$ (57pt, #80b9ff) [50%,53% → 51%,55%]
+  - arrow #ffffff [32%,37% → 39%,50%]
+  - arrow #ffffff [42%,37% → 49%,50%]
+  - arrow #ffffff [46%,59% → 49%,72%]
+  - equation $o, a, x$ (36pt, #ffffff) [30%,41% → 34%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [46%,41% → 51%,43%]
+  - equation $o, a, x$ (36pt, #ffffff) [42%,63% → 46%,65%]
+  - group [43%,73% → 48%,82%]
+    - line #ffffff [43%,73% → 48%,82%]
+    - equation $s$ (57pt, #ffffff) [45%,77% → 46%,79%]
+- group [4%,37% → 20%,72%]
+  - rounded box (outline) [4%,37% → 20%,72%]
+  - group [6%,43% → 18%,68%]
+    - group [11%,43% → 14%,47%]
+      - line #ffffff [11%,43% → 14%,47%]
+      - equation $s$ (27pt, #ffffff) [12%,44% → 13%,45%]
+    - group [6%,53% → 9%,57%]
+      - line #ffffff [6%,53% → 9%,57%]
+      - equation $s$ (27pt, #ffffff) [7%,54% → 8%,55%]
+    - group [16%,53% → 18%,57%]
+      - line #ffffff [16%,53% → 18%,57%]
+      - equation $s$ (27pt, #ffffff) [17%,54% → 17%,55%]
+    - group [13%,63% → 16%,68%]
+      - line #ffffff [13%,63% → 16%,68%]
+      - equation $s$ (27pt, #ffffff) [14%,65% → 15%,66%]
+    - arrow #ffffff [8%,47% → 12%,53%]
+    - arrow #ffffff [13%,47% → 16%,53%]
+    - arrow #ffffff [15%,57% → 17%,63%]
+    - equation $o, a, x$ (17pt, #ffffff) [7%,49% → 10%,49%]
+    - equation $o, a, x$ (17pt, #ffffff) [15%,49% → 17%,49%]
+    - equation $o, a, x$ (17pt, #ffffff) [13%,59% → 15%,60%]
+  - text 24pt [10%,37% → 14%,42%]: Current Tree
+- rounded box (outline) [26%,25% → 55%,94%]
+- text 36pt [38%,86% → 42%,91%]: Select
+- rounded box (outline) [59%,25% → 92%,94%]
+- text 36pt [73%,86% → 78%,91%]: Extend
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 15
+- text 36pt [26%,14% → 74%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [32%,27% → 45%,55%]
+  - group [37%,27% → 40%,32%]
+    - line #ffffff [37%,27% → 40%,32%]
+    - equation $s$ (30pt, #ffffff) [38%,29% → 39%,30%]
+  - group [32%,38% → 35%,43%]
+    - line #ffffff [32%,38% → 35%,43%]
+    - equation $s$ (30pt, #ffffff) [33%,40% → 34%,41%]
+  - group [42%,38% → 45%,43%]
+    - line #80b9ff [42%,38% → 45%,43%]
+    - equation $s$ (30pt, #80b9ff) [43%,40% → 44%,41%]
+  - arrow #ffffff [34%,31% → 38%,38%]
+  - arrow #ffffff [39%,31% → 43%,38%]
+  - arrow #ffffff [42%,43% → 43%,50%]
+  - equation $o, a, x$ (19pt, #ffffff) [33%,33% → 35%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [42%,33% → 44%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [39%,45% → 42%,46%]
+  - group [40%,50% → 43%,55%]
+    - line #ffffff [40%,50% → 43%,55%]
+    - equation $s$ (30pt, #ffffff) [41%,52% → 42%,54%]
+- rounded box (outline) [31%,25% → 46%,61%]
+- text 18pt [37%,57% → 40%,60%]: Select
+- group [52%,27% → 68%,55%]
+  - arrow #ffffff [64%,43% → 66%,50%]
+  - group [57%,27% → 60%,32%]
+    - line #ffffff [57%,27% → 60%,32%]
+    - equation $s$ (30pt, #ffffff) [58%,29% → 59%,30%]
+  - group [52%,38% → 55%,43%]
+    - line #ffffff [52%,38% → 55%,43%]
+    - equation $s$ (30pt, #ffffff) [53%,40% → 54%,41%]
+  - group [63%,38% → 65%,43%]
+    - line #80b9ff [63%,38% → 65%,43%]
+    - equation $s$ (30pt, #80b9ff) [64%,40% → 64%,41%]
+  - group [65%,50% → 68%,55%]
+    - line #ffffff [65%,50% → 68%,55%]
+    - equation $s$ (30pt, #ffffff) [66%,52% → 67%,54%]
+  - arrow #ffffff [54%,31% → 58%,38%]
+  - arrow #ffffff [60%,31% → 63%,38%]
+  - arrow #ffffff [62%,43% → 63%,50%]
+  - equation $o, a, x$ (19pt, #ffffff) [53%,33% → 56%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [62%,33% → 64%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [60%,45% → 62%,46%]
+  - group [60%,50% → 63%,55%]
+    - line #ffffff [60%,50% → 63%,55%]
+    - equation $s$ (30pt, #ffffff) [61%,52% → 62%,54%]
+  - equation $o, a, x$ (19pt, #ffffff) [66%,45% → 68%,46%]
+- rounded box (outline) [51%,25% → 69%,61%]
+- text 18pt [58%,57% → 62%,60%]: Extend
+- image `val-page-100.svg` (cropped: show only 7–42% across and 58–73% down of the image) [33%,65% → 66%,94%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- rounded box (outline) [56%,37% → 88%,63%]
+- text 36pt [9%,14% → 43%,18%]: A [[typical iteration|#80b9ff]] of a tree search algorithm:
+- group [8%,27% → 21%,55%]
+  - group [13%,27% → 16%,32%]
+    - line #ffffff [13%,27% → 16%,32%]
+    - equation $s$ (30pt, #ffffff) [14%,29% → 15%,30%]
+  - group [8%,38% → 11%,43%]
+    - line #ffffff [8%,38% → 11%,43%]
+    - equation $s$ (30pt, #ffffff) [9%,40% → 10%,41%]
+  - group [18%,38% → 21%,43%]
+    - line #80b9ff [18%,38% → 21%,43%]
+    - equation $s$ (30pt, #80b9ff) [19%,40% → 20%,41%]
+  - arrow #ffffff [10%,31% → 14%,38%]
+  - arrow #ffffff [15%,31% → 19%,38%]
+  - arrow #ffffff [17%,43% → 19%,50%]
+  - equation $o, a, x$ (19pt, #ffffff) [9%,33% → 11%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [18%,33% → 20%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [15%,45% → 18%,46%]
+  - group [16%,50% → 19%,55%]
+    - line #ffffff [16%,50% → 19%,55%]
+    - equation $s$ (30pt, #ffffff) [17%,52% → 17%,54%]
+- rounded box (outline) [7%,25% → 22%,61%]
+- text 18pt [13%,57% → 16%,60%]: Select
+- group [28%,27% → 44%,55%]
+  - arrow #ffffff [40%,43% → 42%,50%]
+  - group [33%,27% → 36%,32%]
+    - line #ffffff [33%,27% → 36%,32%]
+    - equation $s$ (30pt, #ffffff) [34%,29% → 35%,30%]
+  - group [28%,38% → 31%,43%]
+    - line #ffffff [28%,38% → 31%,43%]
+    - equation $s$ (30pt, #ffffff) [29%,40% → 30%,41%]
+  - group [38%,38% → 41%,43%]
+    - line #80b9ff [38%,38% → 41%,43%]
+    - equation $s$ (30pt, #80b9ff) [40%,40% → 40%,41%]
+  - group [41%,50% → 44%,55%]
+    - line #ffffff [41%,50% → 44%,55%]
+    - equation $s$ (30pt, #ffffff) [42%,52% → 42%,54%]
+  - arrow #ffffff [30%,31% → 34%,38%]
+  - arrow #ffffff [35%,31% → 39%,38%]
+  - arrow #ffffff [38%,43% → 39%,50%]
+  - equation $o, a, x$ (19pt, #ffffff) [29%,33% → 31%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [38%,33% → 40%,34%]
+  - equation $o, a, x$ (19pt, #ffffff) [36%,45% → 38%,46%]
+  - group [36%,50% → 39%,55%]
+    - line #ffffff [36%,50% → 39%,55%]
+    - equation $s$ (30pt, #ffffff) [37%,52% → 38%,54%]
+  - equation $o, a, x$ (19pt, #ffffff) [41%,45% → 44%,46%]
+- rounded box (outline) [27%,25% → 45%,61%]
+- text 18pt [34%,57% → 37%,60%]: Extend
+- image `val-page-100.svg` (cropped: show only 7–42% across and 58–73% down of the image) [9%,65% → 42%,94%]
+- text 48pt [58%,39% → 86%,61%]: Tree search algorithms [[differ|#80b9ff]] from one another in how they implement the [[select|#80b9ff]] and [[extend|#80b9ff]] steps.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 18
+- heading (spaced caps) 36pt [11%,48% → 85%,52%]: HEURISTIC SEARCH
+- text 36pt [36%,48% → 89%,52%]: algorithms use heuristics to explore the space of possible trajectories.
+- heading (spaced caps) 36pt [23%,54% → 77%,58%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- **Builds:** click 1: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- group [12%,23% → 16%,31%]
+  - line #ffffff [12%,23% → 16%,31%]
+  - equation $1$ (36pt, #ffffff) [14%,26% → 14%,28%]
+- heading (spaced caps) 36pt [18%,25% → 27%,29%]: SELECT
+- line #ffffff [52%,23% → 56%,31%]
+- equation $2$ (36pt, #ffffff) [54%,26% → 54%,28%]
+- heading (spaced caps) 36pt [57%,25% → 68%,29%]: EXTEND
+- text 30pt [18%,32% → 44%,59%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- shape (outline) [39%,27% → 55%,56%]
+- text 30pt [57%,32% → 84%,52%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- **Builds:** click 1: text 30pt — appears; then: text 30pt — appears; click 2: text 30pt — appears; then: text 30pt — appears; click 3: text 30pt — appears; click 4: shape (outline) — draws in; click 5: text 30pt — appears; then: text 30pt — appears; click 6: text 30pt — appears; then: text 30pt — appears; click 7: text 30pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 20
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 21
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #919191 [10%,59% → 14%,66%]
+- equation $2$ (36pt, #919191) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: {EXTEND|#919191}
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / {Compute objective for each node in the current tree based on the goal state|#919191} / {Select the node with the lowest objective|#919191}
+- text 30pt [15%,67% → 42%,87%]: {Select disturbance|#919191} / {Take a step from the selected node using the selected disturbance|#919191} / {Add result to the tree|#919191}
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 22
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #919191 [10%,59% → 14%,66%]
+- equation $2$ (36pt, #919191) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: {EXTEND|#919191}
+- text 30pt [15%,24% → 42%,51%]: {Sample goal state|#919191} / Compute objective for each node in the current tree based on the goal state / {Select the node with the lowest objective|#919191}
+- text 30pt [15%,67% → 42%,87%]: {Select disturbance|#919191} / {Take a step from the selected node using the selected disturbance|#919191} / {Add result to the tree|#919191}
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- text 30pt [22%,37% → 36%,41%]: {(e.g. distance to goal)|#c3b8ff}
+- line #c3b8ff [57%,49% → 66%,79%]
+- line #c3b8ff [54%,49% → 66%,83%]
+- line #c3b8ff [54%,49% → 66%,77%]
+- line #c3b8ff [56%,49% → 66%,72%]
+- line #c3b8ff [53%,49% → 66%,72%]
+- line #c3b8ff [57%,50% → 66%,66%]
+- line #c3b8ff [59%,50% → 66%,63%]
+- **Builds:** click 1: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 23
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #919191 [10%,59% → 14%,66%]
+- equation $2$ (36pt, #919191) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: {EXTEND|#919191}
+- text 30pt [15%,24% → 42%,51%]: {Sample goal state|#919191} / {Compute objective for each node in the current tree based on the goal state|#919191} / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: {Select disturbance|#919191} / {Take a step from the selected node using the selected disturbance|#919191} / {Add result to the tree|#919191}
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- line #c3b8ff [57%,49% → 66%,79%]
+- line #c3b8ff [54%,49% → 66%,83%]
+- line #c3b8ff [54%,49% → 66%,77%]
+- line #c3b8ff [56%,49% → 66%,72%]
+- line #c3b8ff [53%,49% → 66%,72%]
+- line #c3b8ff [57%,50% → 66%,66%]
+- line #c3b8ff [59%,50% → 66%,63%]
+- vector icon `shape-9cc9f1f8.svg` [59%,62% → 60%,64%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 24
+- group [10%,16% → 14%,23%]
+  - line #919191 [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #919191) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: {SELECT|#919191}
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: {Sample goal state|#919191} / {Compute objective for each node in the current tree based on the goal state|#919191} / {Select the node with the lowest objective|#919191}
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / {Take a step from the selected node using the selected disturbance|#919191} / {Add result to the tree|#919191}
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- vector icon `shape-9cc9f1f8.svg` [59%,62% → 60%,64%]
+- image `test-10273.svg` [52%,26% → 86%,87%]
+- line #ffffff [59%,57% → 59%,63%]
+- **Builds:** click 1: line #ffffff — draws in; click 2: image `test-10273.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 25
+- group [10%,16% → 14%,23%]
+  - line #919191 [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #919191) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: {SELECT|#919191}
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: {Sample goal state|#919191} / {Compute objective for each node in the current tree based on the goal state|#919191} / {Select the node with the lowest objective|#919191}
+- text 30pt [15%,67% → 42%,87%]: {Select disturbance|#919191} / Take a step from the selected node using the selected disturbance / {Add result to the tree|#919191}
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- vector icon `shape-9cc9f1f8.svg` [59%,62% → 60%,64%]
+- image `test-10273.svg` [52%,26% → 86%,87%]
+- image `test-10285.svg` [52%,26% → 86%,87%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 26
+- group [10%,16% → 14%,23%]
+  - line #919191 [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #919191) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: {SELECT|#919191}
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: {Sample goal state|#919191} / {Compute objective for each node in the current tree based on the goal state|#919191} / {Select the node with the lowest objective|#919191}
+- text 30pt [15%,67% → 42%,87%]: {Select disturbance|#919191} / {Take a step from the selected node using the selected disturbance|#919191} / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- vector icon `shape-9cc9f1f8.svg` [59%,62% → 60%,64%]
+- image `test-10273.svg` [52%,26% → 86%,87%]
+- image `test-10285.svg` [52%,26% → 86%,87%]
+- image `test-10294.svg` [52%,26% → 86%,87%]
+- shape (outline) [5%,23% → 15%,86%]
+- **Builds:** click 1: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 27
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-9736.svg` [52%,26% → 86%,87%]
+- image `test-10174.svg` [52%,26% → 86%,87%]
+- vector icon `shape-9cc9f1f8.svg` [59%,62% → 60%,64%]
+- image `test-10273.svg` [52%,26% → 86%,87%]
+- image `test-10285.svg` [52%,26% → 86%,87%]
+- image `test-10294.svg` [52%,26% → 86%,87%]
+
+## Slide 28
+- image `test-10320.svg` [52%,26% → 86%,87%]
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `g01-10772.svg` [52%,26% → 86%,87%]
+- image `g02-10774.svg` [52%,26% → 86%,87%]
+- image `g03-10773.svg` [52%,26% → 86%,87%]
+- image `g04-10781.svg` [52%,26% → 86%,87%]
+- image `g05-10780.svg` [52%,26% → 86%,87%]
+- image `g06-10778.svg` [52%,26% → 86%,87%]
+- image `g07-10956.svg` [52%,26% → 86%,87%]
+- image `g08-10899.svg` [52%,26% → 86%,87%]
+- image `g09-10803.svg` [52%,26% → 86%,87%]
+- image `g10-10787.svg` [52%,26% → 86%,87%]
+- image `g11-10829.svg` [52%,26% → 86%,87%]
+- image `g12-10828.svg` [52%,26% → 86%,87%]
+- image `g13-10822.svg` [52%,26% → 86%,87%]
+- image `g14-10799.svg` [52%,26% → 86%,87%]
+- image `g15-10802.svg` [52%,26% → 86%,87%]
+- image `g16-10806.svg` [52%,26% → 86%,87%]
+- image `g17-10795.svg` [52%,26% → 86%,87%]
+- image `g18-10894.svg` [52%,26% → 86%,87%]
+- image `g19-10793.svg` [52%,26% → 86%,87%]
+- image `g20-10954.svg` [52%,26% → 86%,87%]
+- image `g21-10951.svg` [52%,26% → 86%,87%]
+- image `g22-10783.svg` [52%,26% → 86%,87%]
+- image `g23-10789.svg` [52%,26% → 86%,87%]
+- image `g24-10790.svg` [52%,26% → 86%,87%]
+- image `g25-10933.svg` [52%,26% → 86%,87%]
+- image `g26-10931.svg` [52%,26% → 86%,87%]
+- image `g27-10797.svg` [52%,26% → 86%,87%]
+- image `g28-10930.svg` [52%,26% → 86%,87%]
+- image `g29-10786.svg` [52%,26% → 86%,87%]
+- image `g30-10924.svg` [52%,26% → 86%,87%]
+- image `g31-10898.svg` [52%,26% → 86%,87%]
+- image `g32-10900.svg` [52%,26% → 86%,87%]
+- image `g33-10955.svg` [52%,26% → 86%,87%]
+- image `g34-10925.svg` [52%,26% → 86%,87%]
+- image `g35-10927.svg` [52%,26% → 86%,87%]
+- image `g36-10928.svg` [52%,26% → 86%,87%]
+- image `g37-10932.svg` [52%,26% → 86%,87%]
+- image `g38-10926.svg` [52%,26% → 86%,87%]
+- image `g39-10868.svg` [52%,26% → 86%,87%]
+- image `g40-10863.svg` [52%,26% → 86%,87%]
+- image `g41-10876.svg` [52%,26% → 86%,87%]
+- image `g42-10861.svg` [52%,26% → 86%,87%]
+- image `g43-10849.svg` [52%,26% → 86%,87%]
+- image `g44-10854.svg` [52%,26% → 86%,87%]
+- image `g45-10860.svg` [52%,26% → 86%,87%]
+- image `g46-10846.svg` [52%,26% → 86%,87%]
+- image `g47-10884.svg` [52%,26% → 86%,87%]
+- image `g48-10879.svg` [52%,26% → 86%,87%]
+- image `g49-10842.svg` [52%,26% → 86%,87%]
+- image `g50-10843.svg` [52%,26% → 86%,87%]
+- image `g51-10888.svg` [52%,26% → 86%,87%]
+- image `g52.svg` [52%,26% → 86%,87%]
+- image `g53.svg` [52%,26% → 86%,87%]
+- image `g54.svg` [52%,26% → 86%,87%]
+- image `g55.svg` [52%,26% → 86%,87%]
+- image `g56.svg` [52%,26% → 86%,87%]
+- image `g57.svg` [52%,26% → 86%,87%]
+- image `g58.svg` [52%,26% → 86%,87%]
+- image `g59.svg` [52%,26% → 86%,87%]
+- image `g60.svg` [52%,26% → 86%,87%]
+- image `g61.svg` [52%,26% → 86%,87%]
+- image `g62.svg` [52%,26% → 86%,87%]
+- image `g63.svg` [52%,26% → 86%,87%]
+- image `g64.svg` [52%,26% → 86%,87%]
+- image `g65.svg` [52%,26% → 86%,87%]
+- image `g66.svg` [52%,26% → 86%,87%]
+- image `g67.svg` [52%,26% → 86%,87%]
+- image `g68.svg` [52%,26% → 86%,87%]
+- image `g69.svg` [52%,26% → 86%,87%]
+- image `g70.svg` [52%,26% → 86%,87%]
+- image `g71.svg` [52%,26% → 86%,87%]
+- image `g72.svg` [52%,26% → 86%,87%]
+- image `g73.svg` [52%,26% → 86%,87%]
+- image `g74.svg` [52%,26% → 86%,87%]
+- image `g75.svg` [52%,26% → 86%,87%]
+- image `g76.svg` [52%,26% → 86%,87%]
+- image `g77.svg` [52%,26% → 86%,87%]
+- image `g78.svg` [52%,26% → 86%,87%]
+- image `g79.svg` [52%,26% → 86%,87%]
+- image `g80.svg` [52%,26% → 86%,87%]
+- image `g81.svg` [52%,26% → 86%,87%]
+- image `g82.svg` [52%,26% → 86%,87%]
+- image `g83.svg` [52%,26% → 86%,87%]
+- image `g84.svg` [52%,26% → 86%,87%]
+- image `g85.svg` [52%,26% → 86%,87%]
+- image `g86.svg` [52%,26% → 86%,87%]
+- image `g87.svg` [52%,26% → 86%,87%]
+- image `g88.svg` [52%,26% → 86%,87%]
+- image `g89.svg` [52%,26% → 86%,87%]
+- image `g90.svg` [52%,26% → 86%,87%]
+- image `g91.svg` [52%,26% → 86%,87%]
+- image `g92.svg` [52%,26% → 86%,87%]
+- image `g93.svg` [52%,26% → 86%,87%]
+- image `g94.svg` [52%,26% → 86%,87%]
+- image `g95.svg` [52%,26% → 86%,87%]
+- image `g96.svg` [52%,26% → 86%,87%]
+- image `g97.svg` [52%,26% → 86%,87%]
+- image `g98.svg` [52%,26% → 86%,87%]
+- image `g99.svg` [52%,26% → 86%,87%]
+- image `test-10975.svg` [52%,26% → 86%,87%]
+- **Builds:** click 1: image `g01-10772.svg` — appears; then (0.1 s later): image `g02-10774.svg` — appears; then (0.1 s later): image `g03-10773.svg` — appears; then (0.1 s later): image `g04-10781.svg` — appears; then (0.1 s later): image `g05-10780.svg` — appears; then (0.1 s later): image `g06-10778.svg` — appears; then (0.1 s later): image `g07-10956.svg` — appears; then (0.1 s later): image `g08-10899.svg` — appears; then (0.1 s later): image `g09-10803.svg` — appears; then (0.1 s later): image `g10-10787.svg` — appears; then (0.1 s later): image `g11-10829.svg` — appears; then (0.1 s later): image `g12-10828.svg` — appears; then (0.1 s later): image `g13-10822.svg` — appears; then (0.1 s later): image `g14-10799.svg` — appears; then (0.1 s later): image `g15-10802.svg` — appears; then (0.1 s later): image `g16-10806.svg` — appears; then (0.1 s later): image `g17-10795.svg` — appears; then (0.1 s later): image `g18-10894.svg` — appears; then (0.1 s later): image `g19-10793.svg` — appears; then (0.1 s later): image `g20-10954.svg` — appears; then (0.1 s later): image `g21-10951.svg` — appears; then (0.1 s later): image `g22-10783.svg` — appears; then (0.1 s later): image `g23-10789.svg` — appears; then (0.1 s later): image `g24-10790.svg` — appears; then (0.1 s later): image `g25-10933.svg` — appears; then (0.1 s later): image `g26-10931.svg` — appears; then (0.1 s later): image `g27-10797.svg` — appears; then (0.1 s later): image `g28-10930.svg` — appears; then (0.1 s later): image `g29-10786.svg` — appears; then (0.1 s later): image `g30-10924.svg` — appears; then (0.1 s later): image `g31-10898.svg` — appears; then (0.1 s later): image `g32-10900.svg` — appears; then (0.1 s later): image `g33-10955.svg` — appears; then (0.1 s later): image `g34-10925.svg` — appears; then (0.1 s later): image `g35-10927.svg` — appears; then (0.1 s later): image `g36-10928.svg` — appears; then (0.1 s later): image `g37-10932.svg` — appears; then (0.1 s later): image `g38-10926.svg` — appears; then (0.1 s later): image `g39-10868.svg` — appears; then (0.1 s later): image `g40-10863.svg` — appears; then (0.1 s later): image `g41-10876.svg` — appears; then (0.1 s later): image `g42-10861.svg` — appears; then (0.1 s later): image `g43-10849.svg` — appears; then (0.1 s later): image `g44-10854.svg` — appears; then (0.1 s later): image `g45-10860.svg` — appears; then (0.1 s later): image `g46-10846.svg` — appears; then (0.1 s later): image `g47-10884.svg` — appears; then (0.1 s later): image `g48-10879.svg` — appears; then (0.1 s later): image `g49-10842.svg` — appears; then (0.1 s later): image `g50-10843.svg` — appears; then (0.1 s later): image `g51-10888.svg` — appears; then (0.1 s later): image `g52.svg` — appears; then (0.1 s later): image `g53.svg` — appears; then (0.1 s later): image `g54.svg` — appears; then (0.1 s later): image `g55.svg` — appears; then (0.1 s later): image `g56.svg` — appears; then (0.1 s later): image `g57.svg` — appears; then (0.1 s later): image `g58.svg` — appears; then (0.1 s later): image `g59.svg` — appears; then (0.1 s later): image `g60.svg` — appears; then (0.1 s later): image `g61.svg` — appears; then (0.1 s later): image `g62.svg` — appears; then (0.1 s later): image `g63.svg` — appears; then (0.1 s later): image `g64.svg` — appears; then (0.1 s later): image `g65.svg` — appears; then (0.1 s later): image `g66.svg` — appears; then (0.1 s later): image `g67.svg` — appears; then (0.1 s later): image `g68.svg` — appears; then (0.1 s later): image `g69.svg` — appears; then (0.1 s later): image `g70.svg` — appears; then (0.1 s later): image `g71.svg` — appears; then (0.1 s later): image `g72.svg` — appears; then (0.1 s later): image `g73.svg` — appears; then (0.1 s later): image `g74.svg` — appears; then (0.1 s later): image `g75.svg` — appears; then (0.1 s later): image `g76.svg` — appears; then (0.1 s later): image `g77.svg` — appears; then (0.1 s later): image `g78.svg` — appears; then (0.1 s later): image `g79.svg` — appears; then (0.1 s later): image `g80.svg` — appears; then (0.1 s later): image `g81.svg` — appears; then (0.1 s later): image `g82.svg` — appears; then (0.1 s later): image `g83.svg` — appears; then (0.1 s later): image `g84.svg` — appears; then (0.1 s later): image `g85.svg` — appears; then (0.1 s later): image `g86.svg` — appears; then (0.1 s later): image `g87.svg` — appears; then (0.1 s later): image `g88.svg` — appears; then (0.1 s later): image `g89.svg` — appears; then (0.1 s later): image `g90.svg` — appears; then (0.1 s later): image `g91.svg` — appears; then (0.1 s later): image `g92.svg` — appears; then (0.1 s later): image `g93.svg` — appears; then (0.1 s later): image `g94.svg` — appears; then (0.1 s later): image `g95.svg` — appears; then (0.1 s later): image `g96.svg` — appears; then (0.1 s later): image `g97.svg` — appears; then (0.1 s later): image `g98.svg` — appears; then (0.1 s later): image `g99.svg` — appears; then (0.1 s later): image `test-10975.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 29
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-10975.svg` [52%,26% → 86%,87%]
+- rounded box (outline) [20%,45% → 80%,55%]
+- text 36pt [40%,48% → 60%,52%]: We didn’t find any failures!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 30
+- group [10%,16% → 14%,23%]
+  - line #ffffff [10%,16% → 14%,23%]
+  - equation $1$ (36pt, #ffffff) [11%,18% → 12%,21%]
+- heading (spaced caps) 36pt [15%,17% → 25%,22%]: SELECT
+- line #ffffff [10%,59% → 14%,66%]
+- equation $2$ (36pt, #ffffff) [11%,61% → 12%,64%]
+- heading (spaced caps) 36pt [15%,60% → 26%,65%]: EXTEND
+- text 30pt [15%,24% → 42%,51%]: Sample goal state / Compute objective for each node in the current tree based on the goal state / Select the node with the lowest objective
+- text 30pt [15%,67% → 42%,87%]: Select disturbance / Take a step from the selected node using the selected disturbance / Add result to the tree
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- image `test-10975.svg` [52%,26% → 86%,87%]
+- rounded box (outline) [20%,30% → 80%,39%]
+- text 36pt [40%,32% → 60%,37%]: We didn’t find any failures!
+- rounded box (outline) [20%,45% → 80%,54%]
+- text 36pt [40%,47% → 60%,52%]: We could run for longer…
+- group [20%,60% → 80%,70%]
+  - rounded box (outline) [20%,60% → 80%,70%]
+  - text 36pt [40%,63% → 60%,67%]: Or we could make some improvements to our algorithm!
+- **Builds:** click 1: group — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 31
+- image `test-11117.svg` [9%,73% → 22%,96%]
+- image `test-11123.svg` [9%,88% → 14%,96%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- group [20%,14% → 80%,24%]
+  - rounded box (outline) [20%,14% → 80%,24%]
+  - text 36pt [40%,17% → 60%,21%]: Or we could make some improvements to our algorithm!
+- group [9%,37% → 44%,60%]
+  - image `test-11039.svg` [31%,37% → 44%,60%]
+  - image `test-11046.svg` [9%,37% → 22%,60%]
+  - shape (outline) [23%,45% → 30%,51%]
+- text 36pt [47%,38% → 92%,46%]: Instead of sampling a goal state from anywhere in the state space, we sample a [[goal state|#80b9ff]] from the [[failure region|#80b9ff]].
+- group [3%,26% → 8%,34%]
+  - line #ffffff [3%,26% → 8%,34%]
+  - equation $1$ (36pt, #ffffff) [5%,29% → 6%,31%]
+- heading (spaced caps) 36pt [9%,28% → 18%,32%]: SELECT
+- line #ffffff [4%,64% → 8%,72%]
+- equation $2$ (36pt, #ffffff) [5%,67% → 6%,69%]
+- heading (spaced caps) 36pt [9%,66% → 20%,70%]: EXTEND
+- text on a #f3cf80 filled box 32pt [53%,49% → 84%,59%]: {Note:|#000000}{ not all systems have an easily identifiable failure region.|#000000}
+- text 36pt [25%,80% → 71%,89%]: Instead of sampling a random disturbance, select the [[disturbance|#80b9ff]] that will move us [[closest to the goal state|#80b9ff]].
+- **Builds:** click 1: group — slides in; click 2: text 36pt — slides in; click 3: text on a #f3cf80 filled box 32pt — fades up from dark; click 4: image `test-11117.svg` — slides in; with previous: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 32
+- image `test-11117.svg` [9%,73% → 22%,96%]
+- image `test-11123.svg` [9%,73% → 22%,96%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- group [20%,14% → 80%,24%]
+  - rounded box (outline) [20%,14% → 80%,24%]
+  - text 36pt [40%,17% → 60%,21%]: Or we could make some improvements to our algorithm!
+- group [9%,37% → 44%,60%]
+  - image `test-11039.svg` [31%,37% → 44%,60%]
+  - image `test-11046.svg` [9%,37% → 22%,60%]
+  - shape (outline) [23%,45% → 30%,51%]
+- text 36pt [47%,38% → 92%,46%]: Instead of sampling a goal state from anywhere in the state space, we sample a [[goal state|#80b9ff]] from the [[failure region|#80b9ff]].
+- group [3%,26% → 8%,34%]
+  - line #ffffff [3%,26% → 8%,34%]
+  - equation $1$ (36pt, #ffffff) [5%,29% → 6%,31%]
+- heading (spaced caps) 36pt [9%,28% → 18%,32%]: SELECT
+- line #ffffff [4%,64% → 8%,72%]
+- equation $2$ (36pt, #ffffff) [5%,67% → 6%,69%]
+- heading (spaced caps) 36pt [9%,66% → 20%,70%]: EXTEND
+- image `test-11134.svg` [9%,73% → 22%,96%]
+- image `test-11140.svg` [9%,73% → 22%,96%]
+- image `test-11147.svg` [9%,73% → 22%,96%]
+- text 36pt [25%,80% → 71%,89%]: Instead of sampling a random disturbance, select the [[disturbance|#80b9ff]] that will move us [[closest to the goal state|#80b9ff]].
+- text on a #f3cf80 filled box 32pt [53%,49% → 84%,59%]: {Note:|#000000}{ not all systems have an easily identifiable failure region.|#000000}
+- **Builds:** click 1: image `test-11134.svg` — appears; click 2: image `test-11140.svg` — appears; click 3: image `test-11147.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 33
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- group [20%,14% → 80%,24%]
+  - rounded box (outline) [20%,14% → 80%,24%]
+  - text 36pt [40%,17% → 60%,21%]: Or we could make some improvements to our algorithm!
+- image `test-11182.svg` [33%,30% → 67%,90%]
+- image `g01-11187.svg` [33%,30% → 67%,90%]
+- image `g02-11193.svg` [33%,30% → 67%,90%]
+- image `g03-11189.svg` [33%,30% → 67%,90%]
+- image `g04-11195.svg` [33%,30% → 67%,90%]
+- image `g05-11196.svg` [33%,30% → 67%,90%]
+- image `g06-11188.svg` [33%,30% → 67%,90%]
+- image `g07-11212.svg` [33%,30% → 67%,90%]
+- image `g08-11207.svg` [33%,30% → 67%,90%]
+- image `g09-11206.svg` [33%,30% → 67%,90%]
+- image `g10-11197.svg` [33%,30% → 67%,90%]
+- image `g11-11201.svg` [33%,30% → 67%,90%]
+- image `g12-11202.svg` [33%,30% → 67%,90%]
+- image `g13-11263.svg` [33%,30% → 67%,90%]
+- image `g14-11262.svg` [33%,30% → 67%,90%]
+- image `g15-11266.svg` [33%,30% → 67%,90%]
+- image `g16-11256.svg` [33%,30% → 67%,90%]
+- image `g17-11264.svg` [33%,30% → 67%,90%]
+- image `g18-11265.svg` [33%,30% → 67%,90%]
+- image `g19-11255.svg` [33%,30% → 67%,90%]
+- image `g20-11253.svg` [33%,30% → 67%,90%]
+- image `g21-11213.svg` [33%,30% → 67%,90%]
+- image `g22-11210.svg` [33%,30% → 67%,90%]
+- image `g23-11217.svg` [33%,30% → 67%,90%]
+- image `g24-11218.svg` [33%,30% → 67%,90%]
+- image `g25-11239.svg` [33%,30% → 67%,90%]
+- image `g26-11240.svg` [33%,30% → 67%,90%]
+- image `g27-11215.svg` [33%,30% → 67%,90%]
+- image `g28-11242.svg` [33%,30% → 67%,90%]
+- image `g29-11243.svg` [33%,30% → 67%,90%]
+- image `g30-11248.svg` [33%,30% → 67%,90%]
+- image `test-11302.svg` [33%,30% → 67%,90%]
+- text 36pt [74%,58% → 89%,62%]: We found a failure!
+- **Builds:** click 1: image `g01-11187.svg` — appears; then (0.1 s later): image `g02-11193.svg` — appears; then (0.1 s later): image `g03-11189.svg` — appears; then (0.1 s later): image `g04-11195.svg` — appears; then (0.1 s later): image `g05-11196.svg` — appears; then (0.1 s later): image `g06-11188.svg` — appears; then (0.1 s later): image `g07-11212.svg` — appears; then (0.1 s later): image `g08-11207.svg` — appears; then (0.1 s later): image `g09-11206.svg` — appears; then (0.1 s later): image `g10-11197.svg` — appears; then (0.1 s later): image `g11-11201.svg` — appears; then (0.1 s later): image `g12-11202.svg` — appears; then (0.1 s later): image `g13-11263.svg` — appears; then (0.1 s later): image `g14-11262.svg` — appears; then (0.1 s later): image `g15-11266.svg` — appears; then (0.1 s later): image `g16-11256.svg` — appears; then (0.1 s later): image `g17-11264.svg` — appears; then (0.1 s later): image `g18-11265.svg` — appears; then (0.1 s later): image `g19-11255.svg` — appears; then (0.1 s later): image `g20-11253.svg` — appears; then (0.1 s later): image `g21-11213.svg` — appears; then (0.1 s later): image `g22-11210.svg` — appears; then (0.1 s later): image `g23-11217.svg` — appears; then (0.1 s later): image `g24-11218.svg` — appears; then (0.1 s later): image `g25-11239.svg` — appears; then (0.1 s later): image `g26-11240.svg` — appears; then (0.1 s later): image `g27-11215.svg` — appears; then (0.1 s later): image `g28-11242.svg` — appears; then (0.1 s later): image `g29-11243.svg` — appears; then (0.1 s later): image `g30-11248.svg` — appears; then (0.1 s later): image `test-11302.svg` — appears; click 2: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 34
+- image `test-11345.svg` [14%,25% → 49%,90%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [39%,14% → 61%,18%]: Other Common Heuristics
+- text 36pt [24%,27% → 38%,32%]: Coverage Metrics
+- image `test-11360.svg` [22%,62% → 37%,88%]
+- rounded box (outline) [15%,24% → 48%,91%]
+- text 36pt [60%,27% → 77%,32%]: Alternative Objectives
+- rounded box (outline) [52%,24% → 85%,91%]
+- image `test-11383.svg` [60%,42% → 77%,73%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- image `test-11345.svg` [14%,25% → 49%,90%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [39%,14% → 61%,18%]: Other Common Heuristics
+- text 36pt [24%,27% → 38%,32%]: Coverage Metrics
+- image `test-11360.svg` [22%,62% → 37%,88%]
+- rounded box (outline) [15%,24% → 48%,91%]
+- text 36pt [60%,27% → 77%,32%]: Alternative Objectives
+- rounded box (outline) [52%,24% → 85%,91%]
+- image `test-11383.svg` [60%,42% → 77%,73%]
+- text on a #80b9ff filled box 40pt [19%,48% → 44%,65%]: {Advanced Topic |#000000}{🫤|#000000}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 36
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- group [34%,30% → 38%,37%]
+  - line #ffffff [34%,30% → 38%,37%]
+  - equation $1$ (36pt, #ffffff) [36%,33% → 36%,35%]
+- heading (spaced caps) 36pt [40%,31% → 49%,36%]: SELECT
+- text 30pt [39%,39% → 66%,65%]: {Sample goal state|#919191} / Compute objective for each node in the current tree based on the goal state / {Select the node with the lowest objective|#919191}
+- shape (outline) [66%,19% → 78%,53%]
+- **Builds:** click 1: group — appears; with previous: heading (spaced caps) 36pt — appears; with previous: text 30pt — appears; click 2: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 37
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- group [10%,32% → 14%,40%]
+  - line #ffffff [10%,32% → 14%,40%]
+  - equation $1$ (36pt, #ffffff) [12%,35% → 12%,37%]
+- heading (spaced caps) 36pt [15%,34% → 25%,38%]: SELECT
+- text 30pt [15%,41% → 42%,68%]: {Sample goal state|#919191} / Compute objective for each node in the current tree based on the goal state / {Select the node with the lowest objective|#919191}
+- image `test-11039.svg` [54%,31% → 88%,92%]
+- text 36pt [66%,24% → 76%,28%]: From Before
+- line #c3b8ff [61%,64% → 70%,68%]
+- **Builds:** click 1: line #c3b8ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 38
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- shape (outline) [14%,65% → 21%,87%]
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #c3b8ff [21%,62% → 30%,66%]
+- line #ffffff [57%,26% → 86%,38%]
+- group [70%,44% → 95%,53%]
+  - rounded box (outline) [70%,44% → 95%,53%]
+  - text 30pt [71%,45% → 94%,52%]: {We don’t know this! If we did, our problem would already be solved.|#000000}
+- arrow #ffffff [80%,36% → 82%,44%]
+- group [70%,56% → 95%,65%]
+  - rounded box (outline) [70%,56% → 95%,65%]
+  - text 30pt [71%,57% → 94%,64%]: {We instead must estimate it using a heuristic function $h$.|#000000}
+- **Builds:** click 1: equation $c =$ — slides in; click 2: text 36pt — slides in; click 3: shape (outline) — draws in; click 4: equation $+$ — slides in; with previous: text 36pt — slides in; click 5: group — fades up from dark; with previous: arrow #ffffff — draws in; click 6: group — slides in; click 7: line #c3b8ff — draws in
+
+## Slide 39
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- shape (outline) [14%,65% → 21%,87%]
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #c3b8ff [21%,62% → 30%,66%]
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [70%,41% → 74%,45%]: Shortest Path to Failure
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- shape (outline) [14%,65% → 21%,87%]
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #c3b8ff [21%,62% → 30%,66%]
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [64%,41% → 82%,45%]: Shortest Path to Failure
+- text 36pt [55%,48% → 65%,52%]: {current cost|#ffa4e7}
+- equation $=$ (36pt, #ffa4e7) [65%,50% → 66%,51%]
+- text 36pt [67%,48% → 92%,52%]: {distance to current node in tree|#ffa4e7}
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 41
+- rounded box (outline) [56%,65% → 93%,77%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- shape (outline) [14%,65% → 21%,87%]
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #c3b8ff [21%,62% → 30%,66%]
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [64%,41% → 82%,45%]: Shortest Path to Failure
+- text 36pt [55%,48% → 65%,52%]: {current cost|#ffa4e7}
+- equation $=$ (36pt, #ffa4e7) [65%,50% → 66%,51%]
+- text 36pt [67%,48% → 92%,52%]: {distance to current node in tree|#ffa4e7}
+- text 36pt [56%,53% → 65%,58%]: {cost to go|#c3b8ff}
+- equation $=$ (36pt, #c3b8ff) [65%,56% → 66%,56%]
+- text 36pt [67%,53% → 94%,58%]: {distance to goal “as the crow flies”|#c3b8ff}
+- line #ffa4e7 [16%,83% → 18%,87%]
+- shape (outline) [14%,75% → 16%,87%]
+- line #c3b8ff [18%,62% → 30%,70%]
+- line #c3b8ff [17%,62% → 29%,76%]
+- line #c3b8ff [14%,62% → 30%,75%]
+- line #c3b8ff [15%,62% → 30%,81%]
+- line #c3b8ff [18%,62% → 29%,83%]
+- equation $1$ (32pt, #ffffff) [20%,62% → 21%,64%]
+- equation $2$ (32pt, #ffffff) [18%,66% → 19%,68%]
+- equation $3$ (32pt, #ffffff) [14%,71% → 15%,73%]
+- equation $4$ (32pt, #ffffff) [18%,73% → 19%,75%]
+- group [16%,79% → 20%,83%]
+  - equation $5$ (32pt, #ffffff) [16%,79% → 17%,81%]
+  - equation $6$ (32pt, #ffffff) [19%,81% → 20%,83%]
+- text 36pt [64%,69% → 92%,74%]: Which node would we extend next?
+- text 100pt [58%,65% → 63%,78%]: 🤔
+- equation $6$ (36pt, #ffffff) [74%,80% → 75%,82%]
+- text 36pt [66%,37% → 80%,41%]: Most Likely Failure
+- **Builds:** click 1: line #ffa4e7 — draws in; with previous: shape (outline) — draws in; then: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; click 2: text 100pt — fades up from dark; with previous: text 36pt — wipes in; with previous: equation $1$ — appears; with previous: equation $2$ — appears; with previous: equation $3$ — appears; with previous: equation $4$ — appears; with previous: group — appears; with previous: rounded box (outline) — fades up from dark; click 3: equation $6$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 42
+- rounded box (outline) [102%,65% → 138%,77%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [109%,41% → 127%,45%]: Shortest Path to Failure
+- text 36pt [100%,48% → 110%,52%]: {current cost|#ffa4e7}
+- equation $=$ (36pt, #ffa4e7) [110%,50% → 112%,51%]
+- text 36pt [112%,48% → 137%,52%]: {distance to current node in tree|#ffa4e7}
+- text 36pt [102%,53% → 110%,58%]: {cost to go|#c3b8ff}
+- equation $=$ (36pt, #c3b8ff) [110%,56% → 112%,56%]
+- text 36pt [112%,53% → 139%,58%]: {distance to goal “as the crow flies”|#c3b8ff}
+- text 36pt [109%,69% → 137%,74%]: Which node would we extend next?
+- text 100pt [103%,65% → 108%,78%]: 🤔
+- equation $6$ (36pt, #ffffff) [119%,80% → 120%,82%]
+- text 36pt [64%,41% → 82%,45%]: Most Likely Failure
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 43
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [64%,41% → 82%,45%]: Most Likely Failure
+- text 36pt [50%,48% → 60%,53%]: {current cost|#ffa4e7}
+- group [60%,48% → 94%,53%]
+  - equation $=$ (36pt, #ffa4e7) [60%,50% → 61%,51%]
+  - text 36pt [62%,48% → 94%,53%]: {negative log likelihood of trajectory so far|#ffa4e7}
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- group [62%,56% → 93%,68%]
+  - rounded box (outline) [62%,56% → 93%,68%]
+  - text 36pt [63%,58% → 92%,66%]: {Note: costs must be positive to ensure that the search will terminate.|#000000}
+- equation $+C$ (36pt, #ffa4e7) [94%,49% → 97%,52%]
+- **Builds:** click 1: group — appears; click 2: equation $+C$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 44
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- image `test-11039.svg` [14%,30% → 48%,90%]
+- text 36pt [70%,27% → 74%,31%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [60%,34% → 63%,35%]
+- text 36pt [63%,32% → 73%,36%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [74%,33% → 75%,35%]
+- text 36pt [76%,32% → 84%,36%]: {cost to go|#c3b8ff}
+- line #ffffff [57%,26% → 86%,38%]
+- text 36pt [64%,41% → 82%,45%]: Most Likely Failure
+- text 36pt [51%,53% → 59%,58%]: {cost to go|#c3b8ff}
+- group [60%,53% → 93%,58%]
+  - equation $=$ (36pt, #c3b8ff) [60%,56% → 61%,56%]
+  - text 36pt [62%,53% → 93%,58%]: {estimate of negative log-likelihood to go|#c3b8ff}
+- group [66%,60% → 90%,72%]
+  - rounded box (outline) [66%,60% → 90%,72%]
+  - text 30pt [66%,63% → 90%,70%]: {e.g. could use distance to goal as a proxy since shorter paths tend to have higher likelihood|#000000}
+- text 36pt [50%,48% → 60%,53%]: {current cost|#ffa4e7}
+- group [60%,48% → 94%,53%]
+  - equation $=$ (36pt, #ffa4e7) [60%,50% → 61%,51%]
+  - text 36pt [62%,48% → 94%,53%]: {negative log likelihood of trajectory so far|#ffa4e7}
+- equation $+C$ (36pt, #ffa4e7) [94%,49% → 97%,52%]
+- **Builds:** click 1: group — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 45
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- text 36pt [45%,23% → 56%,27%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [38%,30% → 41%,31%]
+- text 36pt [42%,28% → 51%,32%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [52%,30% → 53%,32%]
+- text 36pt [54%,28% → 62%,32%]: {cost to go|#c3b8ff}
+- line #ffffff [36%,22% → 64%,34%]
+- text 36pt [64%,37% → 79%,42%]: Most Likely Failure
+- text 36pt [50%,50% → 58%,54%]: {cost to go|#c3b8ff}
+- group [59%,50% → 92%,54%]
+  - equation $=$ (36pt, #c3b8ff) [59%,52% → 60%,53%]
+  - text 36pt [61%,50% → 92%,54%]: {estimate of negative log-likelihood to go|#c3b8ff}
+- text 36pt [49%,44% → 58%,49%]: {current cost|#ffa4e7}
+- group [59%,44% → 93%,49%]
+  - equation $=$ (36pt, #ffa4e7) [59%,47% → 60%,48%]
+  - text 36pt [61%,44% → 93%,49%]: {negative log likelihood of trajectory so far|#ffa4e7}
+- equation $+C$ (36pt, #ffa4e7) [93%,46% → 96%,48%]
+- text 36pt [13%,37% → 31%,42%]: Shortest Path to Failure
+- text 36pt [4%,44% → 14%,49%]: {current cost|#ffa4e7}
+- equation $=$ (36pt, #ffa4e7) [14%,46% → 16%,47%]
+- text 36pt [16%,44% → 41%,49%]: {distance to current node in tree|#ffa4e7}
+- text 36pt [6%,50% → 14%,54%]: {cost to go|#c3b8ff}
+- equation $=$ (36pt, #c3b8ff) [14%,52% → 16%,53%]
+- text 36pt [16%,50% → 43%,54%]: {distance to goal “as the crow flies”|#c3b8ff}
+- image `test-11904.svg` [13%,58% → 31%,89%]
+- image `test-11910.svg` [63%,58% → 80%,89%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 46
+- image `test-12039.svg` [38%,49% → 62%,90%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- text 36pt [16%,23% → 27%,27%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [10%,30% → 13%,31%]
+- text 36pt [13%,28% → 23%,32%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [24%,29% → 25%,31%]
+- text 36pt [26%,28% → 34%,32%]: {cost to go|#c3b8ff}
+- line #ffffff [7%,22% → 36%,34%]
+- rounded box (outline) [38%,22% → 94%,35%]
+- text 36pt [39%,26% → 93%,30%]: {If the heuristic is |#000000}[[admissible|#000000]]{ and the state and disturbances are discrete, this algorithm turns into A* search!|#000000}
+- text 36pt [48%,40% → 52%,44%]: A heuristic is [[admissible|#80b9ff]] if it is guaranteed to [[never overestimate|#80b9ff]] the cost of reaching the goal state.
+- line #c3b8ff [42%,71% → 49%,80%]
+- line #ffffff [41%,78% → 43%,82%]
+- shape (outline) [40%,65% → 49%,80%]
+- **Builds:** click 1: text 36pt — appears; click 2: image `test-12039.svg` — appears; click 3: line #ffffff — apple:zoom character; click 4: line #c3b8ff — draws in; click 5: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 47
+- image `test-12039.svg` [38%,49% → 62%,90%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- text 36pt [16%,23% → 27%,27%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [10%,30% → 13%,31%]
+- text 36pt [13%,28% → 23%,32%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [24%,29% → 25%,31%]
+- text 36pt [26%,28% → 34%,32%]: {cost to go|#c3b8ff}
+- line #ffffff [7%,22% → 36%,34%]
+- rounded box (outline) [38%,22% → 94%,35%]
+- text 36pt [39%,26% → 93%,30%]: {If the heuristic is |#000000}[[admissible|#000000]]{ and the state and disturbances are discrete, this algorithm turns into A* search!|#000000}
+- text 36pt [48%,40% → 52%,44%]: A heuristic is [[admissible|#80b9ff]] if it is guaranteed to [[never overestimate|#80b9ff]] the cost of reaching the goal state.
+- line #ffffff [43%,82% → 45%,86%]
+- line #c3b8ff [44%,71% → 49%,84%]
+- shape (outline) [41%,67% → 51%,84%]
+- **Builds:** click 1: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 48
+- image `test-12039.svg` [38%,49% → 62%,90%]
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- text 36pt [16%,23% → 27%,27%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [10%,30% → 13%,31%]
+- text 36pt [13%,28% → 23%,32%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [24%,29% → 25%,31%]
+- text 36pt [26%,28% → 34%,32%]: {cost to go|#c3b8ff}
+- line #ffffff [7%,22% → 36%,34%]
+- rounded box (outline) [38%,22% → 94%,35%]
+- text 36pt [39%,26% → 93%,30%]: {If the heuristic is |#000000}[[admissible|#000000]]{ and the state and disturbances are discrete, this algorithm turns into A* search!|#000000}
+- text 36pt [48%,40% → 52%,44%]: A heuristic is [[admissible|#80b9ff]] if it is guaranteed to [[never overestimate|#80b9ff]] the cost of reaching the goal state.
+- line #ffffff [45%,86% → 48%,90%]
+- line #c3b8ff [46%,71% → 49%,88%]
+- shape (outline) [42%,69% → 52%,88%]
+- **Builds:** click 1: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 49
+- heading (spaced caps) 36pt [23%,6% → 77%,11%]: {RAPIDLY EXPLORING RANDOM TREES (RRT)|#80b9ff}
+- text 36pt [22%,14% → 39%,18%]: {Alternative Objectives|#80b9ff}
+- text 36pt [6%,14% → 22%,18%]: We can incorporate
+- text 36pt [40%,14% → 94%,18%]: into RRT by modifying how we [[compute the objectives|#80b9ff]] in the select step.
+- text 36pt [16%,23% → 27%,27%]: Cost Function
+- equation $c =$ (36pt, #ffffff) [10%,30% → 13%,31%]
+- text 36pt [13%,28% → 23%,32%]: {current cost|#ffa4e7}
+- equation $+$ (36pt, #ffffff) [24%,29% → 25%,31%]
+- text 36pt [26%,28% → 34%,32%]: {cost to go|#c3b8ff}
+- line #ffffff [7%,22% → 36%,34%]
+- rounded box (outline) [38%,22% → 94%,35%]
+- text 36pt [39%,26% → 93%,30%]: {If the heuristic is |#000000}[[admissible|#000000]]{ and the state and disturbances are discrete, this algorithm turns into A* search!|#000000}
+- text 36pt [48%,40% → 52%,44%]: A heuristic is [[admissible|#80b9ff]] if it is guaranteed to [[never overestimate|#80b9ff]] the cost of reaching the goal state.
+- image `test-12062.svg` [27%,56% → 47%,91%]
+- image `test-12066.svg` [53%,56% → 73%,91%]
+- text 32pt [35%,48% → 39%,52%]: Shortest Path
+- text 32pt [58%,48% → 68%,52%]: Most Likely Failure
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 50
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 51
+- heading (spaced caps) 36pt [31%,43% → 105%,48%]: MONTE CARLO TREE SEARCH
+- heading (spaced caps) 32pt [19%,50% → 81%,54%]: BALANCES BETWEEN{ EXPLORATION |#80b9ff}AND{ EXPLOITATION|#80b9ff}
+- group [11%,63% → 89%,72%]
+  - rounded box (outline) [11%,63% → 89%,72%]
+  - text 36pt [12%,65% → 88%,70%]: We will determine promising paths by maintaining a [[value estimate|#80b9ff]] $Q$ for each node in the tree.
+- **Builds:** click 1: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 52
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [12%,23% → 16%,31%]
+- equation $1$ (36pt, #ffffff) [14%,26% → 14%,28%]
+- heading (spaced caps) 36pt [18%,25% → 27%,29%]: SELECT
+- line #ffffff [52%,23% → 56%,31%]
+- equation $2$ (36pt, #ffffff) [54%,26% → 54%,28%]
+- heading (spaced caps) 36pt [57%,25% → 68%,29%]: EXTEND
+- text 36pt [18%,33% → 44%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [57%,33% → 84%,45%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 53
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,58% → 10%,66%]
+- equation $2$ (36pt, #ffffff) [7%,61% → 8%,63%]
+- heading (spaced caps) 36pt [11%,60% → 21%,64%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,68% → 37%,80%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 54
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,104% → 10%,111%]
+- equation $2$ (36pt, #ffffff) [7%,106% → 8%,109%]
+- heading (spaced caps) 36pt [11%,105% → 21%,110%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,113% → 37%,125%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- text 30pt [34%,54% → 48%,58%]: {hyperparameters|#8dd0f5}
+- arrow #abdaf4 [32%,51% → 39%,55%]
+- arrow #abdaf4 [30%,52% → 39%,55%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [26%,78% → 40%,88%]
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-704887dd.svg` [53%,77% → 54%,83%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Builds:** click 1: equation $N = 2$ — appears; with previous: equation $N = 2$ — appears; with previous: equation $Q = 1$ — appears; with previous: equation $Q = 1$ — appears; with previous: equation $N = 2$ — appears; with previous: equation $N = 3$ — appears; with previous: equation $Q = 5$ — appears; with previous: equation $Q = 1$ — appears; with previous: equation $N = 4$ — appears; with previous: equation $N = 2$ — appears; with previous: equation $Q = 2$ — appears; with previous: equation $Q = 11$ — appears; with previous: equation $N = 2$ — appears; with previous: equation $N = 8$ — appears; with previous: equation $Q = 13$ — appears; with previous: equation $Q = 3$ — appears; click 2: vector icon `shape-704887dd.svg` — appears; click 3: equation $\text{number of children} \leq kN^\alpha?$ — fades up from dark; click 4: text 30pt — appears; with previous: arrow #abdaf4 — draws in; with previous: arrow #abdaf4 — draws in; click 5: arrow #ffffff — draws in; with previous: arrow #abdaf4 — appears; with previous: arrow #abdaf4 — appears; with previous: text 30pt — appears; with previous: text 30pt — fades up from dark; then: text 30pt — appears; click 6: arrow #ffffff — draws in; with previous: text 30pt — fades up from dark; then: text 30pt — appears; with previous: equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 55
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (56pt, #80b9ff) [37%,32% → 60%,48%]
+- text 36pt [36%,19% → 61%,24%]: {Lower Confidence Bound (LCB)|#80b9ff}
+- text 36pt [66%,34% → 89%,46%]: This is the part that balances between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]]!
+- text 36pt [75%,37% → 84%,42%]: [[exploration|#80b9ff]]
+- text 36pt [73%,41% → 82%,46%]: [[exploitation|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 56
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- text 36pt [36%,19% → 61%,24%]: {Lower Confidence Bound (LCB)|#80b9ff}
+- text 36pt [66%,34% → 89%,46%]: This is the part that balances between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]]!
+- text 36pt [50%,57% → 60%,62%]: [[exploration|#80b9ff]]
+- text 36pt [35%,57% → 45%,61%]: [[exploitation|#80b9ff]]
+- arrow #ffffff [40%,43% → 40%,57%]
+- arrow #ffffff [55%,48% → 55%,57%]
+- text 36pt [41%,68% → 54%,73%]: [[exploration bonus|#80b9ff]]
+- arrow #ffffff [47%,40% → 47%,68%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (56pt, #80b9ff) [36%,30% → 59%,46%]
+- **Builds:** click 1: text 36pt — appears; with previous: arrow #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 57
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,104% → 10%,111%]
+- equation $2$ (36pt, #ffffff) [7%,106% → 8%,109%]
+- heading (spaced caps) 36pt [11%,105% → 21%,110%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,113% → 37%,125%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- vector icon `shape-704887dd.svg` [53%,77% → 54%,83%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [23%,78% → 37%,88%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 58
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 24pt [35%,46% → 47%,49%]: {e.g. $k = 1, \ \ \alpha=0.5$|#ffa4e7}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- vector icon `shape-704887dd.svg` [53%,77% → 54%,83%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [23%,78% → 37%,88%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- equation $1(8)^{0.5} = 2.82$ (24pt, #ffa4e7) [38%,54% → 45%,56%]
+- arrow #ffa4e7 [41%,50% → 41%,52%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Builds:** click 1: arrow #ffa4e7 — draws in; with previous: equation $1(8)^{0.5} = 2.82$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 59
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,104% → 10%,111%]
+- equation $2$ (36pt, #ffffff) [7%,106% → 8%,109%]
+- heading (spaced caps) 36pt [11%,105% → 21%,110%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,113% → 37%,125%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- equation $11 - (1)\sqrt{\frac{\log 8}{\log 2}} = 9.26$ (20pt, #80b9ff) [63%,75% → 73%,80%]
+- arrow #80b9ff [61%,78% → 63%,78%]
+- equation $2 - (1)\sqrt{\frac{\log 8}{\log 4}} = 0.78$ (20pt, #80b9ff) [39%,81% → 49%,87%]
+- arrow #80b9ff [47%,78% → 49%,81%]
+- vector icon `shape-704887dd.svg` [53%,77% → 54%,83%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [23%,78% → 37%,88%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- equation $13 - (1)\sqrt{\frac{\log 8}{\log 2}} = 11.26$ (20pt, #80b9ff) [65%,80% → 75%,86%]
+- arrow #80b9ff [62%,83% → 64%,83%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Builds:** click 1: equation $11 - (1)\sqrt{\frac{\log 8}{\log 2}} = 9.26$ — appears; with previous: arrow #80b9ff — draws in; click 2: equation $2 - (1)\sqrt{\frac{\log 8}{\log 4}} = 0.78$ — appears; with previous: arrow #80b9ff — draws in; click 3: equation $13 - (1)\sqrt{\frac{\log 8}{\log 2}} = 11.26$ — appears; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 60
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,104% → 10%,111%]
+- equation $2$ (36pt, #ffffff) [7%,106% → 8%,109%]
+- heading (spaced caps) 36pt [11%,105% → 21%,110%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,113% → 37%,125%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-704887dd.svg` [53%,72% → 54%,79%]
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- equation $1(4)^{0.5} = 2$ (24pt, #ffa4e7) [38%,54% → 43%,56%]
+- text 24pt [35%,46% → 47%,49%]: {e.g. $k = 1, \ \ \alpha=0.5$|#ffa4e7}
+- arrow #ffa4e7 [41%,50% → 41%,52%]
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [23%,78% → 37%,88%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Builds:** click 1: arrow #ffa4e7 — draws in; with previous: equation $1(4)^{0.5} = 2$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 61
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,23% → 10%,31%]
+- equation $1$ (36pt, #ffffff) [7%,26% → 8%,28%]
+- heading (spaced caps) 36pt [11%,25% → 20%,29%]: SELECT
+- line #ffffff [5%,104% → 10%,111%]
+- equation $2$ (36pt, #ffffff) [7%,106% → 8%,109%]
+- heading (spaced caps) 36pt [11%,105% → 21%,110%]: EXTEND
+- text 36pt [11%,33% → 37%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- text 36pt [11%,113% → 37%,125%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-704887dd.svg` [53%,72% → 54%,79%]
+- equation $\text{number of children} \leq kN^\alpha?$ (30pt, #ffffff) [15%,50% → 33%,52%]
+- text 30pt [15%,56% → 18%,60%]: {yes|#80cfb9}
+- arrow #ffffff [14%,55% → 23%,66%]
+- arrow #ffffff [23%,55% → 32%,66%]
+- text 30pt [7%,68% → 20%,75%]: {select it and go to extend step|#80cfb9}
+- text 30pt [28%,56% → 31%,60%]: {no|#80b9ff}
+- text 30pt [25%,68% → 39%,75%]: {move to child node that minimizes|#80b9ff}
+- equation $Q_\text{child} - c \sqrt{\frac{\log N}{N_\text{child}}}$ (33pt, #80b9ff) [23%,78% → 37%,88%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- text 24pt [35%,46% → 47%,49%]: {e.g. $k = 1, \ \ \alpha=0.5$|#ffa4e7}
+- arrow #ffa4e7 [41%,50% → 41%,52%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- equation $1(4)^{0.5} = 2$ (24pt, #ffa4e7) [38%,54% → 43%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 62
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,21% → 10%,29%]
+- equation $2$ (36pt, #ffffff) [7%,24% → 8%,26%]
+- heading (spaced caps) 36pt [11%,23% → 21%,27%]: EXTEND
+- text 36pt [11%,31% → 37%,43%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-b2cf6b0b.svg` [53%,74% → 54%,77%]
+- line #ffffff [-35%,23% → -31%,31%]
+- equation $1$ (36pt, #ffffff) [-34%,26% → -33%,28%]
+- heading (spaced caps) 36pt [-30%,25% → -20%,29%]: SELECT
+- text 36pt [-30%,33% → -3%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- line #80b9ff [53%,70% → 54%,76%]
+- shape (outline) [51%,29% → 71%,69%]
+- shape (outline) [50%,24% → 73%,70%]
+- shape (outline) [46%,26% → 70%,71%]
+- shape (outline) [44%,20% → 70%,68%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- shape (outline) [52%,27% → 75%,72%]
+- shape (outline) [44%,25% → 69%,70%]
+- shape (outline) [46%,24% → 71%,69%]
+- vector icon `shape-b2cf6b0b.svg` [53%,68% → 54%,71%]
+- group [5%,48% → 41%,58%]
+  - rounded box (outline) [5%,48% → 41%,58%]
+  - text 36pt [8%,49% → 37%,58%]: When we add a new node to the tree, we need to[[ estimate its value|#80b9ff]] $Q$.
+- group [10%,63% → 35%,75%]
+  - rounded box (outline) [10%,63% → 35%,75%]
+  - text 30pt [11%,65% → 34%,72%]: {e.g. perform a bunch of rollouts and take the average of their robustness.|#000000}
+- equation $Q = 3$ (26pt, #ffa4e7) [65%,45% → 68%,47%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- **Builds:** click 1: line #80b9ff — draws in; then: vector icon `shape-b2cf6b0b.svg` — fades up from dark; click 2: group — fades up from dark; click 3: group — slides in; click 4: shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; with previous (0.25 s later): shape (outline) — draws in; click 5: equation $Q = 3$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 63
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,21% → 10%,29%]
+- equation $2$ (36pt, #ffffff) [7%,24% → 8%,26%]
+- heading (spaced caps) 36pt [11%,23% → 21%,27%]: EXTEND
+- text 36pt [11%,31% → 37%,43%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4$ (26pt, #ffa4e7) [49%,74% → 52%,76%]
+- equation $Q = 2$ (26pt, #ffa4e7) [49%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 1$ (26pt, #ffa4e7) [55%,66% → 58%,68%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-b2cf6b0b.svg` [53%,74% → 54%,77%]
+- line #ffffff [-35%,23% → -31%,31%]
+- equation $1$ (36pt, #ffffff) [-34%,26% → -33%,28%]
+- heading (spaced caps) 36pt [-30%,25% → -20%,29%]: SELECT
+- text 36pt [-30%,33% → -3%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- line #80b9ff [53%,70% → 54%,76%]
+- vector icon `shape-b2cf6b0b.svg` [53%,68% → 54%,71%]
+- group [5%,48% → 41%,58%]
+  - rounded box (outline) [5%,48% → 41%,58%]
+  - text 36pt [8%,49% → 37%,58%]: When we add a new node to the tree, we need to[[ estimate its value|#80b9ff]] $Q$.
+- group [10%,63% → 35%,75%]
+  - rounded box (outline) [10%,63% → 35%,75%]
+  - text 30pt [11%,65% → 34%,72%]: {e.g. perform a bunch of rollouts and take the average of their robustness.|#000000}
+- equation $Q = 3$ (26pt, #ffa4e7) [54%,63% → 58%,65%]
+- vector icon `shape-704887dd.svg` [53%,65% → 54%,72%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 64
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,21% → 10%,29%]
+- equation $2$ (36pt, #ffffff) [7%,24% → 8%,26%]
+- heading (spaced caps) 36pt [11%,23% → 21%,27%]: EXTEND
+- text 36pt [11%,31% → 37%,43%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8$ (26pt, #ffa4e7) [51%,83% → 54%,85%]
+- equation $Q = 3$ (26pt, #ffa4e7) [51%,85% → 54%,87%]
+- equation $N = 4 + 1 = 5$ (26pt, #ffa4e7) [44%,74% → 52%,75%]
+- equation $Q = 2 + (2 - 3) / 5 = 1.8$ (26pt, #ffa4e7) [39%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 1$ (26pt, #ffa4e7) [55%,66% → 58%,68%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-b2cf6b0b.svg` [53%,74% → 54%,77%]
+- line #ffffff [-35%,23% → -31%,31%]
+- equation $1$ (36pt, #ffffff) [-34%,26% → -33%,28%]
+- heading (spaced caps) 36pt [-30%,25% → -20%,29%]: SELECT
+- text 36pt [-30%,33% → -3%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- line #80b9ff [53%,70% → 54%,76%]
+- vector icon `shape-b2cf6b0b.svg` [53%,68% → 54%,71%]
+- group [5%,48% → 41%,58%]
+  - rounded box (outline) [5%,48% → 41%,58%]
+  - text 36pt [8%,49% → 37%,58%]: When we add a new node to the tree, we need to[[ estimate its value|#80b9ff]] $Q$.
+- group [10%,63% → 35%,75%]
+  - rounded box (outline) [10%,63% → 35%,75%]
+  - text 30pt [11%,65% → 34%,72%]: {e.g. perform a bunch of rollouts and take the average of their robustness.|#000000}
+- equation $Q = 3$ (26pt, #ffa4e7) [54%,63% → 58%,65%]
+- vector icon `shape-704887dd.svg` [53%,72% → 54%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 65
+- image `test-13596.svg` [52%,21% → 87%,85%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- line #ffffff [5%,21% → 10%,29%]
+- equation $2$ (36pt, #ffffff) [7%,24% → 8%,26%]
+- heading (spaced caps) 36pt [11%,23% → 21%,27%]: EXTEND
+- text 36pt [11%,31% → 37%,43%]: Sample a [[disturbance|#80b9ff]], add it to the tree, and [[propagate the results|#80b9ff]] back up the tree.
+- equation $N = 8 + 1 = 9$ (26pt, #ffa4e7) [49%,83% → 57%,85%]
+- equation $Q = 3 + (3 - 1.8) / 9 = 3.13$ (26pt, #ffa4e7) [46%,86% → 61%,88%]
+- equation $N = 4 + 1 = 5$ (26pt, #ffa4e7) [44%,74% → 52%,75%]
+- equation $Q = 2 + (2 - 3) / 5 = 1.8$ (26pt, #ffa4e7) [39%,77% → 52%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [48%,67% → 51%,68%]
+- equation $Q = 5$ (26pt, #ffa4e7) [48%,69% → 51%,71%]
+- equation $N = 3$ (26pt, #ffa4e7) [56%,68% → 59%,70%]
+- equation $Q = 1$ (26pt, #ffa4e7) [56%,71% → 59%,73%]
+- equation $N = 2$ (26pt, #ffa4e7) [52%,60% → 55%,61%]
+- equation $Q = 1$ (26pt, #ffa4e7) [52%,62% → 55%,64%]
+- equation $N = 1$ (26pt, #ffa4e7) [55%,66% → 58%,68%]
+- equation $Q = 1$ (26pt, #ffa4e7) [60%,61% → 63%,63%]
+- vector icon `shape-b2cf6b0b.svg` [53%,74% → 54%,77%]
+- line #ffffff [-35%,23% → -31%,31%]
+- equation $1$ (36pt, #ffffff) [-34%,26% → -33%,28%]
+- heading (spaced caps) 36pt [-30%,25% → -20%,29%]: SELECT
+- text 36pt [-30%,33% → -3%,45%]: Select a node to extend based on a heuristic that [[balances|#80b9ff]] between [[exploration|#80b9ff]] and [[exploitation|#80b9ff]].
+- line #80b9ff [53%,70% → 54%,76%]
+- vector icon `shape-b2cf6b0b.svg` [53%,68% → 54%,71%]
+- group [5%,48% → 41%,58%]
+  - rounded box (outline) [5%,48% → 41%,58%]
+  - text 36pt [8%,49% → 37%,58%]: When we add a new node to the tree, we need to[[ estimate its value|#80b9ff]] $Q$.
+- group [10%,63% → 35%,75%]
+  - rounded box (outline) [10%,63% → 35%,75%]
+  - text 30pt [11%,65% → 34%,72%]: {e.g. perform a bunch of rollouts and take the average of their robustness.|#000000}
+- equation $Q = 3$ (26pt, #ffa4e7) [54%,63% → 58%,65%]
+- vector icon `shape-704887dd.svg` [53%,77% → 54%,83%]
+- heading (spaced caps) 36pt [16%,84% → 27%,88%]: REPEAT!
+- equation $N = 2$ (26pt, #ffa4e7) [60%,58% → 63%,60%]
+- equation $N = 2$ (26pt, #ffa4e7) [57%,75% → 60%,76%]
+- equation $Q = 11$ (26pt, #ffa4e7) [57%,77% → 61%,79%]
+- equation $N = 2$ (26pt, #ffa4e7) [58%,81% → 61%,83%]
+- equation $Q = 13$ (26pt, #ffa4e7) [58%,83% → 62%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [64%,41% → 69%,50%]
+- **Builds:** click 1: heading (spaced caps) 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 66
+- image `test-12085.svg` [32%,18% → 68%,82%]
+- image `g01-12204.svg` [32%,18% → 68%,82%]
+- image `g02-12202.svg` [32%,18% → 68%,82%]
+- image `g03-12213.svg` [32%,18% → 68%,82%]
+- image `g04-12209.svg` [32%,18% → 68%,82%]
+- image `g05-12208.svg` [32%,18% → 68%,82%]
+- image `g06-12249.svg` [32%,18% → 68%,82%]
+- image `g07-12203.svg` [32%,18% → 68%,82%]
+- image `g08-12278.svg` [32%,18% → 68%,82%]
+- image `g09-12277.svg` [32%,18% → 68%,82%]
+- image `g10-12272.svg` [32%,18% → 68%,82%]
+- image `g11-12252.svg` [32%,18% → 68%,82%]
+- image `g12-12221.svg` [32%,18% → 68%,82%]
+- image `g13-12212.svg` [32%,18% → 68%,82%]
+- image `g14-12243.svg` [32%,18% → 68%,82%]
+- image `g15-12242.svg` [32%,18% → 68%,82%]
+- image `g16-12220.svg` [32%,18% → 68%,82%]
+- image `g17-12214.svg` [32%,18% → 68%,82%]
+- image `g18-12276.svg` [32%,18% → 68%,82%]
+- image `g19-12216.svg` [32%,18% → 68%,82%]
+- image `g20-12247.svg` [32%,18% → 68%,82%]
+- image `g21-12241.svg` [32%,18% → 68%,82%]
+- image `g22-12259.svg` [32%,18% → 68%,82%]
+- image `g23-12246.svg` [32%,18% → 68%,82%]
+- image `g24-12232.svg` [32%,18% → 68%,82%]
+- image `g25-12230.svg` [32%,18% → 68%,82%]
+- image `g26-12285.svg` [32%,18% → 68%,82%]
+- image `g27-12224.svg` [32%,18% → 68%,82%]
+- image `g28-12282.svg` [32%,18% → 68%,82%]
+- image `g29-12284.svg` [32%,18% → 68%,82%]
+- image `g30-12281.svg` [32%,18% → 68%,82%]
+- image `g31-12280.svg` [32%,18% → 68%,82%]
+- image `g32-12266.svg` [32%,18% → 68%,82%]
+- image `g33-12256.svg` [32%,18% → 68%,82%]
+- image `g34-12286.svg` [32%,18% → 68%,82%]
+- image `g35-12257.svg` [32%,18% → 68%,82%]
+- image `g36-12279.svg` [32%,18% → 68%,82%]
+- image `g37-12271.svg` [32%,18% → 68%,82%]
+- image `g38-12283.svg` [32%,18% → 68%,82%]
+- image `g39-12275.svg` [32%,18% → 68%,82%]
+- image `g40-12251.svg` [32%,18% → 68%,82%]
+- image `g41-12248.svg` [32%,18% → 68%,82%]
+- image `g42-12287.svg` [32%,18% → 68%,82%]
+- image `g43-12250.svg` [32%,18% → 68%,82%]
+- image `g44-12236.svg` [32%,18% → 68%,82%]
+- image `g45-12240.svg` [32%,18% → 68%,82%]
+- image `g46-12244.svg` [32%,18% → 68%,82%]
+- image `g47-12228.svg` [32%,18% → 68%,82%]
+- image `g48-12239.svg` [32%,18% → 68%,82%]
+- image `g49-12222.svg` [32%,18% → 68%,82%]
+- image `g50-12226.svg` [32%,18% → 68%,82%]
+- image `g51-12227.svg` [32%,18% → 68%,82%]
+- heading (spaced caps) 36pt [31%,7% → 105%,11%]: MONTE CARLO TREE SEARCH
+- **Builds:** click 1: image `g01-12204.svg` — appears; then (0.13 s later): image `g02-12202.svg` — appears; then (0.13 s later): image `g03-12213.svg` — appears; then (0.13 s later): image `g04-12209.svg` — appears; then (0.13 s later): image `g05-12208.svg` — appears; then (0.13 s later): image `g06-12249.svg` — appears; then (0.13 s later): image `g07-12203.svg` — appears; then (0.13 s later): image `g08-12278.svg` — appears; then (0.13 s later): image `g09-12277.svg` — appears; then (0.13 s later): image `g10-12272.svg` — appears; then (0.13 s later): image `g11-12252.svg` — appears; then (0.13 s later): image `g12-12221.svg` — appears; then (0.13 s later): image `g13-12212.svg` — appears; then (0.13 s later): image `g14-12243.svg` — appears; then (0.13 s later): image `g15-12242.svg` — appears; then (0.13 s later): image `g16-12220.svg` — appears; then (0.13 s later): image `g17-12214.svg` — appears; then (0.13 s later): image `g18-12276.svg` — appears; then (0.13 s later): image `g19-12216.svg` — appears; then (0.13 s later): image `g20-12247.svg` — appears; then (0.13 s later): image `g21-12241.svg` — appears; then (0.13 s later): image `g22-12259.svg` — appears; then (0.13 s later): image `g23-12246.svg` — appears; then (0.13 s later): image `g24-12232.svg` — appears; then (0.13 s later): image `g25-12230.svg` — appears; then (0.13 s later): image `g26-12285.svg` — appears; then (0.13 s later): image `g27-12224.svg` — appears; then (0.13 s later): image `g28-12282.svg` — appears; then (0.13 s later): image `g29-12284.svg` — appears; then (0.13 s later): image `g30-12281.svg` — appears; then (0.13 s later): image `g31-12280.svg` — appears; then (0.13 s later): image `g32-12266.svg` — appears; then (0.13 s later): image `g33-12256.svg` — appears; then (0.13 s later): image `g34-12286.svg` — appears; then (0.13 s later): image `g35-12257.svg` — appears; then (0.13 s later): image `g36-12279.svg` — appears; then (0.13 s later): image `g37-12271.svg` — appears; then (0.13 s later): image `g38-12283.svg` — appears; then (0.13 s later): image `g39-12275.svg` — appears; then (0.13 s later): image `g40-12251.svg` — appears; then (0.13 s later): image `g41-12248.svg` — appears; then (0.13 s later): image `g42-12287.svg` — appears; then (0.13 s later): image `g43-12250.svg` — appears; then (0.13 s later): image `g44-12236.svg` — appears; then (0.13 s later): image `g45-12240.svg` — appears; then (0.13 s later): image `g46-12244.svg` — appears; then (0.13 s later): image `g47-12228.svg` — appears; then (0.13 s later): image `g48-12239.svg` — appears; then (0.13 s later): image `g49-12222.svg` — appears; then (0.13 s later): image `g50-12226.svg` — appears; then (0.13 s later): image `g51-12227.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 67
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 68
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- rounded box (outline) [40%,22% → 59%,31%]
+- text 36pt [47%,24% → 53%,29%]: {System|#80b9ff}
+- rounded box (outline) [40%,69% → 59%,78%]
+- text 36pt [46%,71% → 54%,76%]: {Adversary|#fab0ae}
+- shape (outline) [33%,28% → 40%,74%]
+- shape (outline) [60%,28% → 66%,74%]
+- equation $r$ (53pt, #80b9ff) [68%,50% → 69%,52%]
+- equation $x$ (53pt, #fab0ae) [31%,48% → 32%,51%]
+- **Builds:** click 1: shape (outline) — draws in; with previous (0.5 s later): equation $x$ — appears; click 2: shape (outline) — draws in; with previous (0.5 s later): equation $r$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 69
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- rounded box (outline) [21%,22% → 41%,31%]
+- text 36pt [28%,24% → 34%,29%]: {System|#80b9ff}
+- rounded box (outline) [21%,69% → 41%,78%]
+- text 36pt [27%,71% → 35%,76%]: {Adversary|#fab0ae}
+- shape (outline) [15%,28% → 21%,74%]
+- shape (outline) [41%,28% → 47%,74%]
+- equation $r$ (53pt, #80b9ff) [49%,50% → 50%,52%]
+- equation $x$ (53pt, #fab0ae) [12%,48% → 13%,51%]
+- rounded box (outline) [54%,31% → 97%,42%]
+- text 36pt [63%,34% → 95%,39%]: Does this set up remind you of anything?
+- text 100pt [56%,30% → 61%,43%]: 🤔
+- text 36pt [66%,46% → 85%,51%]: Reinforcement learning!
+- group [58%,55% → 94%,72%]
+  - rounded box (outline) [58%,55% → 94%,72%]
+  - vector icon `shape-d3e1c0b8.svg` [60%,57% → 64%,70%]
+  - text 36pt [65%,58% → 93%,70%]: We can use [[reinforcement learning|#ffa4e7]] algorithms to [[train an adversary|#ffa4e7]] to cause a system to fail!
+- text 36pt [19%,84% → 24%,89%]: {Why?|#c3b8ff}
+- text 36pt [24%,84% → 82%,89%]: Many reinforcement learning algorithms are designed to be [[sample efficient|#c3b8ff]].
+- text 36pt [25%,90% → 59%,94%]: It can also [[generalize|#c3b8ff]] to different initial states.
+- **Builds:** click 1: text 36pt — slides in; click 2: group — fades up from dark; click 3: text 36pt — appears; click 4: text 36pt — slides in; click 5: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 70
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- image `g01-13348.svg` [32%,17% → 68%,83%]
+- image `g02-13349.svg` [32%,17% → 68%,83%]
+- image `g03-13353.svg` [32%,17% → 68%,83%]
+- image `g04-13351.svg` [32%,17% → 68%,83%]
+- image `g05-13350.svg` [32%,17% → 68%,83%]
+- image `g06-13368.svg` [32%,17% → 68%,83%]
+- image `g07-13352.svg` [32%,17% → 68%,83%]
+- image `g08-13356.svg` [32%,17% → 68%,83%]
+- image `g09-13354.svg` [32%,17% → 68%,82%]
+- image `g10-13355.svg` [32%,17% → 68%,82%]
+- image `g11-13373.svg` [32%,17% → 68%,82%]
+- image `g12-13374.svg` [32%,17% → 68%,82%]
+- image `g13-13365.svg` [32%,17% → 68%,82%]
+- image `g14-13370.svg` [32%,17% → 68%,82%]
+- image `g15-13358.svg` [32%,17% → 68%,82%]
+- image `g16-13366.svg` [32%,17% → 68%,82%]
+- image `g17-13369.svg` [32%,17% → 68%,82%]
+- image `g18-13359.svg` [32%,17% → 68%,82%]
+- image `g19-13367.svg` [32%,17% → 68%,82%]
+- image `g20-13360.svg` [32%,17% → 68%,82%]
+- image `g21-13372.svg` [32%,17% → 68%,82%]
+- image `g22-13371.svg` [32%,17% → 68%,82%]
+- image `g23-13362.svg` [32%,17% → 68%,82%]
+- image `g24-13361.svg` [32%,17% → 68%,82%]
+- image `g25-13364.svg` [32%,17% → 68%,82%]
+- image `g26-13363.svg` [32%,17% → 68%,82%]
+- **Builds:** click 1: image `g02-13349.svg` — appears; then (0.2 s later): image `g03-13353.svg` — appears; then (0.2 s later): image `g04-13351.svg` — appears; then (0.2 s later): image `g05-13350.svg` — appears; then (0.2 s later): image `g06-13368.svg` — appears; then (0.2 s later): image `g07-13352.svg` — appears; then (0.2 s later): image `g08-13356.svg` — appears; then (0.2 s later): image `g09-13354.svg` — appears; then (0.2 s later): image `g10-13355.svg` — appears; then (0.2 s later): image `g11-13373.svg` — appears; then (0.2 s later): image `g12-13374.svg` — appears; then (0.2 s later): image `g13-13365.svg` — appears; then (0.2 s later): image `g14-13370.svg` — appears; then (0.2 s later): image `g15-13358.svg` — appears; then (0.2 s later): image `g16-13366.svg` — appears; then (0.2 s later): image `g17-13369.svg` — appears; then (0.2 s later): image `g18-13359.svg` — appears; then (0.2 s later): image `g19-13367.svg` — appears; then (0.2 s later): image `g20-13360.svg` — appears; then (0.2 s later): image `g21-13372.svg` — appears; then (0.2 s later): image `g22-13371.svg` — appears; then (0.2 s later): image `g23-13362.svg` — appears; then (0.2 s later): image `g24-13361.svg` — appears; then (0.2 s later): image `g25-13364.svg` — appears; then (0.2 s later): image `g26-13363.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 71
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- image `g01-13348.svg` [6%,33% → 25%,66%]
+- image `g15-13358.svg` [29%,33% → 48%,66%]
+- image `g21-13372.svg` [52%,33% → 70%,66%]
+- image `g26-13363.svg` [75%,33% → 93%,66%]
+- text 36pt [81%,27% → 87%,31%]: 65,000 Training Steps
+- text 36pt [58%,27% → 64%,31%]: 50,000 Training Steps
+- text 36pt [36%,27% → 41%,31%]: 35,000 Training Steps
+- text 36pt [13%,27% → 18%,31%]: 2,500 Training Steps
+- text 36pt [48%,47% → 52%,52%]: {hello|#000000}
+- **Builds:** click 1: text 36pt — fireworks
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 72
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- text 36pt [19%,46% → 81%,54%]: Using [[MCTS|#80b9ff]] or [[reinforcement learning|#80b9ff]] to search for the most likely failure of a system is often referred to as [[adaptive stress testing|#ffa4e7]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 73
+- heading (spaced caps) 36pt [32%,6% → 105%,11%]: REINFORCEMENT LEARNING
+- text 36pt [19%,19% → 81%,27%]: Using [[MCTS|#80b9ff]] or [[reinforcement learning|#80b9ff]] to search for the most likely failure of a system is often referred to as [[adaptive stress testing|#ffa4e7]].
+- image `pasted-movie-13578.png` [26%,36% → 74%,100%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 74
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 75
+- heading (spaced caps) 36pt [32%,4% → 106%,8%]: {SIMULATOR REQUIREMENTS|#000000}
+- image `val-page-119.svg` (cropped: show only 9–71% across and 14–48% down of the image) [19%,21% → 81%,88%]
+- text 36pt [48%,12% → 52%,17%]: {How do I pick a falsification method?|#1ba1ea}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 76
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: TREE SEARCH
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: HEURISTIC SEARCH
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MONTE CARLO TREE SEARCH
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: REINFORCEMENT LEARNING
+- text on a #80b9ff filled box 32pt [12%,83% → 16%,90%]: {5|#000000}
+- heading (spaced caps) 36pt [18%,84% → 92%,89%]: SIMULATOR REQUIREMENTS
+- **Transition to next:** Magic Move (shared objects glide; others fade)
