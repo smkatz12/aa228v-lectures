@@ -1,0 +1,2093 @@
+# AA228V Lectures 05/06 — Falsification Through Optimization: slide-by-slide content
+
+Extracted from the Keynote deck `05_06_Falsification_Through_Optimization.key` (89 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/05-falsification-optimization/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/05-falsification-optimization/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time, "(0.1 s later)" = after that pause).
+- A long run of images named `gNN-…` that appear one after another at the same spot, a fraction of a second apart, is a frame-by-frame animation: stack them and reveal them in turn with that timing (each frame stays as the next appears).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as Lecture 01: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Handwritten ink from past lectures (slide 8) has been left out on purpose; the deck's own ink layer handles writing.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#000000`, `#ffa4e7`, `#c3b8ff`, `#d6d6d6`, `#0072fe`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- heading (spaced caps) 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 30pt [4%,73% → 43%,87%]: LECTURE 05/06: FALSIFICATION THROUGH OPTIMIZATION / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- text 36pt [50%,50% → 50%,50%]: https://gandalf.lakera.ai/do-not-tell-and-block
+
+## Slide 3
+- heading (spaced caps) 40pt [12%,47% → 88%,53%]: FALSIFICATION = {SYSTEMATICALLY|#80b9ff} FINDING FAILURES
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 4
+- heading (spaced caps) 40pt [12%,6% → 88%,11%]: FALSIFICATION = {SYSTEMATICALLY|#80b9ff} FINDING FAILURES
+- text 36pt [48%,13% → 52%,17%]: Why find failures?
+- text 36pt [37%,18% → 63%,22%]: {To inform future design decisions.|#80b9ff}
+- group [5%,26% → 41%,51%]
+  - text 36pt [22%,36% → 41%,41%]: Enhance system sensors
+  - image `noun-sensor-6953379-80b9ff.png` [5%,26% → 19%,51%]
+- group [8%,52% → 39%,68%]
+  - text 36pt [22%,58% → 39%,63%]: Change agent’s policy
+  - image `noun-robot-7344628-80b9ff.png` [8%,52% → 17%,68%]
+- group [7%,72% → 44%,91%]
+  - text 36pt [22%,79% → 44%,84%]: Revise system requirements
+  - image `noun-requirement-6680885-80b9ff.png` [7%,72% → 18%,91%]
+- group [53%,29% → 94%,48%]
+  - text 36pt [67%,36% → 94%,41%]: Adapt training of human operators
+  - image `noun-arcade-game-642051-80b9ff.png` [53%,29% → 64%,48%]
+- group [55%,73% → 83%,90%]
+  - text 36pt [67%,79% → 83%,84%]: Abandon the project
+  - vector icon `shape-581bbe44.svg` [55%,73% → 61%,90%]
+- group [53%,52% → 85%,70%]
+  - text 36pt [67%,58% → 85%,63%]: Recognize as limitations
+  - image `pasted-image-9501.png` [53%,52% → 63%,70%]
+- **Builds:** click 1: text 36pt — slides in; click 2: group — appears; click 3: group — appears; click 4: group — appears; click 5: group — appears; click 6: group — appears; click 7: group — appears
+
+## Slide 5
+- text 36pt [6%,9% → 21%,13%]: On a happy note…
+- image `pasted-image-7670.png` [12%,33% → 36%,67%]
+- image `pasted-image-7675.png` [39%,24% → 61%,76%]
+- image `pasted-image-7681.png` [64%,31% → 92%,69%]
+- **Builds:** click 1: image `pasted-image-7675.png` — appears; with previous: image `pasted-image-7681.png` — appears; with previous: image `pasted-image-7670.png` — appears
+
+## Slide 6
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: A BASELINE APPROACH
+- heading (spaced caps) 36pt [12%,54% → 88%,58%]: {DIRECT SAMPLING|#80b9ff}
+- text on a #80b9ff filled box 32pt [40%,65% → 60%,73%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 7
+- heading (spaced caps) 36pt [-10%,48% → 66%,52%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [40%,48% → 83%,52%]: may perform poorly for systems with rare failure events.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- heading (spaced caps) 36pt [-10%,5% → 66%,10%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [40%,5% → 83%,10%]: may perform poorly for systems with rare failure events.
+
+## Slide 9
+- heading (spaced caps) 36pt [-10%,5% → 66%,10%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [40%,5% → 83%,10%]: may perform poorly for systems with rare failure events.
+- text 36pt [43%,13% → 61%,18%]: Geometric distribution:
+- equation $P(k) = (1 - p_\text{fail})^{k-1} p_\text{fail}$ (36pt, #ffffff) [43%,19% → 61%,23%]
+- group [25%,31% → 65%,93%]
+  - image `test-4855.svg` [25%,31% → 65%,93%]
+  - line #80b9ff [54%,36% → 63%,41%]
+  - equation $P_\text{fail} = 0.2$ (36pt, #80b9ff) [55%,37% → 63%,40%]
+- line #ffffff [42%,13% → 62%,25%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- rounded box (outline) [49%,47% → 83%,60%]
+- heading (spaced caps) 36pt [-10%,5% → 66%,10%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [40%,5% → 83%,10%]: may perform poorly for systems with rare failure events.
+- text 36pt [57%,17% → 75%,22%]: Geometric distribution:
+- equation $P(k) = (1 - p_\text{fail})^{k-1} p_\text{fail}$ (36pt, #ffffff) [57%,24% → 75%,28%]
+- group [5%,35% → 35%,83%]
+  - image `test-4855.svg` [5%,35% → 35%,83%]
+  - line #80b9ff [27%,39% → 34%,43%]
+  - equation $P_\text{fail} = 0.2$ (27pt, #80b9ff) [28%,40% → 34%,42%]
+- line #ffffff [56%,17% → 76%,29%]
+- text 36pt [50%,32% → 82%,37%]: The {expected value|#80b9ff} of this distribution is
+- equation $\mathbb E[k] = 1 / P_\text{fail}$ (41pt, #ffffff) [60%,40% → 72%,44%]
+- text 36pt [50%,47% → 82%,60%]: In other words, it should require {$1 / P_\text{fail}$|#c3b8ff} simulations [[on average|#80b9ff]] to find a single failure event.
+- line #c3b8ff [27%,36% → 27%,69%]
+- arrow #c3b8ff [27%,47% → 48%,53%]
+- **Builds:** click 1: rounded box (outline) — appears; with previous: text 36pt — appears; click 2: line #c3b8ff — draws in; with previous: arrow #c3b8ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- rounded box (outline) [33%,15% → 67%,29%]
+- heading (spaced caps) 36pt [-10%,5% → 66%,10%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [40%,5% → 83%,10%]: may perform poorly for systems with rare failure events.
+- text 36pt [34%,16% → 66%,28%]: In other words, it should require {$1 / P_\text{fail}$|#c3b8ff} simulations [[on average|#80b9ff]] to find a single failure event.
+- text 36pt [29%,33% → 71%,38%]: For systems with [[rare|#80b9ff]] failure events, $P_\text{fail}$ is really low.
+- text 36pt [24%,68% → 76%,73%]: e.g. imagine an aircraft collision avoidance system with {$P_\text{fail} \approx 10^{-9}$|#80b9ff}
+- text 36pt [21%,75% → 79%,80%]: We would need an average of {$1$ billion|#80b9ff} simulations to observe a single failure!
+- vector icon `shape-98123330.svg` [35%,47% → 41%,52%]
+- vector icon `shape-98123330.svg` [59%,52% → 65%,56%]
+- shape (outline) [41%,40% → 50%,55%]
+- shape (outline) [50%,50% → 59%,66%]
+- text 100pt [30%,81% → 36%,94%]: 🤔
+- text 36pt [48%,86% → 52%,90%]: We are going to need a [[better way|#80b9ff]].
+- **Builds:** click 1: shape (outline) — appears; with previous: vector icon `shape-98123330.svg` — appears; with previous: vector icon `shape-98123330.svg` — appears; with previous: shape (outline) — appears; with previous: text 36pt — appears; click 2: text 36pt — appears; click 3: text 100pt — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-8%,30% → 68%,35%]: DIRECT SAMPLING
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: DISTURBANCES
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: FUZZING
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: OPTIMIZATION
+- text 36pt [40%,57% → 75%,62%]: {This is what I would start with for Project 1!|#80b9ff}
+- arrow #80b9ff [31%,60% → 40%,60%]
+- **Builds:** click 1: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text on a #8dd0f5 filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 4: arrow #80b9ff — draws in; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 13
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-8%,30% → 68%,35%]: DIRECT SAMPLING
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: DISTURBANCES
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: FUZZING
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: OPTIMIZATION
+- text 36pt [48%,69% → 95%,77%]: {This (and/or what we learn Thursday) is what I would do to improve my leaderboard score.|#80b9ff}
+- arrow #80b9ff [38%,73% → 47%,73%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 14
+- heading (spaced caps) 36pt [-8%,35% → 68%,39%]: {DIRECT SAMPLING|#80b9ff}
+- text 36pt [42%,35% → 85%,39%]: may perform poorly for systems with rare failure events.
+- text 36pt [6%,45% → 94%,49%]: We can instead systematically search for failures by taking [[control|#80b9ff]] of the [[sources of randomness|#80b9ff]] in a system using
+- heading (spaced caps) 36pt [42%,51% → 116%,56%]: {DISTURBANCES|#80b9ff}
+- text 100pt [12%,30% → 18%,43%]: 🤔
+
+## Slide 15
+- text 36pt [50%,50% → 50%,50%]: To incorporate [[disturbances|#80b9ff]] into a system, we need to [[rewrite|#80b9ff]] its agent, environment, and sensor models: / $a \sim \pi(\cdot \mid o)$,  $s^\prime \sim T(\cdot \mid s, a)$,  and $o \sim O(\cdot \mid s)$.
+- equation $o \sim O(\cdot \mid s)$ (37pt, #ffffff) [58%,51% → 68%,54%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- text 36pt [10%,6% → 90%,15%]: To incorporate [[disturbances|#80b9ff]] into a system, we need to [[rewrite|#80b9ff]] its agent, environment, and sensor models: / $a \sim \pi(\cdot \mid o)$,  $s^\prime \sim T(\cdot \mid s, a)$,  and $o \sim O(\cdot \mid s)$.
+- equation $o \sim O(\cdot \mid s)$ (37pt, #ffffff) [58%,11% → 68%,14%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- text 36pt [10%,6% → 90%,15%]: To incorporate [[disturbances|#80b9ff]] into a system, we need to [[rewrite|#80b9ff]] its agent, environment, and sensor models: / $a \sim \pi(\cdot \mid o)$,  $s^\prime \sim T(\cdot \mid s, a)$,  and $o \sim O(\cdot \mid s)$.
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [44%,21% → 56%,24%]
+- text 36pt [52%,6% → 57%,11%]: [[rewrite|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 18
+- text 36pt [10%,6% → 90%,15%]: To incorporate [[disturbances|#80b9ff]] into a system, we need to [[rewrite|#80b9ff]] its agent, environment, and sensor models: / $a \sim \pi(\cdot \mid o)$,  $s^\prime \sim T(\cdot \mid s, a)$,  and $o \sim O(\cdot \mid s)$.
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [44%,21% → 56%,24%]
+- shape (outline) [48%,27% → 52%,45%]
+- text 36pt [52%,32% → 57%,36%]: [[rewrite|#80b9ff]]
+- equation $o = O(s, x_o), \ x_o \sim D_o(\cdot \mid s)$ (48pt, #ffffff) [37%,48% → 63%,52%]
+- image `noun-bracket-2376717-80b9ff.png` [36%,50% → 48%,60%]
+- text 36pt [37%,38% → 41%,42%]: {disturbance|#80b9ff}
+- arrow #80b9ff [39%,42% → 46%,48%]
+- text 36pt [36%,58% → 49%,66%]: {deterministic function|#80b9ff}
+- image `noun-bracket-2376717-80b9ff.png` [50%,50% → 63%,60%]
+- text 36pt [50%,58% → 63%,66%]: {disturbance distribution|#80b9ff}
+- **Builds:** click 1: text 36pt — appears; with previous: arrow #80b9ff — draws in; click 2: image `noun-bracket-2376717-80b9ff.png` — fades up from dark; with previous: text 36pt — fades up from dark; click 3: image `noun-bracket-2376717-80b9ff.png` — fades up from dark; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [26%,10% → 38%,14%]
+- shape (outline) [39%,8% → 49%,15%]
+- text 36pt [41%,5% → 46%,10%]: [[rewrite|#80b9ff]]
+- equation $o = O(s, x_o), \ x_o \sim D_o(\cdot \mid s)$ (48pt, #ffffff) [50%,9% → 77%,14%]
+- line #ffffff [7%,17% → 93%,17%]
+- rounded box (outline) [4%,22% → 96%,81%]
+- text 42pt [43%,25% → 51%,30%]: Example
+- text 36pt [9%,33% → 60%,38%]: Recall the inverted pendulum observation model: $o \sim \mathcal N(\cdot \mid s, \Sigma)$
+- text 36pt [9%,42% → 44%,47%]: We can rewrite with disturbances as follows:
+- equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ (53pt, #ffffff) [32%,51% → 62%,55%]
+- text 36pt [9%,60% → 75%,65%]: In this case, the disturbance represents the [[“observation noise”|#80b9ff]] added to the true state.
+- text 36pt [9%,66% → 76%,75%]: The observation noise is sampled from a [[disturbance distribution|#80b9ff]] centered at zero (no noise) with covariance $\Sigma$.
+- line #ffffff [83%,35% → 90%,63%]
+- vector icon `shape-751d2df3.svg` [82%,62% → 83%,64%]
+- line #ffffff [83%,33% → 86%,63%]
+- line #ffffff [85%,47% → 87%,49%]
+- equation $x_o$ (36pt, #ffffff) [85%,44% → 87%,46%]
+- text on a #f3cf80 filled box 32pt [18%,84% → 82%,95%]: {Note:|#000000}{ the model with disturbances still represents the same process. We have just separated out the stochastic components so that we can control them!|#000000}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; with previous: equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ — appears; click 3: line #ffffff — appears; with previous: text 36pt — appears; with previous: equation $x_o$ — appears; click 4: text 36pt — appears; click 5: text on a #f3cf80 filled box 32pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 20
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [24%,25% → 35%,29%]
+- shape (outline) [37%,24% → 47%,30%]
+- text 36pt [39%,21% → 44%,25%]: [[rewrite|#80b9ff]]
+- equation $o = O(s, x_o), \ x_o \sim D_o(\cdot \mid s)$ (48pt, #ffffff) [48%,25% → 75%,29%]
+- equation $a \sim \pi(\cdot \mid o)$ (48pt, #ffffff) [24%,45% → 35%,49%]
+- shape (outline) [38%,44% → 47%,51%]
+- text 36pt [39%,41% → 44%,45%]: [[rewrite|#80b9ff]]
+- equation $a = \pi(o, x_a), \ x_a \sim D_a(\cdot \mid o)$ (48pt, #ffffff) [48%,45% → 75%,49%]
+- equation $s^\prime \sim T(\cdot \mid s, a)$ (48pt, #ffffff) [21%,66% → 35%,70%]
+- shape (outline) [38%,64% → 47%,71%]
+- text 36pt [39%,61% → 44%,66%]: [[rewrite|#80b9ff]]
+- equation $s^\prime = T(s, a, x_s), \ x_s \sim D_s(\cdot \mid s, a)$ (48pt, #ffffff) [48%,66% → 79%,70%]
+- text 36pt [47%,15% → 53%,20%]: {Sensor|#ffa4e7}
+- text 36pt [48%,36% → 52%,40%]: {Agent|#ffa4e7}
+- text 36pt [45%,56% → 55%,60%]: {Environment|#ffa4e7}
+- equation $x_s$ (48pt, #ffffff) [63%,67% → 65%,70%]
+- equation $x_a$ (48pt, #ffffff) [61%,46% → 63%,49%]
+- equation $x_o$ (48pt, #ffffff) [61%,26% → 63%,29%]
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [66%,45% → 75%,49%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [66%,25% → 75%,29%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [68%,66% → 79%,70%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 21
+- rounded box (outline) [21%,76% → 36%,90%]
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [24%,25% → 35%,29%]
+- shape (outline) [37%,24% → 47%,30%]
+- text 36pt [39%,21% → 44%,25%]: [[rewrite|#80b9ff]]
+- equation $o = O(s, x_o), \ x_o \sim D_o(\cdot \mid s)$ (48pt, #ffffff) [48%,25% → 75%,29%]
+- equation $a \sim \pi(\cdot \mid o)$ (48pt, #ffffff) [24%,45% → 35%,49%]
+- shape (outline) [38%,44% → 47%,51%]
+- text 36pt [39%,41% → 44%,45%]: [[rewrite|#80b9ff]]
+- equation $a = \pi(o, x_a), \ x_a \sim D_a(\cdot \mid o)$ (48pt, #ffffff) [48%,45% → 75%,49%]
+- equation $s^\prime \sim T(\cdot \mid s, a)$ (48pt, #ffffff) [21%,66% → 35%,70%]
+- shape (outline) [38%,64% → 47%,71%]
+- text 36pt [39%,61% → 44%,66%]: [[rewrite|#80b9ff]]
+- equation $s^\prime = T(s, a, x_s), \ x_s \sim D_s(\cdot \mid s, a)$ (48pt, #ffffff) [48%,66% → 79%,70%]
+- text 36pt [47%,15% → 53%,20%]: {Sensor|#ffa4e7}
+- text 36pt [48%,36% → 52%,40%]: {Agent|#ffa4e7}
+- text 36pt [45%,56% → 55%,60%]: {Environment|#ffa4e7}
+- text 36pt [23%,77% → 34%,82%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [28%,84% → 29%,87%]
+- equation $x_a$ (48pt, #ffffff) [24%,84% → 26%,87%]
+- equation $x_o$ (48pt, #ffffff) [31%,84% → 33%,87%]
+- rounded box (outline) [40%,76% → 79%,90%]
+- text 36pt [49%,77% → 70%,82%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [54%,83% → 63%,87%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [42%,83% → 51%,87%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [66%,83% → 77%,87%]
+- text 36pt [84%,81% → 95%,86%]: “disturbution”
+- arrow #ffffff [80%,84% → 84%,84%]
+- **Builds:** click 1: arrow #ffffff — draws in; then: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 22
+- group [18%,79% → 40%,90%]
+  - rounded box (outline) [18%,79% → 40%,90%]
+  - equation $T(s^\prime \mid s, a) = \begin{cases}1 \ \ \text{if } s^\prime = \begin{bmatrix} \theta + \omega\Delta t \\ \omega + \frac{3g}{2l} \sin\theta + \frac{3a}{ml^2} \Delta t \end{bmatrix} \\ 0 \ \ \text{otherwise}\end{cases}$ (20pt, #c3b8ff) [19%,80% → 39%,89%]
+- equation $o \sim O(\cdot \mid s)$ (48pt, #ffffff) [24%,15% → 35%,19%]
+- shape (outline) [37%,13% → 47%,20%]
+- text 36pt [39%,10% → 44%,15%]: [[rewrite|#80b9ff]]
+- equation $o = O(s, x_o), \ x_o \sim D_o(\cdot \mid s)$ (48pt, #ffffff) [48%,15% → 75%,19%]
+- equation $a \sim \pi(\cdot \mid o)$ (48pt, #ffffff) [24%,43% → 35%,47%]
+- shape (outline) [38%,41% → 47%,48%]
+- text 36pt [39%,38% → 44%,43%]: [[rewrite|#80b9ff]]
+- equation $a = \pi(o, x_a), \ x_a \sim D_a(\cdot \mid o)$ (48pt, #ffffff) [48%,43% → 75%,47%]
+- equation $s^\prime \sim T(\cdot \mid s, a)$ (48pt, #ffffff) [21%,71% → 35%,75%]
+- shape (outline) [38%,70% → 47%,76%]
+- text 36pt [39%,66% → 44%,71%]: [[rewrite|#80b9ff]]
+- equation $s^\prime = T(s, a, x_s), \ x_s \sim D_s(\cdot \mid s, a)$ (48pt, #ffffff) [48%,71% → 79%,75%]
+- text 36pt [47%,5% → 53%,9%]: {Sensor|#ffa4e7}
+- text 36pt [48%,33% → 52%,38%]: {Agent|#ffa4e7}
+- text 36pt [45%,61% → 55%,66%]: {Environment|#ffa4e7}
+- vector icon `shape-f6ac5cd3.svg` [6%,64% → 7%,66%]
+- line #c3b8ff [7%,34% → 10%,64%]
+- group [22%,22% → 36%,28%]
+  - rounded box (outline) [22%,22% → 36%,28%]
+  - equation $o \sim \mathcal N(\cdot \mid s, \Sigma)$ (37pt, #c3b8ff) [24%,23% → 35%,26%]
+- rounded box (outline) [3%,31% → 14%,69%]
+- group [50%,22% → 73%,28%]
+  - equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ (37pt, #c3b8ff) [51%,23% → 72%,26%]
+  - rounded box (outline) [50%,22% → 73%,28%]
+- group [17%,50% → 41%,60%]
+  - rounded box (outline) [17%,50% → 41%,60%]
+  - equation $\pi(a \mid o)= \begin{cases}1 \ \ \text{if } a=-15.0\theta - 8.0\omega \\ 0 \ \ \text{otherwise}\end{cases}$ (28pt, #c3b8ff) [18%,52% → 40%,58%]
+- group [56%,50% → 70%,56%]
+  - rounded box (outline) [56%,50% → 70%,56%]
+  - equation $a=-15.0\hat\theta - 8.0\hat\omega$ (31pt, #c3b8ff) [57%,52% → 70%,54%]
+- group [54%,78% → 73%,89%]
+  - equation $s^\prime = \begin{bmatrix} \theta + \omega\Delta t \\ \omega + \frac{3g}{2l} \sin\theta + \frac{3a}{ml^2} \Delta t \end{bmatrix}$ (30pt, #c3b8ff) [55%,79% → 72%,88%]
+  - rounded box (outline) [54%,78% → 73%,89%]
+- text 36pt [72%,50% → 92%,59%]: {*Note: no $x_a$ because the agent is |#c3b8ff}[[deterministic|#c3b8ff]]{!|#c3b8ff}
+- text 36pt [76%,79% → 98%,88%]: {*Note: no $x_s$ because the environment is |#c3b8ff}[[deterministic|#c3b8ff]]{!|#c3b8ff}
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [66%,43% → 75%,47%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [66%,15% → 75%,19%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [68%,71% → 79%,75%]
+- equation $x_s$ (48pt, #ffffff) [63%,72% → 65%,75%]
+- equation $x_a$ (48pt, #ffffff) [61%,44% → 63%,47%]
+- equation $x_o$ (48pt, #ffffff) [61%,16% → 63%,19%]
+- **Builds:** click 1: group — appears; click 2: group — appears; click 3: group — appears; click 4: group — appears; click 5: text 36pt — slides in; click 6: group — appears; click 7: group — appears; click 8: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 23
+- rounded box (outline) [35%,34% → 50%,48%]
+- text 36pt [37%,36% → 48%,40%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,42% → 43%,45%]
+- equation $x_a$ (48pt, #ffffff) [38%,42% → 40%,45%]
+- equation $x_o$ (48pt, #ffffff) [45%,42% → 47%,45%]
+- rounded box (outline) [11%,52% → 50%,65%]
+- text 36pt [20%,53% → 41%,58%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,59% → 34%,63%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,59% → 22%,63%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,59% → 48%,63%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,34% → 89%,66%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 24
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [22%,52% → 78%,88%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 25
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 26
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [27%,59% → 27%,62%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- line #ffa4e7 [58%,64% → 60%,66%]
+- equation $\theta$ (28pt, #ffa4e7) [59%,61% → 60%,63%]
+- arrow #ffa4e7 [59%,55% → 63%,58%]
+- equation $\omega$ (28pt, #ffa4e7) [60%,53% → 61%,54%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [55%,86% → 61%,88%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 27
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [24%,60% → 28%,60%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- line #ffa4e7 [58%,64% → 60%,66%]
+- equation $\theta$ (28pt, #ffa4e7) [59%,61% → 60%,63%]
+- arrow #ffa4e7 [59%,55% → 63%,58%]
+- equation $\omega$ (28pt, #ffa4e7) [60%,53% → 61%,54%]
+- group [68%,48% → 91%,55%]
+  - equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ (37pt, #c3b8ff) [69%,50% → 90%,53%]
+  - rounded box (outline) [68%,48% → 91%,55%]
+- group [72%,58% → 87%,86%]
+  - image `test-6031.svg` [73%,58% → 87%,82%]
+  - equation $x_{\theta}$ (25pt, #ffffff) [80%,84% → 81%,86%]
+  - equation $x_{\omega}$ (25pt, #ffffff) [72%,69% → 73%,71%]
+- vector icon `shape-1e9ab725.svg` [82%,64% → 83%,66%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [83%,62% → 91%,64%]
+- line #ff48cf [78%,49% → 90%,54%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- **Builds:** click 1: group — appears; click 2: line #ff48cf — com.apple.iWork.Keynote.LineDraw; click 3: group — slides in; click 4: vector icon `shape-1e9ab725.svg` — appears; with previous: equation $x_o = [0.2, 0.25]$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 28
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [26%,63% → 30%,63%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- line #ffa4e7 [58%,64% → 60%,66%]
+- equation $\theta$ (28pt, #ffa4e7) [59%,61% → 60%,63%]
+- arrow #ffa4e7 [59%,55% → 63%,58%]
+- equation $\omega$ (28pt, #ffa4e7) [60%,53% → 61%,54%]
+- group [68%,48% → 91%,55%]
+  - equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ (37pt, #c3b8ff) [69%,50% → 90%,53%]
+  - rounded box (outline) [68%,48% → 91%,55%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- line #ff48cf [69%,49% → 77%,54%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 29
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [26%,63% → 30%,63%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- group [68%,48% → 91%,55%]
+  - equation $o = s + x_o, \ x_o \sim \mathcal N(\cdot \mid 0, \Sigma)$ (37pt, #c3b8ff) [69%,50% → 90%,53%]
+  - rounded box (outline) [68%,48% → 91%,55%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- line #ff48cf [69%,49% → 77%,54%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- line #c3b8ff [58%,54% → 64%,83%]
+- line #ffa4e7 [58%,62% → 62%,64%]
+- equation $\theta + x_\theta$ (28pt, #ffa4e7) [59%,59% → 62%,62%]
+- arrow #ffa4e7 [60%,55% → 65%,59%]
+- equation $\omega + x_\omega$ (28pt, #ffa4e7) [61%,53% → 65%,55%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [69%,56% → 77%,58%]
+- **Builds:** click 1: line #ffa4e7 — draws in; with previous: equation $\theta + x_\theta$ — appears; with previous: arrow #ffa4e7 — draws in; with previous: equation $\omega + x_\omega$ — appears; click 2: equation $o = [0.5, 0.35]$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 30
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [24%,65% → 28%,65%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- line #c3b8ff [58%,54% → 64%,83%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [26%,62% → 33%,64%]
+- text 24pt [28%,63% → 44%,67%]: {deterministic for the pendulum!|#ffa4e7}
+- **Builds:** click 1: text 24pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 31
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [25%,68% → 29%,68%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- line #c3b8ff [58%,54% → 64%,83%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [26%,62% → 33%,64%]
+- text 24pt [24%,63% → 41%,67%]: {deterministic for the pendulum!|#ffa4e7}
+- group [69%,54% → 83%,60%]
+  - rounded box (outline) [69%,54% → 83%,60%]
+  - equation $a=-15.0\hat\theta - 8.0\hat\omega$ (31pt, #c3b8ff) [70%,56% → 83%,59%]
+- equation $a = -15.0(0.5) - 8.0(0.35) = -9.9$ (28pt, #ffa4e7) [66%,64% → 87%,66%]
+- shape (outline) [53%,73% → 63%,90%]
+- **Builds:** click 1: equation $a = -15.0(0.5) - 8.0(0.35) = -9.9$ — slides in; click 2: shape (outline) — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 32
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,53% → 62%,83%]
+- arrow #ff48cf [26%,70% → 30%,70%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- line #c3b8ff [58%,54% → 64%,83%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [26%,62% → 33%,64%]
+- text 24pt [24%,63% → 41%,67%]: {deterministic for the pendulum!|#ffa4e7}
+- equation $a = -15.0(0.5) - 8.0(0.35) = -9.9$ (25pt, #ffa4e7) [25%,67% → 44%,69%]
+- shape (outline) [53%,73% → 63%,90%]
+- text 24pt [30%,68% → 46%,72%]: {deterministic for the pendulum!|#ffa4e7}
+- **Builds:** click 1: text 24pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 33
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,52% → 62%,83%]
+- arrow #ff48cf [27%,72% → 30%,72%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [26%,62% → 33%,64%]
+- text 24pt [24%,63% → 41%,67%]: {deterministic for the pendulum!|#ffa4e7}
+- equation $a = -15.0(0.5) - 8.0(0.35) = -9.9$ (25pt, #ffa4e7) [25%,67% → 44%,69%]
+- text 24pt [26%,68% → 42%,72%]: {deterministic for the pendulum!|#ffa4e7}
+- group [69%,48% → 88%,59%]
+  - equation $s^\prime = \begin{bmatrix} \theta + \omega\Delta t \\ \omega + \frac{3g}{2l} \sin\theta + \frac{3a}{ml^2} \Delta t \end{bmatrix}$ (30pt, #c3b8ff) [69%,49% → 87%,58%]
+  - rounded box (outline) [69%,48% → 88%,59%]
+- equation $s^\prime = [0.31, -1.38]$ (25pt, #ffa4e7) [74%,62% → 83%,64%]
+- **Builds:** click 1: equation $s^\prime = [0.31, -1.38]$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 34
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [9%,56% → 47%,81%]
+- vector icon `shape-f6ac5cd3.svg` [58%,82% → 59%,84%]
+- line #c3b8ff [58%,52% → 62%,83%]
+- arrow #ff48cf [30%,75% → 33%,75%]
+- line #c3b8ff [58%,50% → 58%,83%]
+- equation $x_o = [0.2, 0.25]$ (25pt, #ffa4e7) [24%,59% → 32%,61%]
+- equation $s = [0.3, 0.1]$ (22pt, #ffa4e7) [24%,54% → 30%,56%]
+- equation $o = [0.5, 0.35]$ (25pt, #ffa4e7) [26%,62% → 33%,64%]
+- text 24pt [24%,63% → 41%,67%]: {deterministic for the pendulum!|#ffa4e7}
+- equation $a = -15.0(0.5) - 8.0(0.35) = -9.9$ (25pt, #ffa4e7) [25%,67% → 44%,69%]
+- text 24pt [26%,68% → 42%,72%]: {deterministic for the pendulum!|#ffa4e7}
+- equation $s^\prime = [0.31, -1.38]$ (25pt, #ffa4e7) [27%,72% → 36%,73%]
+- arrow #ff48cf [26%,75% → 33%,78%]
+- text 24pt [33%,73% → 44%,79%]: {record everything that happened|#ffa4e7}
+- **Builds:** click 1: text 24pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- rounded box (outline) [35%,8% → 50%,21%]
+- text 36pt [37%,9% → 48%,14%]: Disturbance $x$
+- equation $x_s$ (48pt, #ffffff) [41%,16% → 43%,19%]
+- equation $x_a$ (48pt, #ffffff) [38%,16% → 40%,19%]
+- equation $x_o$ (48pt, #ffffff) [45%,16% → 47%,19%]
+- rounded box (outline) [11%,25% → 50%,39%]
+- text 36pt [20%,27% → 41%,31%]: Disturbance distribution $D$
+- equation $D_a(\cdot \mid o)$ (48pt, #ffffff) [25%,32% → 34%,37%]
+- equation $D_o(\cdot \mid s)$ (48pt, #ffffff) [13%,32% → 22%,37%]
+- equation $D_s(\cdot \mid s, a)$ (48pt, #ffffff) [37%,32% → 48%,37%]
+- image `val-page-85-5858.svg` (cropped: show only 11–50% across and 13–30% down of the image) [53%,8% → 89%,40%]
+- image `val-page-85-5918.svg` (cropped: show only 11–58% across and 30–46% down of the image) [22%,52% → 78%,88%]
+
+## Slide 36
+- text 36pt [50%,50% → 50%,50%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 37
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [16%,21% → 20%,27%]
+  - line #ffffff [16%,21% → 20%,27%]
+  - equation $1$ (36pt, #ffffff) [17%,23% → 18%,25%]
+- group [16%,31% → 20%,38%]
+  - line #ffffff [16%,31% → 20%,38%]
+  - equation $2$ (36pt, #ffffff) [17%,33% → 18%,35%]
+- text 36pt [21%,22% → 32%,26%]: the [[initial state|#80b9ff]]
+- text 36pt [20%,32% → 51%,36%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `test-6385.svg` [23%,46% → 71%,93%]
+- group [30%,61% → 31%,68%]
+  - line #ffffff [30%,61% → 31%,61%]
+  - line #ffffff [30%,68% → 31%,68%]
+  - line #ffffff [31%,61% → 31%,68%]
+- image `test-6405.svg` [23%,46% → 71%,93%]
+- **Builds:** click 1: text 36pt — wipes in; click 2: text 36pt — wipes in; click 3: image `test-6385.svg` — appears; click 4: group — appears; with previous: group — dims; then: text 36pt — dims; click 5: image `test-6405.svg` — appears
+
+## Slide 38
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [16%,21% → 20%,27%]
+  - line #ffffff [16%,21% → 20%,27%]
+  - equation $1$ (36pt, #ffffff) [17%,23% → 18%,25%]
+- group [16%,31% → 20%,38%]
+  - line #ffffff [16%,31% → 20%,38%]
+  - equation $2$ (36pt, #ffffff) [17%,33% → 18%,35%]
+- text 36pt [21%,22% → 32%,26%]: the [[initial state|#80b9ff]]
+- text 36pt [20%,32% → 51%,36%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `test-6385.svg` [23%,46% → 71%,93%]
+- image `test-6405.svg` [23%,46% → 71%,93%]
+- image `test-6438.svg` [23%,46% → 71%,93%]
+- image `test-6444.svg` [23%,46% → 71%,93%]
+- image `test-6474.svg` [23%,46% → 71%,93%]
+- image `test-6480.svg` [23%,46% → 71%,93%]
+- image `test-6485.svg` [23%,46% → 71%,93%]
+- image `g01-6491.svg` [23%,46% → 71%,93%]
+- image `g02-6492.svg` [23%,46% → 71%,93%]
+- image `g03-6500.svg` [23%,46% → 71%,93%]
+- image `g04-6501.svg` [23%,46% → 71%,93%]
+- image `g05-6494.svg` [23%,46% → 71%,93%]
+- image `g06-6514.svg` [23%,46% → 71%,93%]
+- image `g07-6509.svg` [23%,46% → 71%,93%]
+- image `g08-6507.svg` [23%,46% → 71%,93%]
+- image `g09-6503.svg` [23%,46% → 71%,93%]
+- image `g10-6541.svg` [23%,46% → 71%,93%]
+- image `g11-6542.svg` [23%,46% → 71%,93%]
+- image `g12-6553.svg` [23%,46% → 71%,93%]
+- image `g13-6538.svg` [23%,46% → 71%,93%]
+- image `g14-6535.svg` [23%,46% → 71%,93%]
+- image `g15-6531.svg` [23%,46% → 71%,93%]
+- image `g16-6496.svg` [23%,46% → 71%,93%]
+- image `g17-6498.svg` [23%,46% → 71%,93%]
+- image `g18-6530.svg` [23%,46% → 71%,93%]
+- image `g19-6527.svg` [23%,46% → 71%,93%]
+- image `g20-6533.svg` [23%,46% → 71%,93%]
+- image `g21-6524.svg` [23%,46% → 71%,93%]
+- image `g22-6539.svg` [23%,46% → 71%,93%]
+- image `g23-6532.svg` [23%,46% → 71%,93%]
+- image `g24-6529.svg` [23%,46% → 71%,93%]
+- image `g25-6521.svg` [23%,46% → 71%,93%]
+- image `g26-6552.svg` [23%,46% → 71%,93%]
+- image `g27-6549.svg` [23%,46% → 71%,93%]
+- image `g28-6540.svg` [23%,46% → 71%,93%]
+- image `g29-6534.svg` [23%,46% → 71%,93%]
+- image `g30-6519.svg` [23%,46% → 71%,93%]
+- image `g31-6518.svg` [23%,46% → 71%,93%]
+- image `g32-6526.svg` [23%,46% → 71%,93%]
+- image `g33-6523.svg` [23%,46% → 71%,93%]
+- image `g34-6528.svg` [23%,46% → 71%,93%]
+- image `g35-6522.svg` [23%,46% → 71%,93%]
+- image `g36-6515.svg` [23%,46% → 71%,93%]
+- image `g37-6512.svg` [23%,46% → 71%,93%]
+- image `g38-6511.svg` [23%,46% → 71%,93%]
+- image `g39-6508.svg` [23%,46% → 71%,93%]
+- **Builds:** click 1: image `test-6444.svg` — appears; click 2: image `test-6444.svg` — appears; with previous: image `test-6474.svg` — appears; click 3: image `test-6480.svg` — appears; click 4: image `test-6485.svg` — appears; click 5: image `g01-6491.svg` — appears; then (0.1 s later): image `g02-6492.svg` — appears; then (0.1 s later): image `g03-6500.svg` — appears; then (0.1 s later): image `g04-6501.svg` — appears; then (0.1 s later): image `g05-6494.svg` — appears; then (0.1 s later): image `g06-6514.svg` — appears; then (0.1 s later): image `g07-6509.svg` — appears; then (0.1 s later): image `g08-6507.svg` — appears; then (0.1 s later): image `g09-6503.svg` — appears; then (0.1 s later): image `g10-6541.svg` — appears; then (0.1 s later): image `g11-6542.svg` — appears; then (0.1 s later): image `g12-6553.svg` — appears; then (0.1 s later): image `g13-6538.svg` — appears; then (0.1 s later): image `g14-6535.svg` — appears; then (0.1 s later): image `g15-6531.svg` — appears; then (0.1 s later): image `g16-6496.svg` — appears; then (0.1 s later): image `g17-6498.svg` — appears; then (0.1 s later): image `g18-6530.svg` — appears; then (0.1 s later): image `g19-6527.svg` — appears; then (0.1 s later): image `g20-6533.svg` — appears; then (0.1 s later): image `g21-6524.svg` — appears; then (0.1 s later): image `g22-6539.svg` — appears; then (0.1 s later): image `g23-6532.svg` — appears; then (0.1 s later): image `g24-6529.svg` — appears; then (0.1 s later): image `g25-6521.svg` — appears; then (0.1 s later): image `g26-6552.svg` — appears; then (0.1 s later): image `g27-6549.svg` — appears; then (0.1 s later): image `g28-6540.svg` — appears; then (0.1 s later): image `g29-6534.svg` — appears; then (0.1 s later): image `g30-6519.svg` — appears; then (0.1 s later): image `g31-6518.svg` — appears; then (0.1 s later): image `g32-6526.svg` — appears; then (0.1 s later): image `g33-6523.svg` — appears; then (0.1 s later): image `g34-6528.svg` — appears; then (0.1 s later): image `g35-6522.svg` — appears; then (0.1 s later): image `g36-6515.svg` — appears; then (0.1 s later): image `g37-6512.svg` — appears; then (0.1 s later): image `g38-6511.svg` — appears; then (0.1 s later): image `g39-6508.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 39
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [53%,24% → 57%,31%]
+  - line #ffffff [53%,24% → 57%,31%]
+  - equation $1$ (36pt, #ffffff) [55%,26% → 55%,28%]
+- group [54%,59% → 57%,66%]
+  - line #ffffff [54%,59% → 57%,66%]
+  - equation $2$ (36pt, #ffffff) [55%,61% → 56%,63%]
+- text 36pt [58%,25% → 69%,29%]: the [[initial state|#80b9ff]]
+- text 36pt [58%,60% → 89%,64%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `g23-6532.svg` [57%,70% → 77%,90%]
+- image `test-6405.svg` [57%,35% → 77%,55%]
+- group [60%,41% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,41%]
+  - line #ffffff [60%,44% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,44%]
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,53% → 47%,63%]
+- text 36pt [17%,46% → 35%,50%]: Trajectory Distribution
+- line #ff48cf [5%,54% → 30%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [53%,24% → 57%,31%]
+  - line #ffffff [53%,24% → 57%,31%]
+  - equation $1$ (36pt, #ffffff) [55%,26% → 55%,28%]
+- group [54%,59% → 57%,66%]
+  - line #ffffff [54%,59% → 57%,66%]
+  - equation $2$ (36pt, #ffffff) [55%,61% → 56%,63%]
+- text 36pt [58%,25% → 69%,29%]: the [[initial state|#80b9ff]]
+- text 36pt [58%,60% → 89%,64%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `g23-6532.svg` [57%,70% → 77%,90%]
+- image `test-6405.svg` [57%,35% → 77%,55%]
+- group [60%,41% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,41%]
+  - line #ffffff [60%,44% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,44%]
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,53% → 47%,63%]
+- text 36pt [17%,46% → 35%,50%]: Trajectory Distribution
+- line #ff48cf [5%,56% → 45%,58%]
+- arrow #ff48cf [45%,43% → 60%,56%]
+- **Builds:** click 1: arrow #ff48cf — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 41
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [53%,24% → 57%,31%]
+  - line #ffffff [53%,24% → 57%,31%]
+  - equation $1$ (36pt, #ffffff) [55%,26% → 55%,28%]
+- group [54%,59% → 57%,66%]
+  - line #ffffff [54%,59% → 57%,66%]
+  - equation $2$ (36pt, #ffffff) [55%,61% → 56%,63%]
+- text 36pt [58%,25% → 69%,29%]: the [[initial state|#80b9ff]]
+- text 36pt [58%,60% → 89%,64%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `g23-6532.svg` [57%,70% → 77%,90%]
+- image `test-6405.svg` [57%,35% → 77%,55%]
+- group [60%,41% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,41%]
+  - line #ffffff [60%,44% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,44%]
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,53% → 47%,63%]
+- text 36pt [17%,46% → 35%,50%]: Trajectory Distribution
+- line #ff48cf [5%,58% → 45%,60%]
+- arrow #ff48cf [46%,59% → 70%,76%]
+- **Builds:** click 1: arrow #ff48cf — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 42
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [53%,24% → 57%,31%]
+  - line #ffffff [53%,24% → 57%,31%]
+  - equation $1$ (36pt, #ffffff) [55%,26% → 55%,28%]
+- group [54%,59% → 57%,66%]
+  - line #ffffff [54%,59% → 57%,66%]
+  - equation $2$ (36pt, #ffffff) [55%,61% → 56%,63%]
+- text 36pt [58%,25% → 69%,29%]: the [[initial state|#80b9ff]]
+- text 36pt [58%,60% → 89%,64%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `g23-6532.svg` [57%,70% → 77%,90%]
+- image `test-6405.svg` [57%,35% → 77%,55%]
+- group [60%,41% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,41%]
+  - line #ffffff [60%,44% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,44%]
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,53% → 47%,63%]
+- text 36pt [17%,46% → 35%,50%]: Trajectory Distribution
+- line #ff48cf [5%,60% → 33%,63%]
+- arrow #ff48cf [33%,61% → 77%,87%]
+- **Builds:** click 1: arrow #ff48cf — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 43
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- group [53%,24% → 57%,31%]
+  - line #ffffff [53%,24% → 57%,31%]
+  - equation $1$ (36pt, #ffffff) [55%,26% → 55%,28%]
+- group [54%,59% → 57%,66%]
+  - line #ffffff [54%,59% → 57%,66%]
+  - equation $2$ (36pt, #ffffff) [55%,61% → 56%,63%]
+- text 36pt [58%,25% → 69%,29%]: the [[initial state|#80b9ff]]
+- text 36pt [58%,60% → 89%,64%]: the [[disturbance|#80b9ff]] applied at each [[time step|#80b9ff]]
+- image `g23-6532.svg` [57%,70% → 77%,90%]
+- image `test-6405.svg` [57%,35% → 77%,55%]
+- group [60%,41% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,41%]
+  - line #ffffff [60%,44% → 60%,44%]
+  - line #ffffff [60%,41% → 60%,44%]
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,37% → 47%,47%]
+- text 36pt [17%,29% → 35%,34%]: Trajectory Distribution
+- text 36pt [9%,53% → 42%,58%]: Sampling a Trajectory Distribution: Rollout
+- image `val-page-86-6699.svg` (cropped: show only 7–63% across and 70–85% down of the image) [7%,61% → 44%,81%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 44
+- text 36pt [12%,7% → 88%,11%]: We can use the idea of disturbances to explicitly define the [[distribution over trajectories|#80b9ff]] for a system.
+- text 36pt [12%,13% → 59%,17%]: There are two sources of randomness in a trajectory rollout:
+- image `val-page-85-6364.svg` (cropped: show only 11–68% across and 73–80% down of the image) [4%,37% → 47%,47%]
+- text 36pt [17%,29% → 35%,34%]: Trajectory Distribution
+- text 36pt [9%,53% → 42%,58%]: Sampling a Trajectory Distribution: Rollout
+- image `val-page-86-6699.svg` (cropped: show only 7–63% across and 70–85% down of the image) [7%,61% → 44%,81%]
+- image `test-6385.svg` [48%,34% → 95%,81%]
+- image `test-6405.svg` [48%,34% → 95%,81%]
+- image `test-6438.svg` [48%,34% → 95%,81%]
+- image `test-6444.svg` [48%,34% → 95%,81%]
+- image `test-6474.svg` [48%,34% → 95%,81%]
+- image `test-6480.svg` [48%,34% → 95%,81%]
+- image `test-6485.svg` [48%,34% → 95%,81%]
+- image `g01-6491.svg` [48%,34% → 95%,81%]
+- image `g02-6492.svg` [48%,34% → 95%,81%]
+- image `g03-6500.svg` [48%,34% → 95%,81%]
+- image `g04-6501.svg` [48%,34% → 95%,81%]
+- image `g05-6494.svg` [48%,34% → 95%,81%]
+- image `g06-6514.svg` [48%,34% → 95%,81%]
+- image `g07-6509.svg` [48%,34% → 95%,81%]
+- image `g08-6507.svg` [48%,34% → 95%,81%]
+- image `g09-6503.svg` [48%,34% → 95%,81%]
+- image `g10-6541.svg` [48%,34% → 95%,81%]
+- image `g11-6542.svg` [48%,34% → 95%,81%]
+- image `g12-6553.svg` [48%,34% → 95%,81%]
+- image `g13-6538.svg` [48%,34% → 95%,81%]
+- image `g14-6535.svg` [48%,34% → 95%,81%]
+- image `g15-6531.svg` [48%,34% → 95%,81%]
+- image `g16-6496.svg` [48%,34% → 95%,81%]
+- image `g17-6498.svg` [48%,34% → 95%,81%]
+- image `g18-6530.svg` [48%,34% → 95%,81%]
+- image `g19-6527.svg` [48%,34% → 95%,81%]
+- image `g20-6533.svg` [48%,34% → 95%,81%]
+- image `g21-6524.svg` [48%,34% → 95%,81%]
+- image `g22-6539.svg` [48%,34% → 95%,81%]
+- image `g23-6532.svg` [48%,34% → 95%,81%]
+- image `g24-6529.svg` [48%,34% → 95%,81%]
+- image `g25-6521.svg` [48%,34% → 95%,81%]
+- image `g26-6552.svg` [48%,34% → 95%,81%]
+- image `g27-6549.svg` [48%,34% → 95%,81%]
+- image `g28-6540.svg` [48%,34% → 95%,81%]
+- image `g29-6534.svg` [48%,34% → 95%,81%]
+- image `g30-6519.svg` [48%,34% → 95%,81%]
+- image `g31-6518.svg` [48%,34% → 95%,81%]
+- image `g32-6526.svg` [48%,34% → 95%,81%]
+- image `g33-6523.svg` [48%,34% → 95%,81%]
+- image `g34-6528.svg` [48%,34% → 95%,81%]
+- image `g35-6522.svg` [48%,34% → 95%,81%]
+- image `g36-6515.svg` [48%,34% → 95%,81%]
+- image `g37-6512.svg` [48%,34% → 95%,81%]
+- image `g38-6511.svg` [48%,34% → 95%,81%]
+- image `g39-6508.svg` [48%,34% → 95%,81%]
+- **Builds:** click 1: image `test-6444.svg` — appears; click 2: image `test-6444.svg` — appears; with previous: image `test-6474.svg` — appears; click 3: image `test-6480.svg` — appears; click 4: image `test-6485.svg` — appears; click 5: image `g01-6491.svg` — appears; then (0.1 s later): image `g02-6492.svg` — appears; then (0.1 s later): image `g03-6500.svg` — appears; then (0.1 s later): image `g04-6501.svg` — appears; then (0.1 s later): image `g05-6494.svg` — appears; then (0.1 s later): image `g06-6514.svg` — appears; then (0.1 s later): image `g07-6509.svg` — appears; then (0.1 s later): image `g08-6507.svg` — appears; then (0.1 s later): image `g09-6503.svg` — appears; then (0.1 s later): image `g10-6541.svg` — appears; then (0.1 s later): image `g11-6542.svg` — appears; then (0.1 s later): image `g12-6553.svg` — appears; then (0.1 s later): image `g13-6538.svg` — appears; then (0.1 s later): image `g14-6535.svg` — appears; then (0.1 s later): image `g15-6531.svg` — appears; then (0.1 s later): image `g16-6496.svg` — appears; then (0.1 s later): image `g17-6498.svg` — appears; then (0.1 s later): image `g18-6530.svg` — appears; then (0.1 s later): image `g19-6527.svg` — appears; then (0.1 s later): image `g20-6533.svg` — appears; then (0.1 s later): image `g21-6524.svg` — appears; then (0.1 s later): image `g22-6539.svg` — appears; then (0.1 s later): image `g23-6532.svg` — appears; then (0.1 s later): image `g24-6529.svg` — appears; then (0.1 s later): image `g25-6521.svg` — appears; then (0.1 s later): image `g26-6552.svg` — appears; then (0.1 s later): image `g27-6549.svg` — appears; then (0.1 s later): image `g28-6540.svg` — appears; then (0.1 s later): image `g29-6534.svg` — appears; then (0.1 s later): image `g30-6519.svg` — appears; then (0.1 s later): image `g31-6518.svg` — appears; then (0.1 s later): image `g32-6526.svg` — appears; then (0.1 s later): image `g33-6523.svg` — appears; then (0.1 s later): image `g34-6528.svg` — appears; then (0.1 s later): image `g35-6522.svg` — appears; then (0.1 s later): image `g36-6515.svg` — appears; then (0.1 s later): image `g37-6512.svg` — appears; then (0.1 s later): image `g38-6511.svg` — appears; then (0.1 s later): image `g39-6508.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 45
+- text 36pt [9%,29% → 42%,34%]: Sampling a Trajectory Distribution: Rollout
+- image `val-page-86-6699.svg` (cropped: show only 7–63% across and 70–85% down of the image) [7%,37% → 44%,57%]
+- image `val-page-11.svg` (cropped: show only 11–40% across and 23–38% down of the image) [64%,37% → 83%,57%]
+- text 36pt [60%,29% → 87%,34%]: Rollout from Introduction Lecture
+- text 36pt [48%,15% → 52%,20%]: Wait.. didn’t we already see a different algorithm for rollout in the intro lecture?
+- text 100pt [13%,11% → 18%,24%]: 🤔
+- arrow #ffffff [73%,57% → 73%,64%]
+- text 36pt [61%,65% → 86%,81%]: This version of rollout is implicitly sampling from the [[nominal trajectory distribution|#80b9ff]] / for the system.
+- text 36pt [61%,73% → 86%,77%]: [[nominal trajectory distribution|#80b9ff]]
+- **Builds:** click 1: arrow #ffffff — draws in; with previous: text 36pt — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 46
+- text 36pt [6%,48% → 30%,52%]: [[nominal trajectory distribution|#80b9ff]]
+- text 36pt [4%,48% → 7%,52%]: The
+- text 36pt [29%,48% → 96%,52%]: represents the distribution over trajectories that we expect to observe in the [[real world|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 47
+- text 36pt [6%,7% → 30%,11%]: [[nominal trajectory distribution|#80b9ff]]
+- text 36pt [4%,7% → 7%,11%]: The
+- text 36pt [29%,7% → 96%,11%]: represents the distribution over trajectories that we expect to observe in the [[real world|#80b9ff]].
+- image `val-page-86-6825.svg` (cropped: show only 7–64% across and 21–45% down of the image) [7%,36% → 47%,71%]
+- rounded box (outline) [49%,37% → 93%,56%]
+- text 36pt [51%,39% → 92%,54%]: {Note:|#000000} / • {Every |#000000}{agent|#0072fe}{ has a nominal |#000000}{$D_a$|#0072fe}{ implemented|#000000} / • {Every |#000000}{environment|#0072fe}{ has a nominal |#000000}{$P_s$|#0072fe}{ and |#000000}{$D_s$|#0072fe}{ implemented|#000000} / • {Every |#000000}{sensor|#0072fe}{ has a nominal |#000000}{$D_o$|#0072fe}{ implemented|#000000}
+- rounded box (outline) [49%,59% → 93%,70%]
+- text 32pt [50%,61% → 92%,68%]: {The nominal models come from data/expert knowledge from the real world (see chapter 2!).|#000000}
+- text on a #80b9ff filled box 32pt [40%,82% → 60%,90%]: {Pluto Notebook!|#000000}
+- text 36pt [48%,77% → 52%,81%]: Pendulum example:
+- **Builds:** click 1: rounded box (outline) — appears; with previous: text 36pt — appears; click 2: rounded box (outline) — appears; with previous: text 32pt — appears; click 3: text 36pt — appears; with previous: text on a #80b9ff filled box 32pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 48
+- text 36pt [9%,29% → 42%,34%]: Sampling a Trajectory Distribution: Rollout
+- image `val-page-86-6699.svg` (cropped: show only 7–63% across and 70–85% down of the image) [7%,37% → 44%,57%]
+- image `val-page-11.svg` (cropped: show only 11–40% across and 23–38% down of the image) [64%,37% → 83%,57%]
+- text 36pt [60%,29% → 87%,34%]: Rollout from Introduction Lecture
+- text 36pt [48%,15% → 52%,20%]: Wait.. didn’t we already see a different algorithm for rollout in the intro lecture?
+- text 100pt [13%,11% → 18%,24%]: 🤔
+- arrow #ffffff [73%,57% → 73%,64%]
+- text 36pt [61%,65% → 86%,81%]: This version of rollout is implicitly sampling from the [[nominal trajectory distribution|#80b9ff]] / for the system.
+- text 36pt [61%,73% → 86%,77%]: [[nominal trajectory distribution|#80b9ff]]
+- image `val-page-86-6825.svg` (cropped: show only 7–64% across and 21–45% down of the image) [6%,60% → 45%,95%]
+- arrow #ff48cf [21%,39% → 26%,60%]
+- equation $=$ (124pt, #ffffff) [52%,45% → 56%,48%]
+- **Builds:** click 1: arrow #ff48cf — draws in; click 2: equation $=$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 49
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-8%,30% → 68%,35%]: DIRECT SAMPLING
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: DISTURBANCES
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: FUZZING
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: OPTIMIZATION
+- text 36pt [40%,57% → 75%,62%]: {This is what I would start with for Project 1!|#80b9ff}
+- arrow #80b9ff [31%,60% → 40%,60%]
+- **Builds:** click 1: arrow #80b9ff — draws in; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 50
+- heading (spaced caps) 36pt [45%,6% → 119%,10%]: FUZZING
+- image `val-page-86-6699.svg` (cropped: show only 7–63% across and 70–85% down of the image) [32%,29% → 68%,49%]
+- text 36pt [25%,18% → 75%,27%]: Input a [[different (not nominal) trajectory distribution|#80b9ff]] into this function — one that is more likely to cause [[failures|#80b9ff]].
+- text 36pt [20%,54% → 80%,63%]: e.g. for the inverted pendulum, we could use a disturbance distribution with [[higher perception noise|#80b9ff]] than the nominal distribution
+- text on a #80b9ff filled box 32pt [40%,67% → 60%,75%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text 36pt — com.apple.iWork.Keynote.Blur; click 2: text on a #80b9ff filled box 32pt — com.apple.iWork.Keynote.Blur
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 51
+- text 36pt [6%,9% → 25%,13%]: Another happy note…
+- image `pasted-image-7710.png` (cropped: show only 0–100% across and 39–100% down of the image) [46%,24% → 86%,82%]
+- image `pasted-image-7719.png` [15%,27% → 37%,79%]
+
+## Slide 52
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-8%,30% → 68%,35%]: DIRECT SAMPLING
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: DISTURBANCES
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: FUZZING
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: OPTIMIZATION
+- text 36pt [48%,69% → 95%,77%]: {This (and/or what we learn next week) is what I would do to improve my leaderboard score.|#80b9ff}
+- arrow #80b9ff [38%,73% → 47%,73%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 53
+- heading (spaced caps) 36pt [41%,41% → 114%,46%]: OPTIMIZATION
+- text 36pt [48%,48% → 52%,52%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 54
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- image `g39-6508.svg` [3%,33% → 51%,80%]
+- vector icon `shape-f5771acf.svg` [9%,50% → 10%,51%]
+- vector icon `shape-6de84706.svg` [9%,50% → 10%,51%]
+- **Builds:** click 1: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-f5771acf.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 55
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- image `g39-6508.svg` [3%,33% → 51%,80%]
+- equation $s$ (47pt, #ffffff) [57%,39% → 58%,41%]
+- vector icon `shape-f5771acf.svg` [57%,42% → 58%,44%]
+- vector icon `shape-6de84706.svg` [9%,48% → 10%,49%]
+- vector icon `shape-6de84706.svg` [10%,50% → 11%,51%]
+- vector icon `shape-6de84706.svg` [11%,48% → 12%,49%]
+- vector icon `shape-6de84706.svg` [12%,50% → 13%,52%]
+- vector icon `shape-6de84706.svg` [13%,52% → 14%,54%]
+- vector icon `shape-6de84706.svg` [14%,50% → 15%,51%]
+- vector icon `shape-6de84706.svg` [15%,51% → 16%,52%]
+- vector icon `shape-6de84706.svg` [16%,52% → 17%,53%]
+- vector icon `shape-6de84706.svg` [17%,49% → 18%,51%]
+- vector icon `shape-6de84706.svg` [18%,50% → 19%,52%]
+- vector icon `shape-6de84706.svg` [19%,51% → 20%,53%]
+- vector icon `shape-6de84706.svg` [20%,53% → 21%,55%]
+- vector icon `shape-6de84706.svg` [21%,49% → 22%,51%]
+- vector icon `shape-6de84706.svg` [22%,51% → 23%,52%]
+- vector icon `shape-6de84706.svg` [24%,47% → 25%,48%]
+- vector icon `shape-6de84706.svg` [23%,51% → 24%,53%]
+- vector icon `shape-6de84706.svg` [25%,51% → 26%,53%]
+- vector icon `shape-6de84706.svg` [26%,49% → 27%,51%]
+- vector icon `shape-6de84706.svg` [27%,48% → 28%,49%]
+- vector icon `shape-6de84706.svg` [28%,51% → 29%,52%]
+- vector icon `shape-6de84706.svg` [29%,50% → 30%,52%]
+- vector icon `shape-6de84706.svg` [30%,52% → 31%,54%]
+- vector icon `shape-6de84706.svg` [31%,51% → 32%,52%]
+- vector icon `shape-6de84706.svg` [32%,50% → 33%,51%]
+- vector icon `shape-6de84706.svg` [33%,52% → 34%,53%]
+- vector icon `shape-6de84706.svg` [34%,52% → 35%,53%]
+- vector icon `shape-6de84706.svg` [35%,50% → 36%,52%]
+- vector icon `shape-6de84706.svg` [36%,52% → 37%,54%]
+- vector icon `shape-6de84706.svg` [37%,49% → 38%,50%]
+- vector icon `shape-6de84706.svg` [38%,50% → 39%,52%]
+- vector icon `shape-6de84706.svg` [39%,48% → 40%,50%]
+- vector icon `shape-6de84706.svg` [40%,51% → 41%,52%]
+- vector icon `shape-6de84706.svg` [41%,50% → 42%,51%]
+- vector icon `shape-6de84706.svg` [42%,50% → 43%,51%]
+- vector icon `shape-6de84706.svg` [43%,51% → 44%,52%]
+- vector icon `shape-6de84706.svg` [44%,50% → 45%,52%]
+- vector icon `shape-6de84706.svg` [45%,49% → 46%,51%]
+- vector icon `shape-6de84706.svg` [46%,52% → 47%,54%]
+- vector icon `shape-6de84706.svg` [47%,49% → 48%,51%]
+- vector icon `shape-6de84706.svg` [48%,51% → 49%,53%]
+- vector icon `shape-6de84706.svg` [49%,48% → 50%,49%]
+- **Builds:** click 1: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark; with previous: vector icon `shape-6de84706.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 56
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- image `g39-6508.svg` [3%,33% → 51%,80%]
+- equation $s$ (47pt, #ffffff) [57%,39% → 58%,41%]
+- vector icon `shape-f5771acf.svg` [57%,42% → 58%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 63%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 63%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [59%,42% → 60%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 63%,44%]
+- vector icon `shape-7b2901dd.svg` [61%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [61%,42% → 62%,44%]
+- vector icon `shape-6de84706.svg` [60%,42% → 61%,44%]
+- vector icon `shape-6de84706.svg` [62%,42% → 63%,44%]
+- equation $, \ \ \mathbf x$ (47pt, #ffffff) [58%,39% → 61%,42%]
+- text 36pt [56%,33% → 63%,37%]: minimize
+- equation $f(\tau)$ (36pt, #ffffff) [66%,34% → 69%,36%]
+- text 36pt [56%,48% → 63%,52%]: subject to
+- equation $\tau = \text{Rollout}(s, \mathbf x)$ (36pt, #ffffff) [67%,49% → 79%,51%]
+- arrow #80b9ff [61%,18% → 61%,38%]
+- arrow #80b9ff [46%,19% → 57%,38%]
+- text 30pt [75%,31% → 97%,39%]: {objective function that represents  “closeness to failure”|#80b9ff}
+- arrow #80b9ff [70%,35% → 74%,35%]
+- **Builds:** click 1: text 36pt — appears; click 2: equation $f(\tau)$ — appears; click 3: text 36pt — appears; with previous: equation $\tau = \text{Rollout}(s, \mathbf x)$ — appears; click 4: arrow #80b9ff — draws in; click 5: arrow #80b9ff — draws in; click 6: text 30pt — appears; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 57
+- image `val-page-88.svg` (cropped: show only 7–48% across and 31–57% down of the image) [57%,50% → 88%,90%]
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- image `g39-6508.svg` [3%,33% → 51%,80%]
+- equation $s$ (47pt, #ffffff) [57%,30% → 58%,32%]
+- vector icon `shape-f5771acf.svg` [57%,34% → 58%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 63%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 63%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [59%,34% → 60%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 63%,35%]
+- vector icon `shape-7b2901dd.svg` [61%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [61%,34% → 62%,35%]
+- vector icon `shape-6de84706.svg` [60%,34% → 61%,35%]
+- vector icon `shape-6de84706.svg` [62%,34% → 63%,35%]
+- equation $, \ \ \mathbf x$ (47pt, #ffffff) [58%,30% → 61%,33%]
+- text 36pt [56%,24% → 63%,28%]: minimize
+- equation $f(\tau)$ (36pt, #ffffff) [66%,25% → 69%,28%]
+- text 36pt [55%,39% → 63%,43%]: subject to
+- equation $\tau = \text{Rollout}(s, \mathbf x)$ (36pt, #ffffff) [67%,40% → 79%,43%]
+- arrow #80b9ff [73%,43% → 73%,66%]
+- text 30pt [75%,22% → 97%,30%]: {objective function that represents  “closeness to failure”|#80b9ff}
+- arrow #80b9ff [70%,26% → 74%,26%]
+- **Builds:** then: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 58
+- rounded box (outline) [19%,32% → 78%,43%]
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- equation $f(\tau)$ (36pt, #ffffff) [48%,25% → 51%,28%]
+- text 30pt [57%,22% → 79%,30%]: {objective function that represents  “closeness to failure”|#80b9ff}
+- arrow #80b9ff [52%,26% → 56%,26%]
+- text 36pt [21%,35% → 82%,40%]: What metric from chapter 3 reminds you of “[[closeness to failure|#80b9ff]]”?
+- text 100pt [20%,31% → 26%,44%]: 🤔
+- text 36pt [45%,43% → 55%,47%]: Robustness!
+- text 30pt [28%,47% → 72%,51%]: {(or if our optimization algorithm needs gradients, smooth robustness)|#d6d6d6}
+- equation $f(\tau)$ (36pt, #ffffff) [48%,25% → 51%,28%]
+- **Builds:** click 1: text 100pt — fades up from dark; then: text 36pt — wipes in; with previous: rounded box (outline) — fades up from dark; click 2: text 36pt — slides in; click 3: text 30pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 59
+- rounded box (outline) [19%,32% → 78%,43%]
+- rounded box (outline) [24%,66% → 76%,76%]
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- equation $f(\tau)$ (36pt, #ffffff) [48%,25% → 51%,28%]
+- text 30pt [57%,22% → 79%,30%]: {objective function that represents  “closeness to failure”|#80b9ff}
+- arrow #80b9ff [52%,26% → 56%,26%]
+- text 36pt [21%,35% → 82%,40%]: What metric from chapter 3 reminds you of “[[closeness to failure|#80b9ff]]”?
+- text 100pt [20%,31% → 26%,44%]: 🤔
+- text 36pt [45%,43% → 55%,47%]: Robustness!
+- text 30pt [28%,47% → 72%,51%]: {(or if our optimization algorithm needs gradients, smooth robustness)|#d6d6d6}
+- equation $f(\tau)$ (36pt, #ffffff) [45%,56% → 48%,59%]
+- equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [48%,56% → 55%,59%]
+- text 36pt [31%,69% → 75%,74%]: What might be a problem with the robustness objective?
+- text 100pt [25%,65% → 30%,78%]: 🤔
+- line #ffffff [44%,53% → 56%,61%]
+- text 36pt [45%,78% → 55%,82%]: We might get very unlikely trajectories…
+- **Builds:** click 1: line #ffffff — com.apple.iWork.Keynote.LineDraw; click 2: text 100pt — fades up from dark; then: text 36pt — wipes in; with previous: rounded box (outline) — fades up from dark; click 3: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 60
+- rounded box (outline) [24%,21% → 76%,32%]
+- heading (spaced caps) 36pt [41%,7% → 114%,11%]: OPTIMIZATION
+- text 36pt [9%,13% → 91%,17%]: Our goal is to systematically search over [[initial states|#80b9ff]] and [[sequences of disturbances|#80b9ff]] to find failure trajectories.
+- text 36pt [31%,24% → 75%,29%]: What might be a problem with the robustness objective?
+- text 100pt [25%,20% → 30%,33%]: 🤔
+- text 36pt [34%,33% → 66%,38%]: We might get very unlikely trajectories…
+- image `g01-7492.svg` [21%,41% → 73%,93%]
+- image `g02-7493.svg` [21%,41% → 73%,93%]
+- image `g03-7494.svg` [21%,41% → 73%,93%]
+- image `g04-7510.svg` [21%,41% → 73%,93%]
+- image `g05-7519.svg` [21%,41% → 73%,93%]
+- image `g06-7500.svg` [21%,41% → 73%,93%]
+- image `g07-7505.svg` [21%,41% → 73%,93%]
+- image `g08-7523.svg` [21%,41% → 73%,93%]
+- image `g09-7506.svg` [21%,41% → 73%,93%]
+- image `g10-7528.svg` [21%,41% → 73%,93%]
+- image `g11-7514.svg` [21%,41% → 73%,93%]
+- image `g12-7498.svg` [21%,41% → 73%,93%]
+- image `g13-7499.svg` [21%,41% → 73%,93%]
+- image `g14-7529.svg` [21%,41% → 73%,93%]
+- image `g15-7512.svg` [21%,41% → 73%,93%]
+- image `g16-7504.svg` [21%,41% → 73%,93%]
+- image `g17-7525.svg` [21%,41% → 73%,93%]
+- image `g18-7511.svg` [21%,41% → 73%,93%]
+- image `g19-7554.svg` [21%,41% → 73%,93%]
+- image `g20-7542.svg` [21%,41% → 73%,93%]
+- image `g21-7547.svg` [21%,41% → 73%,93%]
+- image `g22-7549.svg` [21%,41% → 73%,93%]
+- image `g23-7543.svg` [21%,41% → 73%,93%]
+- image `g24-7545.svg` [21%,41% → 73%,93%]
+- image `g25-7538.svg` [21%,41% → 73%,93%]
+- image `g26-7527.svg` [21%,41% → 73%,93%]
+- image `g27-7533.svg` [21%,41% → 73%,93%]
+- image `g28-7537.svg` [21%,41% → 73%,93%]
+- image `g29-7530.svg` [21%,41% → 73%,93%]
+- image `g30-7532.svg` [21%,41% → 73%,93%]
+- image `g31-7546.svg` [21%,41% → 73%,93%]
+- image `g32-7541.svg` [21%,41% → 73%,93%]
+- image `g33-7531.svg` [21%,41% → 73%,93%]
+- image `g34-7517.svg` [21%,41% → 73%,93%]
+- image `g35-7539.svg` [21%,41% → 73%,93%]
+- image `g36-7540.svg` [21%,41% → 73%,93%]
+- image `g37-7536.svg` [21%,41% → 73%,93%]
+- image `g38-7534.svg` [21%,41% → 73%,93%]
+- image `g39-7535.svg` [21%,41% → 73%,93%]
+- image `g40.svg` [21%,41% → 73%,93%]
+- image `g41.svg` [21%,41% → 73%,93%]
+- group [74%,57% → 96%,68%]
+  - rounded box (outline) [74%,57% → 96%,68%]
+  - text 32pt [79%,59% → 94%,66%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [75%,59% → 78%,66%]
+- **Builds:** click 1: image `g02-7493.svg` — appears; then (0.1 s later): image `g03-7494.svg` — appears; then (0.1 s later): image `g04-7510.svg` — appears; then (0.1 s later): image `g05-7519.svg` — appears; then (0.1 s later): image `g06-7500.svg` — appears; then (0.1 s later): image `g07-7505.svg` — appears; then (0.1 s later): image `g08-7523.svg` — appears; then (0.1 s later): image `g09-7506.svg` — appears; then (0.1 s later): image `g10-7528.svg` — appears; then (0.1 s later): image `g11-7514.svg` — appears; then (0.1 s later): image `g12-7498.svg` — appears; then (0.1 s later): image `g13-7499.svg` — appears; then (0.1 s later): image `g14-7529.svg` — appears; then (0.1 s later): image `g15-7512.svg` — appears; then (0.1 s later): image `g16-7504.svg` — appears; then (0.1 s later): image `g17-7525.svg` — appears; then (0.1 s later): image `g18-7511.svg` — appears; then (0.1 s later): image `g19-7554.svg` — appears; then (0.1 s later): image `g20-7542.svg` — appears; then (0.1 s later): image `g21-7547.svg` — appears; then (0.1 s later): image `g22-7549.svg` — appears; then (0.1 s later): image `g23-7543.svg` — appears; then (0.1 s later): image `g24-7545.svg` — appears; then (0.1 s later): image `g25-7538.svg` — appears; then (0.1 s later): image `g26-7527.svg` — appears; then (0.1 s later): image `g27-7533.svg` — appears; then (0.1 s later): image `g28-7537.svg` — appears; then (0.1 s later): image `g29-7530.svg` — appears; then (0.1 s later): image `g30-7532.svg` — appears; then (0.1 s later): image `g31-7546.svg` — appears; then (0.1 s later): image `g32-7541.svg` — appears; then (0.1 s later): image `g33-7531.svg` — appears; then (0.1 s later): image `g34-7517.svg` — appears; then (0.1 s later): image `g35-7539.svg` — appears; then (0.1 s later): image `g36-7540.svg` — appears; then (0.1 s later): image `g37-7536.svg` — appears; then (0.1 s later): image `g38-7534.svg` — appears; then (0.1 s later): image `g39-7535.svg` — appears; then (0.1 s later): image `g40.svg` — appears; then (0.1 s later): image `g41.svg` — appears; click 2: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 61
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- group [29%,47% → 30%,54%]
+  - line #ffffff [29%,47% → 30%,47%]
+  - line #ffffff [29%,54% → 30%,54%]
+  - line #ffffff [30%,47% → 30%,54%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- line #ffffff [29%,49% → 30%,49%]
+- equation $p(s_1)$ (36pt, #ffffff) [31%,48% → 34%,51%]
+- **Builds:** click 1: text 36pt — slides in; click 2: image `test-6385.svg` — appears; click 3: equation $p(\tau) =$ — appears; click 4: group — appears; click 5: image `test-6405.svg` — appears; click 6: line #ffffff — draws in; then: equation $p(s_1)$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 62
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+
+## Slide 63
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- line #80b9ff [29%,48% → 31%,48%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- image `test-6438.svg` [23%,32% → 70%,79%]
+- image `test-6444.svg` [23%,32% → 70%,79%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [32%,46% → 43%,50%]
+- **Builds:** click 1: line #80b9ff — draws in; then: equation $D(x_1 \mid s_1, a_1, o_1)$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 64
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- image `test-6438.svg` [23%,32% → 70%,79%]
+- image `test-6444.svg` [23%,32% → 70%,79%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [16%,86% → 27%,89%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 65
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- group [29%,47% → 30%,54%]
+  - line #ffffff [29%,47% → 30%,47%]
+  - line #ffffff [29%,54% → 30%,54%]
+  - line #ffffff [30%,47% → 30%,54%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- line #ffffff [29%,49% → 30%,49%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- image `test-6438.svg` [23%,32% → 70%,79%]
+- image `test-6444.svg` [23%,32% → 70%,79%]
+- image `test-6474.svg` [23%,32% → 70%,79%]
+- image `test-6480.svg` [23%,32% → 70%,79%]
+- image `test-6485.svg` [23%,32% → 70%,79%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [16%,86% → 27%,89%]
+- equation $D(x_2 \mid s_2, a_2, o_2)$ (36pt, #80b9ff) [33%,47% → 45%,50%]
+- line #80b9ff [30%,49% → 32%,49%]
+- **Builds:** click 1: line #80b9ff — draws in; then: equation $D(x_2 \mid s_2, a_2, o_2)$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 66
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- group [29%,47% → 30%,54%]
+  - line #ffffff [29%,47% → 30%,47%]
+  - line #ffffff [29%,54% → 30%,54%]
+  - line #ffffff [30%,47% → 30%,54%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- line #ffffff [29%,49% → 30%,49%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- image `test-6438.svg` [23%,32% → 70%,79%]
+- image `test-6444.svg` [23%,32% → 70%,79%]
+- image `test-6474.svg` [23%,32% → 70%,79%]
+- image `test-6480.svg` [23%,32% → 70%,79%]
+- image `test-6485.svg` [23%,32% → 70%,79%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [16%,86% → 27%,89%]
+- equation $D(x_2 \mid s_2, a_2, o_2)$ (36pt, #80b9ff) [28%,86% → 39%,89%]
+
+## Slide 67
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- group [29%,47% → 30%,54%]
+  - line #ffffff [29%,47% → 30%,47%]
+  - line #ffffff [29%,54% → 30%,54%]
+  - line #ffffff [30%,47% → 30%,54%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- equation $p(\tau) =$ (36pt, #ffffff) [6%,86% → 12%,89%]
+- line #ffffff [29%,49% → 30%,49%]
+- equation $p(s_1)$ (36pt, #ffffff) [12%,86% → 15%,89%]
+- image `test-6385.svg` [23%,32% → 70%,79%]
+- image `test-6405.svg` [23%,32% → 70%,79%]
+- image `test-6438.svg` [23%,32% → 70%,79%]
+- image `test-6444.svg` [23%,32% → 70%,79%]
+- image `test-6474.svg` [23%,32% → 70%,79%]
+- image `test-6480.svg` [23%,32% → 70%,79%]
+- image `test-6485.svg` [23%,32% → 70%,79%]
+- image `g01-6491.svg` [23%,32% → 70%,79%]
+- image `g02-6492.svg` [23%,32% → 70%,79%]
+- image `g03-6500.svg` [23%,32% → 70%,79%]
+- image `g04-6501.svg` [23%,32% → 70%,79%]
+- image `g05-6494.svg` [23%,32% → 70%,79%]
+- image `g06-6514.svg` [23%,32% → 70%,79%]
+- image `g07-6509.svg` [23%,32% → 70%,79%]
+- image `g08-6507.svg` [23%,32% → 70%,79%]
+- image `g09-6503.svg` [23%,32% → 70%,79%]
+- image `g10-6541.svg` [23%,32% → 70%,79%]
+- image `g11-6542.svg` [23%,32% → 70%,79%]
+- image `g12-6553.svg` [23%,32% → 70%,79%]
+- image `g13-6538.svg` [23%,32% → 70%,79%]
+- image `g14-6535.svg` [23%,32% → 70%,79%]
+- image `g15-6531.svg` [23%,32% → 70%,79%]
+- image `g16-6496.svg` [23%,32% → 70%,79%]
+- image `g17-6498.svg` [23%,32% → 70%,79%]
+- image `g18-6530.svg` [23%,32% → 70%,79%]
+- image `g19-6527.svg` [23%,32% → 70%,79%]
+- image `g20-6533.svg` [23%,32% → 70%,79%]
+- image `g21-6524.svg` [23%,32% → 70%,79%]
+- image `g22-6539.svg` [23%,32% → 70%,79%]
+- image `g23-6532.svg` [23%,32% → 70%,79%]
+- image `g24-6529.svg` [23%,32% → 70%,79%]
+- image `g25-6521.svg` [23%,32% → 70%,79%]
+- image `g26-6552.svg` [23%,32% → 70%,79%]
+- image `g27-6549.svg` [23%,32% → 70%,79%]
+- image `g28-6540.svg` [23%,32% → 70%,79%]
+- image `g29-6534.svg` [23%,32% → 70%,79%]
+- image `g30-6519.svg` [23%,32% → 70%,79%]
+- image `g31-6518.svg` [23%,32% → 70%,79%]
+- image `g32-6526.svg` [23%,32% → 70%,79%]
+- image `g33-6523.svg` [23%,32% → 70%,79%]
+- image `g34-6528.svg` [23%,32% → 70%,79%]
+- image `g35-6522.svg` [23%,32% → 70%,79%]
+- image `g36-6515.svg` [23%,32% → 70%,79%]
+- image `g37-6512.svg` [23%,32% → 70%,79%]
+- image `g38-6511.svg` [23%,32% → 70%,79%]
+- image `g39-6508.svg` [23%,32% → 70%,79%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [16%,86% → 27%,89%]
+- equation $D(x_2 \mid s_2, a_2, o_2)$ (36pt, #80b9ff) [28%,86% → 39%,89%]
+- equation $\ldots$ (36pt, #80b9ff) [40%,87% → 42%,88%]
+- equation $D(x_d \mid s_d, a_d, o_d)$ (36pt, #80b9ff) [43%,86% → 54%,89%]
+- line #ffffff [5%,83% → 56%,92%]
+- **Builds:** click 1: image `g01-6491.svg` — appears; then (0.1 s later): image `g02-6492.svg` — appears; then (0.1 s later): image `g03-6500.svg` — appears; then (0.1 s later): image `g04-6501.svg` — appears; then (0.1 s later): image `g05-6494.svg` — appears; then (0.1 s later): image `g06-6514.svg` — appears; then (0.1 s later): image `g07-6509.svg` — appears; then (0.1 s later): image `g08-6507.svg` — appears; then (0.1 s later): image `g09-6503.svg` — appears; then (0.1 s later): image `g10-6541.svg` — appears; then (0.1 s later): image `g11-6542.svg` — appears; then (0.1 s later): image `g12-6553.svg` — appears; then (0.1 s later): image `g13-6538.svg` — appears; then (0.1 s later): image `g14-6535.svg` — appears; then (0.1 s later): image `g15-6531.svg` — appears; then (0.1 s later): image `g16-6496.svg` — appears; then (0.1 s later): image `g17-6498.svg` — appears; then (0.1 s later): image `g18-6530.svg` — appears; then (0.1 s later): image `g19-6527.svg` — appears; then: equation $\ldots$ — appears; then (0.1 s later): image `g20-6533.svg` — appears; then (0.1 s later): image `g21-6524.svg` — appears; then (0.1 s later): image `g22-6539.svg` — appears; then (0.1 s later): image `g23-6532.svg` — appears; then (0.1 s later): image `g24-6529.svg` — appears; then (0.1 s later): image `g25-6521.svg` — appears; then (0.1 s later): image `g26-6552.svg` — appears; then (0.1 s later): image `g27-6549.svg` — appears; then (0.1 s later): image `g28-6540.svg` — appears; then (0.1 s later): image `g29-6534.svg` — appears; then (0.1 s later): image `g30-6519.svg` — appears; then (0.1 s later): image `g31-6518.svg` — appears; then (0.1 s later): image `g32-6526.svg` — appears; then (0.1 s later): image `g33-6523.svg` — appears; then (0.1 s later): image `g34-6528.svg` — appears; then (0.1 s later): image `g35-6522.svg` — appears; then (0.1 s later): image `g36-6515.svg` — appears; then (0.1 s later): image `g37-6512.svg` — appears; then (0.1 s later): image `g38-6511.svg` — appears; then (0.1 s later): image `g39-6508.svg` — appears; then: equation $D(x_d \mid s_d, a_d, o_d)$ — appears; click 2: line #ffffff — com.apple.iWork.Keynote.LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 68
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [7%,24% → 93%,29%]: The likelihood of the trajectory is the likelihood of the [[initial state|#80b9ff]] and all [[disturbances|#80b9ff]] in the trajectory occurring.
+- text 36pt [30%,18% → 70%,22%]: How do we evaluate the likelihood of a trajectory?
+- equation $p(\tau) =$ (36pt, #ffffff) [26%,86% → 32%,89%]
+- equation $p(s_1)$ (36pt, #ffffff) [31%,86% → 35%,89%]
+- equation $D(x_1 \mid s_1, a_1, o_1)$ (36pt, #80b9ff) [36%,86% → 47%,89%]
+- equation $D(x_2 \mid s_2, a_2, o_2)$ (36pt, #80b9ff) [48%,86% → 59%,89%]
+- equation $\ldots$ (36pt, #80b9ff) [60%,87% → 61%,87%]
+- equation $D(x_d \mid s_d, a_d, o_d)$ (36pt, #80b9ff) [62%,86% → 74%,89%]
+- line #ffffff [24%,83% → 76%,92%]
+- image `val-page-90.svg` (cropped: show only 7–65% across and 61–84% down of the image) [28%,43% → 72%,77%]
+- equation $D(x \mid s, a, o) = D_a(x_a \mid o) D_s(x_s \mid s, a) D_o(x_o \mid s)$ (36pt, #ffffff) [33%,34% → 67%,37%]
+- shape (outline) [14%,60% → 29%,87%]
+- shape (outline) [22%,35% → 33%,44%]
+- equation $\log$ (36pt, #ff48cf) [18%,38% → 21%,41%]
+- equation $\log$ (36pt, #ff48cf) [10%,72% → 13%,75%]
+- **Builds:** click 1: shape (outline) — draws in; with previous (0.4 s later): equation $\log$ — appears; click 2: shape (outline) — draws in; with previous (0.4 s later): equation $\log$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 69
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [44%,19% → 56%,24%]: New Objective:
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (56pt, #ffffff) [34%,32% → 66%,45%]
+- line #ffffff [32%,29% → 68%,47%]
+- group [22%,52% → 60%,63%]
+  - text 36pt [28%,53% → 49%,57%]: The trajectory $\tau$ is a failure.
+  - text 36pt [28%,58% → 60%,63%]: {“Make the failure trajectory more likely”|#80b9ff}
+  - group [22%,52% → 26%,58%]
+    - line #ffffff [22%,52% → 26%,58%]
+    - equation $1$ (36pt, #ffffff) [24%,54% → 24%,56%]
+- group [22%,67% → 60%,80%]
+  - text 36pt [28%,68% → 68%,73%]: The trajectory $\tau$ is not a failure.
+  - group [22%,67% → 26%,74%]
+    - line #ffffff [22%,67% → 26%,74%]
+    - equation $2$ (36pt, #ffffff) [24%,70% → 24%,72%]
+  - text 36pt [28%,75% → 60%,80%]: {“Move the trajectory closer to a failure”|#80b9ff}
+- **Builds:** click 1: group — slides in; click 2: group — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 70
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [58%,22% → 71%,27%]: New Objective:
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (34pt, #ffffff) [55%,30% → 74%,38%]
+- line #ffffff [53%,28% → 76%,39%]
+- equation $f(\tau)$ (36pt, #ffffff) [31%,32% → 34%,35%]
+- equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [34%,32% → 41%,35%]
+- line #ffffff [30%,28% → 42%,39%]
+- text 36pt [28%,22% → 43%,27%]: Previous Objective:
+- image `g01-8188.svg` [25%,44% → 46%,81%]
+- image `g02-8189.svg` [25%,44% → 46%,81%]
+- image `g03-8191.svg` [25%,44% → 46%,81%]
+- image `g04-8193.svg` [25%,44% → 46%,81%]
+- image `g05-8205.svg` [25%,44% → 46%,81%]
+- image `g06-8190.svg` [25%,44% → 46%,81%]
+- image `g07-8200.svg` [25%,44% → 46%,81%]
+- image `g08-8195.svg` [25%,44% → 46%,81%]
+- image `g09-8201.svg` [25%,44% → 46%,81%]
+- image `g10-8194.svg` [25%,44% → 46%,81%]
+- image `g11-8192.svg` [25%,44% → 46%,81%]
+- image `g12-8204.svg` [25%,44% → 46%,81%]
+- image `g13-8203.svg` [25%,44% → 46%,81%]
+- image `g14-8199.svg` [25%,44% → 46%,81%]
+- image `g15-8198.svg` [25%,44% → 46%,81%]
+- image `g16-8225.svg` [54%,44% → 75%,81%]
+- image `g17-8232.svg` [54%,44% → 75%,81%]
+- image `g18-8226.svg` [54%,44% → 75%,81%]
+- image `g19-8227.svg` [54%,44% → 75%,81%]
+- image `g20-8228.svg` [54%,44% → 75%,81%]
+- image `g21-8230.svg` [54%,44% → 75%,81%]
+- image `g22-8231.svg` [54%,44% → 75%,81%]
+- image `g23-8244.svg` [54%,44% → 75%,81%]
+- image `g24-8229.svg` [54%,44% → 75%,81%]
+- image `g25-8243.svg` [54%,44% → 75%,81%]
+- image `g26-8240.svg` [54%,44% → 75%,81%]
+- image `g27-8246.svg` [54%,44% → 75%,81%]
+- image `g28-8233.svg` [54%,44% → 75%,81%]
+- image `g29-8245.svg` [54%,44% → 75%,81%]
+- image `g30-8234.svg` [54%,44% → 75%,81%]
+- **Builds:** click 1: image `g02-8189.svg` — appears; then: image `g17-8232.svg` — appears; then (0.15 s later): image `g03-8191.svg` — appears; then: image `g18-8226.svg` — appears; then (0.15 s later): image `g04-8193.svg` — appears; then: image `g19-8227.svg` — appears; then (0.15 s later): image `g05-8205.svg` — appears; then: image `g20-8228.svg` — appears; then (0.15 s later): image `g06-8190.svg` — appears; then: image `g21-8230.svg` — appears; then (0.15 s later): image `g07-8200.svg` — appears; then: image `g22-8231.svg` — appears; then (0.15 s later): image `g08-8195.svg` — appears; then: image `g23-8244.svg` — appears; then (0.15 s later): image `g09-8201.svg` — appears; then: image `g24-8229.svg` — appears; then (0.15 s later): image `g10-8194.svg` — appears; then: image `g25-8243.svg` — appears; then (0.15 s later): image `g11-8192.svg` — appears; then: image `g26-8240.svg` — appears; then (0.15 s later): image `g12-8204.svg` — appears; then: image `g27-8246.svg` — appears; then (0.15 s later): image `g13-8203.svg` — appears; then: image `g28-8233.svg` — appears; then (0.15 s later): image `g14-8199.svg` — appears; then: image `g29-8245.svg` — appears; then (0.15 s later): image `g15-8198.svg` — appears; then: image `g30-8234.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 71
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- text 36pt [8%,64% → 20%,68%]: New Objective:
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (34pt, #ffffff) [4%,72% → 24%,79%]
+- line #ffffff [3%,70% → 25%,81%]
+- equation $f(\tau)$ (36pt, #ffffff) [9%,41% → 12%,44%]
+- equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [12%,41% → 19%,44%]
+- line #ffffff [8%,37% → 20%,48%]
+- text 36pt [6%,31% → 21%,36%]: Previous Objective:
+- image `g01-8188.svg` [28%,26% → 43%,53%]
+- image `g05-8205.svg` [45%,26% → 61%,53%]
+- image `g08-8195.svg` [63%,26% → 78%,53%]
+- image `g15-8198.svg` [80%,26% → 96%,53%]
+- image `g16-8225.svg` [28%,61% → 43%,88%]
+- image `g20-8228.svg` [45%,61% → 61%,88%]
+- image `g23-8244.svg` [63%,61% → 78%,88%]
+- image `g30-8234.svg` [80%,61% → 96%,88%]
+- text 36pt [31%,19% → 40%,24%]: Iteration 1
+- text 36pt [49%,19% → 57%,24%]: Iteration 5
+- text 36pt [66%,19% → 75%,24%]: Iteration 8
+- text 36pt [84%,19% → 92%,24%]: Converged
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 72
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (56pt, #ffffff) [11%,46% → 43%,58%]
+- line #ffffff [9%,43% → 45%,61%]
+- rounded box (outline) [54%,23% → 93%,92%]
+- text 32pt [57%,25% → 90%,29%]: {Some Notes on This Objective|#000000}
+- text 36pt [55%,31% → 92%,39%]: {We must ensure that failures never have a higher objective value than successes.|#000000}
+- vector icon `shape-ab75ec20.svg` [56%,41% → 60%,49%]
+- text 36pt [61%,41% → 91%,50%]: {No problem! $\rho(\tau, \psi) \geq 0$ for successes and $-p(\tau)$ is always less than $0$.|#000000}
+- line #000000 [55%,50% → 92%,50%]
+- line #000000 [55%,41% → 92%,41%]
+- text 36pt [53%,53% → 95%,62%]: {…but $p(\tau)$ is often really small causing numerical stability issues|#000000}
+- text 36pt [55%,63% → 92%,75%]: {…so we want to use log-likelihood instead, but this breaks the first requirement because log likelihood can be less than $0$!|#000000}
+- text 36pt [55%,76% → 92%,88%]: {…so sometimes a different objective works better in practice (see next slide)|#000000}
+- **Builds:** click 1: rounded box (outline) — fades up from dark; with previous: text 32pt — fades up from dark; click 2: text 36pt — appears; click 3: line #000000 — draws in; with previous: line #000000 — draws in; then: text 36pt — appears; with previous: vector icon `shape-ab75ec20.svg` — appears; click 4: text 36pt — appears; click 5: text 36pt — appears; click 6: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 73
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (56pt, #ffffff) [8%,45% → 40%,58%]
+- shape (outline) [43%,48% → 53%,55%]
+- equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (53pt, #ffffff) [58%,49% → 87%,54%]
+- line #ffffff [57%,46% → 89%,57%]
+- text 36pt [57%,39% → 86%,44%]: {*tends to be more numerically stable|#80b9ff}
+- text 36pt [65%,68% → 74%,73%]: {robustness|#80b9ff}
+- arrow #80b9ff [69%,55% → 69%,68%]
+- **Builds:** click 1: line #ffffff — com.apple.iWork.Keynote.LineDraw; with previous: text 36pt — fades up from dark; click 2: text 36pt — appears; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 74
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (56pt, #ffffff) [8%,45% → 40%,58%]
+- shape (outline) [43%,48% → 53%,55%]
+- equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (53pt, #ffffff) [58%,49% → 87%,54%]
+- line #ffffff [57%,46% → 89%,57%]
+- text 36pt [57%,39% → 86%,44%]: {*tends to be more numerically stable|#80b9ff}
+- text 36pt [77%,68% → 86%,73%]: {log likelihood|#80b9ff}
+- arrow #80b9ff [82%,55% → 82%,67%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 75
+- group [39%,3% → 61%,14%]
+  - rounded box (outline) [39%,3% → 61%,14%]
+  - text 32pt [44%,5% → 60%,12%]: {incorporate likelihood into the objective|#000000}
+  - vector icon `shape-5ef932f7.svg` [40%,5% → 43%,12%]
+- equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (56pt, #ffffff) [8%,45% → 40%,58%]
+- shape (outline) [43%,48% → 53%,55%]
+- equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (53pt, #ffffff) [58%,49% → 87%,54%]
+- line #ffffff [57%,46% → 89%,57%]
+- text 36pt [57%,39% → 86%,44%]: {*tends to be more numerically stable|#80b9ff}
+- text 36pt [70%,68% → 83%,77%]: {weighting parameter|#80b9ff}
+- arrow #80b9ff [76%,55% → 76%,67%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 76
+- text 36pt [50%,50% → 50%,50%]: Then we optimize!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 77
+- text 36pt [42%,6% → 57%,11%]: Then we optimize!
+- image `val-page-93.svg` (cropped: show only 11–63% across and 13–27% down of the image) [28%,38% → 72%,62%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 78
+- text 36pt [42%,6% → 57%,11%]: Then we optimize!
+- image `val-page-93.svg` (cropped: show only 11–63% across and 13–27% down of the image) [47%,37% → 91%,61%]
+- rounded box (outline) [7%,15% → 40%,53%]
+- arrow #ff48cf [40%,35% → 51%,42%]
+- rounded box (outline) [7%,57% → 40%,95%]
+- text 36pt [19%,73% → 28%,78%]: Optimizer
+- arrow #ff48cf [40%,45% → 51%,75%]
+- text 36pt [16%,32% → 31%,36%]: Objective Function
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 79
+- text 36pt [42%,6% → 57%,11%]: Then we optimize!
+- image `val-page-93.svg` (cropped: show only 11–63% across and 13–27% down of the image) [47%,37% → 91%,61%]
+- rounded box (outline) [7%,15% → 40%,53%]
+- group [11%,25% → 25%,30%]
+  - group [11%,25% → 14%,30%]
+    - line #ffffff [11%,25% → 14%,30%]
+    - equation $1$ (29pt, #ffffff) [12%,27% → 13%,28%]
+  - equation $f(\tau)$ (36pt, #ffffff) [15%,26% → 18%,29%]
+  - equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [18%,26% → 25%,29%]
+- group [11%,32% → 36%,40%]
+  - group [11%,34% → 14%,39%]
+    - line #ffffff [11%,34% → 14%,39%]
+    - equation $2$ (29pt, #ffffff) [12%,35% → 13%,37%]
+  - equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (36pt, #ffffff) [15%,32% → 36%,40%]
+- group [11%,42% → 35%,48%]
+  - group [11%,42% → 14%,48%]
+    - line #ffffff [11%,42% → 14%,48%]
+    - equation $3$ (29pt, #ffffff) [12%,44% → 13%,46%]
+  - equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (36pt, #ffffff) [15%,43% → 35%,46%]
+- arrow #ff48cf [40%,35% → 51%,42%]
+- rounded box (outline) [7%,57% → 40%,95%]
+- text 36pt [19%,73% → 27%,78%]: Optimizer
+- arrow #ff48cf [40%,45% → 51%,75%]
+- text 36pt [20%,17% → 27%,21%]: Objective Function
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 80
+- rounded box (outline) [7%,57% → 40%,95%]
+- group [15%,71% → 32%,85%]
+  - line #ffffff [19%,71% → 28%,85%]
+  - arrow #ffffff [28%,78% → 32%,78%]
+  - arrow #ffffff [15%,81% → 19%,81%]
+  - arrow #ffffff [15%,76% → 19%,76%]
+- text 36pt [42%,6% → 57%,11%]: Then we optimize!
+- image `val-page-93.svg` (cropped: show only 11–63% across and 13–27% down of the image) [47%,37% → 91%,61%]
+- rounded box (outline) [7%,15% → 40%,53%]
+- text 36pt [20%,17% → 27%,21%]: Objective Function
+- group [11%,25% → 25%,30%]
+  - group [11%,25% → 14%,30%]
+    - line #ffffff [11%,25% → 14%,30%]
+    - equation $1$ (29pt, #ffffff) [12%,27% → 13%,28%]
+  - equation $f(\tau)$ (36pt, #ffffff) [15%,26% → 18%,29%]
+  - equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [18%,26% → 25%,29%]
+- group [11%,32% → 36%,40%]
+  - group [11%,34% → 14%,39%]
+    - line #ffffff [11%,34% → 14%,39%]
+    - equation $2$ (29pt, #ffffff) [12%,35% → 13%,37%]
+  - equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (36pt, #ffffff) [15%,32% → 36%,40%]
+- group [11%,42% → 35%,48%]
+  - group [11%,42% → 14%,48%]
+    - line #ffffff [11%,42% → 14%,48%]
+    - equation $3$ (29pt, #ffffff) [12%,44% → 13%,46%]
+  - equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (36pt, #ffffff) [15%,43% → 35%,46%]
+- arrow #ff48cf [40%,35% → 51%,42%]
+- text 36pt [19%,60% → 27%,64%]: Optimizer
+- arrow #ff48cf [40%,45% → 51%,75%]
+- text 24pt [18%,75% → 30%,81%]: Optimization Algorithm
+- text 24pt [9%,74% → 15%,77%]: Objective
+- text 24pt [9%,79% → 15%,83%]: Parameters
+- text 24pt [32%,76% → 38%,80%]: Optimum
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 81
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [26%,27% → 45%,32%]: Local Descent Methods
+- text 36pt [56%,27% → 71%,32%]: Population Methods
+- arrow #ffffff [37%,14% → 50%,27%]
+- arrow #ffffff [50%,14% → 62%,27%]
+- group [21%,18% → 48%,62%]
+  - group [23%,18% → 48%,62%]
+    - line #ffffff [24%,34% → 47%,53%]
+    - shape (outline) [23%,18% → 48%,62%]
+  - equation $x$ (36pt, #ffffff) [35%,54% → 36%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [21%,41% → 23%,44%]
+- vector icon `shape-673db8d8.svg` [31%,42% → 32%,43%]
+- shape (outline) [32%,42% → 35%,50%]
+- vector icon `shape-673db8d8.svg` [35%,49% → 36%,51%]
+- **Builds:** click 1: equation $s, \mathbf x$ — slides in; click 2: arrow #ffffff — draws in; with previous: arrow #ffffff — draws in; then: text 36pt — appears; with previous: text 36pt — appears; click 3: group — slides in; click 4: vector icon `shape-673db8d8.svg` — fades up from dark; click 5: shape (outline) — draws in; with previous: vector icon `shape-673db8d8.svg` — dims; then: vector icon `shape-673db8d8.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 82
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [26%,27% → 45%,32%]: Local Descent Methods
+- text 36pt [56%,27% → 71%,32%]: Population Methods
+- arrow #ffffff [37%,14% → 50%,27%]
+- arrow #ffffff [50%,14% → 62%,27%]
+- group [21%,18% → 48%,62%]
+  - group [23%,18% → 48%,62%]
+    - line #ffffff [24%,34% → 47%,53%]
+    - shape (outline) [23%,18% → 48%,62%]
+  - equation $x$ (36pt, #ffffff) [35%,54% → 36%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [21%,41% → 23%,44%]
+- vector icon `shape-673db8d8.svg` [41%,38% → 42%,40%]
+- shape (outline) [41%,38% → 44%,44%]
+- vector icon `shape-673db8d8.svg` [44%,43% → 45%,45%]
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- group [49%,18% → 76%,62%]
+  - group [51%,18% → 76%,62%]
+    - line #ffffff [52%,34% → 76%,53%]
+    - shape (outline) [51%,18% → 76%,62%]
+  - equation $x$ (36pt, #ffffff) [63%,54% → 64%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [49%,41% → 51%,44%]
+- vector icon `shape-673db8d8.svg` [62%,49% → 63%,50%]
+- vector icon `shape-673db8d8.svg` [57%,44% → 58%,46%]
+- vector icon `shape-673db8d8.svg` [68%,38% → 69%,39%]
+- vector icon `shape-673db8d8.svg` [66%,41% → 67%,43%]
+- vector icon `shape-673db8d8.svg` [61%,44% → 62%,46%]
+- vector icon `shape-673db8d8.svg` [74%,41% → 75%,43%]
+- **Builds:** click 1: shape (outline) — draws in; with previous: vector icon `shape-673db8d8.svg` — dims; then: vector icon `shape-673db8d8.svg` — appears; click 2: group — slides in; click 3: vector icon `shape-673db8d8.svg` — fades up from dark; with previous: vector icon `shape-673db8d8.svg` — fades up from dark; with previous: vector icon `shape-673db8d8.svg` — fades up from dark; with previous: vector icon `shape-673db8d8.svg` — fades up from dark; with previous: vector icon `shape-673db8d8.svg` — fades up from dark; with previous: vector icon `shape-673db8d8.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 83
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [26%,27% → 45%,32%]: Local Descent Methods
+- text 36pt [56%,27% → 71%,32%]: Population Methods
+- arrow #ffffff [37%,14% → 50%,27%]
+- arrow #ffffff [50%,14% → 62%,27%]
+- group [21%,18% → 48%,62%]
+  - group [23%,18% → 48%,62%]
+    - line #ffffff [24%,34% → 47%,53%]
+    - shape (outline) [23%,18% → 48%,62%]
+  - equation $x$ (36pt, #ffffff) [35%,54% → 36%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [21%,41% → 23%,44%]
+- vector icon `shape-673db8d8.svg` [41%,38% → 42%,40%]
+- shape (outline) [41%,38% → 44%,44%]
+- vector icon `shape-673db8d8.svg` [44%,43% → 45%,45%]
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- group [49%,18% → 76%,62%]
+  - group [51%,18% → 76%,62%]
+    - line #ffffff [52%,34% → 76%,53%]
+    - shape (outline) [51%,18% → 76%,62%]
+  - equation $x$ (36pt, #ffffff) [63%,54% → 64%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [49%,41% → 51%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,51%]
+- vector icon `shape-673db8d8.svg` [55%,46% → 56%,48%]
+- vector icon `shape-673db8d8.svg` [72%,42% → 73%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,50%]
+- vector icon `shape-673db8d8.svg` [63%,49% → 64%,51%]
+- vector icon `shape-673db8d8.svg` [73%,42% → 74%,44%]
+- arrow #ffffff [30%,57% → 35%,63%]
+- text 24pt [24%,64% → 34%,69%]: first-order and second-order
+- text 24pt [36%,64% → 47%,69%]: zero-order / (direct methods)
+- group [23%,80% → 35%,87%]
+  - rounded box (outline) [23%,80% → 35%,87%]
+  - group [24%,81% → 27%,86%]
+    - vector icon `shape-42a0c819.svg` [24%,81% → 27%,86%]
+    - text 24pt [25%,82% → 26%,86%]: {!|#000000}
+  - text 24pt [26%,81% → 35%,87%]: gradients required!
+- arrow #ffffff [35%,57% → 41%,63%]
+- group [23%,70% → 35%,78%]
+  - rounded box (outline) [23%,70% → 35%,78%]
+  - text 24pt [23%,72% → 35%,76%]: e.g. gradient descent, ADAM, LBFGS
+- group [35%,70% → 47%,78%]
+  - rounded box (outline) [36%,70% → 47%,78%]
+  - text 24pt [35%,72% → 47%,76%]: e.g. Hooke-Jeeves, Nelder-Mead
+- group [35%,80% → 47%,87%]
+  - rounded box (outline) [35%,80% → 47%,87%]
+  - text 24pt [36%,81% → 46%,87%]: work for black-box systems!
+- **Builds:** click 1: arrow #ffffff — draws in; then: text 24pt — appears; click 2: group — slides in; click 3: group — slides in; click 4: arrow #ffffff — draws in; then: text 24pt — appears; click 5: group — slides in; click 6: group — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 84
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [41%,23% → 59%,27%]: Local Descent Methods
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- image `g01-9272.svg` [23%,32% → 70%,80%]
+- image `g02-9270.svg` [23%,32% → 70%,80%]
+- image `g03-9271.svg` [23%,32% → 70%,80%]
+- image `g04-9269.svg` [23%,32% → 70%,80%]
+- image `g05-9290.svg` [23%,32% → 70%,80%]
+- image `g06-9274.svg` [23%,32% → 70%,80%]
+- image `g07-9273.svg` [23%,32% → 70%,80%]
+- image `g08-9280.svg` [23%,32% → 70%,80%]
+- image `g09-9279.svg` [23%,32% → 70%,80%]
+- image `g10-9276.svg` [23%,32% → 70%,80%]
+- image `g11-9277.svg` [23%,32% → 70%,80%]
+- image `g12-9275.svg` [23%,32% → 70%,80%]
+- image `g13-9295.svg` [23%,32% → 70%,80%]
+- image `g14-9293.svg` [23%,32% → 70%,80%]
+- image `g15-9291.svg` [23%,32% → 70%,80%]
+- image `g16-9294.svg` [23%,32% → 70%,80%]
+- image `g17-9292.svg` [23%,32% → 70%,80%]
+- image `g18-9288.svg` [23%,32% → 70%,80%]
+- image `g19-9283.svg` [23%,32% → 70%,80%]
+- image `g20-9285.svg` [23%,32% → 70%,80%]
+- image `g21-9287.svg` [23%,32% → 70%,80%]
+- image `g22-9286.svg` [23%,32% → 70%,80%]
+- image `g23-9282.svg` [23%,32% → 70%,80%]
+- image `g24-9289.svg` [23%,32% → 70%,80%]
+- image `g25-9284.svg` [23%,32% → 70%,80%]
+- image `g26-9281.svg` [23%,32% → 70%,80%]
+- image `g27-9278.svg` [23%,32% → 70%,80%]
+- **Builds:** click 1: image `g02-9270.svg` — appears; click 2: image `g03-9271.svg` — appears; then (0.2 s later): image `g04-9269.svg` — appears; then (0.2 s later): image `g05-9290.svg` — appears; then (0.2 s later): image `g06-9274.svg` — appears; then (0.2 s later): image `g07-9273.svg` — appears; then (0.2 s later): image `g08-9280.svg` — appears; then (0.2 s later): image `g09-9279.svg` — appears; then (0.2 s later): image `g10-9276.svg` — appears; then (0.2 s later): image `g11-9277.svg` — appears; then (0.2 s later): image `g12-9275.svg` — appears; then (0.2 s later): image `g13-9295.svg` — appears; then (0.2 s later): image `g14-9293.svg` — appears; then (0.2 s later): image `g15-9291.svg` — appears; then (0.2 s later): image `g16-9294.svg` — appears; then (0.2 s later): image `g17-9292.svg` — appears; then (0.2 s later): image `g18-9288.svg` — appears; then (0.2 s later): image `g19-9283.svg` — appears; then (0.2 s later): image `g20-9285.svg` — appears; then (0.2 s later): image `g21-9287.svg` — appears; then (0.2 s later): image `g22-9286.svg` — appears; then (0.2 s later): image `g23-9282.svg` — appears; then (0.2 s later): image `g24-9289.svg` — appears; then (0.2 s later): image `g25-9284.svg` — appears; then (0.2 s later): image `g26-9281.svg` — appears; then (0.2 s later): image `g27-9278.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 85
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [26%,27% → 45%,32%]: Local Descent Methods
+- text 36pt [56%,27% → 71%,32%]: Population Methods
+- arrow #ffffff [37%,14% → 50%,27%]
+- arrow #ffffff [50%,14% → 62%,27%]
+- group [21%,18% → 48%,62%]
+  - group [23%,18% → 48%,62%]
+    - line #ffffff [24%,34% → 47%,53%]
+    - shape (outline) [23%,18% → 48%,62%]
+  - equation $x$ (36pt, #ffffff) [35%,54% → 36%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [21%,41% → 23%,44%]
+- vector icon `shape-673db8d8.svg` [41%,38% → 42%,40%]
+- shape (outline) [41%,38% → 44%,44%]
+- vector icon `shape-673db8d8.svg` [44%,43% → 45%,45%]
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- group [49%,18% → 76%,62%]
+  - group [51%,18% → 76%,62%]
+    - line #ffffff [52%,34% → 76%,53%]
+    - shape (outline) [51%,18% → 76%,62%]
+  - equation $x$ (36pt, #ffffff) [63%,54% → 64%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [49%,41% → 51%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,51%]
+- vector icon `shape-673db8d8.svg` [55%,46% → 56%,48%]
+- vector icon `shape-673db8d8.svg` [72%,42% → 73%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,50%]
+- vector icon `shape-673db8d8.svg` [63%,49% → 64%,51%]
+- vector icon `shape-673db8d8.svg` [73%,42% → 74%,44%]
+- arrow #ffffff [30%,57% → 35%,63%]
+- text 24pt [24%,64% → 34%,69%]: first-order and second-order
+- text 24pt [36%,64% → 47%,69%]: zero-order / (direct methods)
+- group [23%,80% → 35%,87%]
+  - rounded box (outline) [23%,80% → 35%,87%]
+  - group [24%,81% → 27%,86%]
+    - vector icon `shape-42a0c819.svg` [24%,81% → 27%,86%]
+    - text 24pt [25%,82% → 26%,86%]: {!|#000000}
+  - text 24pt [26%,81% → 35%,87%]: gradients required!
+- arrow #ffffff [35%,57% → 41%,63%]
+- group [23%,70% → 35%,78%]
+  - rounded box (outline) [23%,70% → 35%,78%]
+  - text 24pt [23%,72% → 35%,76%]: e.g. gradient descent, ADAM, LBFGS
+- group [35%,70% → 47%,78%]
+  - rounded box (outline) [36%,70% → 47%,78%]
+  - text 24pt [35%,72% → 47%,76%]: e.g. Hooke-Jeeves, Nelder-Mead
+- group [35%,80% → 47%,87%]
+  - rounded box (outline) [35%,80% → 47%,87%]
+  - text 24pt [36%,81% → 46%,87%]: work for black-box systems!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 86
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [42%,23% → 58%,27%]: Population Methods
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- image `g01-9346.svg` [23%,32% → 70%,80%]
+- image `g02-9344.svg` [23%,32% → 70%,80%]
+- image `g03-9345.svg` [23%,32% → 70%,80%]
+- image `g04-9352.svg` [23%,32% → 70%,80%]
+- image `g05-9343.svg` [23%,32% → 70%,80%]
+- image `g06-9347.svg` [23%,32% → 70%,80%]
+- image `g07-9349.svg` [23%,32% → 70%,80%]
+- image `g08-9348.svg` [23%,32% → 70%,80%]
+- image `g09-9350.svg` [23%,32% → 70%,80%]
+- image `g10-9351.svg` [23%,32% → 70%,80%]
+- **Builds:** click 1: image `g02-9344.svg` — appears; click 2: image `g03-9345.svg` — appears; then (0.33 s later): image `g04-9352.svg` — appears; then (0.33 s later): image `g05-9343.svg` — appears; then (0.33 s later): image `g06-9347.svg` — appears; then (0.33 s later): image `g07-9349.svg` — appears; then (0.33 s later): image `g08-9348.svg` — appears; then (0.33 s later): image `g09-9350.svg` — appears; then (0.33 s later): image `g10-9351.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 87
+- group [14%,4% → 86%,95%]
+  - line #ffffff [19%,4% → 81%,95%]
+  - arrow #ffffff [81%,47% → 86%,47%]
+  - arrow #ffffff [14%,40% → 19%,40%]
+  - arrow #ffffff [14%,56% → 19%,56%]
+- text 36pt [41%,-0% → 59%,18%]: Optimization Algorithm
+- text 36pt [1%,35% → 18%,45%]: Objective
+- text 36pt [-1%,51% → 19%,62%]: Parameters
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- equation $s, \mathbf x$ (55pt, #80b9ff) [7%,60% → 10%,63%]
+- text 36pt [26%,27% → 45%,32%]: Local Descent Methods
+- text 36pt [56%,27% → 71%,32%]: Population Methods
+- arrow #ffffff [37%,14% → 50%,27%]
+- arrow #ffffff [50%,14% → 62%,27%]
+- group [21%,18% → 48%,62%]
+  - group [23%,18% → 48%,62%]
+    - line #ffffff [24%,34% → 47%,53%]
+    - shape (outline) [23%,18% → 48%,62%]
+  - equation $x$ (36pt, #ffffff) [35%,54% → 36%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [21%,41% → 23%,44%]
+- vector icon `shape-673db8d8.svg` [41%,38% → 42%,40%]
+- shape (outline) [41%,38% → 44%,44%]
+- vector icon `shape-673db8d8.svg` [44%,43% → 45%,45%]
+- text 36pt [82%,42% → 99%,53%]: Optimum
+- group [49%,18% → 76%,62%]
+  - group [51%,18% → 76%,62%]
+    - line #ffffff [52%,34% → 76%,53%]
+    - shape (outline) [51%,18% → 76%,62%]
+  - equation $x$ (36pt, #ffffff) [63%,54% → 64%,55%]
+  - equation $f(x)$ (33pt, #ffffff) [49%,41% → 51%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,51%]
+- vector icon `shape-673db8d8.svg` [55%,46% → 56%,48%]
+- vector icon `shape-673db8d8.svg` [72%,42% → 73%,44%]
+- vector icon `shape-673db8d8.svg` [64%,49% → 65%,50%]
+- vector icon `shape-673db8d8.svg` [63%,49% → 64%,51%]
+- vector icon `shape-673db8d8.svg` [73%,42% → 74%,44%]
+- arrow #ffffff [30%,57% → 35%,63%]
+- text 24pt [24%,64% → 34%,69%]: first-order and second-order
+- text 24pt [36%,64% → 47%,69%]: zero-order / (direct methods)
+- group [23%,80% → 35%,87%]
+  - rounded box (outline) [23%,80% → 35%,87%]
+  - group [24%,81% → 27%,86%]
+    - vector icon `shape-42a0c819.svg` [24%,81% → 27%,86%]
+    - text 24pt [25%,82% → 26%,86%]: {!|#000000}
+  - text 24pt [26%,81% → 35%,87%]: gradients required!
+- arrow #ffffff [35%,57% → 41%,63%]
+- group [23%,70% → 35%,78%]
+  - rounded box (outline) [23%,70% → 35%,78%]
+  - text 24pt [23%,72% → 35%,76%]: e.g. gradient descent, ADAM, LBFGS
+- group [35%,70% → 47%,78%]
+  - rounded box (outline) [36%,70% → 47%,78%]
+  - text 24pt [35%,72% → 47%,76%]: e.g. Hooke-Jeeves, Nelder-Mead
+- group [35%,80% → 47%,87%]
+  - rounded box (outline) [35%,80% → 47%,87%]
+  - text 24pt [36%,81% → 46%,87%]: work for black-box systems!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 88
+- rounded box (outline) [7%,57% → 40%,95%]
+- group [15%,71% → 32%,85%]
+  - line #ffffff [19%,71% → 28%,85%]
+  - arrow #ffffff [28%,78% → 32%,78%]
+  - arrow #ffffff [15%,81% → 19%,81%]
+  - arrow #ffffff [15%,76% → 19%,76%]
+- text 36pt [42%,6% → 57%,11%]: Then we optimize!
+- image `val-page-93.svg` (cropped: show only 11–63% across and 13–27% down of the image) [47%,37% → 91%,61%]
+- rounded box (outline) [7%,15% → 40%,53%]
+- text 36pt [20%,17% → 27%,21%]: Objective Function
+- group [11%,25% → 25%,30%]
+  - group [11%,25% → 14%,30%]
+    - line #ffffff [11%,25% → 14%,30%]
+    - equation $1$ (29pt, #ffffff) [12%,27% → 13%,28%]
+  - equation $f(\tau)$ (36pt, #ffffff) [15%,26% → 18%,29%]
+  - equation $= \rho(\tau, \psi)$ (36pt, #ffffff) [18%,26% → 25%,29%]
+- group [11%,32% → 36%,40%]
+  - group [11%,34% → 14%,39%]
+    - line #ffffff [11%,34% → 14%,39%]
+    - equation $2$ (29pt, #ffffff) [12%,35% → 13%,37%]
+  - equation $f(\tau) = \begin{cases} -p(\tau) & \text{if } \tau \notin \psi \\ \rho(\tau, \psi) & \text{otherwise} \end{cases}$ (36pt, #ffffff) [15%,32% → 36%,40%]
+- group [11%,42% → 35%,48%]
+  - group [11%,42% → 14%,48%]
+    - line #ffffff [11%,42% → 14%,48%]
+    - equation $3$ (29pt, #ffffff) [12%,44% → 13%,46%]
+  - equation $f(\tau) = \rho(\tau, \psi) - \lambda \log (p(\tau))$ (36pt, #ffffff) [15%,43% → 35%,46%]
+- arrow #ff48cf [40%,35% → 51%,42%]
+- text 36pt [19%,60% → 27%,64%]: Optimizer
+- arrow #ff48cf [40%,45% → 51%,75%]
+- text 24pt [18%,75% → 30%,81%]: Optimization Algorithm
+- text 24pt [9%,74% → 15%,77%]: Objective
+- text 24pt [9%,79% → 15%,83%]: Parameters
+- text 24pt [32%,76% → 38%,80%]: Optimum
+- text 36pt [22%,87% → 25%,92%]: Take AA222/CS361 for more details!!!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 89
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #8dd0f5 filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #8dd0f5 filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [-8%,30% → 68%,35%]: DIRECT SAMPLING
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: DISTURBANCES
+- text on a #8dd0f5 filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: FUZZING
+- text on a #8dd0f5 filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: OPTIMIZATION
+- text 36pt [48%,69% → 95%,77%]: {This (and/or what we learn Thursday) is what I would do to improve my leaderboard score.|#80b9ff}
+- arrow #80b9ff [38%,73% → 47%,73%]
+- text 36pt [40%,57% → 75%,62%]: {This is what I would start with for Project 1!|#80b9ff}
+- arrow #80b9ff [31%,60% → 40%,60%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
