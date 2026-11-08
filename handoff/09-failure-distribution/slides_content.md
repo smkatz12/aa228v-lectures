@@ -1,0 +1,1952 @@
+# AA228V Lecture 09 — Failure Distribution: slide-by-slide content
+
+Extracted from the Keynote deck `09_Failure_Distribution.key` (84 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/09-failure-distribution/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/09-failure-distribution/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time, "(0.1 s later)" = after that pause).
+- A long run of images named `gNN-…` that appear one after another at the same spot, a fraction of a second apart, is a frame-by-frame animation: stack them and reveal them in turn with that timing (each frame stays as the next appears).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as Lecture 01: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Handwritten ink from past lectures (slide 53) has been left out on purpose; the deck's own ink layer handles writing.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#000000`, `#a9a9a9`, `#c3b8ff`, `#c0c0c0`, `#80cfb9`, `#ffa4e7`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- heading (spaced caps) 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 30pt [4%,73% → 43%,87%]: LECTURE 09: FAILURE DISTRIBUTION / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: WHAT IS THE FAILURE DISTRIBUTION?
+
+## Slide 3
+- equation $p(\tau)$ (119pt, #ffffff) [45%,45% → 55%,55%]
+- text 36pt [41%,38% → 59%,42%]: Trajectory Distribution
+- equation $p(\tau)$ (119pt, #ffffff) [45%,45% → 55%,55%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 4
+- equation $p(\tau)$ (119pt, #ffffff) [25%,47% → 35%,56%]
+- text 36pt [21%,39% → 39%,44%]: Trajectory Distribution
+- text 36pt [57%,39% → 73%,44%]: {Failure Distribution|#fab0ae}
+- equation $p(\tau \mid \tau \notin \psi )$ (119pt, #fab0ae) [51%,47% → 80%,56%]
+- equation $p(\tau)$ (119pt, #ffffff) [25%,47% → 35%,56%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 5
+- equation $p(\tau)$ (119pt, #fab0ae) [74%,56% → 84%,66%]
+- equation $p(\tau \mid \tau \notin \psi )$ (119pt, #fab0ae) [7%,43% → 36%,53%]
+- equation $p(\tau)$ (119pt, #fab0ae) [75%,35% → 85%,45%]
+- equation $=$ (119pt, #fab0ae) [39%,46% → 43%,49%]
+- line #fab0ae [46%,48% → 93%,48%]
+- equation $1\{\tau \notin \psi\}$ (119pt, #fab0ae) [52%,35% → 73%,45%]
+- equation $\int 1\{\tau \notin \psi\}$ (119pt, #fab0ae) [47%,50% → 73%,75%]
+- equation $d\tau$ (119pt, #fab0ae) [85%,56% → 91%,64%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 6
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+
+## Slide 7
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- **Builds:** then: text 36pt — fades up from dark; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- image `test-13828.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- line #fab0ae [70%,36% → 70%,75%]
+- vector icon `shape-ab1d7556.svg` [58%,36% → 70%,75%]
+- equation $\tau \notin \psi$ (36pt, #fab0ae) [62%,47% → 66%,50%]
+- equation $\tau \in \psi$ (36pt, #80cfb9) [73%,47% → 77%,50%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- **Builds:** click 1: line #fab0ae — draws in; then: vector icon `shape-ab1d7556.svg` — wipes in; with previous: equation $\tau \notin \psi$ — fades up from dark; with previous: equation $\tau \in \psi$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 9
+- image `test-13828.svg` [55%,22% → 90%,90%]
+- image `test-13854.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- equation $p(\tau)$ (46pt, #fab0ae) [62%,64% → 66%,68%]
+- equation $1\{\tau \notin \psi\}$ (46pt, #fab0ae) [53%,64% → 62%,68%]
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- image `test-13828.svg` [55%,22% → 90%,90%]
+- image `test-13854.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- image `test-13882.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- equation $p(\tau)$ (46pt, #fab0ae) [62%,64% → 66%,68%]
+- equation $1\{\tau \notin \psi\}$ (46pt, #fab0ae) [53%,64% → 62%,68%]
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- arrow #fab0ae [62%,74% → 67%,86%]
+- equation $p(\tau)$ (46pt, #fab0ae) [59%,88% → 63%,92%]
+- equation $\int 1\{\tau \notin \psi\}$ (46pt, #fab0ae) [48%,86% → 58%,95%]
+- equation $d\tau$ (46pt, #fab0ae) [63%,88% → 65%,91%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- image `test-13828.svg` [55%,22% → 90%,90%]
+- image `test-13854.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- image `test-13882.svg` [55%,22% → 90%,90%]
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- image `test-13940.svg` [55%,22% → 90%,90%]
+- equation $p(\tau \mid \tau \notin \psi )$ (48pt, #fab0ae) [71%,38% → 83%,42%]
+- vector icon `shape-d7620b62.svg` [19%,42% → 32%,47%]
+- text 42pt [12%,29% → 40%,34%]: gives us the [[shape|#80b9ff]]
+- arrow #ffffff [26%,35% → 26%,43%]
+- **Builds:** click 1: vector icon `shape-d7620b62.svg` — wipes in; with previous: text 42pt — fades up from dark; with previous: arrow #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- image `test-13828.svg` [55%,22% → 90%,90%]
+- image `test-13854.svg` [55%,22% → 90%,90%]
+- equation $p(\tau)$ (43pt, #ffffff) [78%,57% → 82%,60%]
+- image `test-13882.svg` [55%,22% → 90%,90%]
+- text 36pt [65%,12% → 81%,17%]: A SIMPLE EXAMPLE
+- line #ffffff [46%,20% → 46%,100%]
+- line #ffffff [40%,9% → 40%,100%]
+- line #ffffff [46%,20% → 100%,20%]
+- line #ffffff [40%,9% → 100%,9%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,50% → 31%,54%]
+- equation $p(\tau \mid \tau \notin \psi )$ (39pt, #fab0ae) [5%,46% → 15%,49%]
+- equation $p(\tau)$ (39pt, #fab0ae) [28%,44% → 31%,47%]
+- equation $=$ (39pt, #f5615c) [16%,47% → 17%,48%]
+- line #f5615c [18%,48% → 34%,48%]
+- equation $1\{\tau \notin \psi\}$ (39pt, #fab0ae) [20%,43% → 27%,47%]
+- equation $\int 1\{\tau \notin \psi\}$ (39pt, #fab0ae) [19%,48% → 27%,57%]
+- equation $=$ (39pt, #fab0ae) [16%,47% → 17%,48%]
+- line #fab0ae [18%,48% → 34%,48%]
+- equation $d\tau$ (39pt, #fab0ae) [31%,50% → 33%,53%]
+- image `test-13940.svg` [55%,22% → 90%,90%]
+- equation $p(\tau \mid \tau \notin \psi )$ (48pt, #fab0ae) [71%,38% → 83%,42%]
+- vector icon `shape-838e0d55.svg` [18%,47% → 34%,57%]
+- text 42pt [12%,66% → 40%,71%]: gives us the [[normalizing constant|#80b9ff]]
+- arrow #ffffff [26%,56% → 27%,65%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 13
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,51% → 71%,57%]
+- equation $p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [23%,42% → 41%,48%]
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,38% → 72%,44%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [51%,38% → 64%,44%]
+- equation $d\tau$ (74pt, #f5615c) [72%,51% → 76%,56%]
+- equation $p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [23%,42% → 41%,48%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [51%,38% → 64%,44%]
+- equation $d\tau$ (74pt, #fab0ae) [72%,51% → 76%,56%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- line #fab0ae [47%,45% → 77%,45%]
+- text 42pt [49%,71% → 77%,85%]: normally, this normalizing constant is [[very difficult|#80b9ff]] if not [[impossible|#80b9ff]] to compute
+- group [79%,74% → 84%,83%]
+  - vector icon `shape-8b523f55.svg` [79%,74% → 84%,83%]
+  - vector icon `shape-40a6bce0.svg` [80%,76% → 81%,78%]
+  - vector icon `shape-40a6bce0.svg` [82%,76% → 83%,78%]
+- image `noun-curve-919804.png` [80%,78% → 83%,83%]
+- equation $\int 1\{\tau \notin \psi\}$ (74pt, #fab0ae) [48%,47% → 64%,62%]
+- vector icon `shape-a0aa3a39.svg` [47%,46% → 77%,63%]
+- arrow #ffffff [63%,60% → 63%,71%]
+- **Builds:** click 1: vector icon `shape-a0aa3a39.svg` — wipes in; with previous: arrow #ffffff — draws in; with previous: group — fades up from dark; with previous: text 42pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 14
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,51% → 71%,57%]
+- equation $p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [23%,42% → 41%,48%]
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,38% → 72%,44%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [51%,38% → 64%,44%]
+- equation $d\tau$ (74pt, #f5615c) [72%,51% → 76%,56%]
+- equation $p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [23%,42% → 41%,48%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [51%,38% → 64%,44%]
+- equation $d\tau$ (74pt, #fab0ae) [72%,51% → 76%,56%]
+- equation $=$ (74pt, #fab0ae) [43%,44% → 45%,46%]
+- line #f5615c [47%,45% → 77%,45%]
+- line #fab0ae [47%,45% → 77%,45%]
+- equation $\int 1\{\tau \notin \psi\}$ (74pt, #fab0ae) [48%,47% → 64%,62%]
+- vector icon `shape-69f06953.svg` [50%,36% → 72%,44%]
+- text 42pt [48%,13% → 76%,23%]: We [[can compute|#80b9ff]] this!
+- group [74%,13% → 79%,23%]
+  - vector icon `shape-8b523f55.svg` [74%,13% → 79%,23%]
+  - vector icon `shape-40a6bce0.svg` [76%,16% → 77%,18%]
+  - vector icon `shape-40a6bce0.svg` [77%,16% → 78%,18%]
+- arrow #ffffff [62%,24% → 63%,34%]
+- image `noun-curve-919804.png` [75%,17% → 78%,22%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 15
+- equation $p(\tau)$ (74pt, #fab0ae) [54%,22% → 60%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [40%,22% → 53%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [40%,22% → 53%,28%]
+- vector icon `shape-69f06953.svg` [39%,20% → 61%,29%]
+- heading (spaced caps) 36pt [25%,11% → 101%,16%]: UNNORMALIZED PROBABILITY DENSITY
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- equation $\bar p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [26%,21% → 44%,27%]
+- equation $=$ (74pt, #fab0ae) [46%,24% → 48%,25%]
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,22% → 71%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [50%,22% → 64%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [50%,22% → 64%,28%]
+- group [26%,40% → 74%,68%]
+  - vector icon `shape-ecba88cf.svg` [29%,44% → 35%,64%]
+  - text 44pt [37%,42% → 72%,66%]: There are algorithms that allow us to [[draw samples|#80b9ff]] from an [[unnormalized |#80b9ff]]probability density! This way, we can [[implicitly represent|#80b9ff]] the failure distribution using [[samples|#80b9ff]].
+  - line #ffffff [26%,40% → 74%,68%]
+- vector icon `shape-69f06953.svg` [49%,20% → 72%,29%]
+- heading (spaced caps) 36pt [25%,11% → 101%,16%]: UNNORMALIZED PROBABILITY DENSITY
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- equation $\bar p(\tau \mid \tau \notin \psi )$ (74pt, #fab0ae) [26%,21% → 44%,27%]
+- equation $=$ (74pt, #fab0ae) [46%,24% → 48%,25%]
+- equation $p(\tau)$ (74pt, #fab0ae) [65%,22% → 71%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [50%,22% → 64%,28%]
+- equation $1\{\tau \notin \psi\}$ (74pt, #fab0ae) [50%,22% → 64%,28%]
+- group [10%,47% → 57%,75%]
+  - vector icon `shape-ecba88cf.svg` [12%,51% → 18%,71%]
+  - text 44pt [20%,49% → 56%,73%]: There are algorithms that allow us to [[draw samples|#80b9ff]] from an [[unnormalized |#80b9ff]]probability density! This way, we can [[implicitly represent|#80b9ff]] the failure distribution using [[samples|#80b9ff]].
+  - line #ffffff [10%,47% → 57%,75%]
+- vector icon `shape-69f06953.svg` [49%,20% → 72%,29%]
+- image `test-14057.svg` [63%,39% → 87%,82%]
+- heading (spaced caps) 36pt [25%,11% → 101%,16%]: UNNORMALIZED PROBABILITY DENSITY
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 18
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: UNNORMALIZED PROBABILITY DENSITY
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: REJECTION SAMPLING
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MARKOV CHAIN MONTE CARLO
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: TIPS TO SCALE THINGS UP
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- heading (spaced caps) 36pt [37%,48% → 110%,52%]: REJECTION SAMPLING
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 20
+- heading (spaced caps) 36pt [37%,47% → 110%,51%]: REJECTION SAMPLING
+- heading (spaced caps) 30pt [30%,51% → 70%,56%]: {DART BOARD ANALOGY|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 21
+- image `g01-14459.svg` [11%,13% → 89%,87%]
+- image `g02-14460.svg` [11%,13% → 89%,87%]
+- image `g03-14461.svg` [11%,13% → 89%,87%]
+- image `g04-14466.svg` [11%,13% → 89%,87%]
+- image `g05-14470.svg` [11%,13% → 89%,87%]
+- image `g06-14462.svg` [11%,13% → 89%,87%]
+- image `g07-14482.svg` [11%,13% → 89%,87%]
+- image `g08-14469.svg` [11%,13% → 89%,87%]
+- image `g09-14467.svg` [11%,13% → 89%,87%]
+- image `g10-14468.svg` [11%,13% → 89%,87%]
+- image `g11-14511.svg` [11%,13% → 89%,87%]
+- image `g12-14491.svg` [11%,13% → 89%,87%]
+- image `g13-14487.svg` [11%,13% → 89%,87%]
+- image `g14-14486.svg` [11%,13% → 89%,87%]
+- image `g15-14478.svg` [11%,13% → 89%,87%]
+- image `g16-14479.svg` [11%,13% → 89%,87%]
+- image `g17-14485.svg` [11%,13% → 89%,87%]
+- image `g18-14476.svg` [11%,13% → 89%,87%]
+- image `g19-14509.svg` [11%,13% → 89%,87%]
+- image `g20-14508.svg` [11%,13% → 89%,87%]
+- image `g21-14507.svg` [11%,13% → 89%,87%]
+- image `g22-14510.svg` [11%,13% → 89%,87%]
+- image `g23-14488.svg` [11%,13% → 89%,87%]
+- image `g24-14483.svg` [11%,13% → 89%,87%]
+- image `g25-14484.svg` [11%,13% → 89%,87%]
+- image `g26-14489.svg` [11%,13% → 89%,87%]
+- image `g27-14490.svg` [11%,13% → 89%,87%]
+- image `g28-14506.svg` [11%,13% → 89%,87%]
+- image `g29-14480.svg` [11%,13% → 89%,87%]
+- image `g30-14477.svg` [11%,13% → 89%,87%]
+- **Builds:** click 1: image `g02-14460.svg` — appears; then (0.05 s later): image `g03-14461.svg` — appears; then (0.05 s later): image `g04-14466.svg` — appears; then (0.05 s later): image `g05-14470.svg` — appears; then (0.05 s later): image `g06-14462.svg` — appears; then (0.05 s later): image `g07-14482.svg` — appears; then (0.05 s later): image `g08-14469.svg` — appears; then (0.05 s later): image `g09-14467.svg` — appears; then (0.05 s later): image `g10-14468.svg` — appears; then (0.05 s later): image `g11-14511.svg` — appears; then (0.05 s later): image `g12-14491.svg` — appears; then (0.05 s later): image `g13-14487.svg` — appears; then (0.05 s later): image `g14-14486.svg` — appears; then (0.05 s later): image `g15-14478.svg` — appears; then (0.05 s later): image `g16-14479.svg` — appears; then (0.05 s later): image `g17-14485.svg` — appears; then (0.05 s later): image `g18-14476.svg` — appears; then (0.05 s later): image `g19-14509.svg` — appears; then (0.05 s later): image `g20-14508.svg` — appears; then (0.05 s later): image `g21-14507.svg` — appears; then (0.05 s later): image `g22-14510.svg` — appears; then (0.05 s later): image `g23-14488.svg` — appears; then (0.05 s later): image `g24-14483.svg` — appears; then (0.05 s later): image `g25-14484.svg` — appears; then (0.05 s later): image `g26-14489.svg` — appears; then (0.05 s later): image `g27-14490.svg` — appears; then (0.05 s later): image `g28-14506.svg` — appears; then (0.05 s later): image `g29-14480.svg` — appears; then (0.05 s later): image `g30-14477.svg` — appears
+
+## Slide 22
+- image `g01-14526.svg` [11%,13% → 89%,87%]
+- image `g02-14523.svg` [11%,13% → 89%,87%]
+- image `g03-14525.svg` [11%,13% → 89%,87%]
+- image `g04-14527.svg` [11%,13% → 89%,87%]
+- image `g05-14529.svg` [11%,13% → 89%,87%]
+- image `g06-14533.svg` [11%,13% → 89%,87%]
+- image `g07-14540.svg` [11%,13% → 89%,87%]
+- image `g08-14563.svg` [11%,13% → 89%,87%]
+- image `g09-14543.svg` [11%,13% → 89%,87%]
+- image `g10-14544.svg` [11%,13% → 89%,87%]
+- image `g11-14537.svg` [11%,13% → 89%,87%]
+- image `g12-14575.svg` [11%,13% → 89%,87%]
+- image `g13-14536.svg` [11%,13% → 89%,87%]
+- image `g14-14532.svg` [11%,13% → 89%,87%]
+- image `g15-14564.svg` [11%,13% → 89%,87%]
+- image `g16-14565.svg` [11%,13% → 89%,87%]
+- image `g17-14574.svg` [11%,13% → 89%,87%]
+- image `g18-14568.svg` [11%,13% → 89%,87%]
+- image `g19-14586.svg` [11%,13% → 89%,87%]
+- image `g20-14573.svg` [11%,13% → 89%,87%]
+- image `g21-14576.svg` [11%,13% → 89%,87%]
+- image `g22-14551.svg` [11%,13% → 89%,87%]
+- image `g23-14548.svg` [11%,13% → 89%,87%]
+- image `g24-14598.svg` [11%,13% → 89%,87%]
+- image `g25-14620.svg` [11%,13% → 89%,87%]
+- image `g26-14616.svg` [11%,13% → 89%,87%]
+- image `g27-14618.svg` [11%,13% → 89%,87%]
+- image `g28-14555.svg` [11%,13% → 89%,87%]
+- image `g29-14550.svg` [11%,13% → 89%,87%]
+- image `g30-14592.svg` [11%,13% → 89%,87%]
+- image `g31-14595.svg` [11%,13% → 89%,87%]
+- image `g32-14593.svg` [11%,13% → 89%,87%]
+- image `g33-14554.svg` [11%,13% → 89%,87%]
+- image `g34-14545.svg` [11%,13% → 89%,87%]
+- image `g35-14597.svg` [11%,13% → 89%,87%]
+- image `g36-14596.svg` [11%,13% → 89%,87%]
+- image `g37-14619.svg` [11%,13% → 89%,87%]
+- image `g38-14594.svg` [11%,13% → 89%,87%]
+- image `g39-14590.svg` [11%,13% → 89%,87%]
+- image `g40-14567.svg` [11%,13% → 89%,87%]
+- image `g41-14559.svg` [11%,13% → 89%,87%]
+- image `g42-14541.svg` [11%,13% → 89%,87%]
+- image `g43-14570.svg` [11%,13% → 89%,87%]
+- image `g44-14569.svg` [11%,13% → 89%,87%]
+- image `g45-14578.svg` [11%,13% → 89%,87%]
+- image `g46-14571.svg` [11%,13% → 89%,87%]
+- image `g47-14591.svg` [11%,13% → 89%,87%]
+- image `g48-14585.svg` [11%,13% → 89%,87%]
+- image `g49-14566.svg` [11%,13% → 89%,87%]
+- image `g50-14557.svg` [11%,13% → 89%,87%]
+- image `g51-14556.svg` [11%,13% → 89%,87%]
+- **Builds:** then (0.05 s later): image `g02-14523.svg` — appears; then (0.05 s later): image `g03-14525.svg` — appears; then (0.05 s later): image `g04-14527.svg` — appears; then (0.05 s later): image `g05-14529.svg` — appears; then (0.05 s later): image `g06-14533.svg` — appears; then (0.05 s later): image `g07-14540.svg` — appears; then (0.05 s later): image `g08-14563.svg` — appears; then (0.05 s later): image `g09-14543.svg` — appears; then (0.05 s later): image `g10-14544.svg` — appears; then (0.05 s later): image `g11-14537.svg` — appears; then (0.05 s later): image `g12-14575.svg` — appears; then (0.05 s later): image `g13-14536.svg` — appears; then (0.05 s later): image `g14-14532.svg` — appears; then (0.05 s later): image `g15-14564.svg` — appears; then (0.05 s later): image `g16-14565.svg` — appears; then (0.05 s later): image `g17-14574.svg` — appears; then (0.05 s later): image `g18-14568.svg` — appears; then (0.05 s later): image `g19-14586.svg` — appears; then (0.05 s later): image `g20-14573.svg` — appears; then (0.05 s later): image `g21-14576.svg` — appears; then (0.05 s later): image `g22-14551.svg` — appears; then (0.05 s later): image `g23-14548.svg` — appears; then (0.05 s later): image `g24-14598.svg` — appears; then (0.05 s later): image `g25-14620.svg` — appears; then (0.05 s later): image `g26-14616.svg` — appears; then (0.05 s later): image `g27-14618.svg` — appears; then (0.05 s later): image `g28-14555.svg` — appears; then (0.05 s later): image `g29-14550.svg` — appears; then (0.05 s later): image `g30-14592.svg` — appears; then (0.05 s later): image `g31-14595.svg` — appears; then (0.05 s later): image `g32-14593.svg` — appears; then (0.05 s later): image `g33-14554.svg` — appears; then (0.05 s later): image `g34-14545.svg` — appears; then (0.05 s later): image `g35-14597.svg` — appears; then (0.05 s later): image `g36-14596.svg` — appears; then (0.05 s later): image `g37-14619.svg` — appears; then (0.05 s later): image `g38-14594.svg` — appears; then (0.05 s later): image `g39-14590.svg` — appears; then (0.05 s later): image `g40-14567.svg` — appears; then (0.05 s later): image `g41-14559.svg` — appears; then (0.05 s later): image `g42-14541.svg` — appears; then (0.05 s later): image `g43-14570.svg` — appears; then (0.05 s later): image `g44-14569.svg` — appears; then (0.05 s later): image `g45-14578.svg` — appears; then (0.05 s later): image `g46-14571.svg` — appears; then (0.05 s later): image `g47-14591.svg` — appears; then (0.05 s later): image `g48-14585.svg` — appears; then (0.05 s later): image `g49-14566.svg` — appears; then (0.05 s later): image `g50-14557.svg` — appears; then (0.05 s later): image `g51-14556.svg` — appears
+
+## Slide 23
+- image `test-14629.svg` [11%,13% → 89%,87%]
+
+## Slide 24
+- image `test-14637.svg` [11%,13% → 89%,87%]
+
+## Slide 25
+- image `g01-14657.svg` [11%,13% → 89%,87%]
+- image `g02-14658.svg` [11%,13% → 89%,87%]
+- image `g03-14652.svg` [11%,13% → 89%,87%]
+- image `g04-14656.svg` [11%,13% → 89%,87%]
+- image `g05-14653.svg` [11%,13% → 89%,87%]
+- image `g06-14664.svg` [11%,13% → 89%,87%]
+- image `g07-14668.svg` [11%,13% → 89%,87%]
+- image `g08-14667.svg` [11%,13% → 89%,87%]
+- image `g09-14659.svg` [11%,13% → 89%,87%]
+- image `g10-14662.svg` [11%,13% → 89%,87%]
+- image `g11-14665.svg` [11%,13% → 89%,87%]
+- image `g12-14669.svg` [11%,13% → 89%,87%]
+- image `g13-14673.svg` [11%,13% → 89%,87%]
+- image `g14-14671.svg` [11%,13% → 89%,87%]
+- image `g15-14666.svg` [11%,13% → 89%,87%]
+- **Builds:** then (0.08 s later): image `g02-14658.svg` — appears; then (0.08 s later): image `g03-14652.svg` — appears; then (0.08 s later): image `g04-14656.svg` — appears; then (0.08 s later): image `g05-14653.svg` — appears; then (0.08 s later): image `g06-14664.svg` — appears; then (0.08 s later): image `g07-14668.svg` — appears; then (0.08 s later): image `g08-14667.svg` — appears; then (0.08 s later): image `g09-14659.svg` — appears; then (0.08 s later): image `g10-14662.svg` — appears; then (0.08 s later): image `g11-14665.svg` — appears; then (0.08 s later): image `g12-14669.svg` — appears; then (0.08 s later): image `g13-14673.svg` — appears; then (0.08 s later): image `g14-14671.svg` — appears; then (0.08 s later): image `g15-14666.svg` — appears
+
+## Slide 26
+- image `g01-14686.svg` [11%,13% → 89%,87%]
+- image `g02-14690.svg` [11%,13% → 89%,87%]
+- image `g03-14687.svg` [11%,13% → 89%,87%]
+- image `g04-14709.svg` [11%,13% → 89%,87%]
+- image `g05-14688.svg` [11%,13% → 89%,87%]
+- image `g06-14693.svg` [11%,13% → 89%,87%]
+- image `g07-14691.svg` [11%,13% → 89%,87%]
+- image `g08-14713.svg` [11%,13% → 89%,87%]
+- image `g09-14710.svg` [11%,13% → 89%,87%]
+- image `g10-14702.svg` [11%,13% → 89%,87%]
+- image `g11-14695.svg` [11%,13% → 89%,87%]
+- image `g12-14703.svg` [11%,13% → 89%,87%]
+- image `g13-14701.svg` [11%,13% → 89%,87%]
+- image `g14-14699.svg` [11%,13% → 89%,87%]
+- image `g15-14704.svg` [11%,13% → 89%,87%]
+- image `g16-14706.svg` [11%,13% → 89%,87%]
+- image `g17-14718.svg` [11%,13% → 89%,87%]
+- image `g18-14700.svg` [11%,13% → 89%,87%]
+- image `g19-14708.svg` [11%,13% → 89%,87%]
+- image `g20-14707.svg` [11%,13% → 89%,87%]
+- line #0072fe [13%,78% → 13%,83%]
+- line #0072fe [18%,78% → 18%,83%]
+- line #0072fe [23%,78% → 23%,83%]
+- line #0072fe [28%,78% → 28%,83%]
+- line #0072fe [33%,78% → 33%,83%]
+- line #0072fe [38%,78% → 38%,83%]
+- line #0072fe [43%,78% → 43%,83%]
+- line #0072fe [48%,78% → 48%,83%]
+- line #0072fe [53%,78% → 53%,83%]
+- line #0072fe [58%,78% → 58%,83%]
+- line #0072fe [63%,78% → 63%,83%]
+- line #0072fe [68%,78% → 68%,83%]
+- line #0072fe [73%,78% → 73%,83%]
+- line #0072fe [78%,78% → 78%,83%]
+- line #0072fe [83%,78% → 83%,83%]
+- line #0072fe [88%,78% → 88%,83%]
+- line #0072fe [13%,83% → 88%,83%]
+- **Builds:** click 1: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — appears; click 2: image `g02-14690.svg` — appears; then (0.1 s later): image `g03-14687.svg` — appears; then (0.1 s later): image `g04-14709.svg` — appears; then (0.1 s later): image `g05-14688.svg` — appears; then (0.1 s later): image `g06-14693.svg` — appears; then (0.1 s later): image `g07-14691.svg` — appears; then (0.1 s later): image `g08-14713.svg` — appears; then (0.1 s later): image `g09-14710.svg` — appears; then (0.1 s later): image `g10-14702.svg` — appears; then (0.1 s later): image `g11-14695.svg` — appears; then (0.1 s later): image `g12-14703.svg` — appears; then (0.1 s later): image `g13-14701.svg` — appears; then (0.1 s later): image `g14-14699.svg` — appears; then (0.1 s later): image `g15-14704.svg` — appears; then (0.1 s later): image `g16-14706.svg` — appears; then (0.1 s later): image `g17-14718.svg` — appears; then (0.1 s later): image `g18-14700.svg` — appears; then (0.1 s later): image `g19-14708.svg` — appears; then (0.1 s later): image `g20-14707.svg` — appears
+
+## Slide 27
+- image `g01-14795.svg` [11%,13% → 89%,87%]
+- image `g02-14796.svg` [11%,13% → 89%,87%]
+- image `g03-14801.svg` [11%,13% → 89%,87%]
+- image `g04-14797.svg` [11%,13% → 89%,87%]
+- image `g05-14798.svg` [11%,13% → 89%,87%]
+- image `g06-14804.svg` [11%,13% → 89%,87%]
+- image `g07-14802.svg` [11%,13% → 89%,87%]
+- image `g08-14812.svg` [11%,13% → 89%,87%]
+- image `g09-14810.svg` [11%,13% → 89%,87%]
+- image `g10-14805.svg` [11%,13% → 89%,87%]
+- image `g11-14807.svg` [11%,13% → 89%,87%]
+- image `g12-14809.svg` [11%,13% → 89%,87%]
+- image `g13-14813.svg` [11%,13% → 89%,87%]
+- image `g14-14811.svg` [11%,13% → 89%,87%]
+- image `g15-14808.svg` [11%,13% → 89%,87%]
+- line #0072fe [13%,78% → 13%,83%]
+- line #0072fe [18%,78% → 18%,83%]
+- line #0072fe [23%,78% → 23%,83%]
+- line #0072fe [28%,78% → 28%,83%]
+- line #0072fe [33%,78% → 33%,83%]
+- line #0072fe [38%,78% → 38%,83%]
+- line #0072fe [43%,78% → 43%,83%]
+- line #0072fe [48%,78% → 48%,83%]
+- line #0072fe [53%,78% → 53%,83%]
+- line #0072fe [58%,78% → 58%,83%]
+- line #0072fe [63%,78% → 63%,83%]
+- line #0072fe [68%,78% → 68%,83%]
+- line #0072fe [73%,78% → 73%,83%]
+- line #0072fe [78%,78% → 78%,83%]
+- line #0072fe [83%,78% → 83%,83%]
+- line #0072fe [88%,78% → 88%,83%]
+- line #0072fe [13%,83% → 88%,83%]
+- **Builds:** then (0.1 s later): image `g02-14796.svg` — appears; then (0.1 s later): image `g03-14801.svg` — appears; then (0.1 s later): image `g04-14797.svg` — appears; then (0.1 s later): image `g05-14798.svg` — appears; then (0.1 s later): image `g06-14804.svg` — appears; then (0.1 s later): image `g07-14802.svg` — appears; then (0.1 s later): image `g08-14812.svg` — appears; then (0.1 s later): image `g09-14810.svg` — appears; then (0.1 s later): image `g10-14805.svg` — appears; then (0.1 s later): image `g11-14807.svg` — appears; then (0.1 s later): image `g12-14809.svg` — appears; then (0.1 s later): image `g13-14813.svg` — appears; then (0.1 s later): image `g14-14811.svg` — appears; then (0.1 s later): image `g15-14808.svg` — appears
+
+## Slide 28
+- image `g01-15605.svg` [11%,13% → 89%,87%]
+- image `g02-15613.svg` [11%,13% → 89%,87%]
+- image `g03-15645.svg` [11%,13% → 89%,87%]
+- image `g04-15611.svg` [11%,13% → 89%,87%]
+- image `g05-15618.svg` [11%,13% → 89%,87%]
+- image `g06-15606.svg` [11%,13% → 89%,87%]
+- image `g07-15615.svg` [11%,13% → 89%,87%]
+- image `g08-15616.svg` [11%,13% → 89%,87%]
+- image `g09-15608.svg` [11%,13% → 89%,87%]
+- image `g10-15643.svg` [11%,13% → 89%,87%]
+- image `g11-15642.svg` [11%,13% → 89%,87%]
+- image `g12-15635.svg` [11%,13% → 89%,87%]
+- image `g13-15624.svg` [11%,13% → 89%,87%]
+- image `g14-15621.svg` [11%,13% → 89%,87%]
+- image `g15-15622.svg` [11%,13% → 89%,87%]
+- image `g16-15634.svg` [11%,13% → 89%,87%]
+- image `g17-15632.svg` [11%,13% → 89%,87%]
+- image `g18-15623.svg` [11%,13% → 89%,87%]
+- image `g19-15646.svg` [11%,13% → 89%,87%]
+- image `g20-15647.svg` [11%,13% → 89%,87%]
+- image `g21-15650.svg` [11%,13% → 89%,87%]
+- image `g22-15644.svg` [11%,13% → 89%,87%]
+- image `g23-15648.svg` [11%,13% → 89%,87%]
+- image `g24-15651.svg` [11%,13% → 89%,87%]
+- image `g25-15638.svg` [11%,13% → 89%,87%]
+- image `g26-15637.svg` [11%,13% → 89%,87%]
+- image `g27-15636.svg` [11%,13% → 89%,87%]
+- image `g28-15625.svg` [11%,13% → 89%,87%]
+- image `g29-15633.svg` [11%,13% → 89%,87%]
+- image `g30-15631.svg` [11%,13% → 89%,87%]
+- **Builds:** click 1: image `g02-15613.svg` — appears; then (0.05 s later): image `g03-15645.svg` — appears; then (0.05 s later): image `g04-15611.svg` — appears; then (0.05 s later): image `g05-15618.svg` — appears; then (0.05 s later): image `g06-15606.svg` — appears; then (0.05 s later): image `g07-15615.svg` — appears; then (0.05 s later): image `g08-15616.svg` — appears; then (0.05 s later): image `g09-15608.svg` — appears; then (0.05 s later): image `g10-15643.svg` — appears; then (0.05 s later): image `g11-15642.svg` — appears; then (0.05 s later): image `g12-15635.svg` — appears; then (0.05 s later): image `g13-15624.svg` — appears; then (0.05 s later): image `g14-15621.svg` — appears; then (0.05 s later): image `g15-15622.svg` — appears; then (0.05 s later): image `g16-15634.svg` — appears; then (0.05 s later): image `g17-15632.svg` — appears; then (0.05 s later): image `g18-15623.svg` — appears; then (0.05 s later): image `g19-15646.svg` — appears; then (0.05 s later): image `g20-15647.svg` — appears; then (0.05 s later): image `g21-15650.svg` — appears; then (0.05 s later): image `g22-15644.svg` — appears; then (0.05 s later): image `g23-15648.svg` — appears; then (0.05 s later): image `g24-15651.svg` — appears; then (0.05 s later): image `g25-15638.svg` — appears; then (0.05 s later): image `g26-15637.svg` — appears; then (0.05 s later): image `g27-15636.svg` — appears; then (0.05 s later): image `g28-15625.svg` — appears; then (0.05 s later): image `g29-15633.svg` — appears; then (0.05 s later): image `g30-15631.svg` — appears
+
+## Slide 29
+- image `g01-15777.svg` [11%,13% → 89%,87%]
+- image `g02-15781.svg` [11%,13% → 89%,87%]
+- image `g03-15785.svg` [11%,13% → 89%,87%]
+- image `g04-15776.svg` [11%,13% → 89%,87%]
+- image `g05-15778.svg` [11%,13% → 89%,87%]
+- image `g06-15782.svg` [11%,13% → 89%,87%]
+- image `g07-15821.svg` [11%,13% → 89%,87%]
+- image `g08-15811.svg` [11%,13% → 89%,87%]
+- image `g09-15820.svg` [11%,13% → 89%,87%]
+- image `g10-15840.svg` [11%,13% → 89%,87%]
+- image `g11-15816.svg` [11%,13% → 89%,87%]
+- image `g12-15823.svg` [11%,13% → 89%,87%]
+- image `g13-15826.svg` [11%,13% → 89%,87%]
+- image `g14-15843.svg` [11%,13% → 89%,87%]
+- image `g15-15822.svg` [11%,13% → 89%,87%]
+- image `g16-15848.svg` [11%,13% → 89%,87%]
+- image `g17-15841.svg` [11%,13% → 89%,87%]
+- image `g18-15818.svg` [11%,13% → 89%,87%]
+- image `g19-15817.svg` [11%,13% → 89%,87%]
+- image `g20-15860.svg` [11%,13% → 89%,87%]
+- image `g21-15870.svg` [11%,13% → 89%,87%]
+- image `g22-15849.svg` [11%,13% → 89%,87%]
+- image `g23-15845.svg` [11%,13% → 89%,87%]
+- image `g24-15786.svg` [11%,13% → 89%,87%]
+- image `g25-15792.svg` [11%,13% → 89%,87%]
+- image `g26-15788.svg` [11%,13% → 89%,87%]
+- image `g27-15857.svg` [11%,13% → 89%,87%]
+- image `g28-15837.svg` [11%,13% → 89%,87%]
+- image `g29-15796.svg` [11%,13% → 89%,87%]
+- image `g30-15800.svg` [11%,13% → 89%,87%]
+- image `g31-15813.svg` [11%,13% → 89%,87%]
+- image `g32-15812.svg` [11%,13% → 89%,87%]
+- image `g33-15819.svg` [11%,13% → 89%,87%]
+- image `g34-15790.svg` [11%,13% → 89%,87%]
+- image `g35-15794.svg` [11%,13% → 89%,87%]
+- image `g36-15846.svg` [11%,13% → 89%,87%]
+- image `g37-15842.svg` [11%,13% → 89%,87%]
+- image `g38-15847.svg` [11%,13% → 89%,87%]
+- image `g39-15838.svg` [11%,13% → 89%,87%]
+- image `g40-15836.svg` [11%,13% → 89%,87%]
+- image `g41-15839.svg` [11%,13% → 89%,87%]
+- image `g42-15844.svg` [11%,13% → 89%,87%]
+- image `g43-15825.svg` [11%,13% → 89%,87%]
+- image `g44-15805.svg` [11%,13% → 89%,87%]
+- image `g45-15801.svg` [11%,13% → 89%,87%]
+- image `g46-15806.svg` [11%,13% → 89%,87%]
+- image `g47-15804.svg` [11%,13% → 89%,87%]
+- image `g48-15873.svg` [11%,13% → 89%,87%]
+- image `g49-15872.svg` [11%,13% → 89%,87%]
+- image `g50-15802.svg` [11%,13% → 89%,87%]
+- image `g51-15797.svg` [11%,13% → 89%,87%]
+- **Builds:** then (0.05 s later): image `g02-15781.svg` — appears; then (0.05 s later): image `g03-15785.svg` — appears; then (0.05 s later): image `g04-15776.svg` — appears; then (0.05 s later): image `g05-15778.svg` — appears; then (0.05 s later): image `g06-15782.svg` — appears; then (0.05 s later): image `g07-15821.svg` — appears; then (0.05 s later): image `g08-15811.svg` — appears; then (0.05 s later): image `g09-15820.svg` — appears; then (0.05 s later): image `g10-15840.svg` — appears; then (0.05 s later): image `g11-15816.svg` — appears; then (0.05 s later): image `g12-15823.svg` — appears; then (0.05 s later): image `g13-15826.svg` — appears; then (0.05 s later): image `g14-15843.svg` — appears; then (0.05 s later): image `g15-15822.svg` — appears; then (0.05 s later): image `g16-15848.svg` — appears; then (0.05 s later): image `g17-15841.svg` — appears; then (0.05 s later): image `g18-15818.svg` — appears; then (0.05 s later): image `g19-15817.svg` — appears; then (0.05 s later): image `g20-15860.svg` — appears; then (0.05 s later): image `g21-15870.svg` — appears; then (0.05 s later): image `g22-15849.svg` — appears; then (0.05 s later): image `g23-15845.svg` — appears; then (0.05 s later): image `g24-15786.svg` — appears; then (0.05 s later): image `g25-15792.svg` — appears; then (0.05 s later): image `g26-15788.svg` — appears; then (0.05 s later): image `g27-15857.svg` — appears; then (0.05 s later): image `g28-15837.svg` — appears; then (0.05 s later): image `g29-15796.svg` — appears; then (0.05 s later): image `g30-15800.svg` — appears; then (0.05 s later): image `g31-15813.svg` — appears; then (0.05 s later): image `g32-15812.svg` — appears; then (0.05 s later): image `g33-15819.svg` — appears; then (0.05 s later): image `g34-15790.svg` — appears; then (0.05 s later): image `g35-15794.svg` — appears; then (0.05 s later): image `g36-15846.svg` — appears; then (0.05 s later): image `g37-15842.svg` — appears; then (0.05 s later): image `g38-15847.svg` — appears; then (0.05 s later): image `g39-15838.svg` — appears; then (0.05 s later): image `g40-15836.svg` — appears; then (0.05 s later): image `g41-15839.svg` — appears; then (0.05 s later): image `g42-15844.svg` — appears; then (0.05 s later): image `g43-15825.svg` — appears; then (0.05 s later): image `g44-15805.svg` — appears; then (0.05 s later): image `g45-15801.svg` — appears; then (0.05 s later): image `g46-15806.svg` — appears; then (0.05 s later): image `g47-15804.svg` — appears; then (0.05 s later): image `g48-15873.svg` — appears; then (0.05 s later): image `g49-15872.svg` — appears; then (0.05 s later): image `g50-15802.svg` — appears; then (0.05 s later): image `g51-15797.svg` — appears
+
+## Slide 30
+- image `test-15883.svg` [11%,13% → 89%,87%]
+
+## Slide 31
+- image `test-15888.svg` [11%,13% → 89%,87%]
+
+## Slide 32
+- image `g01-15895.svg` [11%,13% → 89%,87%]
+- image `g02-15897.svg` [11%,13% → 89%,87%]
+- image `g03-15898.svg` [11%,13% → 89%,87%]
+- image `g04-15914.svg` [11%,13% → 89%,87%]
+- image `g05-15901.svg` [11%,13% → 89%,87%]
+- image `g06-15900.svg` [11%,13% → 89%,87%]
+- image `g07-15908.svg` [11%,13% → 89%,87%]
+- image `g08-15899.svg` [11%,13% → 89%,87%]
+- image `g09-15917.svg` [11%,13% → 89%,87%]
+- image `g10-15912.svg` [11%,13% → 89%,87%]
+- image `g11-15913.svg` [11%,13% → 89%,87%]
+- image `g12-15907.svg` [11%,13% → 89%,87%]
+- image `g13-15911.svg` [11%,13% → 89%,87%]
+- image `g14-15909.svg` [11%,13% → 89%,87%]
+- image `g15-15910.svg` [11%,13% → 89%,87%]
+- **Builds:** then (0.1 s later): image `g02-15897.svg` — appears; then (0.1 s later): image `g03-15898.svg` — appears; then (0.1 s later): image `g04-15914.svg` — appears; then (0.1 s later): image `g05-15901.svg` — appears; then (0.1 s later): image `g06-15900.svg` — appears; then (0.1 s later): image `g07-15908.svg` — appears; then (0.1 s later): image `g08-15899.svg` — appears; then (0.1 s later): image `g09-15917.svg` — appears; then (0.1 s later): image `g10-15912.svg` — appears; then (0.1 s later): image `g11-15913.svg` — appears; then (0.1 s later): image `g12-15907.svg` — appears; then (0.1 s later): image `g13-15911.svg` — appears; then (0.1 s later): image `g14-15909.svg` — appears; then (0.1 s later): image `g15-15910.svg` — appears
+
+## Slide 33
+- image `g01-15929.svg` [11%,13% → 89%,87%]
+- image `g02-15934.svg` [11%,13% → 89%,87%]
+- image `g03-15932.svg` [11%,13% → 89%,87%]
+- image `g04-15950.svg` [11%,13% → 89%,87%]
+- image `g05-15930.svg` [11%,13% → 89%,87%]
+- image `g06-15937.svg` [11%,13% → 89%,87%]
+- image `g07-15944.svg` [11%,13% → 89%,87%]
+- image `g08-15938.svg` [11%,13% → 89%,87%]
+- image `g09-15949.svg` [11%,13% → 89%,87%]
+- image `g10-15947.svg` [11%,13% → 89%,87%]
+- image `g11-15948.svg` [11%,13% → 89%,87%]
+- image `g12-15939.svg` [11%,13% → 89%,87%]
+- image `g13-15951.svg` [11%,13% → 89%,87%]
+- image `g14-15946.svg` [11%,13% → 89%,87%]
+- image `g15-15955.svg` [11%,13% → 89%,87%]
+- image `g16-15953.svg` [11%,13% → 89%,87%]
+- image `g17-15954.svg` [11%,13% → 89%,87%]
+- image `g18-15941.svg` [11%,13% → 89%,87%]
+- image `g19-15956.svg` [11%,13% → 89%,87%]
+- image `g20-15945.svg` [11%,13% → 89%,87%]
+- line #0072fe [13%,78% → 13%,83%]
+- line #0072fe [18%,78% → 18%,83%]
+- line #0072fe [23%,78% → 23%,83%]
+- line #0072fe [28%,78% → 28%,83%]
+- line #0072fe [33%,78% → 33%,83%]
+- line #0072fe [38%,78% → 38%,83%]
+- line #0072fe [43%,78% → 43%,83%]
+- line #0072fe [48%,78% → 48%,83%]
+- line #0072fe [53%,78% → 53%,83%]
+- line #0072fe [58%,78% → 58%,83%]
+- line #0072fe [63%,78% → 63%,83%]
+- line #0072fe [68%,78% → 68%,83%]
+- line #0072fe [73%,78% → 73%,83%]
+- line #0072fe [78%,78% → 78%,83%]
+- line #0072fe [83%,78% → 83%,83%]
+- line #0072fe [88%,78% → 88%,83%]
+- line #0072fe [13%,83% → 88%,83%]
+- **Builds:** click 1: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — draws in; with previous: line #0072fe — appears; click 2: image `g02-15934.svg` — appears; then (0.1 s later): image `g03-15932.svg` — appears; then (0.1 s later): image `g04-15950.svg` — appears; then (0.1 s later): image `g05-15930.svg` — appears; then (0.1 s later): image `g06-15937.svg` — appears; then (0.1 s later): image `g07-15944.svg` — appears; then (0.1 s later): image `g08-15938.svg` — appears; then (0.1 s later): image `g09-15949.svg` — appears; then (0.1 s later): image `g10-15947.svg` — appears; then (0.1 s later): image `g11-15948.svg` — appears; then (0.1 s later): image `g12-15939.svg` — appears; then (0.1 s later): image `g13-15951.svg` — appears; then (0.1 s later): image `g14-15946.svg` — appears; then (0.1 s later): image `g15-15955.svg` — appears; then (0.1 s later): image `g16-15953.svg` — appears; then (0.1 s later): image `g17-15954.svg` — appears; then (0.1 s later): image `g18-15941.svg` — appears; then (0.1 s later): image `g19-15956.svg` — appears; then (0.1 s later): image `g20-15945.svg` — appears
+
+## Slide 34
+- image `g30-14477.svg` [11%,13% → 89%,87%]
+- equation $-3$ (36pt, #80cfb9) [12%,85% → 14%,87%]
+- equation $3$ (36pt, #80cfb9) [87%,85% → 88%,87%]
+- equation $0$ (36pt, #c3b8ff) [11%,82% → 12%,84%]
+- equation $0.6$ (36pt, #c3b8ff) [10%,11% → 13%,14%]
+- equation $\tau$ (58pt, #80cfb9) [49%,89% → 51%,91%]
+- equation $h$ (52pt, #c3b8ff) [8%,44% → 9%,48%]
+- **Builds:** click 1: equation $0.6$ — appears; with previous: equation $h$ — appears; with previous: equation $0$ — appears; with previous: equation $-3$ — appears; with previous: equation $3$ — appears; with previous: equation $\tau$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $b$ (25pt, #ffffff) [10%,26% → 11%,28%]
+- arrow #ffffff [47%,70% → 92%,70%]
+- vector icon `shape-96f2cf3d.svg` [46%,69% → 47%,71%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- line #ffffff [43%,-0% → 43%,103%]
+- **Builds:** click 1: group — slides in; then: text 30pt — wipes in; with previous: arrow #ffffff — draws in; click 2: vector icon `shape-96f2cf3d.svg` — appears; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 36
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,34% → 12%,39%]
+  - line #ffffff [9%,34% → 12%,39%]
+  - equation $b$ (25pt, #ffffff) [10%,35% → 11%,37%]
+- text 30pt [13%,34% → 43%,38%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 10%,39%]
+- text 24pt [1%,29% → 6%,35%]: {repeat for each dart|#80b9ff}
+- arrow #ffffff [76%,28% → 76%,70%]
+- vector icon `shape-96f2cf3d.svg` [75%,69% → 76%,71%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- line #ffffff [43%,-0% → 43%,103%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- **Builds:** then: text 30pt — wipes in; with previous: arrow #ffffff — draws in; click 1: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; click 2: image `noun-bracket-2376717-80b9ff.png` — apple:zoom; with previous: text 24pt — apple:zoom character
+
+## Slide 37
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,34% → 12%,39%]
+  - line #ffffff [9%,34% → 12%,39%]
+  - equation $b$ (25pt, #ffffff) [10%,35% → 11%,37%]
+- image `test-14930.svg` [46%,28% → 93%,72%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 10%,39%]
+- text 24pt [1%,29% → 6%,35%]: {repeat for each dart|#80b9ff}
+- arrow #ffffff [47%,70% → 92%,70%]
+- arrow #ffffff [62%,28% → 62%,70%]
+- vector icon `shape-96f2cf3d.svg` [46%,69% → 47%,71%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- text 30pt [13%,34% → 43%,38%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- **Builds:** click 1: arrow #ffffff — draws in; then: vector icon `shape-96f2cf3d.svg` — appears; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: arrow #ffffff — appears; then: arrow #ffffff — draws in; then (1 s later): vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves
+
+## Slide 38
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,34% → 12%,39%]
+  - line #ffffff [9%,34% → 12%,39%]
+  - equation $b$ (25pt, #ffffff) [10%,35% → 11%,37%]
+- image `test-14930.svg` [46%,28% → 93%,72%]
+- image `test-14983.svg` [46%,28% → 93%,72%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 10%,39%]
+- text 24pt [1%,29% → 6%,35%]: {repeat for each dart|#80b9ff}
+- image `test-15027.svg` [46%,28% → 93%,72%]
+- text 36pt [11%,46% → 31%,54%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,46% → 9%,54%]
+  - line #ffffff [5%,46% → 9%,54%]
+  - equation $2$ (36pt, #ffffff) [7%,49% → 8%,51%]
+- image `test-15072.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- text 30pt [13%,34% → 43%,38%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- **Builds:** click 1: group — slides in; with previous: text 36pt — slides in; with previous: image `test-15072.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 39
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,34% → 12%,39%]
+  - line #ffffff [9%,34% → 12%,39%]
+  - equation $b$ (25pt, #ffffff) [10%,35% → 11%,37%]
+- image `test-14930.svg` [46%,28% → 93%,72%]
+- image `test-14983.svg` [46%,28% → 93%,72%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 10%,39%]
+- text 24pt [1%,29% → 6%,35%]: {repeat for each dart|#80b9ff}
+- image `test-15027.svg` [46%,28% → 93%,72%]
+- text 36pt [11%,46% → 31%,54%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,46% → 9%,54%]
+  - line #ffffff [5%,46% → 9%,54%]
+  - equation $2$ (36pt, #ffffff) [7%,49% → 8%,51%]
+- image `test-15072.svg` [46%,28% → 93%,72%]
+- text 36pt [11%,61% → 35%,69%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,61% → 9%,69%]
+  - line #ffffff [5%,61% → 9%,69%]
+  - equation $3$ (36pt, #ffffff) [7%,64% → 8%,66%]
+- image `g01-14657.svg` [46%,28% → 93%,72%]
+- image `g02-14658.svg` [46%,28% → 93%,72%]
+- image `g03-14652.svg` [46%,28% → 93%,72%]
+- image `g04-14656.svg` [46%,28% → 93%,72%]
+- image `g05-14653.svg` [46%,28% → 93%,72%]
+- image `g06-14664.svg` [46%,28% → 93%,72%]
+- image `g07-14668.svg` [46%,28% → 93%,72%]
+- image `g08-14667.svg` [46%,28% → 93%,72%]
+- image `g09-14659.svg` [46%,28% → 93%,72%]
+- image `g10-14662.svg` [46%,28% → 93%,72%]
+- image `g11-14665.svg` [46%,28% → 93%,72%]
+- image `g12-14669.svg` [46%,28% → 93%,72%]
+- image `g13-14673.svg` [46%,28% → 93%,72%]
+- image `g14-14671.svg` [46%,28% → 93%,72%]
+- image `g15-14666.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- text 30pt [13%,34% → 43%,38%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- **Builds:** click 1: group — slides in; with previous: text 36pt — slides in; then: image `g02-14658.svg` — appears; then (0.08 s later): image `g03-14652.svg` — appears; then (0.08 s later): image `g04-14656.svg` — appears; then (0.08 s later): image `g05-14653.svg` — appears; then (0.08 s later): image `g06-14664.svg` — appears; then (0.08 s later): image `g07-14668.svg` — appears; then (0.08 s later): image `g08-14667.svg` — appears; then (0.08 s later): image `g09-14659.svg` — appears; then (0.08 s later): image `g10-14662.svg` — appears; then (0.08 s later): image `g11-14665.svg` — appears; then (0.08 s later): image `g12-14669.svg` — appears; then (0.08 s later): image `g13-14673.svg` — appears; then (0.08 s later): image `g14-14671.svg` — appears; then (0.08 s later): image `g15-14666.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,52% → 9%,59%]
+  - line #ffffff [5%,52% → 9%,59%]
+  - equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- line #80cfb9 [47%,50% → 47%,70%]
+- line #80cfb9 [92%,50% → 92%,70%]
+- line #80cfb9 [47%,50% → 92%,50%]
+- equation $q(\tau)$ (36pt, #80cfb9) [83%,45% → 86%,48%]
+- vector icon `shape-96f2cf3d.svg` [46%,69% → 47%,71%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- **Builds:** click 1: equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ — slides in; click 2: line #80cfb9 — draws in; with previous: line #80cfb9 — draws in; with previous: line #80cfb9 — draws in; then: equation $q(\tau)$ — appears; click 3: vector icon `shape-96f2cf3d.svg` — appears; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves
+
+## Slide 41
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,52% → 9%,59%]
+  - line #ffffff [5%,52% → 9%,59%]
+  - equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- vector icon `shape-96f2cf3d.svg` [75%,69% → 76%,71%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- line #80cfb9 [47%,50% → 47%,70%]
+- line #80cfb9 [92%,50% → 92%,70%]
+- line #80cfb9 [47%,50% → 92%,50%]
+- equation $q(\tau)$ (36pt, #80cfb9) [83%,45% → 86%,48%]
+- **Builds:** click 1: equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 42
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,52% → 9%,59%]
+  - line #ffffff [5%,52% → 9%,59%]
+  - equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- line #c3b8ff [47%,28% → 47%,70%]
+- line #c3b8ff [92%,28% → 92%,70%]
+- line #c3b8ff [47%,28% → 92%,28%]
+- equation $q(\tau)$ (36pt, #c3b8ff) [83%,23% → 86%,26%]
+- equation $c$ (36pt, #c3b8ff) [82%,24% → 83%,26%]
+- vector icon `shape-96f2cf3d.svg` [75%,69% → 76%,71%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- **Builds:** click 1: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves; then: vector icon `shape-96f2cf3d.svg` — moves
+
+## Slide 43
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,52% → 9%,59%]
+  - line #ffffff [5%,52% → 9%,59%]
+  - equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- equation $q(\tau)$ (36pt, #c3b8ff) [83%,23% → 86%,26%]
+- equation $c$ (36pt, #c3b8ff) [82%,24% → 83%,26%]
+- image `test-15027.svg` [46%,28% → 93%,72%]
+- image `test-15072.svg` [46%,28% → 93%,72%]
+- text 32pt [11%,64% → 29%,68%]: Reject if {$(cq(\tau))(r)$|#c3b8ff} $>$ {$\bar p(\tau)$|#80b9ff}
+- line #c3b8ff [47%,28% → 47%,70%]
+- line #c3b8ff [92%,28% → 92%,70%]
+- line #c3b8ff [47%,28% → 92%,28%]
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- **Builds:** click 1: text 32pt — slides in; then: image `test-15072.svg` — fades up from dark
+
+## Slide 44
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- group [5%,52% → 9%,59%]
+  - line #ffffff [5%,52% → 9%,59%]
+  - equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- equation $q(\tau)$ (36pt, #c3b8ff) [83%,23% → 86%,26%]
+- equation $c$ (36pt, #c3b8ff) [82%,24% → 83%,26%]
+- image `test-15027.svg` [46%,28% → 93%,72%]
+- image `test-15072.svg` [46%,28% → 93%,72%]
+- text 32pt [11%,64% → 29%,68%]: Reject if {$(cq(\tau))(r)$|#c3b8ff} $>$ {$\bar p(\tau)$|#80b9ff}
+- text 32pt [8%,89% → 34%,93%]: Just keep the {$\tau$|#80b9ff} {value|#80b9ff} for each sample
+- image `g30-14477.svg` [46%,28% → 93%,72%]
+- image `test-14930.svg` [46%,28% → 93%,72%]
+- image `test-14983.svg` [46%,28% → 93%,72%]
+- image `test-15027.svg` [46%,28% → 93%,72%]
+- image `test-15072.svg` [46%,28% → 93%,72%]
+- image `g01-14657.svg` [46%,28% → 93%,72%]
+- image `g02-14658.svg` [46%,28% → 93%,72%]
+- image `g03-14652.svg` [46%,28% → 93%,72%]
+- image `g04-14656.svg` [46%,28% → 93%,72%]
+- image `g05-14653.svg` [46%,28% → 93%,72%]
+- image `g06-14664.svg` [46%,28% → 93%,72%]
+- image `g07-14668.svg` [46%,28% → 93%,72%]
+- image `g08-14667.svg` [46%,28% → 93%,72%]
+- image `g09-14659.svg` [46%,28% → 93%,72%]
+- image `g10-14662.svg` [46%,28% → 93%,72%]
+- image `g11-14665.svg` [46%,28% → 93%,72%]
+- image `g12-14669.svg` [46%,28% → 93%,72%]
+- image `g13-14673.svg` [46%,28% → 93%,72%]
+- image `g14-14671.svg` [46%,28% → 93%,72%]
+- image `g15-14666.svg` [46%,28% → 93%,72%]
+- line #c3b8ff [47%,28% → 47%,70%]
+- line #c3b8ff [92%,28% → 92%,70%]
+- line #c3b8ff [47%,28% → 92%,28%]
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- **Builds:** click 1: text 32pt — slides in; then: image `g02-14658.svg` — appears; then (0.08 s later): image `g03-14652.svg` — appears; then (0.08 s later): image `g04-14656.svg` — appears; then (0.08 s later): image `g05-14653.svg` — appears; then (0.08 s later): image `g06-14664.svg` — appears; then (0.08 s later): image `g07-14668.svg` — appears; then (0.08 s later): image `g08-14667.svg` — appears; then (0.08 s later): image `g09-14659.svg` — appears; then (0.08 s later): image `g10-14662.svg` — appears; then (0.08 s later): image `g11-14665.svg` — appears; then (0.08 s later): image `g12-14669.svg` — appears; then (0.08 s later): image `g13-14673.svg` — appears; then (0.08 s later): image `g14-14671.svg` — appears; then (0.08 s later): image `g15-14666.svg` — appears
+
+## Slide 45
+- image `test-15349.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$1$|#c3b8ff}
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- line #ffffff [5%,52% → 9%,59%]
+- equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- text 32pt [11%,64% → 29%,68%]: Reject if {$(cq(\tau))(r)$|#c3b8ff} $>$ {$\bar p(\tau)$|#80b9ff}
+- text 32pt [8%,89% → 34%,93%]: Just keep the {$\tau$|#80b9ff} {value|#80b9ff} for each sample
+- equation $h$ (33pt, #c3b8ff) [45%,49% → 46%,51%]
+- text 36pt [67%,18% → 71%,22%]: Look at all those [[gray darts (samples)|#c0c0c0]] we wasted!
+- equation $q(\tau)$ (36pt, #c3b8ff) [83%,23% → 86%,26%]
+- equation $c$ (36pt, #c3b8ff) [82%,24% → 83%,26%]
+- line #c3b8ff [47%,28% → 47%,70%]
+- line #c3b8ff [92%,28% → 92%,70%]
+- line #c3b8ff [47%,28% → 92%,28%]
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $0.6$ (22pt, #c3b8ff) [45%,27% → 46%,29%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- **Builds:** click 1: text 36pt — wipes in
+
+## Slide 46
+- image `test-15349.svg` [46%,28% → 93%,72%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- line #ffffff [5%,52% → 9%,59%]
+- equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- text 32pt [11%,64% → 29%,68%]: Reject if {$(cq(\tau))(r)$|#c3b8ff} $>$ {$\bar p(\tau)$|#80b9ff}
+- text 32pt [8%,89% → 34%,93%]: Just keep the {$\tau$|#80b9ff} {value|#80b9ff} for each sample
+- text 36pt [67%,18% → 71%,22%]: Look at all those [[gray darts (samples)|#c0c0c0]] we wasted!
+- shape (outline) [47%,27% → 92%,65%]
+- shape (outline) [47%,34% → 92%,66%]
+- equation $q(\tau)$ (36pt, #c3b8ff) [83%,23% → 86%,26%]
+- equation $c$ (36pt, #c3b8ff) [82%,24% → 83%,26%]
+- text 36pt [51%,80% → 88%,85%]: What if we could make our dart board look like this instead?
+- line #ffffff [43%,-0% → 43%,103%]
+- equation $-3$ (22pt, #80cfb9) [46%,71% → 47%,73%]
+- equation $3$ (22pt, #80cfb9) [92%,71% → 92%,73%]
+- equation $0$ (22pt, #c3b8ff) [45%,69% → 46%,71%]
+- equation $\tau$ (36pt, #80cfb9) [69%,72% → 69%,74%]
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- **Builds:** then: shape (outline) — wipes in; with previous: shape (outline) — draws in; with previous: equation $q(\tau)$ — moves; with previous: equation $c$ — moves
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 47
+- image `test-15349.svg` [47%,31% → 94%,75%]
+- group [9%,24% → 12%,30%]
+  - line #ffffff [9%,24% → 12%,30%]
+  - equation $a$ (25pt, #ffffff) [10%,26% → 11%,27%]
+- text 36pt [11%,15% → 39%,20%]: Throw darts uniformly at the board.
+- group [5%,14% → 9%,21%]
+  - line #ffffff [5%,14% → 9%,21%]
+  - equation $1$ (36pt, #ffffff) [7%,16% → 8%,19%]
+- group [9%,37% → 12%,43%]
+  - line #ffffff [9%,37% → 12%,43%]
+  - equation $b$ (25pt, #ffffff) [10%,39% → 11%,41%]
+- image `noun-bracket-2376717-80b9ff.png` [4%,24% → 11%,44%]
+- text 24pt [1%,31% → 6%,37%]: {repeat for each dart|#80b9ff}
+- text 36pt [11%,51% → 31%,60%]: Reject any darts that lie above the {blue density|#80b9ff}.
+- line #ffffff [5%,52% → 9%,59%]
+- equation $2$ (36pt, #ffffff) [7%,55% → 8%,57%]
+- text 36pt [11%,78% → 35%,86%]: Move the remaining darts to the [[bottom of the board|#80b9ff]].
+- group [5%,78% → 9%,86%]
+  - line #ffffff [5%,78% → 9%,86%]
+  - equation $3$ (36pt, #ffffff) [7%,81% → 8%,83%]
+- equation $\tau \sim q(\cdot), \ \ q(\tau) = \mathcal U(-3, 3)$ (36pt, #80cfb9) [16%,32% → 36%,35%]
+- equation $h = (cq(\tau))(r), \ \ r \sim \mathcal U(0, 1)$ (36pt, #c3b8ff) [16%,44% → 36%,47%]
+- text 32pt [11%,64% → 29%,68%]: Reject if {$(cq(\tau))(r)$|#c3b8ff} $>$ {$\bar p(\tau)$|#80b9ff}
+- text 32pt [8%,89% → 34%,93%]: Just keep the {$\tau$|#80b9ff} {value|#80b9ff} for each sample
+- shape (outline) [48%,30% → 94%,68%]
+- shape (outline) [48%,37% → 94%,68%]
+- equation $q(\tau)$ (36pt, #c3b8ff) [84%,48% → 87%,51%]
+- equation $c$ (36pt, #c3b8ff) [83%,49% → 84%,50%]
+- text 36pt [48%,12% → 95%,16%]: What if we could make our dart board look like this instead?
+- line #ffffff [43%,-0% → 43%,103%]
+- text 36pt [46%,20% → 98%,29%]: {We just need to select|#c0c0c0} {$q(\tau)$|#80cfb9} {to be a distribution we can sample from|#c0c0c0} / {and|#c0c0c0} {$c$|#c3b8ff} {such that|#c0c0c0} {$cq(\tau)$|#c3b8ff} {is always greater than|#c0c0c0} {$\bar p(\tau)$|#80b9ff}{.|#c0c0c0}
+- equation $-3$ (22pt, #80cfb9) [48%,74% → 50%,75%]
+- equation $3$ (22pt, #80cfb9) [94%,74% → 94%,75%]
+- equation $0$ (22pt, #c3b8ff) [48%,72% → 48%,73%]
+- equation $\tau$ (36pt, #80cfb9) [71%,75% → 72%,76%]
+- text 30pt [13%,38% → 43%,42%]: Sample a value uniformly between {$0$|#c3b8ff} and {$0.6$|#c3b8ff}
+- text 30pt [13%,25% → 43%,29%]: Sample a value uniformly between {$-3$|#80cfb9} and {$3$|#80cfb9}
+- equation $\bar p(\tau)$ (36pt, #80b9ff) [75%,39% → 78%,42%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 48
+- text 36pt [50%,50% → 50%,50%]: Departing from the dart board analogy.
+- image `noun-dart-board-7242943-80b9ff.png` [23%,41% → 33%,59%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 49
+- text 36pt [35%,9% → 65%,13%]: Departing from the dart board analogy.
+- image `noun-dart-board-7242943-80b9ff.png` [23%,2% → 33%,20%]
+- text 36pt [36%,20% → 64%,25%]: But first, a random fact about darts:
+- text 36pt [10%,73% → 38%,85%]: Dart boards are designed to reward accuracy and penalize inaccuracy.
+- image `pasted-image-16201.png` (cropped: show only 22–78% across and 11–89% down of the image) [12%,31% → 36%,70%]
+- image `pasted-movie-16213.png` [45%,31% → 95%,101%]
+- **Builds:** click 1: image `pasted-image-16201.png` (cropped: show only 22–78% across and 1 — appears; with previous: text 36pt — appears; click 2: image `pasted-movie-16213.png` — apple:move in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 50
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- equation $\tau \sim q(\cdot)$ (36pt, #ffffff) [24%,22% → 31%,25%]
+- group [11%,19% → 16%,26%]
+  - line #ffffff [11%,19% → 16%,26%]
+  - equation $1$ (36pt, #ffffff) [13%,22% → 14%,24%]
+- text 36pt [17%,20% → 24%,25%]: Sample
+- group [11%,31% → 15%,38%]
+  - line #ffffff [11%,31% → 15%,38%]
+  - equation $2$ (36pt, #ffffff) [13%,34% → 14%,36%]
+- text 36pt [18%,32% → 25%,37%]: Reject if
+- equation $cq(\tau)$ (36pt, #ffffff) [25%,33% → 28%,36%]
+- equation $r$ (36pt, #ffffff) [29%,34% → 30%,36%]
+- equation $>$ (36pt, #ffffff) [30%,34% → 32%,36%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,33% → 35%,36%]
+- equation $cq(\tau)$ (36pt, #ffffff) [25%,33% → 28%,36%]
+- equation $r$ (36pt, #ffffff) [29%,34% → 30%,36%]
+- equation $>$ (36pt, #ffffff) [30%,34% → 32%,36%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,33% → 35%,36%]
+- equation $cq(\tau)$ (36pt, #ffffff) [25%,33% → 28%,36%]
+- equation $r$ (36pt, #ffffff) [29%,34% → 30%,36%]
+- equation $>$ (36pt, #ffffff) [30%,34% → 32%,36%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,33% → 35%,36%]
+- text 32pt [18%,26% → 50%,31%]: $q(\tau)$ is often referred to as a [[proposal distribution|#80b9ff]]
+- **Builds:** click 1: group — appears; with previous: text 36pt — appears; with previous: equation $\tau \sim q(\cdot)$ — appears; click 2: text 32pt — slides in; click 3: group — appears; with previous: text 36pt — appears; with previous: equation $cq(\tau)$ — appears; with previous: equation $cq(\tau)$ — appears; with previous: equation $cq(\tau)$ — appears; with previous: equation $\bar p(\tau)$ — appears; with previous: equation $\bar p(\tau)$ — appears; with previous: equation $\bar p(\tau)$ — appears; with previous: equation $>$ — appears; with previous: equation $>$ — appears; with previous: equation $>$ — appears; with previous: equation $r$ — appears; with previous: equation $r$ — appears; with previous: equation $r$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 51
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- equation $\tau \sim q(\cdot)$ (36pt, #ffffff) [24%,21% → 31%,24%]
+- group [11%,19% → 16%,26%]
+  - line #ffffff [11%,19% → 16%,26%]
+  - equation $1$ (36pt, #ffffff) [13%,22% → 14%,24%]
+- text 36pt [17%,20% → 24%,25%]: Sample
+- group [11%,31% → 15%,38%]
+  - line #ffffff [11%,31% → 15%,38%]
+  - equation $2$ (36pt, #ffffff) [13%,34% → 14%,36%]
+- text 36pt [18%,32% → 25%,37%]: Reject if
+- equation $cq(\tau)$ (36pt, #ffffff) [25%,33% → 28%,36%]
+- equation $r$ (36pt, #ffffff) [29%,34% → 30%,36%]
+- equation $>$ (36pt, #ffffff) [30%,34% → 32%,36%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,33% → 35%,36%]
+- equation $cq(\tau)$ (36pt, #ffffff) [32%,44% → 36%,47%]
+- equation $r$ (36pt, #ffffff) [29%,42% → 30%,44%]
+- equation $>$ (36pt, #ffffff) [31%,42% → 32%,44%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,39% → 35%,42%]
+- line #ffffff [32%,43% → 36%,43%]
+- equation $cq(\tau)$ (36pt, #ffffff) [32%,44% → 36%,47%]
+- equation $r$ (36pt, #ffffff) [29%,42% → 30%,44%]
+- equation $>$ (36pt, #ffffff) [31%,42% → 32%,44%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,39% → 35%,42%]
+- line #ffffff [32%,43% → 36%,43%]
+- text 32pt [18%,26% → 50%,31%]: $q(\tau)$ is often referred to as a [[proposal distribution|#80b9ff]]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 52
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- equation $\tau \sim q(\cdot)$ (36pt, #ffffff) [24%,21% → 31%,24%]
+- group [11%,19% → 16%,26%]
+  - line #ffffff [11%,19% → 16%,26%]
+  - equation $1$ (36pt, #ffffff) [13%,22% → 14%,24%]
+- text 36pt [17%,20% → 24%,25%]: Sample
+- group [11%,31% → 15%,38%]
+  - line #ffffff [11%,31% → 15%,38%]
+  - equation $2$ (36pt, #ffffff) [13%,34% → 14%,36%]
+- text 36pt [18%,32% → 25%,37%]: Reject if
+- equation $cq(\tau)$ (36pt, #ffffff) [25%,33% → 28%,36%]
+- equation $r$ (36pt, #ffffff) [29%,34% → 30%,36%]
+- equation $>$ (36pt, #ffffff) [30%,34% → 32%,36%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,33% → 35%,36%]
+- equation $cq(\tau)$ (36pt, #ffffff) [32%,44% → 36%,47%]
+- equation $r$ (36pt, #ffffff) [29%,42% → 30%,44%]
+- equation $>$ (36pt, #ffffff) [31%,42% → 32%,44%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,39% → 35%,42%]
+- line #ffffff [32%,43% → 36%,43%]
+- text 36pt [21%,52% → 28%,56%]: Accept if
+- equation $cq(\tau)$ (36pt, #ffffff) [32%,55% → 35%,58%]
+- equation $r$ (36pt, #ffffff) [29%,53% → 30%,55%]
+- equation $>$ (36pt, #ffffff) [30%,53% → 31%,55%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [32%,50% → 35%,53%]
+- line #ffffff [32%,54% → 35%,54%]
+- line #ffffff [19%,49% → 38%,59%]
+- text 36pt [26%,67% → 33%,71%]: rand()
+- arrow #ffffff [29%,56% → 29%,67%]
+- image `val-page-123.svg` (cropped: show only 11–59% across and 19–46% down of the image) [55%,28% → 94%,72%]
+- text 32pt [18%,26% → 50%,31%]: $q(\tau)$ is often referred to as a [[proposal distribution|#80b9ff]]
+- group [12%,76% → 47%,90%]
+  - rounded box (outline) [12%,76% → 47%,90%]
+  - text 36pt [13%,76% → 45%,90%]: {Note: we must select the proposal distribution $q(\tau)$ such that $\bar p(\tau) \leq cq(\tau)$.|#000000}
+- arrow #ff48cf [31%,23% → 61%,55%]
+- arrow #ff48cf [38%,53% → 61%,58%]
+- **Builds:** click 1: line #ffffff — com.apple.iWork.Keynote.LineDraw; click 2: text 36pt — appears; with previous: arrow #ffffff — draws in; click 3: group — appears; click 4: image `val-page-123.svg` (cropped: show only 11–59% across and 19–46%  — fades up from dark; click 5: arrow #ff48cf — draws in; click 6: arrow #ff48cf — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 53
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- text 36pt [43%,15% → 84%,20%]: Back to trying to sample from the failure distribution:
+- equation $\tau \sim q(\cdot)$ (36pt, #ffffff) [21%,42% → 28%,45%]
+- group [8%,40% → 13%,47%]
+  - line #ffffff [8%,40% → 13%,47%]
+  - equation $1$ (36pt, #ffffff) [10%,42% → 11%,45%]
+- text 36pt [14%,41% → 21%,46%]: Sample
+- group [8%,51% → 13%,59%]
+  - line #ffffff [8%,51% → 13%,59%]
+  - equation $2$ (36pt, #ffffff) [10%,54% → 11%,56%]
+- text 36pt [15%,53% → 22%,57%]: Accept if
+- equation $cq(\tau)$ (36pt, #ffffff) [26%,56% → 29%,59%]
+- equation $r$ (36pt, #ffffff) [23%,54% → 24%,56%]
+- equation $>$ (36pt, #ffffff) [24%,54% → 25%,56%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [26%,51% → 29%,54%]
+- line #ffffff [7%,38% → 31%,62%]
+- line #ffffff [26%,55% → 30%,55%]
+- text 36pt [11%,65% → 26%,70%]: where $\bar p(\tau) \leq c q(\tau)$
+- group [15%,48% → 15%,48%]
+  - line #80b9ff [15%,48% → 27%,48%]
+
+## Slide 54
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- text 36pt [43%,15% → 84%,20%]: Back to trying to sample from the failure distribution:
+- equation $\tau \sim q(\cdot)$ (36pt, #ffffff) [21%,42% → 28%,45%]
+- group [8%,40% → 13%,47%]
+  - line #ffffff [8%,40% → 13%,47%]
+  - equation $1$ (36pt, #ffffff) [10%,42% → 11%,45%]
+- text 36pt [14%,41% → 21%,46%]: Sample
+- group [8%,51% → 13%,59%]
+  - line #ffffff [8%,51% → 13%,59%]
+  - equation $2$ (36pt, #ffffff) [10%,54% → 11%,56%]
+- text 36pt [15%,53% → 22%,57%]: Accept if
+- equation $cq(\tau)$ (36pt, #ffffff) [26%,56% → 29%,59%]
+- equation $r$ (36pt, #ffffff) [23%,54% → 24%,56%]
+- equation $>$ (36pt, #ffffff) [24%,54% → 25%,56%]
+- equation $\bar p(\tau)$ (36pt, #ffffff) [26%,51% → 29%,54%]
+- line #ffffff [7%,38% → 31%,62%]
+- line #ffffff [26%,55% → 30%,55%]
+- text 36pt [11%,65% → 26%,70%]: where $\bar p(\tau) \leq c q(\tau)$
+- rounded box (outline) [44%,25% → 83%,50%]
+- text 36pt [45%,30% → 81%,46%]: {We can produce samples from the failure distribution by sampling from the |#000000}[[nominal trajectory distribution|#011993]]{ and |#000000}[[rejecting|#011993]]{ any samples that are |#000000}[[not failures|#011993]]{!|#000000}
+- text 36pt [39%,54% → 88%,62%]: What might be a problem with this method? / {Hint: what theme seems to be coming up over and over again in this course?|#929292}
+- group [41%,66% → 86%,75%]
+  - rounded box (outline) [41%,66% → 86%,75%]
+  - text 36pt [43%,68% → 84%,72%]: It will be [[inefficient|#80b9ff]] for systems with [[rare failure events|#80b9ff]]!
+- text 36pt [38%,79% → 89%,84%]: One solution is to try to come up with a [[better proposal distribution|#80b9ff]].
+- text on a #80b9ff filled box 32pt [54%,87% → 73%,95%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text 36pt — slides in; click 2: group — slides in; click 3: text 36pt — slides in; click 4: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 55
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- rounded box (outline) [7%,15% → 39%,35%]
+- text 30pt [8%,18% → 37%,32%]: {We can produce samples from the failure distribution by sampling from the |#000000}[[nominal trajectory distribution|#011993]]{ and |#000000}[[rejecting|#011993]]{ any samples that are |#000000}[[not failures|#011993]]{!|#000000}
+- group [4%,38% → 42%,46%]
+  - rounded box (outline) [4%,38% → 42%,46%]
+  - text 30pt [5%,40% → 40%,44%]: It will be [[inefficient|#80b9ff]] for systems with [[rare failure events|#80b9ff]]!
+- text 30pt [51%,40% → 94%,44%]: One solution is to try to come up with a [[better proposal distribution|#80b9ff]].
+- video `video-16588.mp4` (plays 0.0s–20.1s, loops) [8%,49% → 37%,91%]
+- video `video-16595.mp4` (plays 0.0s–25.6s, once) [58%,49% → 87%,91%]
+- **Builds:** click 1: video `video-16588.mp4` (plays 0.0s–20.1s, loops) — video starts; click 2: video `video-16595.mp4` (plays 0.0s–25.6s, once) — video starts
+
+## Slide 56
+- heading (spaced caps) 36pt [36%,5% → 110%,10%]: REJECTION SAMPLING
+- text 36pt [46%,14% → 54%,19%]: Challenges
+- text 36pt [31%,23% → 69%,28%]: Selecting an [[appropriate proposal|#80cfb9]] distribution {$q(\tau)$|#80cfb9}.
+- text 36pt [36%,32% → 64%,37%]: Selecting an [[appropriate|#c3b8ff]] value for {$c$|#c3b8ff}.
+- rounded box (outline) [40%,43% → 60%,53%]
+- text 36pt [44%,46% → 56%,50%]: {See example 6.1|#000000}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: rounded box (outline) — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 57
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: UNNORMALIZED PROBABILITY DENSITY
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: REJECTION SAMPLING
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MARKOV CHAIN MONTE CARLO
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: TIPS TO SCALE THINGS UP
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 58
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- image `img-3228.png` (cropped: show only 3–98% across and 6–47% down of the image) [14%,30% → 86%,70%]
+- vector icon `shape-3287b080.svg` [38%,55% → 68%,62%]
+- text 36pt [50%,79% → 56%,84%]: {Markov|#ff48cf}
+- arrow #ff48cf [53%,62% → 53%,79%]
+- image `pasted-image-18644.png` [58%,63% → 71%,97%]
+- **Builds:** click 1: image `img-3228.png` (cropped: show only 3–98% across and 6–47% down o — appears; click 2: vector icon `shape-3287b080.svg` — wipes in; click 3: arrow #ff48cf — draws in; then: text 36pt — appears; click 4: image `pasted-image-18644.png` — appears
+
+## Slide 59
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- image `g01-17289.svg` [29%,13% → 71%,87%]
+- image `g02-17294.svg` [29%,13% → 71%,87%]
+- image `g03-17330.svg` [29%,13% → 71%,87%]
+- image `g44-17316.svg` [29%,13% → 71%,87%]
+- **Builds:** click 1: image `g02-17294.svg` — appears; click 2: image `g03-17330.svg` — appears; click 3: image `g44-17316.svg` — fades up from dark
+
+## Slide 60
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- image `g44-17316.svg` [29%,13% → 71%,87%]
+- image `g01-17394.svg` [29%,13% → 71%,87%]
+- image `g02-17393.svg` [29%,13% → 71%,87%]
+- image `g03-17395.svg` [29%,13% → 71%,87%]
+- image `g04-17423.svg` [29%,13% → 71%,87%]
+- image `g05-17397.svg` [29%,13% → 71%,87%]
+- image `g06-17400.svg` [29%,13% → 71%,87%]
+- image `g07-17403.svg` [29%,13% → 71%,87%]
+- image `g08-17404.svg` [29%,13% → 71%,87%]
+- image `g09-17410.svg` [29%,13% → 71%,87%]
+- image `g10-17412.svg` [29%,13% → 71%,87%]
+- image `g11-17424.svg` [29%,13% → 71%,87%]
+- image `g12-17408.svg` [29%,13% → 71%,87%]
+- image `g13-17419.svg` [29%,13% → 71%,87%]
+- image `g14-17402.svg` [29%,13% → 71%,87%]
+- image `g15-17421.svg` [29%,13% → 71%,87%]
+- image `g16-17411.svg` [29%,13% → 71%,87%]
+- image `g17-17396.svg` [29%,13% → 71%,87%]
+- image `g18-17413.svg` [29%,13% → 71%,87%]
+- image `g19-17409.svg` [29%,13% → 71%,87%]
+- image `g20-17405.svg` [29%,13% → 71%,87%]
+- **Builds:** click 1: image `g01-17394.svg` — appears; then (0.1 s later): image `g02-17393.svg` — appears; then (0.1 s later): image `g03-17395.svg` — appears; then (0.1 s later): image `g04-17423.svg` — appears; then (0.1 s later): image `g05-17397.svg` — appears; then (0.1 s later): image `g06-17400.svg` — appears; then (0.1 s later): image `g07-17403.svg` — appears; then (0.1 s later): image `g08-17404.svg` — appears; then (0.1 s later): image `g09-17410.svg` — appears; then (0.1 s later): image `g10-17412.svg` — appears; then (0.1 s later): image `g11-17424.svg` — appears; then (0.1 s later): image `g12-17408.svg` — appears; then (0.1 s later): image `g13-17419.svg` — appears; then (0.1 s later): image `g14-17402.svg` — appears; then (0.1 s later): image `g15-17421.svg` — appears; then (0.1 s later): image `g16-17411.svg` — appears; then (0.1 s later): image `g17-17396.svg` — appears; then (0.1 s later): image `g18-17413.svg` — appears; then (0.1 s later): image `g19-17409.svg` — appears; then (0.1 s later): image `g20-17405.svg` — appears
+
+## Slide 61
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- image `g01-17449.svg` [29%,13% → 71%,87%]
+- image `g02-17445.svg` [29%,13% → 71%,87%]
+- image `g03-17446.svg` [29%,13% → 71%,87%]
+- image `g04-17456.svg` [29%,13% → 71%,87%]
+- image `g05-17448.svg` [29%,13% → 71%,87%]
+- image `g06-17457.svg` [29%,13% → 71%,87%]
+- image `g07-17455.svg` [29%,13% → 71%,87%]
+- image `g08-17447.svg` [29%,13% → 71%,87%]
+- image `g09-17460.svg` [29%,13% → 71%,87%]
+- image `g10-17461.svg` [29%,13% → 71%,87%]
+- image `g11-17458.svg` [29%,13% → 71%,87%]
+- image `g12-17462.svg` [29%,13% → 71%,87%]
+- image `g13-17459.svg` [29%,13% → 71%,87%]
+- image `g14-17464.svg` [29%,13% → 71%,87%]
+- image `g15-17469.svg` [29%,13% → 71%,87%]
+- image `g16-17470.svg` [29%,13% → 71%,87%]
+- image `g17-17466.svg` [29%,13% → 71%,87%]
+- image `g18-17468.svg` [29%,13% → 71%,87%]
+- image `g19-17465.svg` [29%,13% → 71%,87%]
+- image `g20-17463.svg` [29%,13% → 71%,87%]
+- **Builds:** then (0.1 s later): image `g02-17445.svg` — appears; then (0.1 s later): image `g03-17446.svg` — appears; then (0.1 s later): image `g04-17456.svg` — appears; then (0.1 s later): image `g05-17448.svg` — appears; then (0.1 s later): image `g06-17457.svg` — appears; then (0.1 s later): image `g07-17455.svg` — appears; then (0.1 s later): image `g08-17447.svg` — appears; then (0.1 s later): image `g09-17460.svg` — appears; then (0.1 s later): image `g10-17461.svg` — appears; then (0.1 s later): image `g11-17458.svg` — appears; then (0.1 s later): image `g12-17462.svg` — appears; then (0.1 s later): image `g13-17459.svg` — appears; then (0.1 s later): image `g14-17464.svg` — appears; then (0.1 s later): image `g15-17469.svg` — appears; then (0.1 s later): image `g16-17470.svg` — appears; then (0.1 s later): image `g17-17466.svg` — appears; then (0.1 s later): image `g18-17468.svg` — appears; then (0.1 s later): image `g19-17465.svg` — appears; then (0.1 s later): image `g20-17463.svg` — appears
+
+## Slide 62
+- line #a9a9a9 [54%,80% → 71%,80%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [55%,64% → 70%,80%]
+- vector icon `shape-2acc116e.svg` [64%,79% → 66%,81%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- text 36pt [36%,33% → 40%,37%]: {kernel|#c3b8ff}
+- arrow #c3b8ff [35%,38% → 37%,46%]
+- **Builds:** click 1: text 36pt — appears; with previous: vector icon `shape-114f13a6.svg` — appears; click 2: text 36pt — appears; click 3: group — appears; with previous: text 36pt — appears; with previous: equation $\tau^\prime \sim g(\cdot \mid \tau)$ — appears; click 4: text 36pt — appears; with previous: arrow #c3b8ff — draws in; click 5: text 32pt — slides in; click 6: shape (outline) — fades up from dark; with previous: line #a9a9a9 — fades up from dark; click 7: vector icon `shape-2acc116e.svg` — fades up from dark; click 8: group — appears; with previous: text 36pt — appears; with previous: equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 63
+- line #a9a9a9 [54%,80% → 71%,80%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [55%,64% → 70%,80%]
+- vector icon `shape-2c11b7e5.svg` [64%,79% → 66%,81%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 64
+- line #a9a9a9 [56%,76% → 74%,76%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [57%,60% → 73%,76%]
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- line #80b9ff [62%,76% → 65%,80%]
+- vector icon `shape-2acc116e.svg` [69%,75% → 70%,77%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 65
+- line #a9a9a9 [56%,76% → 74%,76%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [57%,60% → 73%,76%]
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- line #80b9ff [62%,76% → 65%,80%]
+- vector icon `shape-b6b5eb21.svg` [69%,75% → 70%,77%]
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 66
+- line #a9a9a9 [56%,73% → 74%,73%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [57%,56% → 73%,72%]
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- line #80b9ff [62%,76% → 65%,80%]
+- vector icon `shape-114f13a6.svg` [64%,71% → 66%,74%]
+- line #80b9ff [65%,72% → 65%,76%]
+- vector icon `shape-2acc116e.svg` [60%,71% → 62%,74%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 67
+- line #a9a9a9 [56%,73% → 74%,73%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- shape (outline) [57%,56% → 73%,72%]
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- line #80b9ff [62%,76% → 65%,80%]
+- vector icon `shape-114f13a6.svg` [64%,71% → 66%,74%]
+- line #80b9ff [65%,72% → 65%,76%]
+- vector icon `shape-2c11b7e5.svg` [60%,71% → 62%,74%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 68
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- line #ffffff [51%,24% → 85%,84%]
+- equation $\tau$ (57pt, #ffffff) [67%,89% → 69%,92%]
+- vector icon `shape-114f13a6.svg` [62%,79% → 63%,81%]
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- vector icon `shape-114f13a6.svg` [64%,75% → 66%,77%]
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- line #80b9ff [62%,76% → 65%,80%]
+- vector icon `shape-114f13a6.svg` [64%,71% → 66%,74%]
+- line #80b9ff [65%,72% → 65%,76%]
+- vector icon `shape-114f13a6.svg` [60%,68% → 62%,70%]
+- line #80b9ff [61%,69% → 65%,72%]
+- text 36pt [59%,59% → 63%,64%]: And so on…
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 69
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,17%]: So how do we create the chain?
+- text 36pt [11%,27% → 33%,32%]: Start with an initial sample {$\tau$|#80b9ff}.
+- text 36pt [11%,34% → 25%,38%]: At each iteration:
+- equation $\tau^\prime \sim g(\cdot \mid \tau)$ (36pt, #ffffff) [26%,44% → 34%,47%]
+- group [13%,42% → 17%,49%]
+  - line #ffffff [13%,42% → 17%,49%]
+  - equation $1$ (36pt, #ffffff) [15%,45% → 15%,47%]
+- text 36pt [19%,43% → 25%,48%]: Sample
+- text 32pt [19%,50% → 35%,55%]: {e.g. $\tau^\prime \sim \mathcal N(\cdot \mid \tau, \sigma^2)$|#a9a9a9}
+- group [13%,58% → 17%,65%]
+  - line #ffffff [13%,58% → 17%,65%]
+  - equation $2$ (36pt, #ffffff) [15%,61% → 15%,63%]
+- text 36pt [19%,59% → 38%,64%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [22%,66% → 32%,74%]
+- text 36pt [20%,76% → 34%,81%]: (otherwise keep $\tau$)
+- text 36pt [64%,27% → 74%,32%]: And so on…
+- text 36pt [55%,36% → 83%,48%]: This process is [[guaranteed to converge|#80b9ff]] to the target distribution in the limit of [[infinite samples|#80b9ff]].
+- line #a9a9a9 [53%,34% → 86%,50%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 70
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [47%,22% → 66%,26%]: Accept with probability
+- equation $\frac{\bar p(\tau^\prime) g(\tau \mid \tau^\prime)}{\bar p(\tau) g(\tau^\prime \mid \tau)}$ (36pt, #ffffff) [51%,29% → 61%,37%]
+- text 36pt [10%,24% → 38%,36%]: This process is [[guaranteed to converge|#80b9ff]] to the target distribution in the limit of [[infinite samples|#80b9ff]].
+- line #a9a9a9 [8%,22% → 41%,38%]
+- text 36pt [42%,12% → 58%,17%]: {SOME INTUITION|#ffa4e7}
+- group [71%,24% → 95%,37%]
+  - rounded box (outline) [71%,24% → 95%,37%]
+  - text 30pt [72%,25% → 94%,36%]: The kernel is often chosen to be symmetric such that $g(\tau \mid \tau^\prime) = g(\tau^\prime \mid \tau)$.
+- line #fab0ae [55%,30% → 61%,32%]
+- line #fab0ae [55%,34% → 61%,37%]
+- text 36pt [19%,60% → 28%,65%]: $\bar p(\tau^\prime) \geq \bar p(\tau)$
+- text 36pt [11%,52% → 19%,56%]: Two cases:
+- group [12%,59% → 17%,66%]
+  - line #ffffff [12%,59% → 17%,66%]
+  - equation $1$ (36pt, #ffffff) [14%,61% → 15%,64%]
+- shape (outline) [76%,59% → 83%,66%]
+- text 36pt [38%,60% → 74%,65%]: $\tau^\prime$ is more likely under the target density than $\tau$
+- equation $\frac{\bar p(\tau^\prime)}{\bar p (\tau)} \geq 1$ (36pt, #ffffff) [85%,59% → 92%,66%]
+- shape (outline) [30%,59% → 37%,66%]
+- text 36pt [44%,67% → 56%,72%]: {Always accept!|#80b9ff}
+- text 36pt [19%,79% → 28%,83%]: $\bar p(\tau^\prime) < \bar p(\tau)$
+- group [12%,77% → 16%,85%]
+  - line #ffffff [12%,77% → 16%,85%]
+  - equation $2$ (36pt, #ffffff) [14%,80% → 15%,82%]
+- shape (outline) [76%,77% → 83%,85%]
+- text 36pt [39%,79% → 74%,83%]: $\tau^\prime$ is less likely under the target density than $\tau$
+- equation $\frac{\bar p(\tau^\prime)}{\bar p (\tau)} < 1$ (36pt, #ffffff) [85%,77% → 92%,85%]
+- shape (outline) [30%,77% → 37%,85%]
+- text 36pt [25%,88% → 75%,93%]: {Accept with probability proportional to how much less likely it is.|#80b9ff}
+- group [18%,42% → 82%,50%]
+  - rounded box (outline) [18%,42% → 82%,50%]
+  - text 36pt [18%,44% → 82%,49%]: We want to sample from areas of [[high density|#80b9ff]] [[more often|#80b9ff]] than areas of low density.
+- **Builds:** click 1: group — slides in; click 2: line #fab0ae — draws in; with previous: line #fab0ae — draws in; click 3: group — slides in; click 4: text 36pt — appears; click 5: group — appears; with previous: text 36pt — appears; click 6: shape (outline) — wipes in; with previous (0.3 s later): text 36pt — slides in; click 7: shape (outline) — wipes in; with previous: equation $\frac{\bar p(\tau^\prime)}{\bar p (\tau)} \geq 1$ — slides in; click 8: text 36pt — slides in; click 9: group — appears; with previous: text 36pt — appears; click 10: shape (outline) — wipes in; with previous (0.3 s later): text 36pt — slides in; click 11: shape (outline) — wipes in; with previous: equation $\frac{\bar p(\tau^\prime)}{\bar p (\tau)} < 1$ — slides in; click 12: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 71
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [42%,12% → 58%,17%]: {SOME INTUITION|#ffa4e7}
+- text 100pt [37%,20% → 42%,33%]: 🤔
+- text 36pt [43%,24% → 63%,29%]: Still scratching your head?
+- text on a #80b9ff filled box 32pt [40%,36% → 60%,44%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 72
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [42%,12% → 58%,17%]: {SOME INTUITION|#ffa4e7}
+- text 100pt [14%,38% → 20%,51%]: 🤔
+- text 36pt [21%,42% → 41%,47%]: Still scratching your head?
+- text on a #80b9ff filled box 32pt [18%,54% → 37%,62%]: {Pluto Notebook!|#000000}
+- video `video-17876.mp4` (plays 0.0s–33.9s, loops) [50%,28% → 86%,89%]
+- **Builds:** then: video `video-17876.mp4` (plays 0.0s–33.9s, loops) — video starts
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 73
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [19%,48% → 81%,52%]: This all works (converges to the target distribution) in the [[limit of infinite samples|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 74
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,18%]: This all works (converges to the target distribution) in the [[limit of infinite samples|#80b9ff]].
+- image `pasted-image-17899.png` [33%,24% → 67%,68%]
+- text 36pt [39%,74% → 61%,79%]: We don’t have time for that!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 75
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [48%,13% → 52%,18%]: This all works (converges to the target distribution) in the [[limit of infinite samples|#80b9ff]].
+- text 36pt [39%,20% → 61%,25%]: We don’t have time for that!
+- text 36pt [48%,27% → 52%,32%]: So we need often use some [[extra tricks in practice|#80b9ff]] to make it perform better for a finite number of samples.
+- text on a #80b9ff filled box 32pt [40%,37% → 60%,45%]: {Pluto Notebook!|#000000}
+- group [12%,54% → 30%,62%]
+  - group [12%,54% → 16%,62%]
+    - line #ffffff [12%,54% → 16%,62%]
+    - equation $1$ (36pt, #ffffff) [14%,57% → 15%,59%]
+  - text 36pt [18%,56% → 30%,60%]: Burn in period
+- group [12%,66% → 61%,76%]
+  - group [12%,67% → 16%,75%]
+    - line #ffffff [12%,67% → 16%,75%]
+    - equation $2$ (36pt, #ffffff) [14%,70% → 15%,72%]
+  - text 36pt [18%,66% → 51%,71%]: Thinning (e.g. only keep every 5th sample)
+  - text 30pt [18%,72% → 61%,76%]: {Deals with the fact that samples at subsequent steps are correlated|#a9a9a9}
+- group [12%,80% → 16%,88%]
+  - line #ffffff [12%,80% → 16%,88%]
+  - equation $3$ (36pt, #ffffff) [14%,83% → 15%,85%]
+- text 36pt [19%,82% → 27%,86%]: Smoothing
+- text on a #80b9ff filled box 32pt [32%,80% → 51%,88%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: group — appears; click 2: group — appears; click 3: text 36pt — appears; with previous: group — appears; click 4: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 76
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [46%,11% → 54%,16%]: Smoothing
+- image `test-17996.png` [27%,19% → 73%,73%]
+- rounded box (outline) [19%,77% → 81%,92%]
+- vector icon `shape-61531053.svg` [21%,79% → 25%,90%]
+- text 36pt [27%,80% → 79%,84%]: We may need to “help” the algorithm move between failure modes.
+- text 36pt [31%,85% → 75%,90%]: We can do this by “[[smoothing out|#80b9ff]]” the failure distribution.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 77
+- rounded box (outline) [19%,19% → 81%,34%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [46%,11% → 54%,16%]: Smoothing
+- vector icon `shape-61531053.svg` [21%,21% → 25%,32%]
+- text 36pt [27%,21% → 79%,26%]: We may need to “help” the algorithm move between failure modes.
+- text 36pt [31%,27% → 75%,31%]: We can do this by “[[smoothing out|#80b9ff]]” the failure distribution.
+- text 36pt [31%,49% → 46%,54%]: {e.g. $\max(\rho(\tau, \psi), 0)$|#ffa4e7}
+- group [6%,38% → 47%,57%]
+  - text 36pt [7%,38% → 46%,43%]: Define distance $\Delta(\tau)$ for each trajectory such that:
+  - equation $\Delta(\tau) = 0$ (36pt, #ffffff) [9%,48% → 15%,51%]
+  - equation $\Delta(\tau) > 0$ (36pt, #ffffff) [9%,54% → 15%,57%]
+  - text 36pt [17%,46% → 28%,51%]: if $\tau$ is a failure
+  - text 36pt [17%,53% → 25%,57%]: otherwise
+  - line #ffffff [6%,45% → 47%,45%]
+- shape (outline) [52%,48% → 59%,55%]
+- equation $\bar p(\tau \mid \tau \notin \psi) = 1 \{\tau \notin \psi\} p(\tau)$ (36pt, #ffffff) [63%,47% → 84%,50%]
+- equation $= 1 \{\Delta (\tau) = 0\} p(\tau)$ (36pt, #ffffff) [73%,53% → 87%,56%]
+- line #a9a9a9 [6%,62% → 93%,62%]
+- equation $1 \{\Delta (\tau) = 0\} \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2)$ (36pt, #ffffff) [10%,66% → 33%,69%]
+- text 36pt [37%,65% → 49%,70%]: when $\epsilon$ is small
+- group [3%,75% → 21%,96%]
+  - line #ffffff [3%,87% → 21%,87%]
+  - equation $\Delta(\tau)$ (36pt, #ffffff) [10%,93% → 14%,96%]
+  - line #c3b8ff [12%,75% → 12%,87%]
+  - equation $0$ (22pt, #ffffff) [12%,88% → 12%,90%]
+- group [25%,72% → 43%,95%]
+  - line #ffffff [25%,87% → 43%,87%]
+  - equation $\Delta(\tau)$ (36pt, #ffffff) [33%,93% → 36%,95%]
+  - shape (outline) [26%,72% → 41%,87%]
+  - equation $0$ (22pt, #ffffff) [34%,88% → 34%,90%]
+- equation $\approx$ (59pt, #ffffff) [22%,78% → 24%,81%]
+- shape (outline) [52%,77% → 59%,85%]
+- equation $\bar p(\tau \mid \tau \notin \psi) \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2) p(\tau)$ (36pt, #ffffff) [64%,68% → 89%,72%]
+- text 36pt [61%,76% → 91%,91%]: The smoothed distribution assigns [[nonzero probability to successes|#80b9ff]] with higher probabilities for successes that are closer to failure.
+- **Builds:** click 1: group — appears; click 2: text 36pt — slides in; click 3: shape (outline) — wipes in; then: equation $\bar p(\tau \mid \tau \notin \psi) = 1 \{\tau \notin \psi\} p(\tau)$ — appears; with previous: equation $= 1 \{\Delta (\tau) = 0\} p(\tau)$ — appears; click 4: line #a9a9a9 — draws in; then: equation $1 \{\Delta (\tau) = 0\} \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2)$ — slides in; with previous: text 36pt — slides in; click 5: group — appears; click 6: equation $\approx$ — wipes in; then: group — appears; click 7: shape (outline) — wipes in; with previous: equation $\bar p(\tau \mid \tau \notin \psi) \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2) p(\tau)$ — slides in; with previous: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 78
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 36pt [31%,25% → 46%,29%]: {e.g. $\max(\rho(\tau, \psi), 0)$|#ffa4e7}
+- group [6%,14% → 47%,33%]
+  - text 36pt [7%,14% → 46%,19%]: Define distance $\Delta(\tau)$ for each trajectory such that:
+  - equation $\Delta(\tau) = 0$ (36pt, #ffffff) [9%,24% → 15%,26%]
+  - equation $\Delta(\tau) > 0$ (36pt, #ffffff) [9%,30% → 15%,33%]
+  - text 36pt [17%,22% → 28%,27%]: if $\tau$ is a failure
+  - text 36pt [17%,29% → 25%,33%]: otherwise
+  - line #ffffff [6%,20% → 47%,20%]
+- shape (outline) [51%,23% → 58%,31%]
+- equation $\bar p(\tau \mid \tau \notin \psi) = 1 \{\tau \notin \psi\} p(\tau)$ (36pt, #ffffff) [63%,23% → 84%,26%]
+- equation $= 1 \{\Delta (\tau) = 0\} p(\tau)$ (36pt, #ffffff) [73%,28% → 87%,31%]
+- line #a9a9a9 [5%,38% → 93%,38%]
+- equation $1 \{\Delta (\tau) = 0\} \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2)$ (36pt, #ffffff) [10%,41% → 33%,45%]
+- text 36pt [37%,41% → 49%,46%]: when $\epsilon$ is small
+- group [3%,50% → 21%,71%]
+  - line #ffffff [3%,63% → 21%,63%]
+  - equation $\Delta(\tau)$ (36pt, #ffffff) [10%,69% → 14%,71%]
+  - line #c3b8ff [12%,50% → 12%,63%]
+  - equation $0$ (22pt, #ffffff) [12%,64% → 12%,66%]
+- group [25%,47% → 43%,71%]
+  - line #ffffff [25%,63% → 43%,63%]
+  - equation $\Delta(\tau)$ (36pt, #ffffff) [32%,68% → 36%,71%]
+  - shape (outline) [26%,47% → 41%,63%]
+  - equation $0$ (22pt, #ffffff) [34%,64% → 34%,65%]
+- equation $\approx$ (59pt, #ffffff) [22%,54% → 24%,56%]
+- shape (outline) [51%,53% → 58%,61%]
+- equation $\bar p(\tau \mid \tau \notin \psi) \approx \mathcal N(\Delta(\tau) \mid 0, \epsilon^2) p(\tau)$ (36pt, #ffffff) [64%,44% → 89%,48%]
+- text 36pt [61%,51% → 91%,67%]: The smoothed distribution assigns [[nonzero probability to successes|#80b9ff]] with higher probabilities for successes that are closer to failure.
+- text 36pt [48%,74% → 52%,79%]: The parameter $\epsilon$ controls the amount of smoothing applied:
+- arrow #80b9ff [10%,84% → 85%,84%]
+- equation $0$ (36pt, #80b9ff) [8%,83% → 9%,86%]
+- equation $\infty$ (36pt, #80b9ff) [86%,84% → 87%,85%]
+- text 36pt [3%,87% → 14%,92%]: {no smoothing|#80b9ff}
+- text 36pt [76%,85% → 97%,94%]: {nominal trajectory distribution|#80b9ff}
+- equation $\epsilon$ (57pt, #80b9ff) [49%,88% → 50%,91%]
+- **Builds:** then: equation $\epsilon$ — appears; with previous: arrow #80b9ff — draws in; then: equation $\infty$ — appears; with previous: text 36pt — appears; with previous: equation $0$ — appears; with previous: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 79
+- rounded box (outline) [19%,31% → 81%,43%]
+- heading (spaced caps) 36pt [31%,4% → 105%,9%]: MARKOV CHAIN MONTE CARLO
+- text 100pt [22%,31% → 28%,44%]: 🤔
+- text 36pt [29%,35% → 78%,39%]: But won’t we now have a bunch of samples that are not failures?
+- text 36pt [15%,47% → 85%,51%]: Yes, but we can [[just reject them|#80b9ff]], and we will be left with samples from the failure distribution!
+- group [33%,55% → 67%,69%]
+  - rounded box (outline) [33%,55% → 67%,69%]
+  - text 36pt [34%,55% → 66%,69%]: {Note: you can think of it as applying |#000000}[[rejection sampling |#0072fe]]{with the |#000000}[[smoothed distribution|#0072fe]]{ as the proposal distribution.|#000000}
+- text on a #80b9ff filled box 32pt [40%,75% → 60%,83%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text 36pt — slides in; click 2: group — appears; click 3: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 80
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: UNNORMALIZED PROBABILITY DENSITY
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: REJECTION SAMPLING
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MARKOV CHAIN MONTE CARLO
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: TIPS TO SCALE THINGS UP
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 81
+- heading (spaced caps) 36pt [34%,45% → 107%,49%]: TIPS TO SCALE THINGS UP
+- text 36pt [13%,51% → 87%,56%]: It is possible to apply these methods to [[more than|#80b9ff]] just a [[one-dimensional|#80b9ff]] Gaussian distribution 😀.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 82
+- heading (spaced caps) 36pt [34%,7% → 107%,11%]: TIPS TO SCALE THINGS UP
+- text 36pt [13%,13% → 87%,18%]: It is possible to apply these methods to [[more than|#80b9ff]] just a [[one-dimensional|#80b9ff]] Gaussian distribution 😀.
+- rounded box (outline) [27%,21% → 73%,33%]
+- text 36pt [30%,23% → 70%,31%]: {See examples 6.2 and 6.4 to show how we can apply MCMC and smoothing to the pendulum example.|#000000}
+- text on a #80b9ff filled box 32pt [40%,37% → 60%,45%]: {Pluto Notebook!|#000000}
+- text 36pt [50%,50% → 50%,50%]: Other methods that help:
+- group [15%,58% → 19%,66%]
+  - line #ffffff [15%,58% → 19%,66%]
+  - equation $1$ (36pt, #ffffff) [17%,61% → 17%,63%]
+- text 36pt [21%,58% → 85%,66%]: Some MCMC methods use [[gradients of the likelihood|#80b9ff]] to define the kernel, which can lead to better performance (e.g. MALA in section 6.3.3, HMC, NUTS)
+- group [15%,72% → 19%,80%]
+  - line #ffffff [15%,72% → 19%,80%]
+  - equation $2$ (36pt, #ffffff) [16%,75% → 17%,77%]
+- text 36pt [21%,72% → 85%,80%]: [[Probabilistic programming|#80b9ff]] allows us to specify probabilistic models as [[computer programs|#80b9ff]] in a way that allows inference to be performed [[automatically|#80b9ff]].
+- image `noun-bracket-2376717-80b9ff.png` [8%,60% → 16%,79%]
+- text 24pt [4%,66% → 10%,72%]: {Advanced topics|#80b9ff}
+- **Builds:** click 1: text 36pt — appears; click 2: group — appears; with previous: text 36pt — appears; click 3: group — appears; with previous: text 36pt — appears; click 4: image `noun-bracket-2376717-80b9ff.png` — fades up from dark; with previous: text 24pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 83
+- heading (spaced caps) 36pt [34%,7% → 107%,11%]: TIPS TO SCALE THINGS UP
+- group [15%,16% → 19%,23%]
+  - line #ffffff [15%,16% → 19%,23%]
+  - equation $2$ (36pt, #ffffff) [16%,19% → 17%,21%]
+- text 36pt [21%,16% → 85%,24%]: [[Probabilistic programming|#80b9ff]] allows us to specify probabilistic models as [[computer programs|#80b9ff]] in a way that allows inference to be performed [[automatically|#80b9ff]].
+- image `val-page-135.svg` (cropped: show only 11–65% across and 25–74% down of the image) [34%,29% → 66%,88%]
+- text 150pt [72%,47% → 80%,66%]: 😲
+- **Builds:** click 1: text 150pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 84
+- heading (spaced caps) 50pt [-9%,14% → 67%,20%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [12%,29% → 16%,36%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [12%,43% → 16%,49%]: {2|#000000}
+- line #ffffff [12%,22% → 45%,22%]
+- heading (spaced caps) 36pt [18%,30% → 94%,35%]: UNNORMALIZED PROBABILITY DENSITY
+- heading (spaced caps) 36pt [18%,44% → 92%,48%]: REJECTION SAMPLING
+- text on a #80b9ff filled box 32pt [12%,56% → 16%,63%]: {3|#000000}
+- heading (spaced caps) 36pt [18%,57% → 92%,62%]: MARKOV CHAIN MONTE CARLO
+- text on a #80b9ff filled box 32pt [12%,70% → 16%,76%]: {4|#000000}
+- heading (spaced caps) 36pt [18%,71% → 91%,75%]: TIPS TO SCALE THINGS UP
+- **Transition to next:** Magic Move (shared objects glide; others fade)
