@@ -1,0 +1,2743 @@
+# AA228V Lecture 13 — Linear Reachability: slide-by-slide content
+
+Extracted from the Keynote deck `13_Linear_Reachability.key` (112 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`. Use the reference screenshots for the exact layout.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/13-linear-reachability/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/13-linear-reachability/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time, "(0.1 s later)" = after that pause).
+- A long run of images named `gNN-…` that appear one after another at the same spot, a fraction of a second apart, is a frame-by-frame animation: stack them and reveal them in turn with that timing (each frame stays as the next appears).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as earlier lectures: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#000000`, `#c0c0c0`, `#ffa4e7`, `#0072fe`, `#c3b8ff`, `#f3cf80`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- text 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 50pt [4%,73% → 43%,87%]: LECTURE 11: REACHABILITY FOR LINEAR SYSTEMS / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- text 36pt [23%,48% → 77%,52%]: Most of the stuff we have done so far has no guarantees.
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 3
+- text 36pt [28%,46% → 72%,50%]: Most of the stuff we have done so far has no guarantees.
+- text 36pt [28%,51% → 72%,55%]: {Today we are going to start getting some guarantees!|#80b9ff}
+
+## Slide 4
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: WE WANT TO COMPUTE THE SET OF STATES THAT A SYSTEM {COULD REACH|#80b9ff} OVER TIME
+
+## Slide 5
+- image `g01-24916.svg` [14%,35% → 86%,65%]
+- image `g02-24924.svg` [14%,35% → 86%,65%]
+- image `g03-24913.svg` [14%,35% → 86%,65%]
+- image `g04-24910.svg` [14%,35% → 86%,65%]
+- image `g05-24925.svg` [14%,35% → 86%,65%]
+- image `g06-24918.svg` [14%,35% → 86%,65%]
+- image `g07-24911.svg` [14%,35% → 86%,65%]
+- image `g08-24933.svg` [14%,35% → 86%,65%]
+- image `g09-24921.svg` [14%,35% → 86%,65%]
+- image `g10-24919.svg` [14%,35% → 86%,65%]
+- image `g11-24992.svg` [14%,35% → 86%,65%]
+- image `g12-24990.svg` [14%,35% → 86%,65%]
+- image `g13-24980.svg` [14%,35% → 86%,65%]
+- image `g14-24965.svg` [14%,35% → 86%,65%]
+- image `g15-24963.svg` [14%,35% → 86%,65%]
+- image `g16-24952.svg` [14%,35% → 86%,65%]
+- image `g17-24937.svg` [14%,35% → 86%,65%]
+- image `g18-24943.svg` [14%,35% → 86%,65%]
+- image `g19-24939.svg` [14%,35% → 86%,65%]
+- image `g20-24942.svg` [14%,35% → 86%,65%]
+- image `g21-24936.svg` [14%,35% → 86%,65%]
+- image `g22-24955.svg` [14%,35% → 86%,65%]
+- image `g23-24930.svg` [14%,35% → 86%,65%]
+- image `g24-24953.svg` [14%,35% → 86%,65%]
+- image `g25-24927.svg` [14%,35% → 86%,65%]
+- image `g26-25090.svg` [14%,35% → 86%,65%]
+- image `g27-25091.svg` [14%,35% → 86%,65%]
+- image `g28-25093.svg` [14%,35% → 86%,65%]
+- image `g29-25089.svg` [14%,35% → 86%,65%]
+- image `g30-25087.svg` [14%,35% → 86%,65%]
+- image `g31-25088.svg` [14%,35% → 86%,65%]
+- image `g32-25092.svg` [14%,35% → 86%,65%]
+- image `g33-25085.svg` [14%,35% → 86%,65%]
+- image `g34-25080.svg` [14%,35% → 86%,65%]
+- image `g35-25079.svg` [14%,35% → 86%,65%]
+- image `g36-25072.svg` [14%,35% → 86%,65%]
+- image `g37-25084.svg` [14%,35% → 86%,65%]
+- image `g38-25065.svg` [14%,35% → 86%,65%]
+- image `g39-25061.svg` [14%,35% → 86%,65%]
+- image `g40-25053.svg` [14%,35% → 86%,65%]
+- image `g41-25064.svg` [14%,35% → 86%,65%]
+- image `g42-25062.svg` [14%,35% → 86%,65%]
+- image `g43-25082.svg` [14%,35% → 86%,65%]
+- image `g44-25067.svg` [14%,35% → 86%,65%]
+- image `g45-25066.svg` [14%,35% → 86%,65%]
+- image `g46-25052.svg` [14%,35% → 86%,65%]
+- image `g47-25046.svg` [14%,35% → 86%,65%]
+- image `g48-25038.svg` [14%,35% → 86%,65%]
+- image `g49-25037.svg` [14%,35% → 86%,65%]
+- image `g50-25043.svg` [14%,35% → 86%,65%]
+- image `g51-25032.svg` [14%,35% → 86%,65%]
+- image `g52-25049.svg` [14%,35% → 86%,65%]
+- image `g53-25023.svg` [14%,35% → 86%,65%]
+- image `g54-25060.svg` [14%,35% → 86%,65%]
+- image `g55-25035.svg` [14%,35% → 86%,65%]
+- image `g56-25026.svg` [14%,35% → 86%,65%]
+- image `g57-25030.svg` [14%,35% → 86%,65%]
+- image `g58-25083.svg` [14%,35% → 86%,65%]
+- image `g59-25086.svg` [14%,35% → 86%,65%]
+- image `g60-25063.svg` [14%,35% → 86%,65%]
+- image `g61-25068.svg` [14%,35% → 86%,65%]
+- image `g62-25041.svg` [14%,35% → 86%,65%]
+- image `g63-25040.svg` [14%,35% → 86%,65%]
+- image `g64-25012.svg` [14%,35% → 86%,65%]
+- image `g65-25005.svg` [14%,35% → 86%,65%]
+- image `g66-25004.svg` [14%,35% → 86%,65%]
+- image `g67-25002.svg` [14%,35% → 86%,65%]
+- image `g68-25013.svg` [14%,35% → 86%,65%]
+- image `g69-25009.svg` [14%,35% → 86%,65%]
+- image `g70-25022.svg` [14%,35% → 86%,65%]
+- image `g71-25010.svg` [14%,35% → 86%,65%]
+- image `g72-25039.svg` [14%,35% → 86%,65%]
+- image `g73-25024.svg` [14%,35% → 86%,65%]
+- image `g74-25008.svg` [14%,35% → 86%,65%]
+- image `g75-25003.svg` [14%,35% → 86%,65%]
+- image `g76-25021.svg` [14%,35% → 86%,65%]
+- image `g77-25015.svg` [14%,35% → 86%,65%]
+- image `g78-25000.svg` [14%,35% → 86%,65%]
+- image `g79-24999.svg` [14%,35% → 86%,65%]
+- image `g80-24986.svg` [14%,35% → 86%,65%]
+- image `g81-24973.svg` [14%,35% → 86%,65%]
+- image `g82-24971.svg` [14%,35% → 86%,65%]
+- image `g83-24985.svg` [14%,35% → 86%,65%]
+- image `g84-24972.svg` [14%,35% → 86%,65%]
+- image `g85-24995.svg` [14%,35% → 86%,65%]
+- image `g86-24991.svg` [14%,35% → 86%,65%]
+- image `g87-24970.svg` [14%,35% → 86%,65%]
+- image `g88-24969.svg` [14%,35% → 86%,65%]
+- image `g89-24967.svg` [14%,35% → 86%,65%]
+- image `g90-24960.svg` [14%,35% → 86%,65%]
+- image `g91-24962.svg` [14%,35% → 86%,65%]
+- image `g92-24957.svg` [14%,35% → 86%,65%]
+- image `g93-24984.svg` [14%,35% → 86%,65%]
+- image `g94-24981.svg` [14%,35% → 86%,65%]
+- image `g95-24931.svg` [14%,35% → 86%,65%]
+- image `g96-24949.svg` [14%,35% → 86%,65%]
+- image `g97-24948.svg` [14%,35% → 86%,65%]
+- image `g98-24975.svg` [14%,35% → 86%,65%]
+- image `g99-24945.svg` [14%,35% → 86%,65%]
+- **Builds:** click 1: image `g02-24924.svg` — appears; then (0.05 s later): image `g03-24913.svg` — appears; then (0.05 s later): image `g04-24910.svg` — appears; then (0.05 s later): image `g05-24925.svg` — appears; then (0.05 s later): image `g06-24918.svg` — appears; then (0.05 s later): image `g07-24911.svg` — appears; then (0.05 s later): image `g08-24933.svg` — appears; then (0.05 s later): image `g09-24921.svg` — appears; then (0.05 s later): image `g10-24919.svg` — appears; then (0.05 s later): image `g11-24992.svg` — appears; then (0.05 s later): image `g12-24990.svg` — appears; then (0.05 s later): image `g13-24980.svg` — appears; then (0.05 s later): image `g14-24965.svg` — appears; then (0.05 s later): image `g15-24963.svg` — appears; then (0.05 s later): image `g16-24952.svg` — appears; then (0.05 s later): image `g17-24937.svg` — appears; then (0.05 s later): image `g18-24943.svg` — appears; then (0.05 s later): image `g19-24939.svg` — appears; then (0.05 s later): image `g20-24942.svg` — appears; then (0.05 s later): image `g21-24936.svg` — appears; then (0.05 s later): image `g22-24955.svg` — appears; then (0.05 s later): image `g23-24930.svg` — appears; then (0.05 s later): image `g24-24953.svg` — appears; then (0.05 s later): image `g25-24927.svg` — appears; then (0.05 s later): image `g26-25090.svg` — appears; then (0.05 s later): image `g27-25091.svg` — appears; then (0.05 s later): image `g28-25093.svg` — appears; then (0.05 s later): image `g29-25089.svg` — appears; then (0.05 s later): image `g30-25087.svg` — appears; then (0.05 s later): image `g31-25088.svg` — appears; then (0.05 s later): image `g32-25092.svg` — appears; then (0.05 s later): image `g33-25085.svg` — appears; then (0.05 s later): image `g34-25080.svg` — appears; then (0.05 s later): image `g35-25079.svg` — appears; then (0.05 s later): image `g36-25072.svg` — appears; then (0.05 s later): image `g37-25084.svg` — appears; then (0.05 s later): image `g38-25065.svg` — appears; then (0.05 s later): image `g39-25061.svg` — appears; then (0.05 s later): image `g40-25053.svg` — appears; then (0.05 s later): image `g41-25064.svg` — appears; then (0.05 s later): image `g42-25062.svg` — appears; then (0.05 s later): image `g43-25082.svg` — appears; then (0.05 s later): image `g44-25067.svg` — appears; then (0.05 s later): image `g45-25066.svg` — appears; then (0.05 s later): image `g46-25052.svg` — appears; then (0.05 s later): image `g47-25046.svg` — appears; then (0.05 s later): image `g48-25038.svg` — appears; then (0.05 s later): image `g49-25037.svg` — appears; then (0.05 s later): image `g50-25043.svg` — appears; then (0.05 s later): image `g51-25032.svg` — appears; then (0.05 s later): image `g52-25049.svg` — appears; then (0.05 s later): image `g53-25023.svg` — appears; then (0.05 s later): image `g54-25060.svg` — appears; then (0.05 s later): image `g55-25035.svg` — appears; then (0.05 s later): image `g56-25026.svg` — appears; then (0.05 s later): image `g57-25030.svg` — appears; then (0.05 s later): image `g58-25083.svg` — appears; then (0.05 s later): image `g59-25086.svg` — appears; then (0.05 s later): image `g60-25063.svg` — appears; then (0.05 s later): image `g61-25068.svg` — appears; then (0.05 s later): image `g62-25041.svg` — appears; then (0.05 s later): image `g63-25040.svg` — appears; then (0.05 s later): image `g64-25012.svg` — appears; then (0.05 s later): image `g65-25005.svg` — appears; then (0.05 s later): image `g66-25004.svg` — appears; then (0.05 s later): image `g67-25002.svg` — appears; then (0.05 s later): image `g68-25013.svg` — appears; then (0.05 s later): image `g69-25009.svg` — appears; then (0.05 s later): image `g70-25022.svg` — appears; then (0.05 s later): image `g71-25010.svg` — appears; then (0.05 s later): image `g72-25039.svg` — appears; then (0.05 s later): image `g73-25024.svg` — appears; then (0.05 s later): image `g74-25008.svg` — appears; then (0.05 s later): image `g75-25003.svg` — appears; then (0.05 s later): image `g76-25021.svg` — appears; then (0.05 s later): image `g77-25015.svg` — appears; then (0.05 s later): image `g78-25000.svg` — appears; then (0.05 s later): image `g79-24999.svg` — appears; then (0.05 s later): image `g80-24986.svg` — appears; then (0.05 s later): image `g81-24973.svg` — appears; then (0.05 s later): image `g82-24971.svg` — appears; then (0.05 s later): image `g83-24985.svg` — appears; then (0.05 s later): image `g84-24972.svg` — appears; then (0.05 s later): image `g85-24995.svg` — appears; then (0.05 s later): image `g86-24991.svg` — appears; then (0.05 s later): image `g87-24970.svg` — appears; then (0.05 s later): image `g88-24969.svg` — appears; then (0.05 s later): image `g89-24967.svg` — appears; then (0.05 s later): image `g90-24960.svg` — appears; then (0.05 s later): image `g91-24962.svg` — appears; then (0.05 s later): image `g92-24957.svg` — appears; then (0.05 s later): image `g93-24984.svg` — appears; then (0.05 s later): image `g94-24981.svg` — appears; then (0.05 s later): image `g95-24931.svg` — appears; then (0.05 s later): image `g96-24949.svg` — appears; then (0.05 s later): image `g97-24948.svg` — appears; then (0.05 s later): image `g98-24975.svg` — appears; then (0.05 s later): image `g99-24945.svg` — appears
+
+## Slide 6
+- image `g01-25130.svg` [14%,12% → 86%,88%]
+- image `g02-25127.svg` [14%,12% → 86%,88%]
+- image `g03-25131.svg` [14%,12% → 86%,88%]
+- image `g04-25128.svg` [14%,12% → 86%,88%]
+- image `g05-25278.svg` [14%,12% → 86%,88%]
+- image `g06-25270.svg` [14%,12% → 86%,88%]
+- image `g07-25280.svg` [14%,12% → 86%,88%]
+- image `g08-25276.svg` [14%,12% → 86%,88%]
+- image `g09-25138.svg` [14%,12% → 86%,88%]
+- image `g10-25136.svg` [14%,12% → 86%,88%]
+- image `g11-25275.svg` [14%,12% → 86%,88%]
+- image `g12-25135.svg` [14%,12% → 86%,88%]
+- image `g13-25271.svg` [14%,12% → 86%,88%]
+- image `g14-25273.svg` [14%,12% → 86%,88%]
+- image `g15-25286.svg` [14%,12% → 86%,88%]
+- image `g16-25268.svg` [14%,12% → 86%,88%]
+- image `g17-25291.svg` [14%,12% → 86%,88%]
+- image `g18-25294.svg` [14%,12% → 86%,88%]
+- image `g19-25285.svg` [14%,12% → 86%,88%]
+- image `g20-25293.svg` [14%,12% → 86%,88%]
+- image `g21-25287.svg` [14%,12% → 86%,88%]
+- image `g22-25146.svg` [14%,12% → 86%,88%]
+- image `g23-25141.svg` [14%,12% → 86%,88%]
+- image `g24-25147.svg` [14%,12% → 86%,88%]
+- image `g25-25140.svg` [14%,12% → 86%,88%]
+- image `g26-25208.svg` [14%,12% → 86%,88%]
+- image `g27-25203.svg` [14%,12% → 86%,88%]
+- image `g28-25217.svg` [14%,12% → 86%,88%]
+- image `g29-25199.svg` [14%,12% → 86%,88%]
+- image `g30-25241.svg` [14%,12% → 86%,88%]
+- image `g31-25220.svg` [14%,12% → 86%,88%]
+- image `g32-25196.svg` [14%,12% → 86%,88%]
+- image `g33-25274.svg` [14%,12% → 86%,88%]
+- image `g34-25272.svg` [14%,12% → 86%,88%]
+- image `g35-25247.svg` [14%,12% → 86%,88%]
+- image `g36-25246.svg` [14%,12% → 86%,88%]
+- image `g37-25201.svg` [14%,12% → 86%,88%]
+- image `g38-25192.svg` [14%,12% → 86%,88%]
+- image `g39-25248.svg` [14%,12% → 86%,88%]
+- image `g40-25252.svg` [14%,12% → 86%,88%]
+- image `g41-25256.svg` [14%,12% → 86%,88%]
+- image `g42-25251.svg` [14%,12% → 86%,88%]
+- image `g43-25182.svg` [14%,12% → 86%,88%]
+- image `g44-25186.svg` [14%,12% → 86%,88%]
+- image `g45-25239.svg` [14%,12% → 86%,88%]
+- image `g46-25185.svg` [14%,12% → 86%,88%]
+- image `g47-25213.svg` [14%,12% → 86%,88%]
+- image `g48-25214.svg` [14%,12% → 86%,88%]
+- image `g49-25225.svg` [14%,12% → 86%,88%]
+- image `g50-25215.svg` [14%,12% → 86%,88%]
+- image `g51-25277.svg` [14%,12% → 86%,88%]
+- image `g52-25212.svg` [14%,12% → 86%,88%]
+- image `g53-25269.svg` [14%,12% → 86%,88%]
+- image `g54-25227.svg` [14%,12% → 86%,88%]
+- image `g55-25211.svg` [14%,12% → 86%,88%]
+- image `g56-25198.svg` [14%,12% → 86%,88%]
+- image `g57-25180.svg` [14%,12% → 86%,88%]
+- image `g58-25172.svg` [14%,12% → 86%,88%]
+- image `g59-25176.svg` [14%,12% → 86%,88%]
+- image `g60-25167.svg` [14%,12% → 86%,88%]
+- image `g61-25190.svg` [14%,12% → 86%,88%]
+- image `g62-25184.svg` [14%,12% → 86%,88%]
+- image `g63-25165.svg` [14%,12% → 86%,88%]
+- image `g64-25279.svg` [14%,12% → 86%,88%]
+- image `g65-25281.svg` [14%,12% → 86%,88%]
+- image `g66-25249.svg` [14%,12% → 86%,88%]
+- image `g67-25250.svg` [14%,12% → 86%,88%]
+- image `g68-25244.svg` [14%,12% → 86%,88%]
+- image `g69-25228.svg` [14%,12% → 86%,88%]
+- image `g70-25243.svg` [14%,12% → 86%,88%]
+- image `g71-25230.svg` [14%,12% → 86%,88%]
+- image `g72-25242.svg` [14%,12% → 86%,88%]
+- image `g73-25245.svg` [14%,12% → 86%,88%]
+- image `g74-25151.svg` [14%,12% → 86%,88%]
+- image `g75-25145.svg` [14%,12% → 86%,88%]
+- image `g76-25240.svg` [14%,12% → 86%,88%]
+- image `g77-25229.svg` [14%,12% → 86%,88%]
+- image `g78-25224.svg` [14%,12% → 86%,88%]
+- image `g79-25200.svg` [14%,12% → 86%,88%]
+- image `g80-25207.svg` [14%,12% → 86%,88%]
+- image `g81-25158.svg` [14%,12% → 86%,88%]
+- image `g82-25154.svg` [14%,12% → 86%,88%]
+- image `g83-25156.svg` [14%,12% → 86%,88%]
+- image `g84-25153.svg` [14%,12% → 86%,88%]
+- image `g85-25295.svg` [14%,12% → 86%,88%]
+- image `g86-25292.svg` [14%,12% → 86%,88%]
+- image `g87-25290.svg` [14%,12% → 86%,88%]
+- image `g88-25289.svg` [14%,12% → 86%,88%]
+- image `g89-25288.svg` [14%,12% → 86%,88%]
+- image `g90-25282.svg` [14%,12% → 86%,88%]
+- image `g91-25284.svg` [14%,12% → 86%,88%]
+- image `g92-25283.svg` [14%,12% → 86%,88%]
+- image `g93-25188.svg` [14%,12% → 86%,88%]
+- image `g94-25170.svg` [14%,12% → 86%,88%]
+- image `g95-25164.svg` [14%,12% → 86%,88%]
+- image `g96-25161.svg` [14%,12% → 86%,88%]
+- image `g97-25177.svg` [14%,12% → 86%,88%]
+- image `g98-25175.svg` [14%,12% → 86%,88%]
+- image `g99-25162.svg` [14%,12% → 86%,88%]
+- heading (spaced caps) 36pt [12%,50% → 88%,55%]: WITH CONTROLLER ({AGENT|#80b9ff})
+- heading (spaced caps) 36pt [12%,6% → 88%,10%]: NO CONTROLLER
+- **Builds:** click 1: image `g02-25127.svg` — appears; then (0.05 s later): image `g03-25131.svg` — appears; then (0.05 s later): image `g04-25128.svg` — appears; then (0.05 s later): image `g05-25278.svg` — appears; then (0.05 s later): image `g06-25270.svg` — appears; then (0.05 s later): image `g07-25280.svg` — appears; then (0.05 s later): image `g08-25276.svg` — appears; then (0.05 s later): image `g09-25138.svg` — appears; then (0.05 s later): image `g10-25136.svg` — appears; then (0.05 s later): image `g11-25275.svg` — appears; then (0.05 s later): image `g12-25135.svg` — appears; then (0.05 s later): image `g13-25271.svg` — appears; then (0.05 s later): image `g14-25273.svg` — appears; then (0.05 s later): image `g15-25286.svg` — appears; then (0.05 s later): image `g16-25268.svg` — appears; then (0.05 s later): image `g17-25291.svg` — appears; then (0.05 s later): image `g18-25294.svg` — appears; then (0.05 s later): image `g19-25285.svg` — appears; then (0.05 s later): image `g20-25293.svg` — appears; then (0.05 s later): image `g21-25287.svg` — appears; then (0.05 s later): image `g22-25146.svg` — appears; then (0.05 s later): image `g23-25141.svg` — appears; then (0.05 s later): image `g24-25147.svg` — appears; then (0.05 s later): image `g25-25140.svg` — appears; then (0.05 s later): image `g26-25208.svg` — appears; then (0.05 s later): image `g27-25203.svg` — appears; then (0.05 s later): image `g28-25217.svg` — appears; then (0.05 s later): image `g29-25199.svg` — appears; then (0.05 s later): image `g30-25241.svg` — appears; then (0.05 s later): image `g31-25220.svg` — appears; then (0.05 s later): image `g32-25196.svg` — appears; then (0.05 s later): image `g33-25274.svg` — appears; then (0.05 s later): image `g34-25272.svg` — appears; then (0.05 s later): image `g35-25247.svg` — appears; then (0.05 s later): image `g36-25246.svg` — appears; then (0.05 s later): image `g37-25201.svg` — appears; then (0.05 s later): image `g38-25192.svg` — appears; then (0.05 s later): image `g39-25248.svg` — appears; then (0.05 s later): image `g40-25252.svg` — appears; then (0.05 s later): image `g41-25256.svg` — appears; then (0.05 s later): image `g42-25251.svg` — appears; then (0.05 s later): image `g43-25182.svg` — appears; then (0.05 s later): image `g44-25186.svg` — appears; then (0.05 s later): image `g45-25239.svg` — appears; then (0.05 s later): image `g46-25185.svg` — appears; then (0.05 s later): image `g47-25213.svg` — appears; then (0.05 s later): image `g48-25214.svg` — appears; then (0.05 s later): image `g49-25225.svg` — appears; then (0.05 s later): image `g50-25215.svg` — appears; then (0.05 s later): image `g51-25277.svg` — appears; then (0.05 s later): image `g52-25212.svg` — appears; then (0.05 s later): image `g53-25269.svg` — appears; then (0.05 s later): image `g54-25227.svg` — appears; then (0.05 s later): image `g55-25211.svg` — appears; then (0.05 s later): image `g56-25198.svg` — appears; then (0.05 s later): image `g57-25180.svg` — appears; then (0.05 s later): image `g58-25172.svg` — appears; then (0.05 s later): image `g59-25176.svg` — appears; then (0.05 s later): image `g60-25167.svg` — appears; then (0.05 s later): image `g61-25190.svg` — appears; then (0.05 s later): image `g62-25184.svg` — appears; then (0.05 s later): image `g63-25165.svg` — appears; then (0.05 s later): image `g64-25279.svg` — appears; then (0.05 s later): image `g65-25281.svg` — appears; then (0.05 s later): image `g66-25249.svg` — appears; then (0.05 s later): image `g67-25250.svg` — appears; then (0.05 s later): image `g68-25244.svg` — appears; then (0.05 s later): image `g69-25228.svg` — appears; then (0.05 s later): image `g70-25243.svg` — appears; then (0.05 s later): image `g71-25230.svg` — appears; then (0.05 s later): image `g72-25242.svg` — appears; then (0.05 s later): image `g73-25245.svg` — appears; then (0.05 s later): image `g74-25151.svg` — appears; then (0.05 s later): image `g75-25145.svg` — appears; then (0.05 s later): image `g76-25240.svg` — appears; then (0.05 s later): image `g77-25229.svg` — appears; then (0.05 s later): image `g78-25224.svg` — appears; then (0.05 s later): image `g79-25200.svg` — appears; then (0.05 s later): image `g80-25207.svg` — appears; then (0.05 s later): image `g81-25158.svg` — appears; then (0.05 s later): image `g82-25154.svg` — appears; then (0.05 s later): image `g83-25156.svg` — appears; then (0.05 s later): image `g84-25153.svg` — appears; then (0.05 s later): image `g85-25295.svg` — appears; then (0.05 s later): image `g86-25292.svg` — appears; then (0.05 s later): image `g87-25290.svg` — appears; then (0.05 s later): image `g88-25289.svg` — appears; then (0.05 s later): image `g89-25288.svg` — appears; then (0.05 s later): image `g90-25282.svg` — appears; then (0.05 s later): image `g91-25284.svg` — appears; then (0.05 s later): image `g92-25283.svg` — appears; then (0.05 s later): image `g93-25188.svg` — appears; then (0.05 s later): image `g94-25170.svg` — appears; then (0.05 s later): image `g95-25164.svg` — appears; then (0.05 s later): image `g96-25161.svg` — appears; then (0.05 s later): image `g97-25177.svg` — appears; then (0.05 s later): image `g98-25175.svg` — appears; then (0.05 s later): image `g99-25162.svg` — appears
+
+## Slide 7
+- image `g01-25340.svg` [14%,35% → 86%,65%]
+- image `g02-25342.svg` [14%,35% → 86%,65%]
+- image `g03-25341.svg` [14%,35% → 86%,65%]
+- image `g04-25455.svg` [14%,35% → 86%,65%]
+- image `g05-25436.svg` [14%,35% → 86%,65%]
+- image `g06-25471.svg` [14%,35% → 86%,65%]
+- image `g07-25463.svg` [14%,35% → 86%,65%]
+- image `g08-25446.svg` [14%,35% → 86%,65%]
+- image `g09-25440.svg` [14%,35% → 86%,65%]
+- image `g10-25484.svg` [14%,35% → 86%,65%]
+- image `g11-25477.svg` [14%,35% → 86%,65%]
+- image `g12-25461.svg` [14%,35% → 86%,65%]
+- image `g13-25460.svg` [14%,35% → 86%,65%]
+- image `g14-25458.svg` [14%,35% → 86%,65%]
+- image `g15-25450.svg` [14%,35% → 86%,65%]
+- image `g16-25444.svg` [14%,35% → 86%,65%]
+- image `g17-25459.svg` [14%,35% → 86%,65%]
+- image `g18-25523.svg` [14%,35% → 86%,65%]
+- image `g19-25522.svg` [14%,35% → 86%,65%]
+- image `g20-25527.svg` [14%,35% → 86%,65%]
+- image `g21-25517.svg` [14%,35% → 86%,65%]
+- image `g22-25526.svg` [14%,35% → 86%,65%]
+- image `g23-25524.svg` [14%,35% → 86%,65%]
+- image `g24-25490.svg` [14%,35% → 86%,65%]
+- image `g25-25519.svg` [14%,35% → 86%,65%]
+- image `g26-25492.svg` [14%,35% → 86%,65%]
+- image `g27-25488.svg` [14%,35% → 86%,65%]
+- image `g28-25489.svg` [14%,35% → 86%,65%]
+- image `g29-25479.svg` [14%,35% → 86%,65%]
+- image `g30-25520.svg` [14%,35% → 86%,65%]
+- image `g31-25345.svg` [14%,35% → 86%,65%]
+- image `g32-25351.svg` [14%,35% → 86%,65%]
+- image `g33-25350.svg` [14%,35% → 86%,65%]
+- image `g34-25357.svg` [14%,35% → 86%,65%]
+- image `g35-25521.svg` [14%,35% → 86%,65%]
+- image `g36-25516.svg` [14%,35% → 86%,65%]
+- image `g37-25439.svg` [14%,35% → 86%,65%]
+- image `g38-25353.svg` [14%,35% → 86%,65%]
+- image `g39-25348.svg` [14%,35% → 86%,65%]
+- image `g40-25457.svg` [14%,35% → 86%,65%]
+- image `g41-25355.svg` [14%,35% → 86%,65%]
+- image `g42-25454.svg` [14%,35% → 86%,65%]
+- image `g43-25452.svg` [14%,35% → 86%,65%]
+- image `g44-25464.svg` [14%,35% → 86%,65%]
+- image `g45-25451.svg` [14%,35% → 86%,65%]
+- image `g46-25438.svg` [14%,35% → 86%,65%]
+- image `g47-25361.svg` [14%,35% → 86%,65%]
+- image `g48-25365.svg` [14%,35% → 86%,65%]
+- image `g49-25359.svg` [14%,35% → 86%,65%]
+- image `g50-25415.svg` [14%,35% → 86%,65%]
+- image `g51-25403.svg` [14%,35% → 86%,65%]
+- image `g52-25402.svg` [14%,35% → 86%,65%]
+- image `g53-25418.svg` [14%,35% → 86%,65%]
+- image `g54-25398.svg` [14%,35% → 86%,65%]
+- image `g55-25491.svg` [14%,35% → 86%,65%]
+- image `g56-25428.svg` [14%,35% → 86%,65%]
+- image `g57-25400.svg` [14%,35% → 86%,65%]
+- image `g58-25396.svg` [14%,35% → 86%,65%]
+- image `g59-25453.svg` [14%,35% → 86%,65%]
+- image `g60-25462.svg` [14%,35% → 86%,65%]
+- image `g61-25435.svg` [14%,35% → 86%,65%]
+- image `g62-25437.svg` [14%,35% → 86%,65%]
+- image `g63-25386.svg` [14%,35% → 86%,65%]
+- image `g64-25384.svg` [14%,35% → 86%,65%]
+- image `g65-25385.svg` [14%,35% → 86%,65%]
+- image `g66-25380.svg` [14%,35% → 86%,65%]
+- image `g67-25456.svg` [14%,35% → 86%,65%]
+- image `g68-25465.svg` [14%,35% → 86%,65%]
+- image `g69-25449.svg` [14%,35% → 86%,65%]
+- image `g70-25433.svg` [14%,35% → 86%,65%]
+- image `g71-25432.svg` [14%,35% → 86%,65%]
+- image `g72-25370.svg` [14%,35% → 86%,65%]
+- image `g73-25367.svg` [14%,35% → 86%,65%]
+- image `g74-25395.svg` [14%,35% → 86%,65%]
+- image `g75-25363.svg` [14%,35% → 86%,65%]
+- image `g76-25474.svg` [14%,35% → 86%,65%]
+- image `g77-25442.svg` [14%,35% → 86%,65%]
+- image `g78-25407.svg` [14%,35% → 86%,65%]
+- image `g79-25406.svg` [14%,35% → 86%,65%]
+- image `g80-25431.svg` [14%,35% → 86%,65%]
+- image `g81-25425.svg` [14%,35% → 86%,65%]
+- image `g82-25393.svg` [14%,35% → 86%,65%]
+- image `g83-25394.svg` [14%,35% → 86%,65%]
+- image `g84-25434.svg` [14%,35% → 86%,65%]
+- image `g85-25430.svg` [14%,35% → 86%,65%]
+- image `g86-25443.svg` [14%,35% → 86%,65%]
+- image `g87-25388.svg` [14%,35% → 86%,65%]
+- image `g88-25392.svg` [14%,35% → 86%,65%]
+- image `g89-25427.svg` [14%,35% → 86%,65%]
+- image `g90-25424.svg` [14%,35% → 86%,65%]
+- image `g91-25412.svg` [14%,35% → 86%,65%]
+- image `g92-25411.svg` [14%,35% → 86%,65%]
+- image `g93-25377.svg` [14%,35% → 86%,65%]
+- image `g94-25378.svg` [14%,35% → 86%,65%]
+- image `g95-25376.svg` [14%,35% → 86%,65%]
+- image `g96-25416.svg` [14%,35% → 86%,65%]
+- image `g97-25414.svg` [14%,35% → 86%,65%]
+- image `g98-25372.svg` [14%,35% → 86%,65%]
+- image `g99-25369.svg` [14%,35% → 86%,65%]
+- heading (spaced caps) 36pt [12%,25% → 88%,29%]: WITH SENSOR NOISE
+- **Builds:** click 1: image `g02-25342.svg` — appears; then (0.05 s later): image `g03-25341.svg` — appears; then (0.05 s later): image `g04-25455.svg` — appears; then (0.05 s later): image `g05-25436.svg` — appears; then (0.05 s later): image `g06-25471.svg` — appears; then (0.05 s later): image `g07-25463.svg` — appears; then (0.05 s later): image `g08-25446.svg` — appears; then (0.05 s later): image `g09-25440.svg` — appears; then (0.05 s later): image `g10-25484.svg` — appears; then (0.05 s later): image `g11-25477.svg` — appears; then (0.05 s later): image `g12-25461.svg` — appears; then (0.05 s later): image `g13-25460.svg` — appears; then (0.05 s later): image `g14-25458.svg` — appears; then (0.05 s later): image `g15-25450.svg` — appears; then (0.05 s later): image `g16-25444.svg` — appears; then (0.05 s later): image `g17-25459.svg` — appears; then (0.05 s later): image `g18-25523.svg` — appears; then (0.05 s later): image `g19-25522.svg` — appears; then (0.05 s later): image `g20-25527.svg` — appears; then (0.05 s later): image `g21-25517.svg` — appears; then (0.05 s later): image `g22-25526.svg` — appears; then (0.05 s later): image `g23-25524.svg` — appears; then (0.05 s later): image `g24-25490.svg` — appears; then (0.05 s later): image `g25-25519.svg` — appears; then (0.05 s later): image `g26-25492.svg` — appears; then (0.05 s later): image `g27-25488.svg` — appears; then (0.05 s later): image `g28-25489.svg` — appears; then (0.05 s later): image `g29-25479.svg` — appears; then (0.05 s later): image `g30-25520.svg` — appears; then (0.05 s later): image `g31-25345.svg` — appears; then (0.05 s later): image `g32-25351.svg` — appears; then (0.05 s later): image `g33-25350.svg` — appears; then (0.05 s later): image `g34-25357.svg` — appears; then (0.05 s later): image `g35-25521.svg` — appears; then (0.05 s later): image `g36-25516.svg` — appears; then (0.05 s later): image `g37-25439.svg` — appears; then (0.05 s later): image `g38-25353.svg` — appears; then (0.05 s later): image `g39-25348.svg` — appears; then (0.05 s later): image `g40-25457.svg` — appears; then (0.05 s later): image `g41-25355.svg` — appears; then (0.05 s later): image `g42-25454.svg` — appears; then (0.05 s later): image `g43-25452.svg` — appears; then (0.05 s later): image `g44-25464.svg` — appears; then (0.05 s later): image `g45-25451.svg` — appears; then (0.05 s later): image `g46-25438.svg` — appears; then (0.05 s later): image `g47-25361.svg` — appears; then (0.05 s later): image `g48-25365.svg` — appears; then (0.05 s later): image `g49-25359.svg` — appears; then (0.05 s later): image `g50-25415.svg` — appears; then (0.05 s later): image `g51-25403.svg` — appears; then (0.05 s later): image `g52-25402.svg` — appears; then (0.05 s later): image `g53-25418.svg` — appears; then (0.05 s later): image `g54-25398.svg` — appears; then (0.05 s later): image `g55-25491.svg` — appears; then (0.05 s later): image `g56-25428.svg` — appears; then (0.05 s later): image `g57-25400.svg` — appears; then (0.05 s later): image `g58-25396.svg` — appears; then (0.05 s later): image `g59-25453.svg` — appears; then (0.05 s later): image `g60-25462.svg` — appears; then (0.05 s later): image `g61-25435.svg` — appears; then (0.05 s later): image `g62-25437.svg` — appears; then (0.05 s later): image `g63-25386.svg` — appears; then (0.05 s later): image `g64-25384.svg` — appears; then (0.05 s later): image `g65-25385.svg` — appears; then (0.05 s later): image `g66-25380.svg` — appears; then (0.05 s later): image `g67-25456.svg` — appears; then (0.05 s later): image `g68-25465.svg` — appears; then (0.05 s later): image `g69-25449.svg` — appears; then (0.05 s later): image `g70-25433.svg` — appears; then (0.05 s later): image `g71-25432.svg` — appears; then (0.05 s later): image `g72-25370.svg` — appears; then (0.05 s later): image `g73-25367.svg` — appears; then (0.05 s later): image `g74-25395.svg` — appears; then (0.05 s later): image `g75-25363.svg` — appears; then (0.05 s later): image `g76-25474.svg` — appears; then (0.05 s later): image `g77-25442.svg` — appears; then (0.05 s later): image `g78-25407.svg` — appears; then (0.05 s later): image `g79-25406.svg` — appears; then (0.05 s later): image `g80-25431.svg` — appears; then (0.05 s later): image `g81-25425.svg` — appears; then (0.05 s later): image `g82-25393.svg` — appears; then (0.05 s later): image `g83-25394.svg` — appears; then (0.05 s later): image `g84-25434.svg` — appears; then (0.05 s later): image `g85-25430.svg` — appears; then (0.05 s later): image `g86-25443.svg` — appears; then (0.05 s later): image `g87-25388.svg` — appears; then (0.05 s later): image `g88-25392.svg` — appears; then (0.05 s later): image `g89-25427.svg` — appears; then (0.05 s later): image `g90-25424.svg` — appears; then (0.05 s later): image `g91-25412.svg` — appears; then (0.05 s later): image `g92-25411.svg` — appears; then (0.05 s later): image `g93-25377.svg` — appears; then (0.05 s later): image `g94-25378.svg` — appears; then (0.05 s later): image `g95-25376.svg` — appears; then (0.05 s later): image `g96-25416.svg` — appears; then (0.05 s later): image `g97-25414.svg` — appears; then (0.05 s later): image `g98-25372.svg` — appears; then (0.05 s later): image `g99-25369.svg` — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- heading (spaced caps) 36pt [12%,25% → 88%,29%]: WITH (A LOT OF) SENSOR NOISE
+- image `g01-25987.svg` [14%,35% → 86%,65%]
+- image `g02-25989.svg` [14%,35% → 86%,65%]
+- image `g03-26007.svg` [14%,35% → 86%,65%]
+- image `g04-25995.svg` [14%,35% → 86%,65%]
+- image `g05-25988.svg` [14%,35% → 86%,65%]
+- image `g06-25998.svg` [14%,35% → 86%,65%]
+- image `g07-25992.svg` [14%,35% → 86%,65%]
+- image `g08-26090.svg` [14%,35% → 86%,65%]
+- image `g09-26088.svg` [14%,35% → 86%,65%]
+- image `g10-26103.svg` [14%,35% → 86%,65%]
+- image `g11-26099.svg` [14%,35% → 86%,65%]
+- image `g12-25999.svg` [14%,35% → 86%,65%]
+- image `g13-26004.svg` [14%,35% → 86%,65%]
+- image `g14-26006.svg` [14%,35% → 86%,65%]
+- image `g15-26141.svg` [14%,35% → 86%,65%]
+- image `g16-26136.svg` [14%,35% → 86%,65%]
+- image `g17-26137.svg` [14%,35% → 86%,65%]
+- image `g18-26129.svg` [14%,35% → 86%,65%]
+- image `g19-26133.svg` [14%,35% → 86%,65%]
+- image `g20-26128.svg` [14%,35% → 86%,65%]
+- image `g21-26130.svg` [14%,35% → 86%,65%]
+- image `g22-26140.svg` [14%,35% → 86%,65%]
+- image `g23-26125.svg` [14%,35% → 86%,65%]
+- image `g24-26117.svg` [14%,35% → 86%,65%]
+- image `g25-26113.svg` [14%,35% → 86%,65%]
+- image `g26-26135.svg` [14%,35% → 86%,65%]
+- image `g27-26139.svg` [14%,35% → 86%,65%]
+- image `g28-26134.svg` [14%,35% → 86%,65%]
+- image `g29-26138.svg` [14%,35% → 86%,65%]
+- image `g30-26127.svg` [14%,35% → 86%,65%]
+- image `g31-26124.svg` [14%,35% → 86%,65%]
+- image `g32-26131.svg` [14%,35% → 86%,65%]
+- image `g33-26132.svg` [14%,35% → 86%,65%]
+- image `g34-26126.svg` [14%,35% → 86%,65%]
+- image `g35-26115.svg` [14%,35% → 86%,65%]
+- image `g36-26110.svg` [14%,35% → 86%,65%]
+- image `g37-26058.svg` [14%,35% → 86%,65%]
+- image `g38-26052.svg` [14%,35% → 86%,65%]
+- image `g39-26015.svg` [14%,35% → 86%,65%]
+- image `g40-26014.svg` [14%,35% → 86%,65%]
+- image `g41-26020.svg` [14%,35% → 86%,65%]
+- image `g42-26019.svg` [14%,35% → 86%,65%]
+- image `g43-26012.svg` [14%,35% → 86%,65%]
+- image `g44-26010.svg` [14%,35% → 86%,65%]
+- image `g45-26067.svg` [14%,35% → 86%,65%]
+- image `g46-26062.svg` [14%,35% → 86%,65%]
+- image `g47-26109.svg` [14%,35% → 86%,65%]
+- image `g48-26061.svg` [14%,35% → 86%,65%]
+- image `g49-26003.svg` [14%,35% → 86%,65%]
+- image `g50-25997.svg` [14%,35% → 86%,65%]
+- image `g51-26106.svg` [14%,35% → 86%,65%]
+- image `g52-26100.svg` [14%,35% → 86%,65%]
+- image `g53-26093.svg` [14%,35% → 86%,65%]
+- image `g54-26094.svg` [14%,35% → 86%,65%]
+- image `g55-26098.svg` [14%,35% → 86%,65%]
+- image `g56-26097.svg` [14%,35% → 86%,65%]
+- image `g57-26083.svg` [14%,35% → 86%,65%]
+- image `g58-26084.svg` [14%,35% → 86%,65%]
+- image `g59-26114.svg` [14%,35% → 86%,65%]
+- image `g60-26102.svg` [14%,35% → 86%,65%]
+- image `g61-26101.svg` [14%,35% → 86%,65%]
+- image `g62-26104.svg` [14%,35% → 86%,65%]
+- image `g63-26095.svg` [14%,35% → 86%,65%]
+- image `g64-26085.svg` [14%,35% → 86%,65%]
+- image `g65-26086.svg` [14%,35% → 86%,65%]
+- image `g66-26096.svg` [14%,35% → 86%,65%]
+- image `g67-26080.svg` [14%,35% → 86%,65%]
+- image `g68-26072.svg` [14%,35% → 86%,65%]
+- image `g69-26078.svg` [14%,35% → 86%,65%]
+- image `g70-26105.svg` [14%,35% → 86%,65%]
+- image `g71-26077.svg` [14%,35% → 86%,65%]
+- image `g72-26089.svg` [14%,35% → 86%,65%]
+- image `g73-26087.svg` [14%,35% → 86%,65%]
+- image `g74-26060.svg` [14%,35% → 86%,65%]
+- image `g75-26059.svg` [14%,35% → 86%,65%]
+- image `g76-26071.svg` [14%,35% → 86%,65%]
+- image `g77-26068.svg` [14%,35% → 86%,65%]
+- image `g78-26029.svg` [14%,35% → 86%,65%]
+- image `g79-26027.svg` [14%,35% → 86%,65%]
+- image `g80-26081.svg` [14%,35% → 86%,65%]
+- image `g81-26057.svg` [14%,35% → 86%,65%]
+- image `g82-26051.svg` [14%,35% → 86%,65%]
+- image `g83-26049.svg` [14%,35% → 86%,65%]
+- image `g84-26023.svg` [14%,35% → 86%,65%]
+- image `g85-26022.svg` [14%,35% → 86%,65%]
+- image `g86-26032.svg` [14%,35% → 86%,65%]
+- image `g87-26024.svg` [14%,35% → 86%,65%]
+- image `g88-26028.svg` [14%,35% → 86%,65%]
+- image `g89-26031.svg` [14%,35% → 86%,65%]
+- image `g90-26055.svg` [14%,35% → 86%,65%]
+- image `g91-26026.svg` [14%,35% → 86%,65%]
+- image `g92-26079.svg` [14%,35% → 86%,65%]
+- image `g93-26082.svg` [14%,35% → 86%,65%]
+- image `g94-26025.svg` [14%,35% → 86%,65%]
+- image `g95-26030.svg` [14%,35% → 86%,65%]
+- image `g96-26021.svg` [14%,35% → 86%,65%]
+- image `g97-26018.svg` [14%,35% → 86%,65%]
+- image `g98-26017.svg` [14%,35% → 86%,65%]
+- image `g99-26016.svg` [14%,35% → 86%,65%]
+- **Builds:** click 1: image `g02-25989.svg` — appears; then (0.05 s later): image `g03-26007.svg` — appears; then (0.05 s later): image `g04-25995.svg` — appears; then (0.05 s later): image `g05-25988.svg` — appears; then (0.05 s later): image `g06-25998.svg` — appears; then (0.05 s later): image `g07-25992.svg` — appears; then (0.05 s later): image `g08-26090.svg` — appears; then (0.05 s later): image `g09-26088.svg` — appears; then (0.05 s later): image `g10-26103.svg` — appears; then (0.05 s later): image `g11-26099.svg` — appears; then (0.05 s later): image `g12-25999.svg` — appears; then (0.05 s later): image `g13-26004.svg` — appears; then (0.05 s later): image `g14-26006.svg` — appears; then (0.05 s later): image `g15-26141.svg` — appears; then (0.05 s later): image `g16-26136.svg` — appears; then (0.05 s later): image `g17-26137.svg` — appears; then (0.05 s later): image `g18-26129.svg` — appears; then (0.05 s later): image `g19-26133.svg` — appears; then (0.05 s later): image `g20-26128.svg` — appears; then (0.05 s later): image `g21-26130.svg` — appears; then (0.05 s later): image `g22-26140.svg` — appears; then (0.05 s later): image `g23-26125.svg` — appears; then (0.05 s later): image `g24-26117.svg` — appears; then (0.05 s later): image `g25-26113.svg` — appears; then (0.05 s later): image `g26-26135.svg` — appears; then (0.05 s later): image `g27-26139.svg` — appears; then (0.05 s later): image `g28-26134.svg` — appears; then (0.05 s later): image `g29-26138.svg` — appears; then (0.05 s later): image `g30-26127.svg` — appears; then (0.05 s later): image `g31-26124.svg` — appears; then (0.05 s later): image `g32-26131.svg` — appears; then (0.05 s later): image `g33-26132.svg` — appears; then (0.05 s later): image `g34-26126.svg` — appears; then (0.05 s later): image `g35-26115.svg` — appears; then (0.05 s later): image `g36-26110.svg` — appears; then (0.05 s later): image `g37-26058.svg` — appears; then (0.05 s later): image `g38-26052.svg` — appears; then (0.05 s later): image `g39-26015.svg` — appears; then (0.05 s later): image `g40-26014.svg` — appears; then (0.05 s later): image `g41-26020.svg` — appears; then (0.05 s later): image `g42-26019.svg` — appears; then (0.05 s later): image `g43-26012.svg` — appears; then (0.05 s later): image `g44-26010.svg` — appears; then (0.05 s later): image `g45-26067.svg` — appears; then (0.05 s later): image `g46-26062.svg` — appears; then (0.05 s later): image `g47-26109.svg` — appears; then (0.05 s later): image `g48-26061.svg` — appears; then (0.05 s later): image `g49-26003.svg` — appears; then (0.05 s later): image `g50-25997.svg` — appears; then (0.05 s later): image `g51-26106.svg` — appears; then (0.05 s later): image `g52-26100.svg` — appears; then (0.05 s later): image `g53-26093.svg` — appears; then (0.05 s later): image `g54-26094.svg` — appears; then (0.05 s later): image `g55-26098.svg` — appears; then (0.05 s later): image `g56-26097.svg` — appears; then (0.05 s later): image `g57-26083.svg` — appears; then (0.05 s later): image `g58-26084.svg` — appears; then (0.05 s later): image `g59-26114.svg` — appears; then (0.05 s later): image `g60-26102.svg` — appears; then (0.05 s later): image `g61-26101.svg` — appears; then (0.05 s later): image `g62-26104.svg` — appears; then (0.05 s later): image `g63-26095.svg` — appears; then (0.05 s later): image `g64-26085.svg` — appears; then (0.05 s later): image `g65-26086.svg` — appears; then (0.05 s later): image `g66-26096.svg` — appears; then (0.05 s later): image `g67-26080.svg` — appears; then (0.05 s later): image `g68-26072.svg` — appears; then (0.05 s later): image `g69-26078.svg` — appears; then (0.05 s later): image `g70-26105.svg` — appears; then (0.05 s later): image `g71-26077.svg` — appears; then (0.05 s later): image `g72-26089.svg` — appears; then (0.05 s later): image `g73-26087.svg` — appears; then (0.05 s later): image `g74-26060.svg` — appears; then (0.05 s later): image `g75-26059.svg` — appears; then (0.05 s later): image `g76-26071.svg` — appears; then (0.05 s later): image `g77-26068.svg` — appears; then (0.05 s later): image `g78-26029.svg` — appears; then (0.05 s later): image `g79-26027.svg` — appears; then (0.05 s later): image `g80-26081.svg` — appears; then (0.05 s later): image `g81-26057.svg` — appears; then (0.05 s later): image `g82-26051.svg` — appears; then (0.05 s later): image `g83-26049.svg` — appears; then (0.05 s later): image `g84-26023.svg` — appears; then (0.05 s later): image `g85-26022.svg` — appears; then (0.05 s later): image `g86-26032.svg` — appears; then (0.05 s later): image `g87-26024.svg` — appears; then (0.05 s later): image `g88-26028.svg` — appears; then (0.05 s later): image `g89-26031.svg` — appears; then (0.05 s later): image `g90-26055.svg` — appears; then (0.05 s later): image `g91-26026.svg` — appears; then (0.05 s later): image `g92-26079.svg` — appears; then (0.05 s later): image `g93-26082.svg` — appears; then (0.05 s later): image `g94-26025.svg` — appears; then (0.05 s later): image `g95-26030.svg` — appears; then (0.05 s later): image `g96-26021.svg` — appears; then (0.05 s later): image `g97-26018.svg` — appears; then (0.05 s later): image `g98-26017.svg` — appears; then (0.05 s later): image `g99-26016.svg` — appears
+
+## Slide 9
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: HOW MUCH SENSOR NOISE IS TOO MUCH?
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- heading (spaced caps) 50pt [12%,44% → 88%,50%]: HOW MUCH SENSOR NOISE IS TOO MUCH?
+- text 36pt [48%,51% → 52%,56%]: Given a bound on the maximum possible noise, can we prove that the system will never fail?
+- text 36pt [26%,57% → 74%,62%]: {(or provide a counterexample showing that a failure is possible)|#80b9ff}
+- **Builds:** click 1: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- rounded box (filled #424242) [25%,61% → 75%,70%]
+- heading (spaced caps) 50pt [12%,39% → 88%,45%]: HOW MUCH SENSOR NOISE IS TOO MUCH?
+- text 36pt [15%,46% → 85%,51%]: Given a bound on the maximum possible noise, can we prove that the system will never fail?
+- text 36pt [26%,52% → 74%,57%]: {(or provide a counterexample showing that a failure is possible)|#80b9ff}
+- text 36pt [48%,63% → 52%,68%]: We can answer questions like this using [[reachability analysis|#80b9ff]]!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- text 36pt [14%,17% → 76%,22%]: We always start the mass with a position between $-0.2$ and $0.2$ and no velocity.
+- text 36pt [7%,5% → 17%,9%]: Assumptions
+- line #ffffff [6%,8% → 18%,13%]
+- outlined circle #ffffff [8%,16% → 13%,23%]
+- equation $1$ (36pt, #ffffff) [10%,19% → 11%,21%]
+- text 36pt [14%,30% → 74%,35%]: The maximum absolute observation noise on the position and velocity is $1$.
+- outlined circle #ffffff [9%,29% → 13%,36%]
+- equation $2$ (36pt, #ffffff) [10%,31% → 11%,34%]
+- text 36pt [33%,22% → 55%,27%]: {(bounded set of initial states)|#80b9ff}
+- text 36pt [32%,36% → 56%,40%]: {(bounded set of disturbances)|#80b9ff}
+- image `test-26305.svg` [33%,50% → 58%,91%]
+- equation $t = 1$ (36pt, #ffffff) [47%,44% → 51%,46%]
+- **Builds:** click 1: outlined circle #ffffff — appears; with previous: text 36pt — appears; with previous: equation $1$ — appears; click 2: outlined circle #ffffff — appears; with previous: text 36pt — appears; with previous: equation $2$ — appears; click 3: text 36pt — fades up from dark; click 4: text 36pt — fades up from dark; click 5: image `test-26305.svg` — fades up from dark; with previous: equation $t = 1$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 13
+- text 36pt [14%,17% → 76%,22%]: We always start the mass with a position between $-0.2$ and $0.2$ and no velocity.
+- text 36pt [7%,5% → 17%,9%]: Assumptions
+- line #ffffff [6%,8% → 18%,13%]
+- outlined circle #ffffff [8%,16% → 13%,23%]
+- equation $1$ (36pt, #ffffff) [10%,19% → 11%,21%]
+- text 36pt [14%,30% → 74%,35%]: The maximum absolute observation noise on the position and velocity is $1$.
+- outlined circle #ffffff [9%,29% → 13%,36%]
+- equation $2$ (36pt, #ffffff) [10%,31% → 11%,34%]
+- text 36pt [33%,22% → 55%,27%]: {(bounded set of initial states)|#80b9ff}
+- text 36pt [32%,36% → 56%,40%]: {(bounded set of disturbances)|#80b9ff}
+- image `test-26305.svg` [29%,54% → 51%,90%]
+- equation $t = 1$ (36pt, #ffffff) [41%,48% → 44%,51%]
+- image `test-26372.svg` [54%,54% → 71%,90%]
+- equation $t = 2$ (36pt, #ffffff) [61%,49% → 64%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 14
+- text 36pt [14%,17% → 76%,22%]: We always start the mass with a position between $-0.2$ and $0.2$ and no velocity.
+- text 36pt [7%,5% → 17%,9%]: Assumptions
+- line #ffffff [6%,8% → 18%,13%]
+- outlined circle #ffffff [8%,16% → 13%,23%]
+- equation $1$ (36pt, #ffffff) [10%,19% → 11%,21%]
+- text 36pt [14%,30% → 74%,35%]: The maximum absolute observation noise on the position and velocity is $1$.
+- outlined circle #ffffff [9%,29% → 13%,36%]
+- equation $2$ (36pt, #ffffff) [10%,31% → 11%,34%]
+- text 36pt [33%,22% → 55%,27%]: {(bounded set of initial states)|#80b9ff}
+- text 36pt [32%,36% → 56%,40%]: {(bounded set of disturbances)|#80b9ff}
+- image `test-26305.svg` [19%,54% → 41%,90%]
+- equation $t = 1$ (36pt, #ffffff) [31%,48% → 34%,51%]
+- image `test-26372.svg` [44%,54% → 61%,90%]
+- equation $t = 2$ (36pt, #ffffff) [51%,49% → 54%,51%]
+- image `test-26385.svg` [64%,54% → 81%,90%]
+- equation $t = 3$ (36pt, #ffffff) [71%,48% → 74%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 15
+- text 36pt [14%,17% → 76%,22%]: We always start the mass with a position between $-0.2$ and $0.2$ and no velocity.
+- text 36pt [7%,5% → 17%,9%]: Assumptions
+- line #ffffff [6%,8% → 18%,13%]
+- outlined circle #ffffff [8%,16% → 13%,23%]
+- equation $1$ (36pt, #ffffff) [10%,19% → 11%,21%]
+- text 36pt [14%,30% → 74%,35%]: The maximum absolute observation noise on the position and velocity is $1$.
+- outlined circle #ffffff [9%,29% → 13%,36%]
+- equation $2$ (36pt, #ffffff) [10%,31% → 11%,34%]
+- text 36pt [33%,22% → 55%,27%]: {(bounded set of initial states)|#80b9ff}
+- text 36pt [32%,36% → 56%,40%]: {(bounded set of disturbances)|#80b9ff}
+- image `test-26305.svg` [9%,54% → 31%,90%]
+- equation $t = 1$ (36pt, #ffffff) [21%,48% → 24%,51%]
+- image `test-26372.svg` [34%,54% → 51%,90%]
+- equation $t = 2$ (36pt, #ffffff) [41%,49% → 44%,51%]
+- image `test-26385.svg` [54%,54% → 71%,90%]
+- equation $t = 3$ (36pt, #ffffff) [61%,48% → 64%,51%]
+- image `test-26397.svg` [74%,54% → 91%,90%]
+- equation $t = 4$ (36pt, #ffffff) [81%,48% → 85%,51%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- image `test-26305.svg` [9%,37% → 31%,73%]
+- equation $t = 1$ (36pt, #ffffff) [21%,32% → 24%,34%]
+- image `test-26372.svg` [34%,37% → 51%,73%]
+- equation $t = 2$ (36pt, #ffffff) [41%,32% → 44%,34%]
+- image `test-26385.svg` [54%,37% → 71%,73%]
+- equation $t = 3$ (36pt, #ffffff) [61%,32% → 64%,34%]
+- image `test-26397.svg` [74%,37% → 91%,73%]
+- equation $t = 4$ (36pt, #ffffff) [81%,32% → 85%,34%]
+- rounded box (filled #424242) [28%,10% → 79%,22%]
+- heading (spaced caps) 100pt [31%,10% → 37%,23%]: 🤔
+- text 36pt [37%,12% → 77%,21%]: But just running a bunch of sample rollouts does [[not guarantee|#80b9ff]] that the system will never fail!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- image `test-26305.svg` [9%,37% → 31%,73%]
+- equation $t = 1$ (36pt, #ffffff) [21%,32% → 24%,34%]
+- image `test-26372.svg` [34%,37% → 51%,73%]
+- equation $t = 2$ (36pt, #ffffff) [41%,32% → 44%,34%]
+- image `test-26385.svg` [54%,37% → 71%,73%]
+- equation $t = 3$ (36pt, #ffffff) [61%,32% → 64%,34%]
+- image `test-26397.svg` [74%,37% → 91%,73%]
+- equation $t = 4$ (36pt, #ffffff) [81%,32% → 85%,34%]
+- rounded box (filled #424242) [28%,10% → 79%,22%]
+- heading (spaced caps) 100pt [31%,10% → 37%,23%]: 🤔
+- text 36pt [37%,12% → 77%,21%]: But just running a bunch of sample rollouts does [[not guarantee|#80b9ff]] that the system will never fail!
+- image `test-26448.svg` [9%,37% → 31%,73%]
+- image `test-26477.svg` [74%,37% → 91%,73%]
+- image `test-26484.svg` [54%,37% → 71%,73%]
+- image `test-26492.svg` [34%,37% → 51%,73%]
+- image `test-26498.svg` [9%,37% → 31%,73%]
+- text 36pt [30%,81% → 70%,85%]: Instead, we want to compute the full [[reachable sets|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 18
+- image `test-26305.svg` [9%,37% → 31%,73%]
+- equation $t = 1$ (36pt, #ffffff) [21%,32% → 24%,34%]
+- image `test-26372.svg` [34%,37% → 51%,73%]
+- equation $t = 2$ (36pt, #ffffff) [41%,32% → 44%,34%]
+- image `test-26385.svg` [54%,37% → 71%,73%]
+- equation $t = 3$ (36pt, #ffffff) [61%,32% → 64%,34%]
+- image `test-26397.svg` [74%,37% → 91%,73%]
+- equation $t = 4$ (36pt, #ffffff) [81%,32% → 85%,34%]
+- rounded box (filled #424242) [28%,10% → 79%,22%]
+- heading (spaced caps) 100pt [31%,10% → 37%,23%]: 🤔
+- text 36pt [37%,12% → 77%,21%]: But just running a bunch of sample rollouts does [[not guarantee|#80b9ff]] that the system will never fail!
+- image `test-26448.svg` [9%,37% → 31%,73%]
+- image `test-26477.svg` [74%,37% → 91%,73%]
+- image `test-26484.svg` [54%,37% → 71%,73%]
+- image `test-26492.svg` [34%,37% → 51%,73%]
+- image `test-26498.svg` [9%,37% → 31%,73%]
+- text 36pt [30%,81% → 70%,85%]: Instead, we want to compute the full [[reachable sets|#80b9ff]].
+- image `test-26517.svg` [9%,37% → 31%,73%]
+- image `test-26523.svg` [34%,37% → 51%,73%]
+- image `test-26529.svg` [54%,37% → 71%,73%]
+- image `test-26535.svg` [74%,37% → 91%,73%]
+- equation $\mathcal R_1$ (36pt, #80b9ff) [21%,47% → 23%,50%]
+- equation $\mathcal R_2$ (36pt, #80b9ff) [39%,44% → 41%,47%]
+- equation $\mathcal R_3$ (36pt, #80b9ff) [58%,42% → 61%,46%]
+- equation $\mathcal R_4$ (36pt, #80b9ff) [79%,40% → 81%,44%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: LET’S RECAP OUR GOAL
+- text 36pt [39%,53% → 61%,58%]: {(with some added notation)|#80b9ff}
+
+## Slide 20
+- filled shape #f3cf80 [0%,-0% → 104%,100%]
+- text 36pt [47%,3% → 53%,7%]: {Assume|#000000}
+- line #000000 [45%,6% → 55%,10%]
+- group [15%,10% → 83%,17%]
+  - text 36pt [21%,11% → 83%,16%]: {The initial states come from a bounded set $\mathcal S$.|#000000}
+  - outlined circle #000000 [15%,10% → 19%,17%]
+  - equation $1$ (36pt, #000000) [17%,12% → 18%,14%]
+- group [15%,25% → 56%,33%]
+  - text 36pt [21%,27% → 56%,31%]: {The disturbances at each time step come from a bounded set $\mathcal X$.|#000000}
+  - outlined circle #000000 [15%,25% → 19%,33%]
+  - equation $2$ (36pt, #000000) [17%,28% → 18%,30%]
+- equation $\mathcal X = \left\{ \begin{bmatrix} \mathbf x_a \\ \mathbf x_o \\ \mathbf x_s \end{bmatrix} \mathrel{\Bigg|} \mathbf x_a \in \mathcal X_a, \mathbf x_o \in \mathcal X_o, \mathbf x_s \in \mathcal X_s \right\}$ (36pt, #000000) [27%,35% → 59%,49%]
+- group [68%,9% → 97%,23%]
+  - rounded box (filled #000000) [68%,9% → 97%,23%]
+  - text 36pt [68%,10% → 97%,22%]: A set is just a collection of / (a [[potentially infinite|#80b9ff]] amount of) points.
+- text 36pt [21%,16% → 56%,24%]: {$\mathcal S$ is all states with a position of the mass between $-0.2$ and $0.2$ and no velocity.|#0072fe}
+- text 30pt [43%,48% → 49%,52%]: {zero set|#0072fe}
+- arrow #0072fe [46%,44% → 57%,48%]
+- arrow #0072fe [43%,44% → 46%,49%]
+- text 30pt [50%,53% → 65%,60%]: {all noise values between $-1$ and $1$|#0072fe}
+- arrow #0072fe [49%,46% → 59%,51%]
+- rounded box (filled #424242) [26%,63% → 74%,76%]
+- heading (spaced caps) 100pt [27%,63% → 33%,76%]: 🤔
+- text 36pt [33%,65% → 73%,74%]: But the problems we saw before had [[distributions|#80b9ff]] over the initial states and disturbances!
+- text 36pt [48%,79% → 52%,83%]: {We can convert these distributions to bounded sets by using their |#000000}[[support|#8770fe]]{.|#000000}
+- text 36pt [21%,84% → 79%,89%]: {If their support is |#000000}[[infinite|#8770fe]]{, we can select a region that contains |#000000}[[most of the probability mass|#8770fe]]{.|#000000}
+- **Builds:** click 1: group — appears; click 2: group — appears; click 3: equation $\mathcal X = \left\{ \begin{bmatrix} \mathbf x_a \\ \mathbf x_o \\ \mathbf x_s \end{bmatrix} \mathrel{\Bigg|} \mathbf x_a \in \mathcal X_a, \mathbf x_o \in \mathcal X_o, \mathbf x_s \in \mathcal X_s \right\}$ — slides in; click 4: group — fades up from dark; click 5: text 36pt — slides in; click 6: text 30pt — fades up from dark; with previous: arrow #0072fe — draws in; with previous: arrow #0072fe — draws in; click 7: text 30pt — fades up from dark; with previous: arrow #0072fe — draws in; click 8: heading (spaced caps) 100pt — fades up from dark; with previous: rounded box (filled #424242) — wipes in; with previous: text 36pt — wipes in; click 9: text 36pt — slides in; click 10: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 21
+- filled shape #f3cf80 [0%,-0% → 104%,31%]
+- text 36pt [47%,3% → 53%,7%]: {Assume|#000000}
+- line #000000 [45%,6% → 55%,10%]
+- group [15%,10% → 83%,17%]
+  - text 36pt [21%,11% → 83%,16%]: {The initial states come from a bounded set $\mathcal S$.|#000000}
+  - outlined circle #000000 [15%,10% → 19%,17%]
+  - equation $1$ (36pt, #000000) [17%,12% → 18%,14%]
+- group [15%,19% → 56%,27%]
+  - text 36pt [21%,21% → 56%,25%]: {The disturbances at each time step come from a bounded set $\mathcal X$.|#000000}
+  - outlined circle #000000 [15%,19% → 19%,27%]
+  - equation $2$ (36pt, #000000) [17%,22% → 18%,24%]
+- text 36pt [47%,34% → 53%,39%]: Compute
+- line #ffffff [45%,37% → 55%,41%]
+- text 36pt [35%,41% → 65%,46%]: The reachable set at a particular depth:
+- equation $\mathcal R_d = \{\mathbf s_d \mid \mathbf s_d = \operatorname{Reach}(\mathbf s, \mathbf x_{1:d}), \mathbf s \in \mathcal S, \mathbf x_t \in \mathcal X_t, t \in 1:d\}$ (36pt, #ffffff) [29%,49% → 71%,52%]
+- text 36pt [45%,64% → 72%,73%]: {final state in rollout starting from state $\mathbf s$ with disturbances $\mathbf x_{1:d}$|#80b9ff}
+- arrow #80b9ff [21%,55% → 31%,60%]
+- text 36pt [2%,63% → 42%,76%]: {All states that we could reach at depth $d$ if we start from an initial state in $\mathcal S$ and select a disturbance at each time step from $\mathcal X_t$.|#80b9ff}
+- arrow #80b9ff [38%,56% → 57%,60%]
+- **Builds:** click 1: equation $\mathcal R_d = \{\mathbf s_d \mid \mathbf s_d = \operatorname{Reach}(\mathbf s, \mathbf x_{1:d}), \mathbf s \in \mathcal S, \mathbf x_t \in \mathcal X_t, t \in 1:d\}$ — slides in; click 2: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 3: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 22
+- image `test-27044.svg` [24%,64% → 38%,87%]
+- image `test-27036.svg` [40%,64% → 51%,87%]
+- image `test-27000.svg` [53%,64% → 63%,87%]
+- image `test-26989.svg` [65%,64% → 76%,87%]
+- filled shape #f3cf80 [0%,-0% → 104%,31%]
+- text 36pt [47%,3% → 53%,7%]: {Assume|#000000}
+- line #000000 [45%,6% → 55%,10%]
+- group [15%,10% → 83%,17%]
+  - text 36pt [21%,11% → 83%,16%]: {The initial states come from a bounded set $\mathcal S$.|#000000}
+  - outlined circle #000000 [15%,10% → 19%,17%]
+  - equation $1$ (36pt, #000000) [17%,12% → 18%,14%]
+- group [15%,19% → 56%,27%]
+  - text 36pt [21%,21% → 56%,25%]: {The disturbances at each time step come from a bounded set $\mathcal X$.|#000000}
+  - outlined circle #000000 [15%,19% → 19%,27%]
+  - equation $2$ (36pt, #000000) [17%,22% → 18%,24%]
+- text 36pt [47%,34% → 53%,39%]: Compute
+- line #ffffff [45%,37% → 55%,41%]
+- text 36pt [35%,41% → 65%,46%]: The reachable set at a particular depth:
+- equation $\mathcal R_d = \{\mathbf s_d \mid \mathbf s_d = \operatorname{Reach}(\mathbf s, \mathbf x_{1:d}), \mathbf s \in \mathcal S, \mathbf x_t \in \mathcal X_t, t \in 1:d\}$ (36pt, #ffffff) [29%,49% → 71%,52%]
+- equation $t = 1$ (23pt, #ffffff) [31%,60% → 34%,62%]
+- equation $t = 2$ (23pt, #ffffff) [44%,61% → 46%,62%]
+- equation $t = 3$ (23pt, #ffffff) [57%,60% → 59%,62%]
+- equation $t = 4$ (23pt, #ffffff) [70%,60% → 72%,62%]
+- equation $\mathcal R_1$ (23pt, #80b9ff) [32%,70% → 33%,72%]
+- equation $\mathcal R_2$ (23pt, #80b9ff) [43%,68% → 44%,70%]
+- equation $\mathcal R_3$ (23pt, #80b9ff) [55%,67% → 57%,69%]
+- equation $\mathcal R_4$ (23pt, #80b9ff) [68%,66% → 70%,68%]
+- arrow #80b9ff [27%,59% → 36%,63%]
+- arrow #80b9ff [29%,58% → 45%,62%]
+- arrow #80b9ff [30%,58% → 56%,62%]
+- arrow #80b9ff [30%,57% → 68%,62%]
+- **Builds:** then: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 23
+- filled shape #f3cf80 [0%,-0% → 104%,31%]
+- text 36pt [47%,3% → 53%,7%]: {Assume|#000000}
+- line #000000 [45%,6% → 55%,10%]
+- group [15%,10% → 83%,17%]
+  - text 36pt [21%,11% → 83%,16%]: {The initial states come from a bounded set $\mathcal S$.|#000000}
+  - outlined circle #000000 [15%,10% → 19%,17%]
+  - equation $1$ (36pt, #000000) [17%,12% → 18%,14%]
+- group [15%,19% → 56%,27%]
+  - text 36pt [21%,21% → 56%,25%]: {The disturbances at each time step come from a bounded set $\mathcal X$.|#000000}
+  - outlined circle #000000 [15%,19% → 19%,27%]
+  - equation $2$ (36pt, #000000) [17%,22% → 18%,24%]
+- text 36pt [47%,34% → 53%,39%]: Compute
+- line #ffffff [45%,37% → 55%,41%]
+- text 36pt [35%,41% → 65%,46%]: The reachable set at a particular depth:
+- equation $\mathcal R_d = \{\mathbf s_d \mid \mathbf s_d = \operatorname{Reach}(\mathbf s, \mathbf x_{1:d}), \mathbf s \in \mathcal S, \mathbf x_t \in \mathcal X_t, t \in 1:d\}$ (36pt, #ffffff) [29%,49% → 71%,52%]
+- text 36pt [30%,58% → 58%,63%]: The reachable set up to a horizon $h$:
+- equation $\mathcal R_{1:h} = \bigcup_{d=1}^h \mathcal R_d$ (36pt, #ffffff) [59%,55% → 70%,65%]
+- image `test-27044.svg` [24%,72% → 38%,95%]
+- image `test-27036.svg` [40%,72% → 51%,95%]
+- image `test-27000.svg` [53%,72% → 63%,95%]
+- image `test-26989.svg` [65%,72% → 76%,95%]
+- equation $t = 1$ (23pt, #ffffff) [31%,69% → 34%,70%]
+- equation $t = 2$ (23pt, #ffffff) [44%,69% → 46%,70%]
+- equation $t = 3$ (23pt, #ffffff) [57%,69% → 59%,70%]
+- equation $t = 4$ (23pt, #ffffff) [70%,69% → 72%,70%]
+- equation $\mathcal R_1$ (23pt, #80b9ff) [32%,79% → 33%,81%]
+- equation $\mathcal R_2$ (23pt, #80b9ff) [43%,77% → 44%,79%]
+- equation $\mathcal R_3$ (23pt, #80b9ff) [55%,76% → 57%,78%]
+- equation $\mathcal R_4$ (23pt, #80b9ff) [68%,74% → 70%,76%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 24
+- filled shape #f3cf80 [0%,-0% → 104%,31%]
+- text 36pt [47%,3% → 53%,7%]: {Assume|#000000}
+- line #000000 [45%,6% → 55%,10%]
+- group [15%,10% → 83%,17%]
+  - text 36pt [21%,11% → 83%,16%]: {The initial states come from a bounded set $\mathcal S$.|#000000}
+  - outlined circle #000000 [15%,10% → 19%,17%]
+  - equation $1$ (36pt, #000000) [17%,12% → 18%,14%]
+- group [15%,19% → 56%,27%]
+  - text 36pt [21%,21% → 56%,25%]: {The disturbances at each time step come from a bounded set $\mathcal X$.|#000000}
+  - outlined circle #000000 [15%,19% → 19%,27%]
+  - equation $2$ (36pt, #000000) [17%,22% → 18%,24%]
+- text 36pt [47%,34% → 53%,39%]: Compute
+- line #ffffff [45%,37% → 55%,41%]
+- text 36pt [35%,41% → 65%,46%]: The reachable set at a particular depth:
+- equation $\mathcal R_d = \{\mathbf s_d \mid \mathbf s_d = \operatorname{Reach}(\mathbf s, \mathbf x_{1:d}), \mathbf s \in \mathcal S, \mathbf x_t \in \mathcal X_t, t \in 1:d\}$ (36pt, #ffffff) [29%,49% → 71%,52%]
+- text 36pt [30%,58% → 58%,63%]: The reachable set up to a horizon $h$:
+- equation $\mathcal R_{1:h} = \bigcup_{d=1}^h \mathcal R_d$ (36pt, #ffffff) [59%,55% → 70%,65%]
+- image `test-27044.svg` [43%,73% → 57%,96%]
+- image `test-27036.svg` [46%,73% → 57%,96%]
+- image `test-27000.svg` [46%,72% → 57%,95%]
+- image `test-26989.svg` [46%,72% → 57%,95%]
+- equation $\mathcal R_{1:4}$ (27pt, #80b9ff) [50%,75% → 53%,77%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 25
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: WE HAVE THE REACHABLE SET: NOW WHAT?
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 26
+- heading (spaced caps) 50pt [12%,42% → 88%,48%]: WE HAVE THE REACHABLE SET: NOW WHAT?
+- text 36pt [35%,49% → 65%,54%]: Check if it [[intersects|#80b9ff]] with any [[bad states|#fab0ae]]!
+- group [43%,65% → 57%,89%]
+  - image `test-27044.svg` [43%,66% → 57%,89%]
+  - image `test-27036.svg` [46%,66% → 57%,89%]
+  - image `test-27000.svg` [46%,66% → 57%,88%]
+  - image `test-26989.svg` [46%,65% → 57%,88%]
+  - equation $\mathcal R_{1:4}$ (27pt, #80b9ff) [50%,68% → 53%,70%]
+- text 36pt [57%,54% → 65%,58%]: {(avoid set)|#fab0ae}
+- arrow #f5615c [47%,61% → 61%,65%]
+- arrow #f5615c [55%,61% → 61%,65%]
+- **Builds:** click 1: text 36pt — slides in; click 2: group — appears; with previous: arrow #f5615c — draws in; with previous: arrow #f5615c — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 27
+- heading (spaced caps) 50pt [12%,42% → 88%,48%]: WE HAVE THE REACHABLE SET: NOW WHAT?
+- text 36pt [14%,49% → 45%,54%]: Check if it [[intersects|#80b9ff]] with any [[bad states|#fab0ae]]!
+- group [22%,65% → 36%,89%]
+  - image `test-27044.svg` [22%,66% → 36%,89%]
+  - image `test-27036.svg` [25%,66% → 36%,89%]
+  - image `test-27000.svg` [25%,66% → 36%,88%]
+  - image `test-26989.svg` [25%,65% → 36%,88%]
+  - equation $\mathcal R_{1:4}$ (27pt, #80b9ff) [30%,68% → 32%,70%]
+- text 36pt [36%,54% → 44%,58%]: {(avoid set)|#fab0ae}
+- arrow #f5615c [27%,61% → 40%,65%]
+- arrow #f5615c [35%,61% → 41%,65%]
+- group [53%,59% → 86%,78%]
+  - rounded box (filled #80cfb9) [53%,59% → 86%,78%]
+  - text 36pt [55%,60% → 84%,76%]: {We could also check if the system reaches a |#000000}[[goal region|#0072fe]]{ by checking if the reachable set is |#000000}[[contained within|#0072fe]]{ the goal region.|#000000}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 28
+- heading (spaced caps) 50pt [12%,44% → 88%,56%]: SO HOW DO WE ACTUALLY COMPUTE REACHABLE SETS?
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 29
+- heading (spaced caps) 50pt [12%,45% → 88%,51%]: SO HOW DO WE ACTUALLY COMPUTE REACHABLE SETS?
+- text 36pt [18%,59% → 82%,63%]: Today we will focus on the math behind computing reachable sets for [[linear systems|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 30
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: LINEAR SYSTEMS
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: SET PROPAGATION TECHNIQUES
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: OPTIMIZATION TECHNIQUES
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 31
+- rounded box (filled #424242) [13%,12% → 87%,25%]
+- heading (spaced caps) 36pt [40%,5% → 60%,9%]: LINEAR SYSTEMS
+- text 36pt [15%,14% → 85%,22%]: Linear systems are a class of systems for which the sensor, agent, and environment models are [[linear functions|#80b9ff]] of the continuous state, action, observation, and disturbance.
+- equation $O(\mathbf s, \mathbf x_o) = \mathbf O_s \mathbf s + \mathbf x_o$ (41pt, #ffffff) [40%,32% → 56%,35%]
+- equation $\pi(\mathbf o, \mathbf x_a) = \mathbf \Pi_o \mathbf o + \mathbf x_a$ (41pt, #ffffff) [40%,39% → 57%,42%]
+- equation $T(\mathbf s, \mathbf a, \mathbf x_s) = \mathbf T_s \mathbf s + \mathbf T_a \mathbf a + \mathbf x_s$ (41pt, #ffffff) [38%,46% → 62%,49%]
+- outlined shape #ffffff [36%,29% → 64%,52%]
+- group [27%,55% → 73%,94%]
+  - rounded box (filled #80b9ff) [27%,55% → 73%,94%]
+  - text 36pt [42%,57% → 58%,61%]: {e.g. Mass-Spring-Damper|#000000}
+  - equation $O(\mathbf s, \mathbf x_o) = I \mathbf s + \mathbf x_o$ (41pt, #000000) [35%,67% → 50%,71%]
+  - equation $\pi(\mathbf o, \mathbf x_a) = \begin{bmatrix} 0 & -1\end{bmatrix} \mathbf o$ (41pt, #000000) [35%,73% → 52%,77%]
+  - equation $T(\mathbf s, \mathbf a, \mathbf x_s) = \begin{bmatrix} 1 & 0.05 \\ -0.5 & 0.9 \end{bmatrix} \mathbf s + \begin{bmatrix} 0 \\ 0.05 \end{bmatrix} \mathbf a$ (41pt, #000000) [33%,79% → 67%,89%]
+  - line #212121 [27%,61% → 73%,65%]
+- **Builds:** click 1: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 32
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: LINEAR SYSTEMS
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: SET PROPAGATION TECHNIQUES
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: OPTIMIZATION TECHNIQUES
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 33
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [3%,4% → 19%,17%]
+  - equation $O(\mathbf s, \mathbf x_o) = \mathbf O_s \mathbf s + \mathbf x_o$ (23pt, #ffffff) [5%,5% → 14%,7%]
+  - equation $\pi(\mathbf o, \mathbf x_a) = \mathbf \Pi_o \mathbf o + \mathbf x_a$ (23pt, #ffffff) [5%,9% → 15%,11%]
+  - equation $T(\mathbf s, \mathbf a, \mathbf x_s) = \mathbf T_s \mathbf s + \mathbf T_a \mathbf a + \mathbf x_s$ (23pt, #ffffff) [4%,13% → 17%,15%]
+  - outlined shape #ffffff [3%,4% → 19%,17%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,23% → 45%,26%]
+- equation $\mathbf a$ (36pt, #ffffff) [45%,23% → 45%,25%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [46%,23% → 48%,26%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,23% → 45%,26%]
+- equation $\mathbf a$ (36pt, #ffffff) [45%,23% → 45%,25%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [46%,23% → 48%,26%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,23% → 45%,26%]
+- equation $\mathbf a$ (36pt, #ffffff) [45%,23% → 45%,25%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [46%,23% → 48%,26%]
+- text 36pt [22%,15% → 78%,19%]: Let’s look at a [[single time step|#80b9ff]] first and try to write $\mathbf s^\prime$ in terms of $\mathbf s$ and $\mathbf x$:
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 34
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,29% → 45%,32%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [3%,4% → 19%,17%]
+  - equation $O(\mathbf s, \mathbf x_o) = \mathbf O_s \mathbf s + \mathbf x_o$ (23pt, #ffffff) [5%,5% → 14%,7%]
+  - equation $\pi(\mathbf o, \mathbf x_a) = \mathbf \Pi_o \mathbf o + \mathbf x_a$ (23pt, #ffffff) [5%,9% → 15%,11%]
+  - equation $T(\mathbf s, \mathbf a, \mathbf x_s) = \mathbf T_s \mathbf s + \mathbf T_a \mathbf a + \mathbf x_s$ (23pt, #ffffff) [4%,13% → 17%,15%]
+  - outlined shape #ffffff [3%,4% → 19%,17%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,23% → 45%,26%]
+- equation $\mathbf a$ (36pt, #ffffff) [45%,23% → 45%,25%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [46%,23% → 48%,26%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,29% → 45%,32%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [51%,29% → 53%,32%]
+- equation $\pi($ (36pt, #ffffff) [45%,29% → 46%,32%]
+- equation $\mathbf o$ (36pt, #ffffff) [46%,29% → 47%,31%]
+- equation $, \mathbf x_o)$ (36pt, #ffffff) [47%,29% → 50%,32%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [51%,29% → 53%,32%]
+- equation $\pi($ (36pt, #ffffff) [45%,29% → 46%,32%]
+- equation $\mathbf o$ (36pt, #ffffff) [46%,29% → 47%,31%]
+- equation $, \mathbf x_o)$ (36pt, #ffffff) [47%,29% → 50%,32%]
+- text 36pt [22%,15% → 78%,19%]: Let’s look at a [[single time step|#80b9ff]] first and try to write $\mathbf s^\prime$ in terms of $\mathbf s$ and $\mathbf x$:
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [22%,15% → 78%,19%]: Let’s look at a [[single time step|#80b9ff]] first and try to write $\mathbf s^\prime$ in terms of $\mathbf s$ and $\mathbf x$:
+- group [3%,4% → 19%,17%]
+  - equation $O(\mathbf s, \mathbf x_o) = \mathbf O_s \mathbf s + \mathbf x_o$ (23pt, #ffffff) [5%,5% → 14%,7%]
+  - equation $\pi(\mathbf o, \mathbf x_a) = \mathbf \Pi_o \mathbf o + \mathbf x_a$ (23pt, #ffffff) [5%,9% → 15%,11%]
+  - equation $T(\mathbf s, \mathbf a, \mathbf x_s) = \mathbf T_s \mathbf s + \mathbf T_a \mathbf a + \mathbf x_s$ (23pt, #ffffff) [4%,13% → 17%,15%]
+  - outlined shape #ffffff [3%,4% → 19%,17%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,23% → 45%,26%]
+- equation $\mathbf a$ (36pt, #ffffff) [45%,23% → 45%,25%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [46%,23% → 48%,26%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,29% → 45%,32%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [51%,29% → 53%,32%]
+- equation $O(\mathbf s, \mathbf x_o)$ (36pt, #ffffff) [46%,35% → 52%,38%]
+- equation $\pi($ (36pt, #ffffff) [45%,29% → 46%,32%]
+- equation $\mathbf o$ (36pt, #ffffff) [46%,29% → 47%,31%]
+- equation $, \mathbf x_a)$ (36pt, #ffffff) [47%,29% → 50%,32%]
+- equation $\mathbf s^\prime = T(\mathbf s,$ (36pt, #ffffff) [38%,35% → 45%,37%]
+- equation $, \mathbf x_s)$ (36pt, #ffffff) [55%,34% → 58%,38%]
+- equation $\pi($ (36pt, #ffffff) [45%,35% → 46%,37%]
+- equation $, \mathbf x_a)$ (36pt, #ffffff) [52%,34% → 55%,38%]
+- equation $= \mathbf T_s \mathbf s + \mathbf T_a (\mathbf \Pi_o(\mathbf O_s \mathbf s + \mathbf x_o) + \mathbf x_a) + \mathbf x_s$ (36pt, #ffffff) [40%,42% → 66%,45%]
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ (36pt, #ffffff) [40%,49% → 70%,52%]
+- text 36pt [34%,59% → 79%,64%]: {Some matrices multiplied by some vectors added together.|#80b9ff}
+- image `noun-bracket-2376717-80b9ff.png` [51%,28% → 59%,83%]
+- group [28%,67% → 72%,83%]
+  - rounded box (outline) [28%,67% → 72%,83%]
+  - text 36pt [36%,71% → 71%,79%]: What if we could apply these [[operations|#80b9ff]] to [[entire sets|#80b9ff]] rather than to a single point?
+  - vector icon `shape-49ea7a81.svg` [31%,70% → 35%,81%]
+- text 36pt [32%,85% → 68%,90%]: ^^the main idea behind set-based reachability
+- **Builds:** click 1: equation $= \mathbf T_s \mathbf s + \mathbf T_a (\mathbf \Pi_o(\mathbf O_s \mathbf s + \mathbf x_o) + \mathbf x_a) + \mathbf x_s$ — slides in; click 2: equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ — slides in; click 3: image `noun-bracket-2376717-80b9ff.png` — fades up from dark; with previous: text 36pt — fades up from dark; click 4: group — fades up from dark; click 5: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 36
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [25%,38% → 75%,43%]: There are two types of set operations required for linear systems:
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ (36pt, #ffffff) [34%,16% → 64%,19%]
+- text 36pt [27%,27% → 73%,31%]: {Some matrices multiplied by some vectors added together.|#80b9ff}
+- image `noun-bracket-2376717-80b9ff.png` [45%,-5% → 53%,51%]
+- equation $\mathbf s^\prime$ (36pt, #ffffff) [32%,16% → 33%,19%]
+- group [26%,47% → 65%,54%]
+  - text 36pt [31%,48% → 65%,53%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [26%,47% → 30%,54%]
+  - equation $1$ (36pt, #ffffff) [28%,49% → 28%,51%]
+- group [26%,58% → 38%,66%]
+  - text 36pt [31%,60% → 38%,64%]: Addition
+  - outlined circle #ffffff [26%,58% → 30%,66%]
+  - equation $2$ (36pt, #ffffff) [27%,61% → 28%,63%]
+- **Builds:** click 1: text 36pt — slides in; click 2: group — appears; click 3: group — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 37
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- shape filled #80b9ff, outlined #ffffff [16%,54% → 17%,56%]
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- **Builds:** click 1: group — slides in; click 2: group — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ — fades up from dark; with previous: equation $=$ — fades up from dark; with previous: equation $\mathcal P$ — fades up from dark; click 3: shape filled #80b9ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 38
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- shape filled #c3b8ff, outlined #ffffff [68%,60% → 68%,62%]
+- shape filled #80b9ff, outlined #ffffff [15%,51% → 16%,53%]
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- **Builds:** click 1: shape filled #80b9ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 39
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- shape filled #c3b8ff, outlined #ffffff [68%,60% → 68%,62%]
+- shape filled #c3b8ff, outlined #ffffff [68%,64% → 69%,65%]
+- shape filled #80b9ff, outlined #ffffff [18%,51% → 19%,53%]
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- **Builds:** click 1: shape filled #80b9ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- shape filled #c3b8ff, outlined #ffffff [68%,60% → 68%,62%]
+- shape filled #c3b8ff, outlined #ffffff [68%,64% → 69%,65%]
+- shape filled #80b9ff, outlined #ffffff [18%,56% → 19%,58%]
+- shape filled #c3b8ff, outlined #ffffff [71%,62% → 72%,63%]
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- **Builds:** click 1: shape filled #80b9ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 41
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- shape filled #c3b8ff, outlined #ffffff [68%,60% → 68%,62%]
+- shape filled #c3b8ff, outlined #ffffff [68%,64% → 69%,65%]
+- shape filled #80b9ff, outlined #ffffff [14%,58% → 15%,59%]
+- shape filled #c3b8ff, outlined #ffffff [71%,62% → 72%,63%]
+- shape filled #c3b8ff, outlined #ffffff [66%,56% → 67%,58%]
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- **Builds:** click 1: shape filled #80b9ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 42
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- group [62%,54% → 74%,67%]
+  - shape (filled #c3b8ff) [62%,54% → 74%,67%]
+  - shape (outline) [62%,54% → 74%,67%]
+- shape filled #c3b8ff, outlined #ffffff [68%,60% → 68%,62%]
+- shape filled #c3b8ff, outlined #ffffff [68%,64% → 69%,65%]
+- shape filled #c3b8ff, outlined #ffffff [71%,62% → 72%,63%]
+- shape filled #c3b8ff, outlined #ffffff [66%,56% → 67%,58%]
+- shape filled #c3b8ff, outlined #ffffff [63%,59% → 64%,60%]
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [10%,88% → 90%,92%]: Many common set representations (e.g. hyperrectangle) have [[efficient ways|#80b9ff]] of calculating the resulting set.
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- equation $A\mathcal P$ (36pt, #c3b8ff) [66%,50% → 69%,52%]
+- **Builds:** click 1: group — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: equation $A\mathcal P$ — fades up from dark; click 2: text 36pt — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 43
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [102%,18% → 142%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [108%,20% → 142%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [102%,18% → 106%,26%]
+  - equation $1$ (36pt, #ffffff) [104%,21% → 105%,23%]
+- group [145%,17% → 164%,26%] (starts off-slide; an animation moves it in)
+  - outlined shape #ffffff [145%,17% → 164%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [146%,20% → 162%,23%]
+- group [6%,18% → 18%,26%]
+  - text 36pt [11%,20% → 18%,24%]: Addition
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $2$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [23%,17% → 51%,26%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [24%,20% → 50%,23%]
+  - outlined shape #ffffff [23%,17% → 51%,26%]
+- text 36pt [21%,30% → 33%,34%]: {Minkowski sum|#80b9ff}
+- arrow #80b9ff [25%,25% → 29%,29%]
+- arrow #ffffff [-3%,62% → 20%,66%]
+- arrow #ffffff [30%,62% → 52%,66%]
+- arrow #ffffff [62%,62% → 85%,66%]
+- arrow #ffffff [6%,62% → 28%,66%]
+- arrow #ffffff [38%,62% → 61%,66%]
+- arrow #ffffff [71%,62% → 94%,66%]
+- group [11%,48% → 16%,59%]
+  - shape (outline) [11%,48% → 16%,59%]
+  - shape (filled #80b9ff) [11%,48% → 16%,59%]
+- group [41%,74% → 49%,79%]
+  - shape (outline) [41%,74% → 49%,79%]
+  - shape (filled #fab0ae) [41%,74% → 49%,79%]
+- shape filled #80b9ff, outlined #ffffff [14%,51% → 15%,53%]
+- shape filled #fab0ae, outlined #ffffff [45%,76% → 46%,77%]
+- arrow #80b9ff [7%,56% → 16%,60%]
+- arrow #fab0ae [39%,68% → 47%,72%]
+- equation $\oplus$ (57pt, #ffffff) [32%,62% → 34%,66%]
+- equation $=$ (57pt, #ffffff) [65%,63% → 67%,64%]
+- equation $\mathcal P$ (36pt, #80b9ff) [14%,45% → 16%,47%]
+- equation $\mathcal Q$ (36pt, #fab0ae) [44%,70% → 45%,73%]
+- **Builds:** click 1: group — slides in; click 2: arrow #80b9ff — draws in; with previous: text 36pt — fades up from dark; click 3: group — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: group — fades up from dark; with previous: equation $\mathcal P$ — fades up from dark; with previous: equation $\oplus$ — fades up from dark; with previous: equation $=$ — fades up from dark; with previous: equation $\mathcal Q$ — fades up from dark; click 4: shape filled #80b9ff, outlined #ffffff — fades up from dark; click 5: shape filled #fab0ae, outlined #ffffff — fades up from dark; click 6: arrow #80b9ff — draws in; with previous: arrow #fab0ae — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 44
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [145%,17% → 164%,26%] (starts off-slide; an animation moves it in)
+  - outlined shape #ffffff [145%,17% → 164%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [146%,20% → 162%,23%]
+- group [6%,18% → 18%,26%]
+  - text 36pt [11%,20% → 18%,24%]: Addition
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $2$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [23%,17% → 51%,26%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [24%,20% → 50%,23%]
+  - outlined shape #ffffff [23%,17% → 51%,26%]
+- text 36pt [21%,30% → 33%,34%]: {Minkowski sum|#80b9ff}
+- arrow #80b9ff [25%,25% → 29%,29%]
+- arrow #ffffff [-3%,62% → 20%,66%]
+- arrow #ffffff [30%,62% → 52%,66%]
+- arrow #ffffff [62%,62% → 85%,66%]
+- arrow #ffffff [6%,62% → 28%,66%]
+- arrow #ffffff [38%,62% → 61%,66%]
+- arrow #ffffff [71%,62% → 94%,66%]
+- group [11%,48% → 16%,59%]
+  - shape (outline) [11%,48% → 16%,59%]
+  - shape (filled #80b9ff) [11%,48% → 16%,59%]
+- group [41%,74% → 49%,79%]
+  - shape (outline) [41%,74% → 49%,79%]
+  - shape (filled #fab0ae) [41%,74% → 49%,79%]
+- arrow #80b9ff [72%,56% → 81%,60%]
+- arrow #fab0ae [78%,56% → 86%,60%]
+- arrow #c3b8ff [74%,62% → 84%,67%]
+- shape filled #c3b8ff, outlined #ffffff [83%,64% → 84%,66%]
+- equation $\oplus$ (57pt, #ffffff) [32%,62% → 34%,66%]
+- equation $=$ (57pt, #ffffff) [65%,63% → 67%,64%]
+- equation $\mathcal P$ (36pt, #80b9ff) [14%,45% → 16%,47%]
+- equation $\mathcal Q$ (36pt, #fab0ae) [44%,70% → 45%,73%]
+- **Builds:** click 1: arrow #c3b8ff — draws in; then: shape filled #c3b8ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 45
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [145%,17% → 164%,26%] (starts off-slide; an animation moves it in)
+  - outlined shape #ffffff [145%,17% → 164%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [146%,20% → 162%,23%]
+- group [6%,18% → 18%,26%]
+  - text 36pt [11%,20% → 18%,24%]: Addition
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $2$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [23%,17% → 51%,26%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [24%,20% → 50%,23%]
+  - outlined shape #ffffff [23%,17% → 51%,26%]
+- text 36pt [21%,30% → 33%,34%]: {Minkowski sum|#80b9ff}
+- arrow #80b9ff [25%,25% → 29%,29%]
+- arrow #ffffff [-3%,62% → 20%,66%]
+- arrow #ffffff [30%,62% → 52%,66%]
+- arrow #ffffff [62%,62% → 85%,66%]
+- arrow #ffffff [6%,62% → 28%,66%]
+- arrow #ffffff [38%,62% → 61%,66%]
+- arrow #ffffff [71%,62% → 94%,66%]
+- group [11%,48% → 16%,59%]
+  - shape (outline) [11%,48% → 16%,59%]
+  - shape (filled #80b9ff) [11%,48% → 16%,59%]
+- group [41%,74% → 49%,79%]
+  - shape (outline) [41%,74% → 49%,79%]
+  - shape (filled #fab0ae) [41%,74% → 49%,79%]
+- shape filled #c3b8ff, outlined #ffffff [83%,64% → 84%,66%]
+- shape filled #80b9ff, outlined #ffffff [13%,54% → 14%,56%]
+- shape filled #fab0ae, outlined #ffffff [42%,77% → 43%,78%]
+- arrow #80b9ff [7%,57% → 15%,61%]
+- arrow #fab0ae [38%,69% → 46%,73%]
+- equation $\oplus$ (57pt, #ffffff) [32%,62% → 34%,66%]
+- equation $=$ (57pt, #ffffff) [65%,63% → 67%,64%]
+- equation $\mathcal P$ (36pt, #80b9ff) [14%,45% → 16%,47%]
+- equation $\mathcal Q$ (36pt, #fab0ae) [44%,70% → 45%,73%]
+- **Builds:** then: shape filled #80b9ff, outlined #ffffff — fades up from dark; with previous: shape filled #fab0ae, outlined #ffffff — fades up from dark; click 1: arrow #80b9ff — draws in; with previous: arrow #fab0ae — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 46
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [145%,17% → 164%,26%] (starts off-slide; an animation moves it in)
+  - outlined shape #ffffff [145%,17% → 164%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [146%,20% → 162%,23%]
+- group [6%,18% → 18%,26%]
+  - text 36pt [11%,20% → 18%,24%]: Addition
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $2$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [23%,17% → 51%,26%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [24%,20% → 50%,23%]
+  - outlined shape #ffffff [23%,17% → 51%,26%]
+- text 36pt [21%,30% → 33%,34%]: {Minkowski sum|#80b9ff}
+- arrow #80b9ff [25%,25% → 29%,29%]
+- arrow #ffffff [-3%,62% → 20%,66%]
+- arrow #ffffff [30%,62% → 52%,66%]
+- arrow #ffffff [62%,62% → 85%,66%]
+- arrow #ffffff [6%,62% → 28%,66%]
+- arrow #ffffff [38%,62% → 61%,66%]
+- arrow #ffffff [71%,62% → 94%,66%]
+- group [11%,48% → 16%,59%]
+  - shape (outline) [11%,48% → 16%,59%]
+  - shape (filled #80b9ff) [11%,48% → 16%,59%]
+- group [41%,74% → 49%,79%]
+  - shape (outline) [41%,74% → 49%,79%]
+  - shape (filled #fab0ae) [41%,74% → 49%,79%]
+- shape filled #c3b8ff, outlined #ffffff [83%,64% → 84%,66%]
+- arrow #80b9ff [73%,57% → 80%,61%]
+- arrow #fab0ae [76%,60% → 84%,64%]
+- arrow #c3b8ff [73%,64% → 81%,68%]
+- shape filled #c3b8ff, outlined #ffffff [80%,68% → 81%,70%]
+- equation $\oplus$ (57pt, #ffffff) [32%,62% → 34%,66%]
+- equation $=$ (57pt, #ffffff) [65%,63% → 67%,64%]
+- equation $\mathcal P$ (36pt, #80b9ff) [14%,45% → 16%,47%]
+- equation $\mathcal Q$ (36pt, #fab0ae) [44%,70% → 45%,73%]
+- **Builds:** click 1: arrow #c3b8ff — draws in; then: shape filled #c3b8ff, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 47
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [145%,17% → 164%,26%] (starts off-slide; an animation moves it in)
+  - outlined shape #ffffff [145%,17% → 164%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [146%,20% → 162%,23%]
+- group [6%,18% → 18%,26%]
+  - text 36pt [11%,20% → 18%,24%]: Addition
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $2$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [23%,17% → 51%,26%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [24%,20% → 50%,23%]
+  - outlined shape #ffffff [23%,17% → 51%,26%]
+- text 36pt [21%,30% → 33%,34%]: {Minkowski sum|#80b9ff}
+- arrow #80b9ff [25%,25% → 29%,29%]
+- arrow #ffffff [-3%,62% → 20%,66%]
+- arrow #ffffff [30%,62% → 52%,66%]
+- arrow #ffffff [62%,62% → 85%,66%]
+- arrow #ffffff [6%,62% → 28%,66%]
+- arrow #ffffff [38%,62% → 61%,66%]
+- arrow #ffffff [71%,62% → 94%,66%]
+- group [11%,48% → 16%,59%]
+  - shape (outline) [11%,48% → 16%,59%]
+  - shape (filled #80b9ff) [11%,48% → 16%,59%]
+- group [41%,74% → 49%,79%]
+  - shape (outline) [41%,74% → 49%,79%]
+  - shape (filled #fab0ae) [41%,74% → 49%,79%]
+- group [77%,58% → 89%,74%]
+  - shape (outline) [77%,58% → 89%,74%]
+  - shape (filled #c3b8ff) [77%,58% → 89%,74%]
+- shape filled #c3b8ff, outlined #ffffff [83%,64% → 84%,66%]
+- shape filled #c3b8ff, outlined #ffffff [80%,68% → 81%,70%]
+- equation $\oplus$ (57pt, #ffffff) [32%,62% → 34%,66%]
+- equation $=$ (57pt, #ffffff) [65%,63% → 67%,64%]
+- text 36pt [10%,88% → 90%,92%]: Many common set representations (e.g. hyperrectangle) have [[efficient ways|#80b9ff]] of calculating the resulting set.
+- equation $\mathcal P$ (36pt, #80b9ff) [14%,45% → 16%,47%]
+- equation $\mathcal Q$ (36pt, #fab0ae) [44%,70% → 45%,73%]
+- equation $\mathcal P \oplus \mathcal Q$ (36pt, #c3b8ff) [84%,54% → 89%,57%]
+- group [102%,18% → 142%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [108%,20% → 142%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [102%,18% → 106%,26%]
+  - equation $1$ (36pt, #ffffff) [104%,21% → 105%,23%]
+- **Builds:** click 1: group — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: shape filled #c3b8ff, outlined #ffffff — fades up from dark; with previous: equation $\mathcal P \oplus \mathcal Q$ — fades up from dark; click 2: text 36pt — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 48
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [62%,17% → 81%,26%]
+  - outlined shape #ffffff [62%,17% → 81%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [63%,20% → 79%,23%]
+- group [19%,32% → 32%,40%]
+  - text 36pt [25%,34% → 32%,38%]: Addition
+  - outlined circle #ffffff [19%,32% → 23%,40%]
+  - equation $2$ (36pt, #ffffff) [21%,35% → 22%,37%]
+- group [36%,31% → 64%,40%]
+  - equation $\mathcal P \oplus \mathcal Q = \{\mathbf p + \mathbf q \mid \mathbf p \in \mathcal P, \mathbf q \in \mathcal Q\}$ (36pt, #ffffff) [37%,34% → 63%,37%]
+  - outlined shape #ffffff [36%,31% → 64%,40%]
+- group [19%,17% → 59%,25%]
+  - text 36pt [25%,19% → 59%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [19%,17% → 23%,25%]
+  - equation $1$ (36pt, #ffffff) [21%,20% → 22%,22%]
+- line #ffffff [4%,44% → 96%,48%]
+- text 36pt [24%,48% → 76%,52%]: Back to the set of next states for a single time step:
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ (36pt, #ffffff) [36%,55% → 66%,58%]
+- equation $\mathbf s^\prime$ (36pt, #ffffff) [34%,55% → 35%,58%]
+- shape (outline) [48%,64% → 53%,71%]
+- text 36pt [53%,63% → 65%,71%]: {replace with set operations|#80b9ff}
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,77% → 68%,80%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,77% → 34%,79%]
+- outlined shape #ffffff [31%,74% → 69%,82%]
+- **Builds:** click 1: shape (outline) — wipes in; with previous: text 36pt — wipes in; with previous (0.2 s later): equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ — slides in; with previous: equation $\mathcal S^\prime$ — slides in; click 2: outlined shape #ffffff — LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 49
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,20% → 68%,23%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,20% → 33%,23%]
+- outlined shape #ffffff [31%,18% → 69%,26%]
+- image `val-page-182.svg` (cropped: show only 7–66% across and 47–60% down of the image) [21%,32% → 79%,56%]
+- image `pasted-image-28159.png` [36%,62% → 64%,87%]
+- **Builds:** click 1: image `pasted-image-28159.png` — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 50
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,20% → 68%,23%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,20% → 33%,23%]
+- outlined shape #ffffff [31%,18% → 69%,26%]
+- image `val-page-182.svg` (cropped: show only 7–66% across and 47–60% down of the image) [21%,32% → 79%,56%]
+- image `pasted-image-28159.png` [23%,62% → 51%,87%]
+- group [52%,72% → 77%,77%]
+  - text 36pt [62%,72% → 77%,77%]: It is sooooo good!
+  - arrow #ffffff [52%,73% → 62%,77%]
+- **Builds:** then: group — flame
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 51
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,27% → 68%,30%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,27% → 33%,29%]
+- text 36pt [48%,18% → 52%,23%]: Single time step:
+- text 36pt [44%,34% → 56%,38%]: Multiple time steps:
+- text 36pt [38%,40% → 62%,44%]: Just keep applying this equation!
+- equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [30%,48% → 70%,52%]
+- **Builds:** click 1: text 36pt — slides in; click 2: equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 52
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,27% → 68%,30%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,27% → 33%,29%]
+- text 36pt [48%,18% → 52%,23%]: Single time step:
+- text 36pt [44%,34% → 56%,38%]: Multiple time steps:
+- text 36pt [38%,40% → 62%,44%]: Just keep applying this equation!
+- equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [30%,48% → 70%,52%]
+- outlined shape #80b9ff [46%,48% → 50%,52%]
+- outlined shape #80b9ff [29%,48% → 33%,52%]
+- outlined shape #80b9ff [31%,26% → 34%,30%]
+- outlined shape #80b9ff [47%,26% → 48%,30%]
+- arrow #80b9ff [44%,37% → 52%,41%]
+- arrow #80b9ff [28%,37% → 36%,41%]
+- **Builds:** then: outlined shape #80b9ff — LineDraw; with previous: outlined shape #80b9ff — LineDraw; with previous: outlined shape #80b9ff — LineDraw; with previous: outlined shape #80b9ff — LineDraw; with previous: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 53
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $= (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal S \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [34%,27% → 68%,30%]
+- equation $\mathcal S^\prime$ (36pt, #ffffff) [32%,27% → 33%,29%]
+- text 36pt [48%,18% → 52%,23%]: Single time step:
+- text 36pt [44%,34% → 56%,38%]: Multiple time steps:
+- text 36pt [38%,40% → 62%,44%]: Just keep applying this equation!
+- equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [30%,48% → 70%,52%]
+- text on a #80b9ff filled box 32pt [40%,61% → 60%,69%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 54
+- rounded box (filled #424242) [20%,26% → 80%,35%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [36%,16% → 64%,21%]: What kind of guarantees do we get?
+- text 36pt [22%,26% → 78%,35%]: If $\mathcal R_{1:h}$ does not intersect with the avoid set, we can [[guarantee|#80b9ff]] that the system [[will not enter the avoid set|#80b9ff]] at time steps {$t \in 1:h$|#80b9ff}.
+- group [30%,40% → 70%,44%]
+  - rounded box (filled #f3cf80) [30%,40% → 70%,44%]
+  - text 36pt [31%,40% → 70%,44%]: {Note: there are no guarantees after time step $h$.|#000000}
+- image `test-27044.svg` [3%,20% → 17%,43%]
+- image `test-27036.svg` [6%,20% → 17%,43%]
+- image `test-27000.svg` [6%,20% → 17%,43%]
+- image `test-26989.svg` [6%,20% → 17%,43%]
+- equation $\mathcal R_{1:4}$ (27pt, #80b9ff) [10%,23% → 12%,25%]
+- text 36pt [32%,48% → 59%,52%]: …unless we get something like this:
+- image `sandbox-page-1-28330.svg` (cropped: show only 75–92% across and 11–21% down of the image) [38%,55% → 62%,83%]
+- equation $\mathcal R_{d} \subseteq \mathcal R_{d-1}$ (36pt, #ffffff) [60%,49% → 68%,52%]
+- text 36pt [15%,86% → 85%,91%]: In this case, $\mathcal R_d$ is an [[invariant set|#80b9ff]], meaning that the system will stay within this set [[indefinitely|#80b9ff]].
+- group [65%,59% → 97%,76%]
+  - rounded box (filled #80b9ff) [65%,59% → 97%,76%]
+  - text 36pt [67%,61% → 95%,74%]: {And these are all with respect to the assumptions we made about the initial states and disturbances!!!|#000000}
+- **Builds:** click 1: image `test-26989.svg` — fades up from dark; with previous: image `test-27000.svg` — fades up from dark; with previous: image `test-27044.svg` — fades up from dark; with previous: image `test-27036.svg` — fades up from dark; with previous: equation $\mathcal R_{1:4}$ — fades up from dark; with previous: rounded box (filled #424242) — fades up from dark; with previous: text 36pt — fades up from dark; click 2: group — slides in; click 3: text 36pt — slides in; with previous: equation $\mathcal R_{d} \subseteq \mathcal R_{d-1}$ — slides in; click 4: image `sandbox-page-1-28330.svg` (cropped: show only 75–92% across and — slides in; click 5: text 36pt — fades up from dark; click 6: group — flash bulb
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 55
+- text 36pt [6%,6% → 28%,10%]: A note about assumptions…
+- image `pasted-movie-31660.png` [9%,24% → 55%,67%]
+- image `img-4873.png` [62%,13% → 90%,79%]
+- filled shape #fffb00 [46%,31% → 52%,34%]
+- text 36pt [30%,72% → 34%,76%]: Always read the fine print — assumptions matter.
+- text 36pt [13%,78% → 51%,82%]: (Or in my case the extremely large obvious print)
+- **Builds:** click 1: image `pasted-movie-31660.png` — appears; click 2: filled shape #fffb00 — wipes in; click 3: image `img-4873.png` — appears; click 4: text 36pt — appears; click 5: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 56
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- group [62%,54% → 74%,67%]
+  - shape (filled #c3b8ff) [62%,54% → 74%,67%]
+  - shape (outline) [62%,54% → 74%,67%]
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [10%,88% → 90%,92%]: Many common set representations (e.g. hyperrectangle) have [[efficient ways|#80b9ff]] of calculating the resulting set.
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- equation $A\mathcal P$ (36pt, #c3b8ff) [66%,50% → 69%,52%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 57
+- group [14%,50% → 19%,59%]
+  - filled shape #80b9ff [14%,50% → 19%,59%]
+  - outlined shape #80b9ff [14%,50% → 19%,59%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [6%,18% → 45%,26%]
+  - text 36pt [11%,20% → 45%,24%]: Matrix multiplication (linear transformation)
+  - outlined circle #ffffff [6%,18% → 10%,26%]
+  - equation $1$ (36pt, #ffffff) [8%,21% → 8%,23%]
+- group [49%,17% → 68%,26%]
+  - outlined shape #ffffff [49%,17% → 68%,26%]
+  - equation $\mathbf A\mathcal P = \{\mathbf A \mathbf p \mid \mathbf p \in \mathcal P\}$ (36pt, #ffffff) [50%,20% → 66%,23%]
+- arrow #ffffff [2%,57% → 26%,62%]
+- arrow #ffffff [12%,57% → 35%,62%]
+- equation $\times \ \ \ \begin{bmatrix}1 & 2 \\ 0.5 & -1\end{bmatrix}$ (36pt, #ffffff) [39%,55% → 50%,64%]
+- equation $=$ (68pt, #ffffff) [54%,59% → 56%,60%]
+- arrow #ffffff [50%,57% → 74%,61%]
+- arrow #ffffff [59%,57% → 83%,61%]
+- group [62%,54% → 74%,67%]
+  - shape (filled #c3b8ff) [62%,54% → 74%,67%]
+  - shape (outline) [62%,54% → 74%,67%]
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [10%,88% → 90%,92%]: Many common set representations (e.g. hyperrectangle) have [[efficient ways|#80b9ff]] of calculating the resulting set.
+- equation $\mathcal P$ (36pt, #80b9ff) [19%,46% → 21%,48%]
+- equation $A\mathcal P$ (36pt, #c3b8ff) [66%,50% → 69%,52%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [4%,14% → 96%,84%]
+- rounded box (filled #424242) [29%,71% → 71%,84%]
+- heading (spaced caps) 100pt [30%,71% → 35%,84%]: 🤔
+- text 36pt [36%,75% → 70%,80%]: So what are these nice set representations?
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 58
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- rounded box (filled #424242) [29%,14% → 71%,26%]
+- heading (spaced caps) 100pt [30%,14% → 35%,27%]: 🤔
+- text 36pt [36%,18% → 70%,22%]: So what are these nice set representations?
+- group [6%,31% → 45%,38%]
+  - text 36pt [11%,32% → 45%,37%]: [[Finite representations: |#80b9ff]]we should be able to specify all the points in the set without enumerating them all.
+  - outlined circle #ffffff [6%,31% → 10%,38%]
+  - equation $1$ (36pt, #ffffff) [8%,33% → 8%,36%]
+- group [6%,42% → 90%,50%]
+  - text 36pt [11%,44% → 90%,49%]: [[Efficient set operations: |#80b9ff]]e.g. linear transformation, Minkowski sum, intersection.
+  - outlined circle #ffffff [6%,42% → 10%,50%]
+  - equation $2$ (36pt, #ffffff) [7%,45% → 8%,47%]
+- group [6%,54% → 89%,62%]
+  - text 36pt [11%,54% → 89%,62%]: [[Closed under set operations: |#80b9ff]]a set representation is closed under a set operation if applying the operation results in a set of the same type.
+  - outlined circle #ffffff [6%,54% → 10%,62%]
+  - equation $3$ (36pt, #ffffff) [8%,57% → 8%,59%]
+- group [23%,64% → 70%,92%]
+  - rounded box (outline) [23%,64% → 70%,92%]
+  - text 36pt [25%,66% → 68%,70%]: e.g. the [[intersection|#80b9ff]] of two rectangles is also a rectangle:
+  - text 36pt [25%,85% → 68%,90%]: so we say that rectangles are closed under intersection.
+  - filled shape #ffa4e7 [42%,73% → 50%,80%]
+  - filled shape #ffa4e7 [46%,75% → 51%,82%]
+- text 36pt [78%,70% → 93%,78%]: Are they closed under union?
+- text 36pt [83%,79% → 88%,84%]: {Nope!|#fab0ae}
+- shape (outline) [72%,73% → 77%,81%]
+- **Builds:** click 1: group — appears; click 2: group — appears; click 3: group — appears; click 4: group — slides in; click 5: shape (outline) — wipes in; with previous: text 36pt — slides in; click 6: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 59
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- rounded box (filled #424242) [29%,14% → 71%,26%]
+- heading (spaced caps) 100pt [30%,14% → 35%,27%]: 🤔
+- text 36pt [36%,18% → 70%,22%]: So what are these nice set representations?
+- text 36pt [48%,29% → 52%,34%]: [[Convex|#80b9ff]] sets tend to be nice.
+- text 36pt [22%,37% → 78%,41%]: A set $\mathcal P$ is convex if {$\alpha \mathbf p + (1-\alpha)\mathbf q \in \mathcal P$|#80b9ff} for all $\mathbf p, \mathbf q \in \mathcal P$ and $\alpha \in [0, 1]$.
+- group [24%,45% → 76%,83%]
+  - image `val-page-186.svg` (cropped: show only 16–56% across and 12–24% down of the image) [24%,51% → 76%,83%]
+  - vector icon `shape-4a0bcba7.svg` [40%,60% → 42%,63%]
+  - vector icon `shape-4a0bcba7.svg` [29%,74% → 30%,77%]
+  - line #ff48cf [29%,67% → 42%,71%]
+  - vector icon `shape-4a0bcba7.svg` [70%,76% → 71%,79%]
+  - vector icon `shape-4a0bcba7.svg` [57%,76% → 58%,79%]
+  - line #ff48cf [58%,75% → 70%,79%]
+  - text 36pt [31%,45% → 40%,50%]: {convex set|#80cfb9}
+  - text 36pt [58%,45% → 70%,50%]: {nonconvex set|#fab0ae}
+- text 36pt [48%,88% → 52%,92%]: Specifically, we are [[big fans|#80b9ff]] of polytopes!
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; click 3: group — appears; click 4: text 36pt — sparkle
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 60
+- rounded box (outline) [5%,22% → 95%,94%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [35%,14% → 65%,19%]: Specifically, we are [[big fans|#80b9ff]] of polytopes!
+- text 36pt [41%,24% → 59%,29%]: Let’s build a polytope:
+- vector icon `shape-02df54d4.svg` [39%,23% → 41%,30%]
+- text 36pt [14%,38% → 33%,43%]: {linear inequality: $\mathbf a^\top \mathbf x \leq b$|#a9a9a9}
+- group [15%,48% → 32%,78%]
+  - filled shape #ffffff [15%,48% → 32%,77%]
+  - image `sandbox-page-1-28709.svg` (cropped: show only 14–28% across and 16–29% down of the image) [15%,48% → 32%,78%]
+- text 36pt [19%,82% → 28%,86%]: Half Space
+- shape (outline) [34%,60% → 39%,67%]
+- group [42%,49% → 58%,78%]
+  - filled shape #ffffff [42%,49% → 58%,78%]
+  - image `sandbox-page-1-28709.svg` (cropped: show only 33–48% across and 16–29% down of the image) [42%,49% → 58%,78%]
+- group [68%,49% → 84%,78%]
+  - filled shape #ffffff [68%,49% → 84%,78%]
+  - image `sandbox-page-1-28709.svg` (cropped: show only 53–68% across and 16–29% down of the image) [68%,49% → 84%,78%]
+- text 36pt [40%,38% → 60%,43%]: {intersection of half spaces|#a9a9a9}
+- text 36pt [45%,82% → 54%,86%]: Polyhedron
+- text 36pt [66%,34% → 86%,42%]: {BOUNDED |#a9a9a9} / intersection of half spaces
+- text 36pt [73%,82% → 80%,86%]: Polytope
+- shape (outline) [60%,60% → 65%,67%]
+- line #80b9ff [5%,30% → 95%,34%]
+- **Builds:** click 1: shape (outline) — wipes in; with previous: text 36pt — fades up from dark; with previous: group — fades up from dark; with previous: text 36pt — fades up from dark; click 2: shape (outline) — wipes in; with previous: text 36pt — fades up from dark; with previous: group — fades up from dark; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 61
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [35%,14% → 65%,19%]: Specifically, we are [[big fans|#80b9ff]] of polytopes!
+- text 36pt [24%,22% → 76%,26%]: We will use two different representations of polytopes in this class:
+- text 36pt [31%,34% → 41%,38%]: $\mathcal H$-polytope
+- outlined circle #ffffff [26%,32% → 30%,40%]
+- equation $1$ (36pt, #ffffff) [27%,35% → 28%,37%]
+- text 36pt [26%,42% → 41%,47%]: a set of [[half spaces|#80b9ff]]
+- rounded box (outline) [19%,29% → 48%,87%]
+- equation $\mathbf A\mathbf x \leq \mathbf b$ (36pt, #ffffff) [31%,49% → 36%,52%]
+- text 36pt [64%,34% → 74%,38%]: $\mathcal V$-polytope
+- outlined circle #ffffff [58%,32% → 63%,40%]
+- equation $2$ (36pt, #ffffff) [60%,35% → 61%,37%]
+- text 36pt [54%,42% → 79%,47%]: the [[convex hull|#80b9ff]] of a set of [[vertices|#80b9ff]]
+- rounded box (outline) [52%,29% → 81%,87%]
+- equation $\text{conv}(\mathcal V)$ (36pt, #ffffff) [64%,49% → 70%,52%]
+- group [25%,54% → 42%,83%]
+  - filled shape #ffffff [25%,54% → 42%,83%]
+  - image `sandbox-page-1-28709.svg` (cropped: show only 53–68% across and 16–29% down of the image) [25%,54% → 42%,83%]
+- image `test-28912.svg` [62%,56% → 71%,81%]
+- shape filled #80b9ff, outlined #0072fe [64%,56% → 65%,58%]
+- shape filled #80b9ff, outlined #0072fe [68%,57% → 70%,59%]
+- shape filled #80b9ff, outlined #0072fe [71%,74% → 72%,76%]
+- shape filled #80b9ff, outlined #0072fe [67%,79% → 69%,81%]
+- shape filled #80b9ff, outlined #0072fe [62%,77% → 63%,79%]
+- **Builds:** click 1: rounded box (outline) — fades up from dark; with previous: outlined circle #ffffff — fades up from dark; with previous: text 36pt — fades up from dark; with previous: text 36pt — fades up from dark; with previous: equation $\text{conv}(\mathcal V)$ — fades up from dark; with previous: equation $2$ — fades up from dark; with previous: image `test-28912.svg` — fades up from dark; click 2: shape filled #80b9ff, outlined #0072fe — fades up from dark; with previous: shape filled #80b9ff, outlined #0072fe — fades up from dark; with previous: shape filled #80b9ff, outlined #0072fe — fades up from dark; with previous: shape filled #80b9ff, outlined #0072fe — fades up from dark; with previous: shape filled #80b9ff, outlined #0072fe — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 62
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [36%,16% → 45%,21%]: $\mathcal V$-polytope
+- rounded box (outline) [34%,14% → 47%,23%]
+- text 36pt [49%,16% → 66%,21%]: Linear Transformation
+- arrow #ffffff [11%,60% → 48%,64%]
+- arrow #ffffff [21%,57% → 65%,61%]
+- equation $\mathcal P$ (36pt, #80b9ff) [35%,48% → 36%,50%]
+- vector icon `shape-5e678e25.svg` [41%,39% → 42%,41%]
+- vector icon `shape-5e678e25.svg` [29%,39% → 30%,41%]
+- vector icon `shape-5e678e25.svg` [29%,58% → 30%,60%]
+- vector icon `shape-5e678e25.svg` [41%,58% → 42%,60%]
+- equation $\mathbf v_1$ (36pt, #80b9ff) [27%,37% → 28%,39%]
+- equation $\mathbf v_2$ (36pt, #80b9ff) [43%,37% → 44%,39%]
+- equation $\mathbf v_3$ (36pt, #80b9ff) [28%,60% → 29%,63%]
+- equation $\mathbf v_4$ (36pt, #80b9ff) [43%,61% → 44%,64%]
+- line #80b9ff [30%,38% → 42%,42%]
+- line #80b9ff [36%,47% → 47%,52%]
+- line #80b9ff [30%,57% → 42%,61%]
+- line #80b9ff [25%,47% → 35%,51%]
+- equation $\mathbf A \mathcal P = \operatorname{conv}({\mathbf A \mathbf v \mid \mathbf v \in \mathcal V})$ (36pt, #ffffff) [49%,24% → 68%,26%]
+- **Builds:** click 1: equation $\mathbf A \mathcal P = \operatorname{conv}({\mathbf A \mathbf v \mid \mathbf v \in \mathcal V})$ — slides in; click 2: equation $\mathbf v_1$ — fades up from dark; with previous: equation $\mathbf v_2$ — fades up from dark; with previous: vector icon `shape-5e678e25.svg` — fades up from dark; with previous: vector icon `shape-5e678e25.svg` — fades up from dark; with previous: line #80b9ff — fades up from dark; with previous: equation $\mathcal P$ — fades up from dark; with previous: line #80b9ff — fades up from dark; with previous: line #80b9ff — fades up from dark; with previous: vector icon `shape-5e678e25.svg` — fades up from dark; with previous: vector icon `shape-5e678e25.svg` — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: line #80b9ff — fades up from dark; with previous: equation $\mathbf v_3$ — fades up from dark; with previous: equation $\mathbf v_4$ — fades up from dark; with previous: arrow #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 63
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [36%,16% → 45%,21%]: $\mathcal V$-polytope
+- rounded box (outline) [34%,14% → 47%,23%]
+- text 36pt [49%,16% → 66%,21%]: Linear Transformation
+- arrow #ffffff [11%,60% → 48%,64%]
+- arrow #ffffff [21%,57% → 65%,61%]
+- equation $\mathcal P$ (36pt, #80b9ff) [39%,62% → 41%,64%]
+- vector icon `shape-e7cf229d.svg` [49%,65% → 50%,68%]
+- vector icon `shape-e7cf229d.svg` [35%,46% → 37%,49%]
+- vector icon `shape-e7cf229d.svg` [29%,58% → 30%,60%]
+- vector icon `shape-e7cf229d.svg` [42%,77% → 43%,80%]
+- equation $\mathbf v_1$ (36pt, #80b9ff) [35%,43% → 36%,45%]
+- equation $\mathbf v_2$ (36pt, #80b9ff) [51%,63% → 52%,65%]
+- equation $\mathbf v_3$ (36pt, #80b9ff) [28%,60% → 29%,63%]
+- equation $\mathbf v_4$ (36pt, #80b9ff) [41%,81% → 42%,83%]
+- line #c3b8ff [34%,55% → 51%,59%]
+- line #c3b8ff [41%,70% → 51%,74%]
+- line #c3b8ff [28%,66% → 44%,70%]
+- line #c3b8ff [28%,51% → 37%,55%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [33%,42% → 35%,44%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [49%,62% → 51%,64%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [39%,80% → 40%,83%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [26%,60% → 27%,62%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [38%,62% → 39%,64%]
+- equation $\mathbf A \mathcal P = \operatorname{conv}({\mathbf A \mathbf v \mid \mathbf v \in \mathcal V})$ (36pt, #ffffff) [49%,24% → 68%,26%]
+- **Builds:** then: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 64
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [36%,16% → 45%,21%]: $\mathcal V$-polytope
+- rounded box (outline) [34%,14% → 47%,23%]
+- text 36pt [48%,16% → 61%,21%]: Minkowski Sum
+- arrow #ffffff [11%,56% → 47%,61%]
+- arrow #ffffff [23%,82% → 77%,86%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [37%,47% → 54%,70%]
+  - shape (filled #80b9ff) [37%,48% → 53%,69%]
+  - shape filled #80b9ff, outlined #0072fe [37%,52% → 38%,54%]
+  - shape filled #80b9ff, outlined #0072fe [45%,47% → 46%,49%]
+  - shape filled #80b9ff, outlined #0072fe [53%,68% → 54%,70%]
+  - shape filled #80b9ff, outlined #0072fe [40%,68% → 41%,70%]
+- equation $\mathcal P$ (36pt, #000000) [31%,78% → 32%,80%]
+- equation $\mathcal Q$ (36pt, #000000) [43%,58% → 44%,60%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- equation $\mathcal P \oplus \mathcal Q = \operatorname{conv}(\{\mathbf v_1 + \mathbf v_2 \mid \mathbf v_1 \in \mathcal V_p, \mathbf v_2 \in \mathcal V_q\})$ (36pt, #ffffff) [49%,24% → 83%,28%]
+- **Builds:** click 1: equation $\mathcal P \oplus \mathcal Q = \operatorname{conv}(\{\mathbf v_1 + \mathbf v_2 \mid \mathbf v_1 \in \mathcal V_p, \mathbf v_2 \in \mathcal V_q\})$ — slides in; click 2: group — fades up from dark; with previous: equation $\mathcal Q$ — fades up from dark; with previous: arrow #ffffff — fades up from dark; with previous: group — fades up from dark; with previous: group — fades up from dark; with previous: group — fades up from dark; with previous: group — fades up from dark; with previous: equation $\mathcal P$ — fades up from dark; with previous: arrow #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 65
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [36%,16% → 45%,21%]: $\mathcal V$-polytope
+- rounded box (outline) [34%,14% → 47%,23%]
+- text 36pt [48%,16% → 61%,21%]: Minkowski Sum
+- arrow #ffffff [11%,56% → 47%,61%]
+- arrow #ffffff [23%,82% → 77%,86%]
+- group [37%,47% → 54%,70%]
+  - shape (filled #80b9ff) [37%,48% → 53%,69%]
+  - shape filled #80b9ff, outlined #0072fe [37%,52% → 38%,54%]
+  - shape filled #80b9ff, outlined #0072fe [45%,47% → 46%,49%]
+  - shape filled #80b9ff, outlined #0072fe [53%,68% → 54%,70%]
+  - shape filled #80b9ff, outlined #0072fe [40%,68% → 41%,70%]
+- group [40%,59% → 47%,70%]
+  - shape filled #fab0ae, outlined #f5615c [41%,60% → 46%,69%]
+  - shape filled #fab0ae, outlined #f5615c [40%,59% → 41%,60%]
+  - shape filled #fab0ae, outlined #f5615c [45%,59% → 47%,60%]
+  - shape filled #fab0ae, outlined #f5615c [45%,68% → 47%,70%]
+  - shape filled #fab0ae, outlined #f5615c [40%,68% → 41%,70%]
+- group [53%,59% → 59%,70%]
+  - shape filled #fab0ae, outlined #f5615c [53%,60% → 58%,69%]
+  - shape filled #fab0ae, outlined #f5615c [53%,59% → 54%,60%]
+  - shape filled #fab0ae, outlined #f5615c [58%,59% → 59%,60%]
+  - shape filled #fab0ae, outlined #f5615c [58%,68% → 59%,70%]
+  - shape filled #fab0ae, outlined #f5615c [53%,68% → 54%,70%]
+- group [45%,38% → 51%,49%]
+  - shape filled #fab0ae, outlined #f5615c [45%,39% → 51%,48%]
+  - shape filled #fab0ae, outlined #f5615c [45%,38% → 46%,40%]
+  - shape filled #fab0ae, outlined #f5615c [50%,38% → 51%,40%]
+  - shape filled #fab0ae, outlined #f5615c [50%,47% → 51%,49%]
+  - shape filled #fab0ae, outlined #f5615c [45%,47% → 46%,49%]
+- group [37%,43% → 43%,54%]
+  - shape filled #fab0ae, outlined #f5615c [37%,44% → 42%,53%]
+  - shape filled #fab0ae, outlined #f5615c [37%,43% → 38%,45%]
+  - shape filled #fab0ae, outlined #f5615c [42%,43% → 43%,45%]
+  - shape filled #fab0ae, outlined #f5615c [42%,52% → 43%,54%]
+  - shape filled #fab0ae, outlined #f5615c [37%,52% → 38%,54%]
+- shape (outline) [37%,39% → 58%,69%]
+- equation $\mathcal P \oplus \mathcal Q = \operatorname{conv}(\{\mathbf v_1 + \mathbf v_2 \mid \mathbf v_1 \in \mathcal V_p, \mathbf v_2 \in \mathcal V_q\})$ (36pt, #ffffff) [49%,24% → 83%,28%]
+- **Builds:** click 1: shape (outline) — LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 66
+- shape (filled #c3b8ff) [37%,39% → 58%,69%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [36%,16% → 45%,21%]: $\mathcal V$-polytope
+- rounded box (outline) [34%,14% → 47%,23%]
+- text 36pt [48%,16% → 61%,21%]: Minkowski Sum
+- arrow #ffffff [11%,56% → 47%,61%]
+- arrow #ffffff [23%,82% → 77%,86%]
+- equation $\mathcal P \oplus \mathcal Q$ (36pt, #000000) [44%,53% → 50%,55%]
+- equation $\mathcal P \oplus \mathcal Q = \operatorname{conv}(\{\mathbf v_1 + \mathbf v_2 \mid \mathbf v_1 \in \mathcal V_p, \mathbf v_2 \in \mathcal V_q\})$ (36pt, #ffffff) [49%,24% → 83%,28%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 67
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [48%,14% → 52%,19%]: Let’s look at the complexity of these operations in terms of the number of vertices:
+- arrow #ffffff [11%,60% → 48%,64%]
+- arrow #ffffff [21%,57% → 65%,61%]
+- equation $\mathcal P$ (36pt, #80b9ff) [35%,48% → 36%,50%]
+- vector icon `shape-5e678e25.svg` [41%,39% → 42%,41%]
+- vector icon `shape-5e678e25.svg` [29%,39% → 30%,41%]
+- vector icon `shape-5e678e25.svg` [29%,58% → 30%,60%]
+- vector icon `shape-5e678e25.svg` [41%,58% → 42%,60%]
+- equation $\mathbf v_1$ (36pt, #80b9ff) [27%,37% → 28%,39%]
+- equation $\mathbf v_2$ (36pt, #80b9ff) [43%,37% → 44%,39%]
+- equation $\mathbf v_3$ (36pt, #80b9ff) [28%,60% → 29%,63%]
+- equation $\mathbf v_4$ (36pt, #80b9ff) [43%,61% → 44%,64%]
+- line #80b9ff [30%,38% → 42%,42%]
+- line #80b9ff [36%,47% → 47%,52%]
+- line #80b9ff [30%,57% → 42%,61%]
+- line #80b9ff [25%,47% → 35%,51%]
+- equation $n_{\mathcal P} = 4$ (36pt, #80b9ff) [33%,22% → 38%,25%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 68
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [48%,14% → 52%,19%]: Let’s look at the complexity of these operations in terms of the number of vertices:
+- arrow #ffffff [11%,60% → 48%,64%]
+- arrow #ffffff [21%,57% → 65%,61%]
+- equation $\mathcal P$ (36pt, #80b9ff) [39%,62% → 41%,64%]
+- vector icon `shape-e7cf229d.svg` [49%,65% → 50%,68%]
+- vector icon `shape-e7cf229d.svg` [35%,46% → 37%,49%]
+- vector icon `shape-e7cf229d.svg` [29%,58% → 30%,60%]
+- vector icon `shape-e7cf229d.svg` [42%,77% → 43%,80%]
+- equation $\mathbf v_1$ (36pt, #80b9ff) [35%,43% → 36%,45%]
+- equation $\mathbf v_2$ (36pt, #80b9ff) [51%,63% → 52%,65%]
+- equation $\mathbf v_3$ (36pt, #80b9ff) [28%,60% → 29%,63%]
+- equation $\mathbf v_4$ (36pt, #80b9ff) [41%,81% → 42%,83%]
+- line #c3b8ff [34%,55% → 51%,59%]
+- line #c3b8ff [41%,70% → 51%,74%]
+- line #c3b8ff [28%,66% → 44%,70%]
+- line #c3b8ff [28%,51% → 37%,55%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [33%,42% → 35%,44%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [49%,62% → 51%,64%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [39%,80% → 40%,83%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [26%,60% → 27%,62%]
+- equation $\mathbf A$ (36pt, #c3b8ff) [38%,62% → 39%,64%]
+- group [39%,20% → 50%,25%]
+  - line #c3b8ff [49%,21% → 50%,25%]
+  - line #c3b8ff [49%,20% → 50%,24%]
+- equation $n_{\mathcal P} = 4$ (36pt, #80b9ff) [33%,22% → 38%,25%]
+- equation $n_{A\mathcal P} = 4$ (36pt, #c3b8ff) [51%,21% → 57%,24%]
+- equation $n_{A\mathcal P} = n_{\mathcal P}$ (36pt, #c3b8ff) [51%,27% → 58%,29%]
+- **Builds:** then: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: line #c3b8ff — draws in; with previous: group — wipes in; click 1: equation $n_{A\mathcal P} = n_{\mathcal P}$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 69
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [48%,14% → 52%,19%]: Let’s look at the complexity of these operations in terms of the number of vertices:
+- equation $n_{\mathcal P} = 4$ (36pt, #fab0ae) [34%,20% → 39%,23%]
+- arrow #ffffff [11%,56% → 47%,61%]
+- arrow #ffffff [23%,82% → 77%,86%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [37%,47% → 54%,70%]
+  - shape (filled #80b9ff) [37%,48% → 53%,69%]
+  - shape filled #80b9ff, outlined #0072fe [37%,52% → 38%,54%]
+  - shape filled #80b9ff, outlined #0072fe [45%,47% → 46%,49%]
+  - shape filled #80b9ff, outlined #0072fe [53%,68% → 54%,70%]
+  - shape filled #80b9ff, outlined #0072fe [40%,68% → 41%,70%]
+- equation $\mathcal P$ (36pt, #000000) [31%,78% → 32%,80%]
+- equation $\mathcal Q$ (36pt, #000000) [43%,58% → 44%,60%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- group [28%,73% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [29%,75% → 34%,84%]
+  - shape filled #fab0ae, outlined #f5615c [28%,73% → 29%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,73% → 35%,75%]
+  - shape filled #fab0ae, outlined #f5615c [34%,83% → 35%,85%]
+  - shape filled #fab0ae, outlined #f5615c [28%,83% → 29%,85%]
+- equation $n_{\mathcal Q} = 4$ (36pt, #80b9ff) [42%,20% → 47%,23%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 70
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [48%,14% → 52%,19%]: Let’s look at the complexity of these operations in terms of the number of vertices:
+- equation $n_{\mathcal P} = 4$ (36pt, #fab0ae) [34%,20% → 39%,23%]
+- equation $n_{\mathcal Q} = 4$ (36pt, #80b9ff) [42%,20% → 47%,23%]
+- group [49%,19% → 59%,24%]
+  - line #c3b8ff [59%,20% → 59%,24%]
+  - line #c3b8ff [59%,19% → 59%,24%]
+- equation $n_{\mathcal P \oplus \mathcal Q} \leq 16$ (36pt, #c3b8ff) [61%,20% → 69%,24%]
+- equation $n_{\mathcal P \oplus \mathcal Q} \leq n_{\mathcal P} n_{\mathcal Q}$ (36pt, #c3b8ff) [61%,26% → 71%,29%]
+- arrow #ffffff [11%,56% → 47%,61%]
+- arrow #ffffff [23%,82% → 77%,86%]
+- group [37%,47% → 54%,70%]
+  - shape (filled #80b9ff) [37%,48% → 53%,69%]
+  - shape filled #80b9ff, outlined #0072fe [37%,52% → 38%,54%]
+  - shape filled #80b9ff, outlined #0072fe [45%,47% → 46%,49%]
+  - shape filled #80b9ff, outlined #0072fe [53%,68% → 54%,70%]
+  - shape filled #80b9ff, outlined #0072fe [40%,68% → 41%,70%]
+- group [40%,59% → 47%,70%]
+  - shape filled #fab0ae, outlined #f5615c [41%,60% → 46%,69%]
+  - shape filled #fab0ae, outlined #f5615c [40%,59% → 41%,60%]
+  - shape filled #fab0ae, outlined #f5615c [45%,59% → 47%,60%]
+  - shape filled #fab0ae, outlined #f5615c [45%,68% → 47%,70%]
+  - shape filled #fab0ae, outlined #f5615c [40%,68% → 41%,70%]
+- group [53%,59% → 59%,70%]
+  - shape filled #fab0ae, outlined #f5615c [53%,60% → 58%,69%]
+  - shape filled #fab0ae, outlined #f5615c [53%,59% → 54%,60%]
+  - shape filled #fab0ae, outlined #f5615c [58%,59% → 59%,60%]
+  - shape filled #fab0ae, outlined #f5615c [58%,68% → 59%,70%]
+  - shape filled #fab0ae, outlined #f5615c [53%,68% → 54%,70%]
+- group [45%,38% → 51%,49%]
+  - shape filled #fab0ae, outlined #f5615c [45%,39% → 51%,48%]
+  - shape filled #fab0ae, outlined #f5615c [45%,38% → 46%,40%]
+  - shape filled #fab0ae, outlined #f5615c [50%,38% → 51%,40%]
+  - shape filled #fab0ae, outlined #f5615c [50%,47% → 51%,49%]
+  - shape filled #fab0ae, outlined #f5615c [45%,47% → 46%,49%]
+- group [37%,43% → 43%,54%]
+  - shape filled #fab0ae, outlined #f5615c [37%,44% → 42%,53%]
+  - shape filled #fab0ae, outlined #f5615c [37%,43% → 38%,45%]
+  - shape filled #fab0ae, outlined #f5615c [42%,43% → 43%,45%]
+  - shape filled #fab0ae, outlined #f5615c [42%,52% → 43%,54%]
+  - shape filled #fab0ae, outlined #f5615c [37%,52% → 38%,54%]
+- shape (outline) [37%,39% → 58%,69%]
+- **Builds:** click 1: shape (outline) — LineDraw; with previous: group — wipes in; then: equation $n_{\mathcal P \oplus \mathcal Q} \leq 16$ — appears; click 2: equation $n_{\mathcal P \oplus \mathcal Q} \leq n_{\mathcal P} n_{\mathcal Q}$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 71
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [48%,14% → 52%,19%]: Let’s look at the complexity of these operations in terms of the number of vertices:
+- equation $n_{\mathcal P \oplus \mathcal Q} \leq n_{\mathcal P} n_{\mathcal Q}$ (36pt, #c3b8ff) [56%,28% → 67%,31%]
+- equation $n_{A\mathcal P} = n_{\mathcal P}$ (36pt, #c3b8ff) [35%,28% → 42%,30%]
+- text 36pt [30%,22% → 47%,27%]: {Linear Transformation|#c3b8ff}
+- text 36pt [55%,22% → 68%,27%]: {Minkowski Sum|#c3b8ff}
+- outlined shape #c3b8ff [27%,22% → 49%,32%]
+- outlined shape #c3b8ff [51%,22% → 73%,32%]
+- equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ (36pt, #ffffff) [30%,47% → 69%,50%]
+- text 36pt [48%,36% → 52%,40%]: For linear reachability, we must apply {3 linear transformations|#80b9ff} and {3 Minkowski sums |#fab0ae}per time step:
+- arrow #80b9ff [45%,41% → 51%,45%]
+- arrow #80b9ff [50%,41% → 55%,45%]
+- arrow #80b9ff [50%,41% → 62%,45%]
+- arrow #fab0ae [51%,41% → 69%,46%]
+- arrow #fab0ae [60%,41% → 69%,46%]
+- arrow #fab0ae [66%,41% → 70%,46%]
+- group [11%,54% → 89%,63%]
+  - rounded box (filled #424242) [11%,54% → 89%,63%]
+  - text 36pt [13%,56% → 87%,61%]: What is the [[maximum factor|#80b9ff]] by which the number of vertices could [[increase|#80b9ff]] from $\mathcal R_{d-1}$ to $\mathcal R_d$?
+- equation $n_{\mathcal R_d} \leq n_{\mathcal R_{d-1}} n_{\mathcal X_o} n_{\mathcal X_a} n_{\mathcal X_s}$ (47pt, #ffffff) [39%,67% → 61%,72%]
+- equation $n_{\mathcal R_d} \leq n_{\mathcal S_1} (n_{\mathcal X_o} n_{\mathcal X_a} n_{\mathcal X_s})^d$ (47pt, #ffffff) [39%,75% → 61%,80%]
+- text 36pt [69%,65% → 94%,77%]: {Exponential growth in bound on the number of vertices with the depth, ahhhh!|#f3cf80}
+- arrow #f3cf80 [62%,71% → 68%,76%]
+- text 36pt [70%,79% → 93%,84%]: [[Zonotopes can help with this.|#80b9ff]]
+- **Builds:** click 1: text 36pt — appears; click 2: equation $\mathcal R_{d} = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathcal R_{d-1} \oplus \mathbf T_a \mathbf \Pi_o \mathcal X_o \oplus \mathbf T_a \mathcal X_a \oplus \mathcal X_s$ — slides in; then: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in; with previous: arrow #80b9ff — draws in; with previous: arrow #fab0ae — draws in; with previous: arrow #fab0ae — draws in; with previous: arrow #fab0ae — draws in; click 3: group — fades up from dark; click 4: equation $n_{\mathcal R_d} \leq n_{\mathcal R_{d-1}} n_{\mathcal X_o} n_{\mathcal X_a} n_{\mathcal X_s}$ — slides in; click 5: equation $n_{\mathcal R_d} \leq n_{\mathcal S_1} (n_{\mathcal X_o} n_{\mathcal X_a} n_{\mathcal X_s})^d$ — slides in; click 6: text 36pt — fades up from dark; with previous: arrow #f3cf80 — draws in; click 7: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 72
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- group [-14%,18% → -2%,26%] (starts off-slide; an animation moves it in)
+  - text 36pt [-9%,20% → -2%,24%]: Addition
+  - outlined circle #ffffff [-14%,18% → -10%,26%]
+  - equation $2$ (36pt, #ffffff) [-12%,21% → -12%,23%]
+- text 36pt [38%,14% → 62%,19%]: [[Zonotopes|#80b9ff]] are a special type of polytope.
+- text 36pt [48%,22% → 52%,26%]: They are represented as the [[Minkowski sum|#80b9ff]] of a set of [[line segments|#80b9ff]] centered at a point $c$.
+- equation $\mathcal Z = \{\mathbf c + \sum_{i=1}^m \alpha_i \mathbf g_i \mid \alpha_i \in [-1, 1]\}$ (36pt, #ffffff) [38%,29% → 62%,38%]
+- text 36pt [48%,41% → 52%,46%]: represented as center and a list of generators:
+- equation $\mathcal Z = (\mathbf c, \langle \mathbf g_{1:m}\rangle)$ (36pt, #ffffff) [44%,49% → 56%,52%]
+- heading (spaced caps) 100pt [45%,60% → 55%,73%]: 🧐😵‍💫
+- **Builds:** click 1: text 36pt — appears; click 2: equation $\mathcal Z = \{\mathbf c + \sum_{i=1}^m \alpha_i \mathbf g_i \mid \alpha_i \in [-1, 1]\}$ — appears; click 3: text 36pt — appears; with previous: equation $\mathcal Z = (\mathbf c, \langle \mathbf g_{1:m}\rangle)$ — appears; click 4: heading (spaced caps) 100pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 73
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- outlined circle #ffffff [53%,53% → 54%,55%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 74
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80b9ff [49%,55% → 54%,59%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- arrow #80b9ff [52%,49% → 57%,53%]
+- line #0072fe [48%,52% → 58%,56%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Builds:** click 1: line #0072fe — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 75
+- line #80b9ff [48%,52% → 58%,56%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 76
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #ffa4e7 [49%,60% → 52%,64%]
+- arrow #ffa4e7 [47%,55% → 51%,59%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- line #80b9ff [48%,52% → 58%,56%]
+- vector icon `shape-4e70ae4b.svg` [49%,59% → 50%,60%]
+- vector icon `shape-4e70ae4b.svg` [56%,48% → 57%,49%]
+- arrow #ffa4e7 [54%,44% → 57%,48%]
+- arrow #ffa4e7 [55%,49% → 59%,53%]
+- shape (outline) [48%,43% → 58%,65%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Builds:** click 1: shape (outline) — LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 77
+- shape (filled #c3b8ff) [48%,43% → 58%,65%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 78
+- shape (filled #c3b8ff) [48%,43% → 58%,65%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- arrow #80cfb9 [52%,44% → 56%,49%]
+- arrow #80cfb9 [46%,55% → 49%,59%]
+- arrow #80cfb9 [49%,65% → 53%,69%]
+- arrow #80cfb9 [55%,55% → 59%,59%]
+- arrow #80cfb9 [47%,49% → 51%,53%]
+- arrow #80cfb9 [51%,59% → 54%,64%]
+- arrow #80cfb9 [57%,49% → 60%,53%]
+- arrow #80cfb9 [54%,39% → 57%,43%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- vector icon `shape-38199a27.svg` [51%,64% → 52%,65%]
+- vector icon `shape-38199a27.svg` [48%,53% → 49%,55%]
+- vector icon `shape-38199a27.svg` [54%,43% → 55%,44%]
+- vector icon `shape-38199a27.svg` [57%,53% → 58%,55%]
+- shape (outline) [47%,38% → 59%,70%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Builds:** click 1: shape (outline) — LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 79
+- shape (filled #919191) [47%,38% → 59%,70%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,18% → 95%,90%]
+- text 36pt [41%,20% → 59%,25%]: Let’s build a zonotope!
+- vector icon `shape-02df54d4.svg` [39%,19% → 40%,26%]
+- line #80b9ff [5%,26% → 95%,30%]
+- arrow #80b9ff [21%,56% → 25%,60%]
+- arrow #80cfb9 [20%,56% → 24%,60%]
+- arrow #ffa4e7 [19%,56% → 22%,60%]
+- equation $c$ (36pt, #ffffff) [54%,55% → 54%,57%]
+- shape filled #000000, outlined #ffffff [53%,53% → 54%,55%]
+- text 36pt [17%,45% → 27%,49%]: Generators ($\mathbf g_{1:3}$)
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 80
+- shape (filled #919191) [22%,34% → 34%,66%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,30% → 39%,70%]
+- arrow #80b9ff [13%,53% → 18%,57%]
+- arrow #80cfb9 [13%,53% → 16%,57%]
+- arrow #ffa4e7 [11%,53% → 15%,58%]
+- equation $c$ (36pt, #ffffff) [29%,51% → 29%,53%]
+- shape filled #000000, outlined #ffffff [28%,49% → 28%,51%]
+- text 36pt [8%,41% → 21%,46%]: Generators ($\mathbf g_{1:3}$)
+- text 36pt [57%,19% → 75%,24%]: Zonotope Operations
+- text 36pt [48%,26% → 82%,31%]: {Linear Transformation: $\mathbf A\mathcal Z = (\mathbf A \mathbf c, \langle \mathbf A \mathbf g_{1:m}\rangle)$|#c0c0c0}
+- text 36pt [46%,31% → 84%,36%]: {Minkowski Sum: $\mathcal Z \oplus \mathcal Z^\prime = (\mathbf c + \mathbf c^\prime, \langle \mathbf g_{1:m}, \mathbf g_{1:m^\prime}^\prime \rangle)$|#c0c0c0}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 81
+- rounded box (filled #424242) [7%,81% → 93%,90%]
+- shape (filled #919191) [22%,34% → 34%,66%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- rounded box (outline) [5%,30% → 39%,70%]
+- arrow #80b9ff [13%,53% → 18%,57%]
+- arrow #80cfb9 [13%,53% → 16%,57%]
+- arrow #ffa4e7 [11%,53% → 15%,58%]
+- equation $c$ (36pt, #ffffff) [29%,51% → 29%,53%]
+- shape filled #000000, outlined #ffffff [28%,49% → 28%,51%]
+- text 36pt [8%,41% → 21%,46%]: Generators ($\mathbf g_{1:3}$)
+- text 36pt [57%,19% → 75%,24%]: Zonotope Operations
+- text 36pt [48%,26% → 82%,31%]: {Linear Transformation: $\mathbf A\mathcal Z = (\mathbf A \mathbf c, \langle \mathbf A \mathbf g_{1:m}\rangle)$|#c0c0c0}
+- text 36pt [46%,44% → 84%,48%]: {Minkowski Sum: $\mathcal Z \oplus \mathcal Z^\prime = (\mathbf c + \mathbf c^\prime, \langle \mathbf g_{1:m}, \mathbf g_{1:m^\prime}^\prime \rangle)$|#c0c0c0}
+- text 36pt [63%,33% → 67%,37%]: {Number of generators stays the same.|#80b9ff}
+- text 36pt [50%,53% → 80%,58%]: {Number of generators grows linearly.|#80b9ff}
+- text 36pt [51%,60% → 80%,65%]: {Not exponentially like before!!!|#ffa4e7}
+- outlined shape #c0c0c0 [47%,25% → 83%,31%]
+- outlined shape #c0c0c0 [46%,43% → 84%,49%]
+- text 36pt [48%,83% → 52%,88%]: The {beloved|#ffa4e7} [[hyperrectangle|#80b9ff]] is a special case of a zonotope in which the [[generators are aligned|#80b9ff]] with the [[axes.|#80b9ff]]
+- **Builds:** click 1: text 36pt — slides in; click 2: text 36pt — slides in; click 3: text 36pt — comet; click 4: rounded box (filled #424242) — fades up from dark; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 82
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [10%,15% → 90%,19%]: The {beloved|#ffa4e7} [[hyperrectangle|#80b9ff]] is a special case of a zonotope in which the [[generators are aligned|#80b9ff]] with the [[axes.|#80b9ff]]
+- text 36pt [44%,36% → 56%,40%]: one dimension
+- line #ffffff [45%,50% → 55%,54%]
+- line #ffffff [45%,50% → 55%,54%]
+- line #ffffff [45%,50% → 55%,54%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 83
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [10%,15% → 90%,19%]: The {beloved|#ffa4e7} [[hyperrectangle|#80b9ff]] is a special case of a zonotope in which the [[generators are aligned|#80b9ff]] with the [[axes.|#80b9ff]]
+- text 36pt [35%,36% → 46%,40%]: one dimension
+- line #ffffff [35%,50% → 45%,54%]
+- text 36pt [53%,36% → 65%,40%]: two dimensions
+- line #ffffff [54%,55% → 64%,59%]
+- line #ffffff [54%,45% → 64%,49%]
+- line #ffffff [62%,50% → 67%,54%]
+- line #ffffff [52%,50% → 57%,54%]
+- line #ffffff [54%,55% → 64%,59%]
+- line #ffffff [54%,45% → 64%,49%]
+- line #ffffff [62%,50% → 67%,54%]
+- line #ffffff [52%,50% → 57%,54%]
+- **Builds:** then: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 84
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [10%,15% → 90%,19%]: The {beloved|#ffa4e7} [[hyperrectangle|#80b9ff]] is a special case of a zonotope in which the [[generators are aligned|#80b9ff]] with the [[axes.|#80b9ff]]
+- text 36pt [24%,36% → 36%,40%]: one dimension
+- line #ffffff [25%,50% → 35%,54%]
+- text 36pt [43%,36% → 55%,40%]: two dimensions
+- line #ffffff [44%,55% → 54%,59%]
+- line #ffffff [44%,45% → 54%,49%]
+- line #ffffff [51%,50% → 57%,54%]
+- line #ffffff [41%,50% → 46%,54%]
+- text 36pt [61%,36% → 75%,40%]: three dimensions
+- line #ffffff [62%,55% → 72%,59%]
+- line #ffffff [62%,45% → 72%,50%]
+- line #ffffff [69%,50% → 75%,54%]
+- line #ffffff [59%,50% → 65%,54%]
+- line #ffffff [62%,44% → 66%,48%]
+- line #ffffff [72%,44% → 76%,48%]
+- line #ffffff [72%,54% → 76%,58%]
+- line #ffffff [66%,43% → 76%,47%]
+- line #ffffff [73%,47% → 79%,52%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 85
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [10%,15% → 90%,19%]: The {beloved|#ffa4e7} [[hyperrectangle|#80b9ff]] is a special case of a zonotope in which the [[generators are aligned|#80b9ff]] with the [[axes.|#80b9ff]]
+- text 36pt [8%,36% → 19%,40%]: one dimension
+- line #ffffff [8%,50% → 19%,54%]
+- text 36pt [26%,36% → 39%,40%]: two dimensions
+- line #ffffff [27%,55% → 38%,59%]
+- line #ffffff [27%,45% → 38%,49%]
+- line #ffffff [35%,50% → 40%,54%]
+- line #ffffff [25%,50% → 30%,54%]
+- text 36pt [45%,36% → 59%,40%]: three dimensions
+- line #ffffff [46%,55% → 56%,59%]
+- line #ffffff [46%,45% → 56%,50%]
+- line #ffffff [53%,50% → 58%,54%]
+- line #ffffff [43%,50% → 48%,54%]
+- line #ffffff [45%,44% → 50%,48%]
+- line #ffffff [56%,44% → 60%,48%]
+- line #ffffff [56%,54% → 60%,58%]
+- line #ffffff [49%,43% → 59%,47%]
+- line #ffffff [57%,47% → 62%,52%]
+- text 36pt [73%,36% → 85%,40%]: four dimensions
+- image `pasted-image-30147.png` [68%,44% → 90%,76%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 86
+- group [34%,27% → 66%,83%]
+  - rounded box (filled #80b9ff) [34%,27% → 66%,83%]
+  - text 36pt [48%,31% → 52%,36%]: Polytopes
+- group [36%,39% → 64%,80%]
+  - rounded box (filled #80b9ff) [36%,39% → 64%,80%]
+  - text 36pt [46%,43% → 54%,48%]: Zonotopes
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [38%,17% → 62%,21%]: Summary of types of polytopes
+- group [38%,52% → 62%,77%]
+  - rounded box (filled #80b9ff) [38%,52% → 62%,77%]
+  - text 36pt [46%,62% → 54%,67%]: Hyperrectangles
+- **Builds:** click 1: group — fades up from dark; click 2: group — fades up from dark; click 3: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 87
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $n_{\mathcal R_d} \leq n_{\mathcal S_1} (n_{\mathcal X_o} n_{\mathcal X_a} n_{\mathcal X_s})^d$ (47pt, #ffffff) [18%,43% → 40%,48%]
+- text 36pt [16%,51% → 42%,63%]: {Exponential growth in bound on the number of vertices with the depth, ahhhh!|#f3cf80}
+- text 36pt [20%,35% → 36%,40%]: Back to this problem:
+- rounded box (outline) [13%,34% → 45%,66%]
+- text 36pt [49%,43% → 84%,47%]: We just saw that [[zonotopes|#80b9ff]] can help with this.
+- text 36pt [49%,53% → 77%,57%]: Another option is [[overapproximation|#c3b8ff]].
+- **Builds:** click 1: text 36pt — slides in; click 2: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 88
+- shape filled #c3b8ff, outlined #8770fe [39%,27% → 61%,67%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [25%,15% → 75%,20%]: A set $\mathcal{\bar P}$ represents an [[overapproximation|#c3b8ff]] $\mathcal P$ if $\mathcal{P} \subseteq \bar{\mathcal P}$.
+- text 30pt [72%,23% → 81%,31%]: {subset or equal to|#80b9ff}
+- arrow #80b9ff [67%,22% → 73%,26%]
+- shape (filled #80b9ff) [39%,27% → 60%,67%]
+- equation $\mathcal P$ (55pt, #0072fe) [49%,45% → 52%,49%]
+- equation $\bar{\mathcal P}$ (55pt, #8770fe) [42%,30% → 44%,34%]
+- group [16%,77% → 85%,86%]
+  - rounded box (filled #424242) [16%,77% → 85%,86%]
+  - text 36pt [26%,79% → 74%,84%]: We can [[overapproximate|#c3b8ff]] a polytope with lots of vertices with one that has [[fewer|#c3b8ff]] vertices.
+- text 36pt [28%,89% → 72%,93%]: This will help with our issue of having too many vertices!
+- text 36pt [-34%,79% → -2%,84%]: But what does this do to our guarantees? (starts off-slide; an animation moves it in)
+- **Builds:** click 1: text 30pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 2: shape (filled #80b9ff) — fades up from dark; with previous: equation $\mathcal P$ — fades up from dark; click 3: shape filled #c3b8ff, outlined #8770fe — fades in; with previous: equation $\bar{\mathcal P}$ — fades in; click 4: group — fades up from dark; click 5: text 36pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 89
+- shape filled #c3b8ff, outlined #8770fe [39%,27% → 61%,67%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [25%,15% → 75%,20%]: A set $\mathcal{\bar P}$ represents an [[overapproximation|#c3b8ff]] $\mathcal P$ if $\mathcal{P} \subseteq \bar{\mathcal P}$.
+- shape (filled #80b9ff) [39%,27% → 60%,67%]
+- equation $\mathcal P$ (55pt, #0072fe) [49%,45% → 52%,49%]
+- equation $\bar{\mathcal P}$ (55pt, #8770fe) [42%,30% → 44%,34%]
+- group [101%,77% → 171%,86%] (starts off-slide; an animation moves it in)
+  - rounded box (filled #424242) [101%,77% → 171%,86%]
+  - text 36pt [112%,79% → 160%,84%]: We can [[overapproximate|#c3b8ff]] a polytope with lots of vertices with one that has [[fewer|#c3b8ff]] vertices.
+- text 36pt [114%,89% → 157%,93%]: This will help with our issue of having too many vertices! (starts off-slide; an animation moves it in)
+- group [31%,22% → 69%,72%]
+  - outlined shape #929292 [31%,22% → 69%,72%]
+  - filled shape #fab0ae [31%,22% → 36%,72%]
+  - filled shape #fab0ae [64%,22% → 69%,72%]
+- text 36pt [34%,79% → 66%,84%]: But what does this do to our guarantees?
+- **Builds:** click 1: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 90
+- shape filled #c3b8ff, outlined #8770fe [39%,27% → 61%,67%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [25%,15% → 75%,20%]: A set $\mathcal{\bar P}$ represents an [[overapproximation|#c3b8ff]] $\mathcal P$ if $\mathcal{P} \subseteq \bar{\mathcal P}$.
+- equation $\bar{\mathcal R}$ (55pt, #8770fe) [42%,30% → 44%,34%]
+- group [31%,22% → 69%,72%]
+  - outlined shape #929292 [31%,22% → 69%,72%]
+  - filled shape #fab0ae [31%,22% → 36%,72%]
+  - filled shape #fab0ae [64%,22% → 69%,72%]
+- text 36pt [34%,79% → 66%,84%]: But what does this do to our guarantees?
+- text 36pt [73%,26% → 93%,38%]: Can we conclude that the system is satisfies the specification from {$\bar{\mathcal R}$|#c3b8ff}?
+- vector icon `shape-d293516c.svg` [81%,40% → 86%,47%]
+- **Builds:** click 1: vector icon `shape-d293516c.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 91
+- group [31%,22% → 69%,72%]
+  - outlined shape #929292 [31%,22% → 69%,72%]
+  - filled shape #fab0ae [31%,22% → 36%,72%]
+  - filled shape #fab0ae [64%,22% → 69%,72%]
+- shape filled #c3b8ff, outlined #8770fe [34%,27% → 66%,67%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [25%,15% → 75%,20%]: A set $\mathcal{\bar P}$ represents an [[overapproximation|#c3b8ff]] $\mathcal P$ if $\mathcal{P} \subseteq \bar{\mathcal P}$.
+- equation $\bar{\mathcal R}$ (55pt, #8770fe) [42%,30% → 44%,34%]
+- text 36pt [34%,79% → 66%,84%]: But what does this do to our guarantees?
+- vector icon `shape-c4c2d42f.svg` [82%,40% → 85%,47%]
+- text 36pt [73%,26% → 93%,38%]: Can we conclude that the system is satisfies the specification from {$\bar{\mathcal R}$|#c3b8ff}?
+- text 36pt [73%,50% → 93%,63%]: Can we conclude that the system does not satisfy the specification from {$\bar{\mathcal R}$|#c3b8ff}?
+- vector icon `shape-c4c2d42f.svg` [82%,64% → 85%,71%]
+- shape (filled #80b9ff) [39%,27% → 60%,67%]
+- equation $\mathcal R$ (55pt, #0072fe) [49%,45% → 52%,49%]
+- **Builds:** click 1: vector icon `shape-c4c2d42f.svg` — fades up from dark; click 2: text 36pt — slides in; click 3: vector icon `shape-c4c2d42f.svg` — fades up from dark; click 4: shape (filled #80b9ff) — fades up from dark; with previous: equation $\mathcal R$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 92
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [34%,34% → 66%,38%]: But what does this do to our guarantees?
+- text 36pt [7%,44% → 93%,49%]: If the overapproximate reachable set [[does not intersect|#80cfb9]] with the avoid set, we can conclude that the system is [[safe|#80cfb9]].
+- text 36pt [13%,52% → 87%,57%]: If the overapproximate reachable set [[does intersect|#fab0ae]] with the avoid set, we [[cannot conclude anything|#fab0ae]].
+- line #ffffff [32%,38% → 68%,42%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 93
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [48%,15% → 52%,20%]: In practice, we can [[reduce computational cost|#80b9ff]] by overapproximating the reachable set every few iterations.
+- image `val-page-191.svg` (cropped: show only 11–62% across and 12–38% down of the image) [29%,24% → 71%,66%]
+- outlined shape #ff48cf [35%,56% → 65%,59%]
+- text 36pt [14%,78% → 86%,83%]: Given some overapproximation error tolerance $\epsilon$, it will return an overapproximation of set $\mathcal S$.
+- text 36pt [48%,73% → 52%,77%]: {LazySets.jl can do this for us!!!|#ff48cf}
+- arrow #ff48cf [47%,64% → 53%,68%]
+- text on a #80b9ff filled box 32pt [43%,84% → 57%,90%]: {Section 8.4.2|#000000}
+- **Builds:** click 1: outlined shape #ff48cf — LineDraw; with previous: arrow #ff48cf — draws in; with previous: text 36pt — flame; click 2: text 36pt — slides in; click 3: text on a #80b9ff filled box 32pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 94
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [48%,15% → 52%,20%]: In practice, we can [[reduce computational cost|#80b9ff]] by overapproximating the reachable set every few iterations.
+- image `test-31594.svg` [6%,29% → 86%,77%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 95
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [42%,25% → 58%,30%]
+- outlined shape #ffffff [40%,23% → 60%,32%]
+- text 30pt [36%,38% → 48%,45%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [40%,32% → 44%,36%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- **Builds:** click 1: equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ — appears; with previous: outlined shape #ffffff — appears; click 2: arrow #ffa4e7 — draws in; with previous: text 30pt — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 96
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- arrow #ff48cf [58%,54% → 62%,58%]
+- equation $\mathbf d$ (36pt, #ff48cf) [60%,52% → 61%,54%]
+- line #ffa4e7 [38%,51% → 79%,55%]
+- arrow #ffffff [34%,56% → 84%,60%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- **Builds:** click 1: arrow #ff48cf — draws in; with previous: equation $\mathbf d$ — appears; click 2: line #ffa4e7 — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 97
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- arrow #ffffff [34%,56% → 84%,60%]
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- arrow #ffa4e7 [53%,50% → 63%,55%]
+- equation $\mathbf d$ (36pt, #ff48cf) [59%,48% → 60%,50%]
+- equation $\sigma( \ \ )$ (36pt, #ffa4e7) [58%,47% → 61%,50%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [35%,43% → 75%,47%]
+- shape filled #000000, outlined #ffffff [76%,21% → 92%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,21% → 92%,26%]: Half Space
+- line #ffa4e7 [28%,48% → 77%,52%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- **Builds:** click 1: shape (filled #ffa4e7) — wipes in; click 2: shape filled #000000, outlined #ffffff — fades up from dark; with previous: text 36pt — fades up from dark; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 98
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- arrow #ff48cf [61%,56% → 65%,60%]
+- equation $\mathbf d$ (36pt, #ff48cf) [63%,53% → 64%,56%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [47%,52% → 84%,56%]
+- shape filled #000000, outlined #ffffff [76%,21% → 92%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,21% → 92%,26%]: Half Space
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- arrow #ffffff [34%,56% → 84%,60%]
+- **Builds:** click 1: line #ffa4e7 — draws in; with previous: arrow #ff48cf — draws in; with previous: equation $\mathbf d$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 99
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- arrow #ffa4e7 [61%,54% → 73%,59%]
+- equation $\mathbf d$ (36pt, #ff48cf) [69%,51% → 70%,53%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 92%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,21% → 92%,26%]: Half Space
+- equation $\sigma( \ \ )$ (36pt, #ffa4e7) [67%,51% → 70%,53%]
+- text 36pt [83%,15% → 92%,20%]: Polyhedron
+- arrow #ffffff [34%,56% → 84%,60%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- **Builds:** click 1: shape (filled #ffa4e7) — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 100
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- arrow #ffffff [41%,53% → 81%,57%]
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- arrow #ffa4e7 [61%,54% → 73%,59%]
+- equation $\mathbf d$ (36pt, #ff48cf) [69%,51% → 70%,53%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 93%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,28% → 92%,32%]: Half Space
+- equation $\sigma( \ \ )$ (36pt, #ffa4e7) [67%,51% → 70%,53%]
+- text 36pt [83%,21% → 92%,26%]: Polyhedron
+- arrow #ffffff [34%,56% → 84%,60%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 101
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 93%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,28% → 92%,32%]: Half Space
+- text 36pt [83%,21% → 92%,26%]: Polyhedron
+- arrow #ffffff [34%,56% → 84%,60%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 102
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- equation $\mathbf d$ (36pt, #ff48cf) [62%,61% → 63%,63%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 93%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,28% → 92%,32%]: Half Space
+- text 36pt [83%,21% → 92%,26%]: Polyhedron
+- arrow #ffffff [34%,56% → 84%,60%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- line #ffa4e7 [35%,64% → 84%,68%]
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- arrow #ff48cf [59%,60% → 63%,64%]
+- **Builds:** click 1: arrow #ff48cf — draws in; with previous: line #ffa4e7 — draws in; with previous: equation $\mathbf d$ — appears
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 103
+- filled shape #ffa4e7 [35%,19% → 84%,79%]
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- equation $\mathbf d$ (36pt, #ff48cf) [64%,70% → 65%,72%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 93%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,28% → 92%,32%]: Half Space
+- text 36pt [83%,21% → 92%,26%]: Polyhedron
+- line #ffa4e7 [35%,77% → 84%,81%]
+- equation $\sigma( \ \ )$ (36pt, #ffa4e7) [62%,70% → 65%,73%]
+- arrow #ffffff [34%,56% → 84%,60%]
+- text 36pt [84%,15% → 91%,20%]: Polytope!
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- arrow #ffffff [41%,53% → 81%,57%]
+- arrow #ff48cf [55%,67% → 67%,71%]
+- **Builds:** click 1: filled shape #ffa4e7 — wipes in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 104
+- filled shape #ffa4e7 [35%,19% → 84%,79%]
+- shape (filled #ffa4e7) [35%,20% → 76%,90%]
+- shape (filled #ffa4e7) [35%,19% → 84%,90%]
+- line #ffa4e7 [28%,48% → 77%,52%]
+- shape (filled #80b9ff) [50%,38% → 73%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- equation $\sigma(\mathbf d) = \text{argmax}_{\mathbf p \in \mathcal P} \mathbf d^\top \mathbf p$ (36pt, #ffffff) [11%,50% → 28%,54%]
+- text 36pt [18%,40% → 22%,45%]: Support Vector:
+- outlined shape #ffffff [10%,47% → 30%,57%]
+- text 30pt [6%,62% → 18%,70%]: {support vector in direction |#ffa4e7}{$\mathbf d$|#ff48cf}
+- arrow #ffa4e7 [10%,56% → 14%,60%]
+- line #ffa4e7 [52%,53% → 93%,57%]
+- shape filled #000000, outlined #ffffff [76%,21% → 92%,26%]
+- text 36pt [76%,21% → 84%,26%]: Bounding
+- text 36pt [83%,28% → 92%,32%]: Half Space
+- text 36pt [83%,28% → 92%,32%]: Polyhedron
+- line #ffa4e7 [35%,77% → 84%,81%]
+- arrow #ffffff [34%,56% → 84%,60%]
+- arrow #ffffff [41%,53% → 81%,57%]
+- text 36pt [84%,21% → 91%,26%]: Polytope!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 105
+- rounded box (filled #424242) [61%,34% → 95%,50%]
+- filled shape #ffa4e7 [8%,19% → 56%,79%]
+- shape (filled #ffa4e7) [8%,20% → 49%,90%]
+- shape (filled #ffa4e7) [8%,19% → 56%,90%]
+- line #ffa4e7 [1%,48% → 49%,52%]
+- shape (filled #80b9ff) [23%,38% → 45%,79%]
+- heading (spaced caps) 36pt [30%,7% → 70%,11%]: SET PROPAGATION TECHNIQUES
+- text 36pt [18%,13% → 82%,17%]: The general idea for overapproximating a set is to sample some of its [[support vectors|#ffa4e7]].
+- line #ffa4e7 [25%,53% → 65%,57%]
+- shape filled #000000, outlined #ffffff [48%,21% → 65%,26%]
+- text 36pt [48%,21% → 56%,26%]: Bounding
+- line #ffa4e7 [8%,77% → 56%,81%]
+- arrow #ffffff [7%,56% → 57%,60%]
+- arrow #ffffff [14%,53% → 54%,57%]
+- text 36pt [56%,21% → 64%,26%]: Polytope!
+- text 36pt [63%,36% → 93%,48%]: The [[directions we pick|#80b9ff]] for the support vectors will determine what the bounding polytope looks like.
+- text 36pt [64%,54% → 93%,74%]: We can play around with the directions we pick. / {Hint hint, leaderboard for project 3 small problem 🙂.|#929292}
+- **Builds:** click 1: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 106
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: LINEAR SYSTEMS
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: SET PROPAGATION TECHNIQUES
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: OPTIMIZATION TECHNIQUES
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 107
+- heading (spaced caps) 36pt [32%,6% → 68%,10%]: OPTIMIZATION TECHNIQUES
+- equation $\max_{s \in \mathcal R_d} \mathbf d^\top \mathbf s$ (63pt, #ffffff) [43%,32% → 54%,43%]
+- text 36pt [11%,24% → 86%,29%]: Specifically the solution to this optimization problem will give us the support vector in direction $\mathbf d$:
+- shape (filled #80b9ff) [41%,48% → 56%,75%]
+- equation $\mathcal R_d$ (36pt, #80b9ff) [47%,61% → 50%,64%]
+- line #ffa4e7 [37%,52% → 50%,56%]
+- shape filled #ffa4e7, outlined #ff48cf [43%,52% → 45%,54%]
+- equation $\mathbf s^\ast$ (36pt, #ff48cf) [42%,49% → 44%,51%]
+- arrow #ff48cf [44%,54% → 48%,58%]
+- equation $\mathbf d$ (36pt, #ff48cf) [47%,54% → 47%,56%]
+- text 36pt [48%,13% → 52%,18%]: Allows us to [[solve for the support vectors directly|#80b9ff]] without any set propagation!
+- **Builds:** click 1: text 36pt — appears; with previous: equation $\max_{s \in \mathcal R_d} \mathbf d^\top \mathbf s$ — appears; click 2: shape (filled #80b9ff) — appears; with previous: equation $\mathcal R_d$ — appears; click 3: arrow #ff48cf — draws in; with previous: equation $\mathbf d$ — appears; click 4: line #ffa4e7 — draws in; with previous: shape filled #ffa4e7, outlined #ff48cf — fades up from dark; with previous: equation $\mathbf s^\ast$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 108
+- heading (spaced caps) 36pt [32%,6% → 68%,10%]: OPTIMIZATION TECHNIQUES
+- equation $\max_{s \in \mathcal R_d} \mathbf d^\top \mathbf s$ (63pt, #ffffff) [17%,37% → 28%,48%]
+- text 36pt [11%,24% → 86%,29%]: Specifically the solution to this optimization problem will give us the support vector in direction $\mathbf d$:
+- shape (filled #80b9ff) [15%,53% → 30%,81%]
+- equation $\mathcal R_d$ (36pt, #80b9ff) [21%,67% → 24%,70%]
+- line #ffa4e7 [11%,57% → 24%,61%]
+- shape filled #ffa4e7, outlined #ff48cf [17%,57% → 19%,59%]
+- equation $\mathbf s^\ast$ (36pt, #ff48cf) [17%,54% → 18%,57%]
+- arrow #ff48cf [18%,60% → 22%,64%]
+- equation $\mathbf d$ (36pt, #ff48cf) [21%,59% → 22%,61%]
+- shape (outline) [36%,56% → 41%,64%]
+- equation $\text{maximize}$ (51pt, #ffffff) [49%,39% → 59%,42%]
+- equation $\mathbf s_{1:d}, \mathbf x_{1:d}$ (42pt, #ffffff) [51%,44% → 57%,47%]
+- equation $\mathbf d^\top \mathbf s_d$ (47pt, #ffffff) [62%,38% → 66%,42%]
+- equation $\text{subject to}$ (51pt, #ffffff) [49%,51% → 59%,55%]
+- equation $\mathbf s_1 \in \mathcal S$ (47pt, #ffffff) [62%,51% → 68%,55%]
+- equation $\mathbf x_t \in \mathcal X_t \text{ for all } t \in 1:d$ (47pt, #ffffff) [62%,57% → 84%,61%]
+- equation $\mathbf s_{t+1} = \text{Step}(\mathbf s_t, \mathbf x_t) \text{ for all } t \in 1:d$ (47pt, #ffffff) [62%,63% → 94%,68%]
+- text 36pt [48%,13% → 52%,18%]: Allows us to [[solve for the support vectors directly|#80b9ff]] without any set propagation!
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 109
+- rounded box (filled #424242) [57%,78% → 90%,87%]
+- heading (spaced caps) 36pt [32%,6% → 68%,10%]: OPTIMIZATION TECHNIQUES
+- text 36pt [11%,24% → 86%,29%]: Specifically the solution to this optimization problem will give us the support vector in direction $\mathbf d$:
+- equation $\text{maximize}$ (51pt, #ffffff) [8%,39% → 18%,42%]
+- equation $\mathbf s_{1:d}, \mathbf x_{1:d}$ (42pt, #ffffff) [9%,45% → 16%,48%]
+- equation $\mathbf d^\top \mathbf s_d$ (47pt, #ffffff) [21%,38% → 25%,43%]
+- equation $\text{subject to}$ (51pt, #ffffff) [7%,51% → 18%,55%]
+- equation $\mathbf s_1 \in \mathcal S$ (47pt, #ffffff) [21%,51% → 27%,55%]
+- equation $\mathbf x_t \in \mathcal X_t \text{ for all } t \in 1:d$ (47pt, #ffffff) [21%,57% → 43%,61%]
+- equation $\mathbf s_{t+1} = \text{Step}(\mathbf s_t, \mathbf x_t) \text{ for all } t \in 1:d$ (47pt, #ffffff) [21%,64% → 53%,68%]
+- text 36pt [58%,51% → 92%,55%]: {The initial state is part of the initial state set.|#80b9ff}
+- arrow #80b9ff [44%,57% → 57%,61%]
+- text 36pt [58%,57% → 96%,61%]: {The disturbances are part of the disturbance sets.|#80b9ff}
+- arrow #80b9ff [28%,51% → 57%,55%]
+- arrow #80b9ff [53%,63% → 57%,67%]
+- text 36pt [58%,63% → 96%,67%]: {Valid trajectory.|#80b9ff}
+- equation $\text{Step}(\mathbf s, \mathbf x) = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ (36pt, #80b9ff) [12%,80% → 50%,83%]
+- arrow #80b9ff [29%,71% → 34%,75%]
+- text 36pt [59%,78% → 88%,86%]: This is a [[linear program|#80b9ff]]. / We know how to solve those exactly!
+- text 36pt [48%,13% → 52%,18%]: Allows us to [[solve for the support vectors directly|#80b9ff]] without any set propagation!
+- **Builds:** click 1: text 36pt — appears; with previous: arrow #80b9ff — draws in; click 2: text 36pt — appears; with previous: arrow #80b9ff — draws in; click 3: text 36pt — appears; with previous: arrow #80b9ff — draws in; with previous: equation $\text{Step}(\mathbf s, \mathbf x) = (\mathbf T_s + \mathbf T_a \mathbf \Pi_o \mathbf O_s) \mathbf s + \mathbf T_a \mathbf \Pi_o \mathbf x_o + \mathbf T_a \mathbf x_a + \mathbf x_s$ — appears; with previous: arrow #80b9ff — draws in; click 4: rounded box (filled #424242) — fades up from dark; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 110
+- rounded box (filled #424242) [7%,34% → 39%,43%]
+- heading (spaced caps) 36pt [32%,6% → 68%,10%]: OPTIMIZATION TECHNIQUES
+- text 36pt [48%,13% → 52%,18%]: Allows us to [[solve for the support vectors directly|#80b9ff]] without any set propagation!
+- text 36pt [8%,35% → 38%,43%]: This is a [[linear program|#80b9ff]]. / We know how to solve those exactly!
+- equation $\text{maximize}$ (39pt, #ffffff) [6%,50% → 14%,52%]
+- equation $\mathbf s_{1:d}, \mathbf x_{1:d}$ (32pt, #ffffff) [8%,55% → 13%,57%]
+- equation $\mathbf d^\top \mathbf s_d$ (36pt, #ffffff) [16%,49% → 20%,53%]
+- equation $\text{subject to}$ (39pt, #ffffff) [6%,59% → 14%,63%]
+- equation $\mathbf s_1 \in \mathcal S$ (36pt, #ffffff) [16%,59% → 21%,62%]
+- equation $\mathbf x_t \in \mathcal X_t \text{ for all } t \in 1:d$ (36pt, #ffffff) [16%,64% → 34%,67%]
+- equation $\mathbf s_{t+1} = \text{Step}(\mathbf s_t, \mathbf x_t) \text{ for all } t \in 1:d$ (36pt, #ffffff) [16%,69% → 41%,72%]
+- image `val-page-197.svg` (cropped: show only 11–70% across and 26–74% down of the image) [55%,25% → 93%,86%]
+- shape (outline) [46%,52% → 51%,59%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 111
+- heading (spaced caps) 36pt [32%,6% → 68%,10%]: {OPTIMIZATION TECHNIQUES|#000000}
+- image `val-page-199.svg` (cropped: show only 13–69% across and 12–61% down of the image) [43%,14% → 86%,91%]
+- text 36pt [11%,41% → 38%,61%]: {We can then solve this optimization problem for |#000000}[[different directions $\mathbf d$|#0072fe]]{ to produce a bounding polytope that |#000000}[[overapproximates|#0072fe]]{ the reachable set.|#000000}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 112
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: LINEAR SYSTEMS
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: SET PROPAGATION TECHNIQUES
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: OPTIMIZATION TECHNIQUES
+- **Transition to next:** Magic Move (shared objects glide; others fade)
