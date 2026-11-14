@@ -1,0 +1,1312 @@
+# AA228V Lecture 16 — Discrete Reachability: slide-by-slide content
+
+Extracted from the Keynote deck `16_Discrete_Reachability.key` (40 slides, 16:9). This is the source material for rebuilding the lecture as a native HTML deck.
+
+## How to read this
+
+- Positions are approximate boxes in % of the slide, `[left,top → right,bottom]`. Use the reference screenshots for the exact layout.
+- `[[text|#hex]]` = accent phrase: italic, in that color. `{text|#hex}` = colored (not italic).
+- `$...$` is LaTeX. Typeset it with KaTeX (or MathJax) in the same color and roughly the same size as the surrounding text. There are no equation image files.
+- Images and videos named in backticks are online, not attached. Use each one by its full address `https://smkatz12.github.io/aa228v-lectures/lectures/16-discrete-reachability/images/<name>`, for example `<img src="https://smkatz12.github.io/aa228v-lectures/lectures/16-discrete-reachability/images/coverart-302-green.png">`. Don't ask for uploads.
+- **Builds** list what appears on each click, in order ("then" = right after the previous step, "with previous" = at the same time, "(0.1 s later)" = after that pause).
+- A long run of images named `gNN-…` that appear one after another at the same spot, a fraction of a second apart, is a frame-by-frame animation: stack them and reveal them in turn with that timing (each frame stays as the next appears).
+- **Transition to next: Magic Move** means objects shared with the next slide should glide to their new positions.
+
+## House style
+
+- Same as earlier lectures: black background; white text.
+- Spaced all-caps headings in Gill Sans (regular weight, letter-spacing about 0.25em). All other text in Palatino.
+- Emphasis is italic + color, never bold.
+- The title slide streak is green (`coverart-302-green.png`).
+- Graphics are SVGs with transparent backgrounds and white lines/text, made for the black slides; keep them as `<img>` files.
+- Most-used text colors: `#ffffff`, `#80b9ff`, `#000000`, `#fab0ae`, `#0072fe`, `#c3b8ff`, `#80cfb9`
+
+## Slide 1
+- image `coverart-302-green.png` [-0%,46% → 100%,75%]
+- text 50pt [6%,9% → 82%,22%]: AA228V/CS238V / VALIDATION OF SAFETY-CRITICAL SYSTEMS
+- heading (spaced caps) 50pt [4%,73% → 43%,87%]: LECTURE 16: REACHABILITY FOR DISCRETE SYSTEMS / SYDNEY KATZ (SMKATZ@STANFORD.EDU)
+
+## Slide 2
+- text 36pt [23%,48% → 77%,52%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 3
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- outlined circle #ffffff [27%,44% → 37%,61%]
+- equation $s_1$ (64pt, #ffffff) [31%,51% → 33%,55%]
+- outlined circle #ffffff [63%,44% → 73%,61%]
+- equation $s_2$ (64pt, #ffffff) [67%,51% → 69%,55%]
+- shape (outline) [36%,41% → 64%,48%]
+- shape (outline) [36%,57% → 64%,64%]
+- shape (outline) [29%,33% → 36%,45%]
+- shape (outline) [65%,33% → 71%,45%]
+- equation $0.2$ (44pt, #c0c0c0) [31%,29% → 33%,31%]
+- equation $0.1$ (44pt, #c0c0c0) [67%,29% → 69%,31%]
+- equation $0.8$ (44pt, #c0c0c0) [49%,36% → 51%,39%]
+- equation $0.9$ (44pt, #c0c0c0) [49%,67% → 51%,70%]
+- **Builds:** click 1: shape (outline) — draws in; with previous: shape (outline) — draws in; with previous: equation $0.2$ — fades up from dark; with previous: equation $0.8$ — fades up from dark; click 2: shape (outline) — draws in; with previous: shape (outline) — draws in; with previous: equation $0.1$ — fades up from dark; with previous: equation $0.9$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 4
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined shape #ff48cf [10%,36% → 30%,39%]
+- equation $s_1$ (36pt, #ff48cf) [35%,36% → 36%,39%]
+- equation $s_2$ (36pt, #ff48cf) [37%,36% → 38%,39%]
+- equation $\mathcal S = \{ \ \ , \ \ \}$ (36pt, #ff48cf) [31%,36% → 39%,39%]
+- **Builds:** click 1: outlined shape #ff48cf — fades up from dark; click 2: equation $\mathcal S = \{ \ \ , \ \ \}$ — slides in; with previous: equation $s_1$ — slides in; with previous: equation $s_2$ — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 5
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- outlined shape #ff48cf [11%,39% → 31%,43%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 6
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- outlined shape #ff48cf [11%,43% → 22%,47%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 7
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- outlined shape #ff48cf [15%,47% → 42%,62%]
+- shape (outline) [59%,47% → 76%,51%]
+- shape (outline) [54%,42% → 58%,49%]
+- equation $0.2$ (27pt, #c0c0c0) [55%,39% → 57%,41%]
+- equation $0.8$ (27pt, #c0c0c0) [66%,43% → 68%,45%]
+- **Builds:** click 1: shape (outline) — draws in; with previous: shape (outline) — draws in; with previous: equation $0.2$ — fades up from dark; with previous: equation $0.8$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 8
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- shape (outline) [59%,47% → 76%,51%]
+- shape (outline) [54%,42% → 58%,49%]
+- equation $0.2$ (27pt, #c0c0c0) [55%,39% → 57%,41%]
+- equation $0.8$ (27pt, #c0c0c0) [66%,43% → 68%,45%]
+- outlined shape #ff48cf [11%,43% → 22%,47%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 9
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- shape (outline) [59%,47% → 76%,51%]
+- shape (outline) [54%,42% → 58%,49%]
+- equation $0.2$ (27pt, #c0c0c0) [55%,39% → 57%,41%]
+- equation $0.8$ (27pt, #c0c0c0) [66%,43% → 68%,45%]
+- outlined shape #ff48cf [14%,46% → 42%,61%]
+- shape (outline) [59%,56% → 76%,61%]
+- shape (outline) [76%,42% → 80%,49%]
+- equation $0.1$ (27pt, #c0c0c0) [77%,39% → 79%,41%]
+- equation $0.9$ (27pt, #c0c0c0) [66%,63% → 68%,64%]
+- **Builds:** click 1: shape (outline) — draws in; with previous: shape (outline) — draws in; with previous: equation $0.1$ — fades up from dark; with previous: equation $0.9$ — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 10
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `val-page-232.svg` (cropped: show only 6–38% across and 17–34% down of the image) [5%,31% → 45%,73%]
+- outlined circle #ffffff [53%,49% → 59%,59%]
+- equation $s_1$ (39pt, #ffffff) [56%,52% → 57%,55%]
+- outlined circle #ffffff [75%,49% → 81%,59%]
+- equation $s_2$ (39pt, #ffffff) [78%,52% → 79%,55%]
+- shape (outline) [59%,47% → 76%,51%]
+- shape (outline) [54%,42% → 58%,49%]
+- equation $0.2$ (27pt, #c0c0c0) [55%,39% → 57%,41%]
+- equation $0.8$ (27pt, #c0c0c0) [66%,43% → 68%,45%]
+- outlined shape #ff48cf [11%,65% → 19%,70%]
+- shape (outline) [59%,56% → 76%,61%]
+- shape (outline) [76%,42% → 80%,49%]
+- equation $0.1$ (27pt, #c0c0c0) [77%,39% → 79%,41%]
+- equation $0.9$ (27pt, #c0c0c0) [66%,63% → 68%,64%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 11
+- text 36pt [28%,5% → 72%,10%]: We can represent discrete systems using [[directed graphs|#80b9ff]].
+- image `test-35623.svg` [31%,21% → 69%,90%]
+- text 36pt [48%,15% → 52%,20%]: Grid World Example
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 12
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: SATISFIABILITY
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: PROBABILISTIC REACHABILITY
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [33%,39% → 43%,43%]: {(very briefly)|#80b9ff}
+- **Builds:** then: heading (spaced caps) 50pt — fades up from dark; with previous: line #ffffff — draws in; click 1: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 2: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 3: text 36pt — slides in; click 4: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in; click 5: text on a #80b9ff filled box 32pt — slides in; with previous: heading (spaced caps) 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 13
+- heading (spaced caps) 36pt [39%,5% → 61%,10%]: REACHABLE SETS
+- outlined circle #80b9ff [47%,26% → 53%,36%]
+- text 36pt [48%,18% → 52%,23%]: Forward Reachable Set
+- outlined circle #f3cf80 [47%,76% → 53%,85%]
+- equation $\mathcal S_T$ (36pt, #f3cf80) [49%,79% → 51%,82%]
+- outlined circle #ffffff [40%,44% → 44%,51%]
+- outlined circle #ffffff [56%,44% → 60%,51%]
+- outlined circle #ffffff [40%,61% → 44%,68%]
+- outlined circle #ffffff [56%,61% → 60%,68%]
+- shape (outline) [41%,38% → 51%,42%]
+- shape (outline) [49%,38% → 58%,41%]
+- arrow #ffffff [39%,54% → 45%,58%]
+- shape (outline) [42%,54% → 58%,58%]
+- shape (outline) [42%,71% → 50%,74%]
+- vector icon `shape-d7545506.svg` [47%,26% → 53%,36%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [49%,29% → 51%,33%]
+- shape (outline) [41%,38% → 51%,42%]
+- shape (outline) [49%,39% → 58%,42%]
+- vector icon `shape-283de159.svg` [40%,44% → 44%,51%]
+- vector icon `shape-283de159.svg` [56%,44% → 60%,51%]
+- vector icon `shape-283de159.svg` [40%,61% → 44%,68%]
+- vector icon `shape-283de159.svg` [56%,61% → 60%,68%]
+- arrow #80b9ff [39%,54% → 45%,58%]
+- shape (outline) [42%,54% → 58%,58%]
+- **Builds:** click 1: vector icon `shape-d7545506.svg` — fades in; click 2: shape (outline) — draws in; with previous: shape (outline) — draws in; then: vector icon `shape-283de159.svg` — fades in; with previous: vector icon `shape-283de159.svg` — fades in; click 3: shape (outline) — draws in; with previous: arrow #80b9ff — draws in; then: vector icon `shape-283de159.svg` — fades in; with previous: vector icon `shape-283de159.svg` — fades in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 14
+- shape (outline) [57%,70% → 66%,74%]
+- heading (spaced caps) 36pt [39%,5% → 61%,10%]: REACHABLE SETS
+- outlined circle #80b9ff [31%,26% → 37%,36%]
+- text 36pt [25%,18% → 43%,23%]: Forward Reachable Set
+- outlined circle #f3cf80 [31%,76% → 37%,85%]
+- equation $\mathcal S_T$ (36pt, #f3cf80) [33%,79% → 35%,82%]
+- outlined circle #ffffff [24%,44% → 28%,51%]
+- outlined circle #ffffff [40%,44% → 44%,51%]
+- outlined circle #ffffff [24%,61% → 28%,68%]
+- outlined circle #ffffff [40%,61% → 44%,68%]
+- shape (outline) [26%,38% → 35%,42%]
+- shape (outline) [33%,38% → 43%,41%]
+- arrow #ffffff [24%,54% → 29%,58%]
+- shape (outline) [26%,54% → 43%,58%]
+- shape (outline) [26%,71% → 35%,74%]
+- vector icon `shape-d7545506.svg` [31%,26% → 37%,36%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [33%,29% → 35%,33%]
+- shape (outline) [26%,38% → 35%,42%]
+- shape (outline) [33%,39% → 43%,42%]
+- vector icon `shape-283de159.svg` [24%,44% → 28%,51%]
+- vector icon `shape-283de159.svg` [40%,44% → 44%,51%]
+- vector icon `shape-283de159.svg` [24%,61% → 28%,68%]
+- vector icon `shape-283de159.svg` [40%,61% → 44%,68%]
+- arrow #80b9ff [24%,54% → 29%,58%]
+- shape (outline) [26%,54% → 43%,58%]
+- outlined circle #80b9ff [63%,26% → 69%,36%]
+- text 36pt [57%,18% → 75%,23%]: Backward Reachable Set
+- outlined circle #f3cf80 [63%,76% → 69%,85%]
+- outlined circle #ffffff [56%,44% → 60%,51%]
+- outlined circle #ffffff [72%,44% → 76%,51%]
+- outlined circle #ffffff [56%,61% → 60%,68%]
+- outlined circle #ffffff [72%,61% → 76%,68%]
+- shape (outline) [57%,38% → 67%,42%]
+- shape (outline) [65%,38% → 74%,41%]
+- arrow #ffffff [55%,54% → 61%,58%]
+- shape (outline) [58%,54% → 74%,58%]
+- shape (outline) [57%,71% → 66%,74%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [65%,29% → 67%,32%]
+- vector icon `shape-6fb70ef2.svg` [56%,44% → 60%,51%]
+- vector icon `shape-6fb70ef2.svg` [56%,61% → 60%,68%]
+- arrow #f3cf80 [55%,54% → 61%,58%]
+- vector icon `shape-f5015769.svg` [63%,76% → 69%,85%]
+- equation $\mathcal S_T$ (36pt, #f3cf80) [65%,79% → 67%,82%]
+- text 36pt [31%,90% → 69%,94%]: This process is equivalent to [[breadth-first search|#80cfb9]].
+- text on a #80b9ff filled box 32pt [73%,88% → 92%,96%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: vector icon `shape-f5015769.svg` — fades in; click 2: shape (outline) — draws in; then: vector icon `shape-6fb70ef2.svg` — fades in; click 3: arrow #f3cf80 — draws in; then: vector icon `shape-6fb70ef2.svg` — fades in; click 4: text 36pt — wipes in; click 5: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 15
+- heading (spaced caps) 36pt [39%,5% → 61%,10%]: REACHABLE SETS
+- text 36pt [15%,13% → 85%,22%]: It is more straightforward to check for [[invariant sets|#80b9ff]] for discrete reachability since it is straightforward to check if one set of points is contained within another.
+- text 36pt [32%,26% → 68%,31%]: If {$\mathcal R_{1:d} \subseteq \mathcal R_{1:d-1}$|#80b9ff}, then $\mathcal R_{1:d}$ is an invariant set.
+- outlined circle #ffffff [59%,43% → 65%,53%]
+- outlined circle #ffffff [82%,43% → 87%,53%]
+- shape (outline) [65%,41% → 82%,45%]
+- shape (outline) [60%,36% → 64%,43%]
+- shape (outline) [65%,50% → 82%,55%]
+- shape (outline) [82%,36% → 87%,43%]
+- outlined circle #ffffff [37%,43% → 43%,53%]
+- outlined circle #ffffff [13%,43% → 18%,53%]
+- equation $s_1$ (39pt, #ffffff) [15%,46% → 16%,49%]
+- arrow #c0c0c0 [18%,46% → 37%,50%]
+- arrow #c0c0c0 [43%,46% → 59%,50%]
+- equation $s_2$ (39pt, #ffffff) [39%,46% → 41%,49%]
+- equation $s_3$ (39pt, #ffffff) [62%,46% → 63%,49%]
+- equation $s_4$ (39pt, #ffffff) [84%,46% → 85%,49%]
+- **Builds:** click 1: text 36pt — fades up from dark; click 2: shape (outline) — fades up from dark; with previous: shape (outline) — fades up from dark; with previous: shape (outline) — fades up from dark; with previous: outlined circle #ffffff — fades up from dark; with previous: outlined circle #ffffff — fades up from dark; with previous: outlined circle #ffffff — fades up from dark; with previous: outlined circle #ffffff — fades up from dark; with previous: equation $s_4$ — fades up from dark; with previous: equation $s_1$ — fades up from dark; with previous: equation $s_3$ — fades up from dark; with previous: equation $s_2$ — fades up from dark; with previous: arrow #c0c0c0 — fades up from dark; with previous: arrow #c0c0c0 — fades up from dark; with previous: shape (outline) — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 16
+- heading (spaced caps) 36pt [39%,5% → 61%,10%]: REACHABLE SETS
+- text 36pt [15%,13% → 85%,22%]: It is more straightforward to check for [[invariant sets|#80b9ff]] for discrete reachability since it is straightforward to check if one set of points is contained within another.
+- text 36pt [32%,26% → 68%,31%]: If {$\mathcal R_{1:d} \subseteq \mathcal R_{1:d-1}$|#80b9ff}, then $\mathcal R_{1:d}$ is an invariant set.
+- outlined circle #ffffff [59%,43% → 65%,53%]
+- outlined circle #ffffff [82%,43% → 87%,53%]
+- shape (outline) [65%,41% → 82%,45%]
+- shape (outline) [60%,36% → 64%,43%]
+- shape (outline) [65%,50% → 82%,55%]
+- shape (outline) [82%,36% → 87%,43%]
+- outlined circle #ffffff [37%,43% → 43%,53%]
+- outlined circle #ffffff [13%,43% → 18%,53%]
+- equation $s_1$ (39pt, #ffffff) [15%,46% → 16%,49%]
+- arrow #c0c0c0 [18%,46% → 37%,50%]
+- arrow #c0c0c0 [43%,46% → 59%,50%]
+- vector icon `shape-0cdd95b5.svg` [37%,43% → 43%,53%]
+- equation $s_2$ (39pt, #ffffff) [39%,46% → 41%,49%]
+- equation $\mathcal R_1 = \{s_2\}$ (36pt, #ffffff) [14%,60% → 21%,63%]
+- arrow #80b9ff [43%,46% → 59%,50%]
+- vector icon `shape-0cdd95b5.svg` [59%,43% → 65%,53%]
+- equation $s_3$ (39pt, #ffffff) [62%,46% → 63%,49%]
+- shape (outline) [60%,36% → 64%,43%]
+- shape (outline) [65%,41% → 82%,45%]
+- vector icon `shape-0cdd95b5.svg` [82%,43% → 87%,53%]
+- equation $s_4$ (39pt, #ffffff) [84%,46% → 85%,49%]
+- shape (outline) [65%,50% → 82%,55%]
+- shape (outline) [82%,36% → 87%,43%]
+- equation $\mathcal R_2 = \{s_3\}$ (36pt, #ffffff) [14%,66% → 21%,69%]
+- equation $\mathcal R_3 = \{s_3, s_4\}$ (36pt, #ffffff) [14%,72% → 23%,75%]
+- equation $\mathcal R_4 = \{s_3, s_4\}$ (36pt, #ffffff) [14%,78% → 23%,81%]
+- shape (outline) [47%,66% → 52%,74%]
+- heading (spaced caps) 36pt [35%,68% → 45%,72%]: $\mathcal R_{1:4} \subseteq \mathcal R_{1:3}$
+- shape (outline) [28%,67% → 33%,75%]
+- text 36pt [54%,68% → 64%,72%]: $\mathcal R_{1:4} = \{s_2, s_3, s_4\}$ is an invariant set.
+- text 36pt [59%,75% → 77%,80%]: {We will never reach $s_1$.|#80b9ff}
+- **Builds:** click 1: arrow #80b9ff — draws in; with previous: vector icon `shape-0cdd95b5.svg` — fades in; then: vector icon `shape-0cdd95b5.svg` — fades in; with previous: equation $\mathcal R_2 = \{s_3\}$ — slides in; click 2: shape (outline) — draws in; with previous: shape (outline) — draws in; then: vector icon `shape-0cdd95b5.svg` — fades in; with previous: equation $\mathcal R_3 = \{s_3, s_4\}$ — slides in; click 3: shape (outline) — draws in; with previous: shape (outline) — draws in; then: equation $\mathcal R_4 = \{s_3, s_4\}$ — slides in; click 4: shape (outline) — wipes in; with previous: heading (spaced caps) 36pt — slides in; click 5: shape (outline) — wipes in; with previous: text 36pt — slides in; click 6: text 36pt — slides in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 17
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: SATISFIABILITY
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: PROBABILISTIC REACHABILITY
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [33%,39% → 43%,43%]: {(very briefly)|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 18
+- heading (spaced caps) 36pt [35%,5% → 54%,10%]: SATISFIABILITY
+- text 36pt [55%,5% → 65%,10%]: {(very briefly)|#80b9ff}
+- outlined circle #80b9ff [31%,24% → 37%,33%]
+- outlined circle #fab0ae [31%,73% → 37%,82%]
+- equation $\mathcal S_T$ (36pt, #fab0ae) [33%,76% → 35%,79%]
+- outlined circle #ffffff [24%,41% → 28%,49%]
+- outlined circle #ffffff [40%,41% → 44%,49%]
+- outlined circle #ffffff [24%,58% → 28%,65%]
+- outlined circle #ffffff [40%,58% → 44%,65%]
+- shape (outline) [33%,36% → 42%,39%]
+- arrow #ffffff [23%,51% → 29%,55%]
+- shape (outline) [26%,51% → 42%,55%]
+- shape (outline) [26%,68% → 35%,71%]
+- vector icon `shape-d7545506.svg` [31%,23% → 37%,33%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [33%,27% → 35%,30%]
+- shape (outline) [33%,36% → 42%,39%]
+- vector icon `shape-283de159.svg` [40%,41% → 44%,49%]
+- vector icon `shape-283de159.svg` [40%,58% → 44%,65%]
+- outlined circle #80b9ff [63%,23% → 69%,32%]
+- outlined circle #fab0ae [63%,73% → 69%,82%]
+- outlined circle #ffffff [56%,41% → 60%,48%]
+- outlined circle #ffffff [72%,41% → 76%,48%]
+- outlined circle #ffffff [56%,58% → 60%,65%]
+- outlined circle #ffffff [72%,58% → 76%,65%]
+- shape (outline) [57%,35% → 67%,38%]
+- shape (outline) [65%,35% → 74%,38%]
+- arrow #ffffff [55%,51% → 61%,55%]
+- shape (outline) [58%,51% → 74%,54%]
+- shape (outline) [57%,67% → 66%,70%]
+- vector icon `shape-d7545506.svg` [63%,23% → 69%,32%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [65%,26% → 67%,29%]
+- shape (outline) [57%,35% → 67%,38%]
+- shape (outline) [65%,35% → 74%,38%]
+- vector icon `shape-283de159.svg` [56%,41% → 60%,48%]
+- vector icon `shape-283de159.svg` [72%,41% → 76%,48%]
+- vector icon `shape-283de159.svg` [56%,58% → 60%,65%]
+- vector icon `shape-283de159.svg` [72%,58% → 76%,65%]
+- arrow #80b9ff [55%,51% → 61%,55%]
+- shape (outline) [58%,51% → 74%,54%]
+- text 36pt [30%,84% → 38%,88%]: {avoid set|#fab0ae}
+- text 36pt [62%,84% → 70%,88%]: {avoid set|#fab0ae}
+- arrow #ffffff [39%,51% → 45%,55%]
+- arrow #80b9ff [39%,51% → 45%,55%]
+- shape (outline) [57%,67% → 66%,70%]
+- vector icon `shape-2ad03537.svg` [63%,73% → 69%,82%]
+- equation $\mathcal S_T$ (36pt, #fab0ae) [65%,76% → 67%,79%]
+- text 36pt [30%,15% → 34%,20%]: Safe
+- vector icon `shape-514efda4.svg` [35%,16% → 37%,19%]
+- text 36pt [62%,15% → 68%,20%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [68%,16% → 70%,19%]
+- **Builds:** click 1: vector icon `shape-d7545506.svg` — fades in; with previous: shape (outline) — draws in; then: vector icon `shape-283de159.svg` — fades in; click 2: arrow #80b9ff — draws in; then: vector icon `shape-283de159.svg` — fades in; click 3: vector icon `shape-514efda4.svg` — fades up from dark; with previous: text 36pt — fades up from dark; click 4: vector icon `shape-d7545506.svg` — fades in; click 5: shape (outline) — draws in; with previous: shape (outline) — draws in; then: vector icon `shape-283de159.svg` — fades in; with previous: vector icon `shape-283de159.svg` — fades in; click 6: shape (outline) — draws in; with previous: arrow #80b9ff — draws in; then: vector icon `shape-283de159.svg` — fades in; with previous: vector icon `shape-283de159.svg` — fades in; click 7: shape (outline) — draws in; then: vector icon `shape-2ad03537.svg` — fades in; click 8: text 36pt — fades up from dark; with previous: vector icon `shape-d569f7f0.svg` — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 19
+- heading (spaced caps) 36pt [35%,5% → 54%,10%]: SATISFIABILITY
+- text 36pt [55%,5% → 65%,10%]: {(very briefly)|#80b9ff}
+- outlined circle #80b9ff [31%,24% → 37%,33%]
+- outlined circle #fab0ae [31%,73% → 37%,82%]
+- outlined circle #ffffff [24%,41% → 28%,49%]
+- outlined circle #ffffff [40%,41% → 44%,49%]
+- outlined circle #ffffff [24%,58% → 28%,65%]
+- outlined circle #ffffff [40%,58% → 44%,65%]
+- shape (outline) [33%,36% → 42%,39%]
+- arrow #ffffff [23%,51% → 29%,55%]
+- shape (outline) [26%,51% → 42%,55%]
+- shape (outline) [26%,68% → 35%,71%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [33%,27% → 35%,30%]
+- outlined circle #80b9ff [63%,23% → 69%,32%]
+- outlined circle #fab0ae [63%,73% → 69%,82%]
+- outlined circle #ffffff [56%,41% → 60%,48%]
+- outlined circle #ffffff [72%,41% → 76%,48%]
+- outlined circle #ffffff [56%,58% → 60%,65%]
+- outlined circle #ffffff [72%,58% → 76%,65%]
+- shape (outline) [57%,35% → 67%,38%]
+- shape (outline) [65%,35% → 74%,38%]
+- arrow #ffffff [55%,51% → 61%,55%]
+- shape (outline) [58%,51% → 74%,54%]
+- shape (outline) [57%,67% → 66%,70%]
+- text 36pt [30%,84% → 38%,88%]: {avoid set|#fab0ae}
+- text 36pt [62%,84% → 70%,88%]: {avoid set|#fab0ae}
+- vector icon `shape-94463f38.svg` [63%,73% → 69%,82%]
+- equation $\mathcal S_T$ (36pt, #fab0ae) [65%,76% → 67%,79%]
+- text 36pt [30%,15% → 34%,20%]: Safe
+- vector icon `shape-514efda4.svg` [35%,16% → 37%,19%]
+- text 36pt [62%,15% → 68%,20%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [68%,16% → 70%,19%]
+- vector icon `shape-94463f38.svg` [31%,73% → 37%,82%]
+- equation $\mathcal S_T$ (36pt, #fab0ae) [33%,76% → 35%,79%]
+- shape (outline) [26%,68% → 35%,71%]
+- vector icon `shape-dd3db479.svg` [24%,58% → 28%,65%]
+- arrow #fab0ae [23%,51% → 29%,55%]
+- arrow #ffffff [39%,51% → 45%,55%]
+- vector icon `shape-dd3db479.svg` [24%,41% → 28%,49%]
+- shape (outline) [58%,67% → 66%,70%]
+- vector icon `shape-dd3db479.svg` [56%,58% → 60%,65%]
+- arrow #fab0ae [55%,51% → 61%,55%]
+- vector icon `shape-dd3db479.svg` [56%,41% → 60%,48%]
+- shape (outline) [57%,35% → 67%,38%]
+- equation $\mathcal S_1$ (36pt, #80b9ff) [65%,26% → 67%,29%]
+- vector icon `shape-2ad03537.svg` [63%,23% → 69%,32%]
+- **Builds:** click 1: vector icon `shape-94463f38.svg` — fades in; click 2: shape (outline) — draws in; then: vector icon `shape-dd3db479.svg` — fades in; click 3: arrow #fab0ae — draws in; then: vector icon `shape-dd3db479.svg` — fades in; click 4: vector icon `shape-514efda4.svg` — fades up from dark; with previous: text 36pt — fades up from dark; click 5: vector icon `shape-94463f38.svg` — fades in; click 6: shape (outline) — draws in; then: vector icon `shape-dd3db479.svg` — fades in; click 7: arrow #fab0ae — draws in; then: vector icon `shape-dd3db479.svg` — fades in; click 8: shape (outline) — draws in; then: vector icon `shape-2ad03537.svg` — fades in; click 9: vector icon `shape-d569f7f0.svg` — fades up from dark; with previous: text 36pt — fades up from dark
+
+## Slide 20
+- heading (spaced caps) 36pt [35%,5% → 54%,10%]: SATISFIABILITY
+- text 36pt [55%,5% → 65%,10%]: {(very briefly)|#80b9ff}
+- text 36pt [30%,84% → 38%,88%]: {avoid set|#fab0ae}
+- text 36pt [62%,84% → 70%,88%]: {avoid set|#fab0ae}
+- text 36pt [30%,15% → 34%,20%]: Safe
+- vector icon `shape-514efda4.svg` [35%,16% → 37%,19%]
+- text 36pt [62%,15% → 68%,20%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [68%,16% → 70%,19%]
+- group [23%,23% → 76%,82%]
+  - equation $\mathcal S_T$ (36pt, #fab0ae) [33%,76% → 35%,79%]
+  - outlined circle #80b9ff [31%,24% → 37%,33%]
+  - outlined circle #fab0ae [31%,73% → 37%,82%]
+  - outlined circle #ffffff [24%,41% → 28%,49%]
+  - outlined circle #ffffff [40%,41% → 44%,49%]
+  - outlined circle #ffffff [24%,58% → 28%,65%]
+  - outlined circle #ffffff [40%,58% → 44%,65%]
+  - shape (outline) [33%,36% → 42%,39%]
+  - arrow #ffffff [23%,51% → 29%,55%]
+  - shape (outline) [26%,51% → 42%,55%]
+  - shape (outline) [26%,68% → 35%,71%]
+  - equation $\mathcal S_1$ (36pt, #80b9ff) [33%,27% → 35%,30%]
+  - outlined circle #80b9ff [63%,23% → 69%,32%]
+  - outlined circle #fab0ae [63%,73% → 69%,82%]
+  - outlined circle #ffffff [56%,41% → 60%,48%]
+  - outlined circle #ffffff [72%,41% → 76%,48%]
+  - outlined circle #ffffff [56%,58% → 60%,65%]
+  - outlined circle #ffffff [72%,58% → 76%,65%]
+  - shape (outline) [57%,35% → 67%,38%]
+  - shape (outline) [65%,35% → 74%,38%]
+  - arrow #ffffff [55%,51% → 61%,55%]
+  - shape (outline) [58%,51% → 74%,54%]
+  - shape (outline) [57%,67% → 66%,70%]
+  - vector icon `shape-94463f38.svg` [63%,73% → 69%,82%]
+  - equation $\mathcal S_T$ (36pt, #fab0ae) [65%,76% → 67%,79%]
+  - vector icon `shape-94463f38.svg` [31%,73% → 37%,82%]
+  - shape (outline) [26%,68% → 35%,71%]
+  - vector icon `shape-dd3db479.svg` [24%,58% → 28%,65%]
+  - arrow #fab0ae [23%,51% → 29%,55%]
+  - arrow #ffffff [39%,51% → 45%,55%]
+  - vector icon `shape-dd3db479.svg` [24%,41% → 28%,49%]
+  - shape (outline) [58%,67% → 66%,70%]
+  - vector icon `shape-dd3db479.svg` [56%,58% → 60%,65%]
+  - arrow #fab0ae [55%,51% → 61%,55%]
+  - vector icon `shape-dd3db479.svg` [56%,41% → 60%,48%]
+  - shape (outline) [57%,35% → 67%,38%]
+  - equation $\mathcal S_1$ (36pt, #80b9ff) [65%,26% → 67%,29%]
+  - vector icon `shape-2ad03537.svg` [63%,23% → 69%,32%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 21
+- rounded box (outline) [19%,23% → 49%,90%]
+- heading (spaced caps) 36pt [35%,5% → 54%,10%]: SATISFIABILITY
+- text 36pt [55%,5% → 65%,10%]: {(very briefly)|#80b9ff}
+- text 36pt [59%,63% → 66%,68%]: {avoid set|#fab0ae}
+- text 36pt [72%,63% → 79%,68%]: {avoid set|#fab0ae}
+- text 36pt [59%,32% → 63%,37%]: Safe
+- vector icon `shape-514efda4.svg` [64%,33% → 66%,36%]
+- text 36pt [71%,32% → 78%,37%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [78%,33% → 80%,37%]
+- outlined circle #80b9ff [26%,39% → 28%,42%]
+- outlined circle #fab0ae [26%,58% → 28%,61%]
+- equation $\mathcal S_T$ (14pt, #fab0ae) [27%,59% → 28%,60%]
+- outlined circle #ffffff [24%,46% → 25%,48%]
+- outlined circle #ffffff [30%,46% → 31%,48%]
+- outlined circle #ffffff [24%,52% → 25%,55%]
+- outlined circle #ffffff [30%,52% → 31%,55%]
+- shape (outline) [27%,43% → 31%,45%]
+- arrow #ffffff [23%,48% → 25%,52%]
+- shape (outline) [24%,49% → 31%,51%]
+- shape (outline) [24%,56% → 28%,57%]
+- vector icon `shape-d85f39ca.svg` [26%,39% → 28%,42%]
+- equation $\mathcal S_1$ (14pt, #80b9ff) [27%,40% → 28%,41%]
+- shape (outline) [27%,43% → 31%,45%]
+- vector icon `shape-fcbba1f0.svg` [30%,46% → 31%,48%]
+- vector icon `shape-fcbba1f0.svg` [30%,52% → 31%,55%]
+- outlined circle #80b9ff [39%,39% → 41%,42%]
+- outlined circle #fab0ae [39%,58% → 41%,61%]
+- outlined circle #ffffff [36%,45% → 37%,48%]
+- outlined circle #ffffff [42%,45% → 44%,48%]
+- outlined circle #ffffff [36%,52% → 37%,55%]
+- outlined circle #ffffff [42%,52% → 44%,55%]
+- shape (outline) [36%,43% → 40%,44%]
+- shape (outline) [39%,43% → 43%,44%]
+- arrow #ffffff [36%,48% → 38%,52%]
+- shape (outline) [37%,49% → 43%,51%]
+- shape (outline) [36%,56% → 40%,57%]
+- vector icon `shape-d85f39ca.svg` [39%,39% → 41%,42%]
+- equation $\mathcal S_1$ (14pt, #80b9ff) [39%,40% → 40%,41%]
+- shape (outline) [36%,43% → 40%,45%]
+- shape (outline) [39%,43% → 43%,44%]
+- vector icon `shape-fcbba1f0.svg` [36%,45% → 37%,48%]
+- vector icon `shape-fcbba1f0.svg` [42%,45% → 44%,48%]
+- vector icon `shape-fcbba1f0.svg` [36%,52% → 37%,55%]
+- vector icon `shape-fcbba1f0.svg` [42%,52% → 44%,55%]
+- arrow #80b9ff [36%,48% → 38%,52%]
+- shape (outline) [37%,49% → 43%,51%]
+- arrow #ffffff [29%,48% → 31%,52%]
+- arrow #80b9ff [29%,48% → 31%,52%]
+- shape (outline) [36%,56% → 40%,57%]
+- vector icon `shape-f082f050.svg` [39%,58% → 41%,61%]
+- equation $\mathcal S_T$ (14pt, #fab0ae) [39%,59% → 40%,60%]
+- text 36pt [25%,32% → 29%,37%]: Safe
+- vector icon `shape-514efda4.svg` [29%,33% → 31%,36%]
+- text 36pt [37%,32% → 43%,37%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [43%,33% → 45%,37%]
+- text 36pt [23%,64% → 30%,68%]: {avoid set|#fab0ae}
+- text 36pt [37%,64% → 44%,68%]: {avoid set|#fab0ae}
+- line #ffffff [19%,28% → 49%,33%]
+- text 36pt [32%,25% → 36%,29%]: Forward Reachability
+- text 36pt [22%,73% → 46%,85%]: Check that the [[forward |#80b9ff]]reachable set does not intersect with the [[avoid set|#fab0ae]].
+- rounded box (outline) [54%,23% → 84%,90%]
+- line #ffffff [54%,28% → 83%,32%]
+- text 36pt [61%,25% → 77%,29%]: Backward Reachability
+- text 36pt [57%,73% → 81%,85%]: Check that the [[backward |#fab0ae]]reachable set does not intersect with the [[initial set|#80b9ff]].
+- group [58%,38% → 79%,62%]
+  - equation $\mathcal S_T$ (15pt, #fab0ae) [62%,59% → 63%,60%]
+  - outlined circle #80b9ff [61%,38% → 63%,42%]
+  - outlined circle #fab0ae [61%,58% → 63%,62%]
+  - outlined circle #ffffff [58%,45% → 60%,48%]
+  - outlined circle #ffffff [65%,45% → 66%,48%]
+  - outlined circle #ffffff [58%,52% → 60%,55%]
+  - outlined circle #ffffff [65%,52% → 66%,55%]
+  - shape (outline) [62%,43% → 66%,44%]
+  - arrow #ffffff [58%,48% → 60%,52%]
+  - shape (outline) [59%,49% → 66%,51%]
+  - shape (outline) [59%,56% → 63%,57%]
+  - equation $\mathcal S_1$ (15pt, #80b9ff) [62%,39% → 63%,41%]
+  - outlined circle #80b9ff [74%,38% → 76%,42%]
+  - outlined circle #fab0ae [74%,58% → 76%,61%]
+  - outlined circle #ffffff [71%,45% → 73%,48%]
+  - outlined circle #ffffff [77%,45% → 79%,48%]
+  - outlined circle #ffffff [71%,52% → 73%,55%]
+  - outlined circle #ffffff [77%,52% → 79%,55%]
+  - shape (outline) [72%,43% → 75%,44%]
+  - shape (outline) [75%,43% → 78%,44%]
+  - arrow #ffffff [71%,48% → 73%,52%]
+  - shape (outline) [72%,49% → 78%,50%]
+  - shape (outline) [72%,56% → 75%,57%]
+  - vector icon `shape-cd98c684.svg` [74%,58% → 76%,61%]
+  - equation $\mathcal S_T$ (15pt, #fab0ae) [75%,59% → 76%,60%]
+  - vector icon `shape-cd98c684.svg` [61%,58% → 63%,62%]
+  - shape (outline) [59%,56% → 63%,57%]
+  - vector icon `shape-3cf86165.svg` [58%,52% → 60%,55%]
+  - arrow #fab0ae [58%,48% → 60%,52%]
+  - arrow #ffffff [65%,48% → 67%,52%]
+  - vector icon `shape-3cf86165.svg` [58%,45% → 60%,48%]
+  - shape (outline) [72%,56% → 75%,57%]
+  - vector icon `shape-3cf86165.svg` [71%,52% → 73%,55%]
+  - arrow #fab0ae [71%,48% → 73%,52%]
+  - vector icon `shape-3cf86165.svg` [71%,45% → 73%,48%]
+  - shape (outline) [72%,43% → 75%,44%]
+  - equation $\mathcal S_1$ (15pt, #80b9ff) [75%,39% → 75%,41%]
+  - vector icon `shape-71b23353.svg` [74%,38% → 76%,42%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 22
+- group [58%,38% → 79%,62%]
+  - equation $\mathcal S_T$ (15pt, #fab0ae) [62%,59% → 63%,60%]
+  - outlined circle #80b9ff [61%,38% → 63%,42%]
+  - outlined circle #fab0ae [61%,58% → 63%,62%]
+  - outlined circle #ffffff [58%,45% → 60%,48%]
+  - outlined circle #ffffff [65%,45% → 66%,48%]
+  - outlined circle #ffffff [58%,52% → 60%,55%]
+  - outlined circle #ffffff [65%,52% → 66%,55%]
+  - shape (outline) [62%,43% → 66%,44%]
+  - arrow #ffffff [58%,48% → 60%,52%]
+  - shape (outline) [59%,49% → 66%,51%]
+  - shape (outline) [59%,56% → 63%,57%]
+  - equation $\mathcal S_1$ (15pt, #80b9ff) [62%,39% → 63%,41%]
+  - outlined circle #80b9ff [74%,38% → 76%,42%]
+  - outlined circle #fab0ae [74%,58% → 76%,61%]
+  - outlined circle #ffffff [71%,45% → 73%,48%]
+  - outlined circle #ffffff [77%,45% → 79%,48%]
+  - outlined circle #ffffff [71%,52% → 73%,55%]
+  - outlined circle #ffffff [77%,52% → 79%,55%]
+  - shape (outline) [72%,43% → 75%,44%]
+  - shape (outline) [75%,43% → 78%,44%]
+  - arrow #ffffff [71%,48% → 73%,52%]
+  - shape (outline) [72%,49% → 78%,50%]
+  - shape (outline) [72%,56% → 75%,57%]
+  - vector icon `shape-cd98c684.svg` [74%,58% → 76%,61%]
+  - equation $\mathcal S_T$ (15pt, #fab0ae) [75%,59% → 76%,60%]
+  - vector icon `shape-cd98c684.svg` [61%,58% → 63%,62%]
+  - shape (outline) [59%,56% → 63%,57%]
+  - vector icon `shape-3cf86165.svg` [58%,52% → 60%,55%]
+  - arrow #fab0ae [58%,48% → 60%,52%]
+  - arrow #ffffff [65%,48% → 67%,52%]
+  - vector icon `shape-3cf86165.svg` [58%,45% → 60%,48%]
+  - shape (outline) [72%,56% → 75%,57%]
+  - vector icon `shape-3cf86165.svg` [71%,52% → 73%,55%]
+  - arrow #fab0ae [71%,48% → 73%,52%]
+  - vector icon `shape-3cf86165.svg` [71%,45% → 73%,48%]
+  - shape (outline) [72%,43% → 75%,44%]
+  - equation $\mathcal S_1$ (15pt, #80b9ff) [75%,39% → 75%,41%]
+  - vector icon `shape-71b23353.svg` [74%,38% → 76%,42%]
+- rounded box (outline) [19%,23% → 49%,90%]
+- heading (spaced caps) 36pt [35%,5% → 54%,10%]: SATISFIABILITY
+- text 36pt [55%,5% → 65%,10%]: {(very briefly)|#80b9ff}
+- text 36pt [59%,63% → 66%,68%]: {avoid set|#fab0ae}
+- text 36pt [72%,63% → 79%,68%]: {avoid set|#fab0ae}
+- text 36pt [59%,32% → 63%,37%]: Safe
+- vector icon `shape-514efda4.svg` [64%,33% → 66%,36%]
+- text 36pt [71%,32% → 78%,37%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [78%,33% → 80%,37%]
+- outlined circle #80b9ff [26%,39% → 28%,42%]
+- outlined circle #fab0ae [26%,58% → 28%,61%]
+- equation $\mathcal S_T$ (14pt, #fab0ae) [27%,59% → 28%,60%]
+- outlined circle #ffffff [24%,46% → 25%,48%]
+- outlined circle #ffffff [30%,46% → 31%,48%]
+- outlined circle #ffffff [24%,52% → 25%,55%]
+- outlined circle #ffffff [30%,52% → 31%,55%]
+- shape (outline) [27%,43% → 31%,45%]
+- arrow #ffffff [23%,48% → 25%,52%]
+- shape (outline) [24%,49% → 31%,51%]
+- shape (outline) [24%,56% → 28%,57%]
+- vector icon `shape-d85f39ca.svg` [26%,39% → 28%,42%]
+- equation $\mathcal S_1$ (14pt, #80b9ff) [27%,40% → 28%,41%]
+- shape (outline) [27%,43% → 31%,45%]
+- vector icon `shape-fcbba1f0.svg` [30%,46% → 31%,48%]
+- vector icon `shape-fcbba1f0.svg` [30%,52% → 31%,55%]
+- outlined circle #80b9ff [39%,39% → 41%,42%]
+- outlined circle #fab0ae [39%,58% → 41%,61%]
+- outlined circle #ffffff [36%,45% → 37%,48%]
+- outlined circle #ffffff [42%,45% → 44%,48%]
+- outlined circle #ffffff [36%,52% → 37%,55%]
+- outlined circle #ffffff [42%,52% → 44%,55%]
+- shape (outline) [36%,43% → 40%,44%]
+- shape (outline) [39%,43% → 43%,44%]
+- arrow #ffffff [36%,48% → 38%,52%]
+- shape (outline) [37%,49% → 43%,51%]
+- shape (outline) [36%,56% → 40%,57%]
+- vector icon `shape-d85f39ca.svg` [39%,39% → 41%,42%]
+- equation $\mathcal S_1$ (14pt, #80b9ff) [39%,40% → 40%,41%]
+- shape (outline) [36%,43% → 40%,45%]
+- shape (outline) [39%,43% → 43%,44%]
+- vector icon `shape-fcbba1f0.svg` [36%,45% → 37%,48%]
+- vector icon `shape-fcbba1f0.svg` [42%,45% → 44%,48%]
+- vector icon `shape-fcbba1f0.svg` [36%,52% → 37%,55%]
+- vector icon `shape-fcbba1f0.svg` [42%,52% → 44%,55%]
+- arrow #80b9ff [36%,48% → 38%,52%]
+- shape (outline) [37%,49% → 43%,51%]
+- arrow #ffffff [29%,48% → 31%,52%]
+- arrow #80b9ff [29%,48% → 31%,52%]
+- shape (outline) [36%,56% → 40%,57%]
+- vector icon `shape-f082f050.svg` [39%,58% → 41%,61%]
+- equation $\mathcal S_T$ (14pt, #fab0ae) [39%,59% → 40%,60%]
+- text 36pt [25%,32% → 29%,37%]: Safe
+- vector icon `shape-514efda4.svg` [29%,33% → 31%,36%]
+- text 36pt [37%,32% → 43%,37%]: Unsafe
+- vector icon `shape-d569f7f0.svg` [43%,33% → 45%,37%]
+- text 36pt [23%,64% → 30%,68%]: {avoid set|#fab0ae}
+- text 36pt [37%,64% → 44%,68%]: {avoid set|#fab0ae}
+- line #ffffff [19%,28% → 49%,33%]
+- text 36pt [32%,25% → 36%,29%]: Forward Reachability
+- text 36pt [22%,73% → 46%,85%]: Check that the [[forward |#80b9ff]]reachable set does not intersect with the [[avoid set|#fab0ae]].
+- rounded box (outline) [54%,23% → 84%,90%]
+- line #ffffff [54%,28% → 83%,32%]
+- text 36pt [61%,25% → 77%,29%]: Backward Reachability
+- text 36pt [57%,73% → 81%,85%]: Check that the [[backward |#fab0ae]]reachable set does not intersect with the [[initial set|#80b9ff]].
+- rounded box (filled #ffa4e7) [6%,40% → 94%,72%]
+- text 36pt [11%,45% → 89%,53%]: {If we just want to |#000000}{check satisfiability|#0072fe}{ and we do not care what the reachable set looks like, there are |#000000}{more efficient|#0072fe}{ methods that do not require computing the entire forward or backward reachable set.|#000000}
+- text 36pt [37%,63% → 63%,68%]: {See section 10.3 (advanced topic)|#000000}
+- text 36pt [37%,56% → 63%,61%]: {e.g. heuristic search, Boolean satisfiability, SMT, etc.|#000000}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 23
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: SATISFIABILITY
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: PROBABILISTIC REACHABILITY
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [33%,39% → 43%,43%]: {(very briefly)|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 24
+- heading (spaced caps) 36pt [31%,45% → 69%,49%]: PROBABILISTIC REACHABILITY
+- text 36pt [19%,51% → 81%,55%]: allows us to understand the [[likelihood|#80b9ff]] of reaching a particular [[state|#80b9ff]] or [[set of states|#80b9ff]].
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 25
+- text 36pt [48%,14% → 52%,19%]: The [[probability of occupancy|#80b9ff]] tells us the [[distribution over reachable states|#80b9ff]] at each time step.
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- text 36pt [48%,21% → 52%,26%]: We can compute this probability recursively:
+- equation $P_1(s) = P_s(s)$ (36pt, #ffffff) [45%,29% → 55%,32%]
+- text 36pt [33%,40% → 46%,52%]: {probability of being in state $s$ at time step $1$|#80b9ff}
+- arrow #80b9ff [40%,34% → 46%,38%]
+- text 36pt [49%,41% → 63%,50%]: {initial state distribution|#80b9ff}
+- arrow #80b9ff [51%,34% → 56%,38%]
+- **Builds:** click 1: text 36pt — appears; click 2: equation $P_1(s) = P_s(s)$ — appears; click 3: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 4: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 26
+- text 36pt [48%,14% → 52%,19%]: The [[probability of occupancy|#80b9ff]] tells us the [[distribution over reachable states|#80b9ff]] at each time step.
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- text 36pt [48%,21% → 52%,26%]: We can compute this probability recursively:
+- equation $P_1(s) = P_s(s)$ (36pt, #ffffff) [45%,29% → 55%,32%]
+- text 36pt [46%,34% → 54%,39%]: For $t > 1$:
+- equation $P_{t+1}(s) = \sum_{s^\prime \in \mathcal S}T(s^\prime, s)P_t(s^\prime)$ (36pt, #ffffff) [41%,43% → 59%,50%]
+- outlined shape #ffffff [39%,41% → 61%,53%]
+- text 36pt [31%,57% → 46%,70%]: {probability of being in state $s$ at time step $t+1$|#80b9ff}
+- arrow #80b9ff [38%,50% → 44%,54%]
+- text 36pt [60%,57% → 73%,70%]: {probability of being in state $s^\prime$ at time step $t$|#80b9ff}
+- arrow #80b9ff [47%,56% → 59%,61%]
+- arrow #80b9ff [58%,50% → 67%,55%]
+- text 36pt [46%,70% → 60%,86%]: {probability of transitioning to state $s$ from state $s^\prime$|#80b9ff}
+- **Builds:** click 1: text 36pt — appears; with previous: equation $P_{t+1}(s) = \sum_{s^\prime \in \mathcal S}T(s^\prime, s)P_t(s^\prime)$ — appears; click 2: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 3: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 4: arrow #80b9ff — draws in; with previous: text 36pt — fades up from dark; click 5: outlined shape #ffffff — LineDraw
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 27
+- text 36pt [48%,14% → 52%,19%]: The [[probability of occupancy|#80b9ff]] tells us the [[distribution over reachable states|#80b9ff]] at each time step.
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- text 36pt [48%,21% → 52%,26%]: We can compute this probability recursively:
+- equation $P_1(s) = P_s(s)$ (36pt, #ffffff) [16%,40% → 26%,43%]
+- text 36pt [17%,45% → 25%,50%]: For $t > 1$:
+- equation $P_{t+1}(s) = \sum_{s^\prime \in \mathcal S}T(s^\prime, s)P_t(s^\prime)$ (36pt, #ffffff) [11%,54% → 30%,61%]
+- outlined shape #ffffff [10%,52% → 31%,63%]
+- image `val-page-244.svg` (cropped: show only 7–62% across and 42–62% down of the image) [38%,36% → 92%,75%]
+- arrow #ff48cf [25%,46% → 43%,50%]
+- arrow #ff48cf [31%,57% → 45%,61%]
+- rounded box (filled #f3cf80) [40%,84% → 90%,92%]
+- text 36pt [41%,85% → 89%,90%]: {Note: we are returning a probability distribution over states|#000000}
+- text on a #80b9ff filled box 32pt [11%,73% → 30%,81%]: {Pluto Notebook!|#000000}
+- arrow #f3cf80 [51%,76% → 56%,80%]
+- **Builds:** click 1: arrow #ff48cf — draws in; with previous: arrow #ff48cf — draws in; click 2: rounded box (filled #f3cf80) — fades up from dark; with previous: text 36pt — fades up from dark; with previous: arrow #f3cf80 — draws in; click 3: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 28
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- text 36pt [48%,13% → 52%,18%]: We may also be interested in the probability that a [[set of states is reached|#80b9ff]] within a given time horizon.
+- text 36pt [17%,21% → 83%,30%]: We want to compute {$R_t(s)$|#80b9ff}, which represents the probability of reaching a state in the target set $\mathcal S_T$ in $t$ time steps when starting in state $s$.
+- text 36pt [29%,36% → 37%,41%]: For $t=1$:
+- equation $R_1(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ 0 & \text{otherwise} \end{cases}$ (36pt, #ffffff) [39%,34% → 57%,43%]
+- text 36pt [29%,49% → 37%,54%]: For $t>1$:
+- equation $R_{t+1}(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ \sum_{s^\prime \in \mathcal S} T(s, s^\prime) R_t(s^\prime) & \text{otherwise} \end{cases}$ (36pt, #ffffff) [39%,46% → 71%,57%]
+- text 36pt [29%,63% → 44%,83%]: {probability of reaching a state in the target set in $t+1$ time steps from state $s$|#80b9ff}
+- arrow #80b9ff [36%,56% → 42%,60%]
+- text 36pt [63%,64% → 77%,84%]: {probability of reaching a state in the target set in $t$ time steps from state $s^\prime$|#80b9ff}
+- arrow #80b9ff [60%,57% → 69%,62%]
+- arrow #80b9ff [52%,60% → 59%,64%]
+- text 36pt [49%,69% → 62%,86%]: {probability of transitioning to state $s^\prime$ from state $s$|#80b9ff}
+- **Builds:** click 1: text 36pt — appears; click 2: text 36pt — appears; with previous: equation $R_1(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ 0 & \text{otherwise} \end{cases}$ — appears; click 3: text 36pt — appears; with previous: equation $R_{t+1}(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ \sum_{s^\prime \in \mathcal S} T(s, s^\prime) R_t(s^\prime) & \text{otherwise} \end{cases}$ — appears; click 4: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 5: text 36pt — fades up from dark; with previous: arrow #80b9ff — draws in; click 6: arrow #80b9ff — draws in; with previous: text 36pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 29
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- text 36pt [48%,13% → 52%,18%]: We may also be interested in the probability that a [[set of states is reached|#80b9ff]] within a given time horizon.
+- text 36pt [17%,21% → 83%,30%]: We want to compute {$R_t(s)$|#80b9ff}, which represents the probability of reaching a state in the target set $\mathcal S_T$ in $t$ time steps when starting in state $s$.
+- text 36pt [6%,54% → 14%,59%]: For $t=1$:
+- equation $R_1(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ 0 & \text{otherwise} \end{cases}$ (36pt, #ffffff) [16%,52% → 34%,61%]
+- text 36pt [6%,67% → 14%,72%]: For $t>1$:
+- equation $R_{t+1}(s) = \begin{cases} 1 & \text{if } s \in \mathcal S_T \\ \sum_{s^\prime \in \mathcal S} T(s, s^\prime) R_t(s^\prime) & \text{otherwise} \end{cases}$ (36pt, #ffffff) [15%,64% → 48%,75%]
+- image `val-page-246.svg` (cropped: show only 6–64% across and 59–80% down of the image) [54%,46% → 94%,75%]
+- arrow #ff48cf [35%,57% → 57%,62%]
+- arrow #ff48cf [48%,65% → 59%,69%]
+- group [59%,77% → 91%,90%]
+  - rounded box (filled #424242) [59%,77% → 91%,90%]
+  - heading (spaced caps) 100pt [60%,77% → 65%,90%]: 🤔
+  - text 36pt [65%,81% → 90%,86%]: Will the entries of $R_t$ sum to $1$?
+- text 36pt [73%,92% → 77%,96%]: {Nope!|#fab0ae}
+- text on a #80b9ff filled box 32pt [17%,81% → 36%,90%]: {Pluto Notebook!|#000000}
+- **Builds:** click 1: arrow #ff48cf — draws in; with previous: arrow #ff48cf — draws in; click 2: group — fades up from dark; click 3: text 36pt — slides in; click 4: text on a #80b9ff filled box 32pt — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 30
+- heading (spaced caps) 36pt [31%,6% → 69%,10%]: PROBABILISTIC REACHABILITY
+- image `test-37469.svg` [32%,25% → 68%,85%]
+- text 36pt [34%,15% → 66%,19%]: Can we get any infinite-time guarantees?
+- group [70%,46% → 95%,54%]
+  - rounded box (filled #80b9ff) [70%,46% → 95%,54%]
+  - text 36pt [71%,48% → 94%,52%]: {Yes, check out section 10.4.3.|#000000}
+- **Builds:** click 1: group — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 31
+- heading (spaced caps) 50pt [12%,47% → 88%,53%]: BUT ALL MY SYSTEMS ARE CONTINUOUS!
+- heading (spaced caps) 150pt [46%,27% → 54%,46%]: 😒
+
+## Slide 32
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: SATISFIABILITY
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: PROBABILISTIC REACHABILITY
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [33%,39% → 43%,43%]: {(very briefly)|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 33
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- image `test-36969.svg` [23%,18% → 66%,93%]
+- line #ffffff [32%,16% → 66%,21%]
+- line #ffffff [32%,23% → 66%,27%]
+- line #ffffff [32%,43% → 66%,47%]
+- line #ffffff [32%,56% → 66%,61%]
+- line #ffffff [32%,63% → 66%,67%]
+- line #ffffff [32%,70% → 66%,74%]
+- line #ffffff [32%,76% → 66%,81%]
+- line #ffffff [15%,46% → 49%,51%]
+- line #ffffff [49%,46% → 83%,51%]
+- line #ffffff [45%,46% → 79%,51%]
+- line #ffffff [41%,46% → 75%,51%]
+- line #ffffff [37%,46% → 70%,51%]
+- line #ffffff [32%,46% → 66%,51%]
+- line #ffffff [20%,46% → 53%,51%]
+- shape filled #c0c0c0, outlined #ffffff [34%,20% → 35%,23%]
+- shape filled #c0c0c0, outlined #ffffff [38%,20% → 39%,23%]
+- shape filled #c0c0c0, outlined #ffffff [42%,20% → 44%,23%]
+- shape filled #c0c0c0, outlined #ffffff [46%,20% → 48%,23%]
+- shape filled #c0c0c0, outlined #ffffff [51%,20% → 52%,23%]
+- shape filled #c0c0c0, outlined #ffffff [55%,20% → 56%,23%]
+- line #ffffff [24%,46% → 58%,51%]
+- line #ffffff [28%,46% → 62%,51%]
+- line #ffffff [32%,30% → 66%,34%]
+- line #ffffff [32%,36% → 66%,41%]
+- line #ffffff [32%,50% → 66%,54%]
+- shape filled #c0c0c0, outlined #ffffff [59%,20% → 61%,23%]
+- shape filled #c0c0c0, outlined #ffffff [63%,20% → 65%,23%]
+- shape filled #c0c0c0, outlined #ffffff [34%,27% → 35%,30%]
+- shape filled #c0c0c0, outlined #ffffff [38%,27% → 39%,30%]
+- shape filled #c0c0c0, outlined #ffffff [42%,27% → 44%,30%]
+- shape filled #c0c0c0, outlined #ffffff [46%,27% → 48%,30%]
+- shape filled #c0c0c0, outlined #ffffff [51%,27% → 52%,30%]
+- shape filled #c0c0c0, outlined #ffffff [55%,27% → 56%,30%]
+- shape filled #c0c0c0, outlined #ffffff [59%,27% → 61%,30%]
+- shape filled #c0c0c0, outlined #ffffff [63%,27% → 65%,30%]
+- shape filled #c0c0c0, outlined #ffffff [34%,34% → 35%,37%]
+- shape filled #c0c0c0, outlined #ffffff [38%,34% → 39%,37%]
+- shape filled #c0c0c0, outlined #ffffff [42%,34% → 44%,37%]
+- shape filled #c0c0c0, outlined #ffffff [46%,34% → 48%,37%]
+- shape filled #c0c0c0, outlined #ffffff [51%,34% → 52%,37%]
+- shape filled #c0c0c0, outlined #ffffff [55%,34% → 56%,37%]
+- shape filled #c0c0c0, outlined #ffffff [59%,34% → 61%,37%]
+- shape filled #c0c0c0, outlined #ffffff [63%,34% → 65%,37%]
+- shape filled #c0c0c0, outlined #ffffff [34%,40% → 35%,43%]
+- shape filled #c0c0c0, outlined #ffffff [38%,40% → 39%,43%]
+- shape filled #c0c0c0, outlined #ffffff [42%,40% → 44%,43%]
+- shape filled #c0c0c0, outlined #ffffff [46%,40% → 48%,43%]
+- shape filled #c0c0c0, outlined #ffffff [51%,40% → 52%,43%]
+- shape filled #c0c0c0, outlined #ffffff [55%,40% → 56%,43%]
+- shape filled #c0c0c0, outlined #ffffff [59%,40% → 61%,43%]
+- shape filled #c0c0c0, outlined #ffffff [63%,40% → 65%,43%]
+- shape filled #c0c0c0, outlined #ffffff [34%,47% → 35%,50%]
+- shape filled #c0c0c0, outlined #ffffff [38%,47% → 39%,50%]
+- shape filled #c0c0c0, outlined #ffffff [42%,47% → 44%,50%]
+- shape filled #c0c0c0, outlined #ffffff [46%,47% → 48%,50%]
+- shape filled #c0c0c0, outlined #ffffff [51%,47% → 52%,50%]
+- shape filled #c0c0c0, outlined #ffffff [55%,47% → 56%,50%]
+- shape filled #c0c0c0, outlined #ffffff [59%,47% → 61%,50%]
+- shape filled #c0c0c0, outlined #ffffff [63%,47% → 65%,50%]
+- shape filled #c0c0c0, outlined #ffffff [34%,54% → 35%,57%]
+- shape filled #c0c0c0, outlined #ffffff [38%,54% → 39%,57%]
+- shape filled #c0c0c0, outlined #ffffff [42%,54% → 44%,57%]
+- shape filled #c0c0c0, outlined #ffffff [46%,54% → 48%,57%]
+- shape filled #c0c0c0, outlined #ffffff [51%,54% → 52%,57%]
+- shape filled #c0c0c0, outlined #ffffff [55%,54% → 56%,57%]
+- shape filled #c0c0c0, outlined #ffffff [59%,54% → 61%,57%]
+- shape filled #c0c0c0, outlined #ffffff [63%,54% → 65%,57%]
+- shape filled #c0c0c0, outlined #ffffff [34%,60% → 35%,63%]
+- shape filled #c0c0c0, outlined #ffffff [38%,60% → 39%,63%]
+- shape filled #c0c0c0, outlined #ffffff [42%,60% → 44%,63%]
+- shape filled #c0c0c0, outlined #ffffff [46%,60% → 48%,63%]
+- shape filled #c0c0c0, outlined #ffffff [51%,60% → 52%,63%]
+- shape filled #c0c0c0, outlined #ffffff [55%,60% → 56%,63%]
+- shape filled #c0c0c0, outlined #ffffff [59%,60% → 61%,63%]
+- shape filled #c0c0c0, outlined #ffffff [63%,60% → 65%,63%]
+- shape filled #c0c0c0, outlined #ffffff [34%,67% → 35%,70%]
+- shape filled #c0c0c0, outlined #ffffff [38%,67% → 39%,70%]
+- shape filled #c0c0c0, outlined #ffffff [42%,67% → 44%,70%]
+- shape filled #c0c0c0, outlined #ffffff [46%,67% → 48%,70%]
+- shape filled #c0c0c0, outlined #ffffff [51%,67% → 52%,70%]
+- shape filled #c0c0c0, outlined #ffffff [55%,67% → 56%,70%]
+- shape filled #c0c0c0, outlined #ffffff [59%,67% → 61%,70%]
+- shape filled #c0c0c0, outlined #ffffff [63%,67% → 65%,70%]
+- shape filled #c0c0c0, outlined #ffffff [34%,74% → 35%,77%]
+- shape filled #c0c0c0, outlined #ffffff [38%,74% → 39%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,74% → 44%,77%]
+- shape filled #c0c0c0, outlined #ffffff [46%,74% → 48%,77%]
+- shape filled #c0c0c0, outlined #ffffff [51%,74% → 52%,77%]
+- shape filled #c0c0c0, outlined #ffffff [55%,74% → 56%,77%]
+- shape filled #c0c0c0, outlined #ffffff [59%,74% → 61%,77%]
+- shape filled #c0c0c0, outlined #ffffff [63%,74% → 65%,77%]
+- **Builds:** click 1: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; click 2: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark; with previous: shape filled #c0c0c0, outlined #ffffff — fades up from dark
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 34
+- image `test-36969.svg` [23%,18% → 66%,93%]
+- shape (filled #c3b8ff) [41%,22% → 45%,36%]
+- shape filled #80b9ff, outlined #80b9ff [41%,52% → 45%,59%]
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- line #ffffff [32%,16% → 66%,21%]
+- line #ffffff [32%,23% → 66%,27%]
+- line #ffffff [32%,43% → 66%,47%]
+- line #ffffff [32%,56% → 66%,61%]
+- line #ffffff [32%,63% → 66%,67%]
+- line #ffffff [32%,70% → 66%,74%]
+- line #ffffff [32%,76% → 66%,81%]
+- line #ffffff [15%,46% → 49%,51%]
+- line #ffffff [49%,46% → 83%,51%]
+- line #ffffff [45%,46% → 79%,51%]
+- line #ffffff [41%,46% → 75%,51%]
+- line #ffffff [37%,46% → 70%,51%]
+- line #ffffff [32%,46% → 66%,51%]
+- line #ffffff [20%,46% → 53%,51%]
+- shape filled #c0c0c0, outlined #ffffff [34%,20% → 35%,23%]
+- shape filled #c0c0c0, outlined #ffffff [38%,20% → 39%,23%]
+- shape filled #c0c0c0, outlined #ffffff [42%,20% → 44%,23%]
+- shape filled #c0c0c0, outlined #ffffff [46%,20% → 48%,23%]
+- shape filled #c0c0c0, outlined #ffffff [51%,20% → 52%,23%]
+- shape filled #c0c0c0, outlined #ffffff [55%,20% → 56%,23%]
+- line #ffffff [24%,46% → 58%,51%]
+- line #ffffff [28%,46% → 62%,51%]
+- line #ffffff [32%,30% → 66%,34%]
+- line #ffffff [32%,36% → 66%,41%]
+- line #ffffff [32%,50% → 66%,54%]
+- shape filled #c0c0c0, outlined #ffffff [59%,20% → 61%,23%]
+- shape filled #c0c0c0, outlined #ffffff [63%,20% → 65%,23%]
+- shape filled #c0c0c0, outlined #ffffff [34%,27% → 35%,30%]
+- shape filled #c0c0c0, outlined #ffffff [38%,27% → 39%,30%]
+- shape filled #c0c0c0, outlined #ffffff [46%,27% → 48%,30%]
+- shape filled #c0c0c0, outlined #ffffff [51%,27% → 52%,30%]
+- shape filled #c0c0c0, outlined #ffffff [55%,27% → 56%,30%]
+- shape filled #c0c0c0, outlined #ffffff [59%,27% → 61%,30%]
+- shape filled #c0c0c0, outlined #ffffff [63%,27% → 65%,30%]
+- shape filled #c0c0c0, outlined #ffffff [34%,34% → 35%,37%]
+- shape filled #c0c0c0, outlined #ffffff [38%,34% → 39%,37%]
+- shape filled #c0c0c0, outlined #ffffff [42%,34% → 44%,37%]
+- shape filled #c0c0c0, outlined #ffffff [46%,34% → 48%,37%]
+- shape filled #c0c0c0, outlined #ffffff [51%,34% → 52%,37%]
+- shape filled #c0c0c0, outlined #ffffff [55%,34% → 56%,37%]
+- shape filled #c0c0c0, outlined #ffffff [59%,34% → 61%,37%]
+- shape filled #c0c0c0, outlined #ffffff [63%,34% → 65%,37%]
+- shape filled #c0c0c0, outlined #ffffff [34%,40% → 35%,43%]
+- shape filled #c0c0c0, outlined #ffffff [38%,40% → 39%,43%]
+- shape filled #c0c0c0, outlined #ffffff [42%,40% → 44%,43%]
+- shape filled #c0c0c0, outlined #ffffff [46%,40% → 48%,43%]
+- shape filled #c0c0c0, outlined #ffffff [51%,40% → 52%,43%]
+- shape filled #c0c0c0, outlined #ffffff [55%,40% → 56%,43%]
+- shape filled #c0c0c0, outlined #ffffff [59%,40% → 61%,43%]
+- shape filled #c0c0c0, outlined #ffffff [63%,40% → 65%,43%]
+- shape filled #c0c0c0, outlined #ffffff [34%,47% → 35%,50%]
+- shape filled #c0c0c0, outlined #ffffff [38%,47% → 39%,50%]
+- shape filled #c0c0c0, outlined #ffffff [42%,47% → 44%,50%]
+- shape filled #c0c0c0, outlined #ffffff [46%,47% → 48%,50%]
+- shape filled #c0c0c0, outlined #ffffff [51%,47% → 52%,50%]
+- shape filled #c0c0c0, outlined #ffffff [55%,47% → 56%,50%]
+- shape filled #c0c0c0, outlined #ffffff [59%,47% → 61%,50%]
+- shape filled #c0c0c0, outlined #ffffff [63%,47% → 65%,50%]
+- shape filled #c0c0c0, outlined #ffffff [34%,54% → 35%,57%]
+- shape filled #c0c0c0, outlined #ffffff [38%,54% → 39%,57%]
+- shape filled #80b9ff, outlined #ffffff [42%,54% → 44%,57%]
+- shape filled #c0c0c0, outlined #ffffff [46%,54% → 48%,57%]
+- shape filled #c0c0c0, outlined #ffffff [51%,54% → 52%,57%]
+- shape filled #c0c0c0, outlined #ffffff [55%,54% → 56%,57%]
+- shape filled #c0c0c0, outlined #ffffff [59%,54% → 61%,57%]
+- shape filled #c0c0c0, outlined #ffffff [63%,54% → 65%,57%]
+- shape filled #c0c0c0, outlined #ffffff [34%,60% → 35%,63%]
+- shape filled #c0c0c0, outlined #ffffff [38%,60% → 39%,63%]
+- shape filled #c0c0c0, outlined #ffffff [42%,60% → 44%,63%]
+- shape filled #c0c0c0, outlined #ffffff [46%,60% → 48%,63%]
+- shape filled #c0c0c0, outlined #ffffff [51%,60% → 52%,63%]
+- shape filled #c0c0c0, outlined #ffffff [55%,60% → 56%,63%]
+- shape filled #c0c0c0, outlined #ffffff [59%,60% → 61%,63%]
+- shape filled #c0c0c0, outlined #ffffff [63%,60% → 65%,63%]
+- shape filled #c0c0c0, outlined #ffffff [34%,67% → 35%,70%]
+- shape filled #c0c0c0, outlined #ffffff [38%,67% → 39%,70%]
+- shape filled #c0c0c0, outlined #ffffff [42%,67% → 44%,70%]
+- shape filled #c0c0c0, outlined #ffffff [46%,67% → 48%,70%]
+- shape filled #c0c0c0, outlined #ffffff [51%,67% → 52%,70%]
+- shape filled #c0c0c0, outlined #ffffff [55%,67% → 56%,70%]
+- shape filled #c0c0c0, outlined #ffffff [59%,67% → 61%,70%]
+- shape filled #c0c0c0, outlined #ffffff [63%,67% → 65%,70%]
+- shape filled #c0c0c0, outlined #ffffff [34%,74% → 35%,77%]
+- shape filled #c0c0c0, outlined #ffffff [38%,74% → 39%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,74% → 44%,77%]
+- shape filled #c0c0c0, outlined #ffffff [46%,74% → 48%,77%]
+- shape filled #c0c0c0, outlined #ffffff [51%,74% → 52%,77%]
+- shape filled #c0c0c0, outlined #ffffff [55%,74% → 56%,77%]
+- shape filled #c0c0c0, outlined #ffffff [59%,74% → 61%,77%]
+- shape filled #c0c0c0, outlined #ffffff [63%,74% → 65%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,27% → 44%,30%]
+- equation $\mathcal R$ (36pt, #c3b8ff) [44%,25% → 46%,27%]
+- equation $\mathcal S$ (36pt, #80b9ff) [45%,49% → 46%,51%]
+- text 36pt [70%,38% → 95%,46%]: How can we determine the set of reachable states from $\mathcal S$?
+- text 36pt [69%,48% → 95%,52%]: {Use an algorithm from Chapter 9!|#c3b8ff}
+- **Builds:** click 1: shape filled #80b9ff, outlined #80b9ff — fades in; with previous: equation $\mathcal S$ — fades in; click 2: text 36pt — fades up from dark; click 3: text 36pt — slides in; click 4: shape (filled #c3b8ff) — fades in; with previous: equation $\mathcal R$ — fades in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 35
+- image `test-36969.svg` [23%,18% → 66%,93%]
+- shape (filled #c3b8ff) [41%,22% → 45%,36%]
+- shape filled #80b9ff, outlined #80b9ff [41%,52% → 45%,59%]
+- shape filled #c3b8ff, outlined #c3b8ff [41%,18% → 45%,25%]
+- shape filled #c3b8ff, outlined #c3b8ff [41%,25% → 45%,32%]
+- shape filled #c3b8ff, outlined #c3b8ff [45%,25% → 49%,32%]
+- shape filled #c3b8ff, outlined #c3b8ff [45%,32% → 49%,39%]
+- shape filled #c3b8ff, outlined #c3b8ff [41%,32% → 45%,39%]
+- line #ffffff [33%,36% → 52%,41%]
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- line #ffffff [32%,16% → 66%,21%]
+- line #ffffff [32%,23% → 66%,27%]
+- line #ffffff [32%,43% → 66%,47%]
+- line #ffffff [32%,56% → 66%,61%]
+- line #ffffff [32%,63% → 66%,67%]
+- line #ffffff [32%,70% → 66%,74%]
+- line #ffffff [32%,76% → 66%,81%]
+- line #ffffff [15%,46% → 49%,51%]
+- line #ffffff [49%,46% → 83%,51%]
+- line #ffffff [45%,46% → 79%,51%]
+- line #ffffff [41%,46% → 75%,51%]
+- line #ffffff [37%,46% → 70%,51%]
+- line #ffffff [32%,46% → 66%,51%]
+- line #ffffff [20%,46% → 53%,51%]
+- shape filled #c0c0c0, outlined #ffffff [34%,20% → 35%,23%]
+- shape filled #c0c0c0, outlined #ffffff [38%,20% → 39%,23%]
+- shape filled #c3b8ff, outlined #ffffff [42%,20% → 44%,23%]
+- shape filled #c0c0c0, outlined #ffffff [46%,20% → 48%,23%]
+- shape filled #c0c0c0, outlined #ffffff [51%,20% → 52%,23%]
+- shape filled #c0c0c0, outlined #ffffff [55%,20% → 56%,23%]
+- line #ffffff [24%,46% → 58%,51%]
+- line #ffffff [28%,46% → 62%,51%]
+- line #ffffff [32%,30% → 66%,34%]
+- line #ffffff [32%,36% → 66%,41%]
+- line #ffffff [32%,50% → 66%,54%]
+- shape filled #c0c0c0, outlined #ffffff [59%,20% → 61%,23%]
+- shape filled #c0c0c0, outlined #ffffff [63%,20% → 65%,23%]
+- shape filled #c0c0c0, outlined #ffffff [34%,27% → 35%,30%]
+- shape filled #c0c0c0, outlined #ffffff [38%,27% → 39%,30%]
+- shape filled #c3b8ff, outlined #ffffff [46%,27% → 48%,30%]
+- shape filled #c0c0c0, outlined #ffffff [51%,27% → 52%,30%]
+- shape filled #c0c0c0, outlined #ffffff [55%,27% → 56%,30%]
+- shape filled #c0c0c0, outlined #ffffff [59%,27% → 61%,30%]
+- shape filled #c0c0c0, outlined #ffffff [63%,27% → 65%,30%]
+- shape filled #c0c0c0, outlined #ffffff [34%,34% → 35%,37%]
+- shape filled #c0c0c0, outlined #ffffff [38%,34% → 39%,37%]
+- shape filled #c0c0c0, outlined #ffffff [51%,34% → 52%,37%]
+- shape filled #c0c0c0, outlined #ffffff [55%,34% → 56%,37%]
+- shape filled #c0c0c0, outlined #ffffff [59%,34% → 61%,37%]
+- shape filled #c0c0c0, outlined #ffffff [63%,34% → 65%,37%]
+- shape filled #c0c0c0, outlined #ffffff [34%,40% → 35%,43%]
+- shape filled #c0c0c0, outlined #ffffff [38%,40% → 39%,43%]
+- shape filled #c0c0c0, outlined #ffffff [46%,40% → 48%,43%]
+- shape filled #c0c0c0, outlined #ffffff [51%,40% → 52%,43%]
+- shape filled #c0c0c0, outlined #ffffff [55%,40% → 56%,43%]
+- shape filled #c0c0c0, outlined #ffffff [59%,40% → 61%,43%]
+- shape filled #c0c0c0, outlined #ffffff [63%,40% → 65%,43%]
+- shape filled #c0c0c0, outlined #ffffff [34%,47% → 35%,50%]
+- shape filled #c0c0c0, outlined #ffffff [38%,47% → 39%,50%]
+- shape filled #c0c0c0, outlined #ffffff [46%,47% → 48%,50%]
+- shape filled #c0c0c0, outlined #ffffff [51%,47% → 52%,50%]
+- shape filled #c0c0c0, outlined #ffffff [55%,47% → 56%,50%]
+- shape filled #c0c0c0, outlined #ffffff [59%,47% → 61%,50%]
+- shape filled #c0c0c0, outlined #ffffff [63%,47% → 65%,50%]
+- shape filled #c0c0c0, outlined #ffffff [34%,54% → 35%,57%]
+- shape filled #c0c0c0, outlined #ffffff [38%,54% → 39%,57%]
+- shape filled #c0c0c0, outlined #ffffff [46%,54% → 48%,57%]
+- shape filled #c0c0c0, outlined #ffffff [51%,54% → 52%,57%]
+- shape filled #c0c0c0, outlined #ffffff [55%,54% → 56%,57%]
+- shape filled #c0c0c0, outlined #ffffff [59%,54% → 61%,57%]
+- shape filled #c0c0c0, outlined #ffffff [63%,54% → 65%,57%]
+- shape filled #c0c0c0, outlined #ffffff [34%,60% → 35%,63%]
+- shape filled #c0c0c0, outlined #ffffff [38%,60% → 39%,63%]
+- shape filled #c0c0c0, outlined #ffffff [42%,60% → 44%,63%]
+- shape filled #c0c0c0, outlined #ffffff [46%,60% → 48%,63%]
+- shape filled #c0c0c0, outlined #ffffff [51%,60% → 52%,63%]
+- shape filled #c0c0c0, outlined #ffffff [55%,60% → 56%,63%]
+- shape filled #c0c0c0, outlined #ffffff [59%,60% → 61%,63%]
+- shape filled #c0c0c0, outlined #ffffff [63%,60% → 65%,63%]
+- shape filled #c0c0c0, outlined #ffffff [34%,67% → 35%,70%]
+- shape filled #c0c0c0, outlined #ffffff [38%,67% → 39%,70%]
+- shape filled #c0c0c0, outlined #ffffff [42%,67% → 44%,70%]
+- shape filled #c0c0c0, outlined #ffffff [46%,67% → 48%,70%]
+- shape filled #c0c0c0, outlined #ffffff [51%,67% → 52%,70%]
+- shape filled #c0c0c0, outlined #ffffff [55%,67% → 56%,70%]
+- shape filled #c0c0c0, outlined #ffffff [59%,67% → 61%,70%]
+- shape filled #c0c0c0, outlined #ffffff [63%,67% → 65%,70%]
+- shape filled #c0c0c0, outlined #ffffff [34%,74% → 35%,77%]
+- shape filled #c0c0c0, outlined #ffffff [38%,74% → 39%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,74% → 44%,77%]
+- shape filled #c0c0c0, outlined #ffffff [46%,74% → 48%,77%]
+- shape filled #c0c0c0, outlined #ffffff [51%,74% → 52%,77%]
+- shape filled #c0c0c0, outlined #ffffff [55%,74% → 56%,77%]
+- shape filled #c0c0c0, outlined #ffffff [59%,74% → 61%,77%]
+- shape filled #c0c0c0, outlined #ffffff [63%,74% → 65%,77%]
+- equation $\mathcal R$ (36pt, #c3b8ff) [44%,25% → 46%,27%]
+- shape filled #c0c0c0, outlined #ffffff [42%,40% → 44%,43%]
+- shape filled #c0c0c0, outlined #ffffff [42%,47% → 44%,50%]
+- line #ffffff [39%,43% → 51%,47%]
+- shape filled #c3b8ff, outlined #ffffff [46%,34% → 48%,37%]
+- line #ffffff [37%,40% → 52%,44%]
+- line #ffffff [37%,43% → 49%,47%]
+- line #ffffff [35%,40% → 50%,44%]
+- shape filled #80b9ff, outlined #ffffff [42%,54% → 44%,57%]
+- shape filled #c3b8ff, outlined #ffffff [42%,34% → 44%,37%]
+- shape filled #c3b8ff, outlined #ffffff [42%,27% → 44%,30%]
+- **Builds:** click 1: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in; with previous: line #ffffff — draws in
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 36
+- image `test-36969.svg` [23%,18% → 66%,93%]
+- image `test-37294.svg` [23%,18% → 66%,93%]
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- shape filled #c0c0c0, outlined #ffffff [34%,20% → 35%,23%]
+- shape filled #c0c0c0, outlined #ffffff [38%,20% → 39%,23%]
+- shape filled #c0c0c0, outlined #ffffff [42%,20% → 44%,23%]
+- shape filled #c0c0c0, outlined #ffffff [46%,20% → 48%,23%]
+- shape filled #c0c0c0, outlined #ffffff [51%,20% → 52%,23%]
+- shape filled #c0c0c0, outlined #ffffff [55%,20% → 56%,23%]
+- shape filled #c0c0c0, outlined #ffffff [59%,20% → 61%,23%]
+- shape filled #c0c0c0, outlined #ffffff [63%,20% → 65%,23%]
+- shape filled #c0c0c0, outlined #ffffff [34%,27% → 35%,30%]
+- shape filled #c0c0c0, outlined #ffffff [38%,27% → 39%,30%]
+- shape filled #c0c0c0, outlined #ffffff [42%,27% → 44%,30%]
+- shape filled #c0c0c0, outlined #ffffff [46%,27% → 48%,30%]
+- shape filled #c0c0c0, outlined #ffffff [51%,27% → 52%,30%]
+- shape filled #c0c0c0, outlined #ffffff [55%,27% → 56%,30%]
+- shape filled #c0c0c0, outlined #ffffff [59%,27% → 61%,30%]
+- shape filled #c0c0c0, outlined #ffffff [63%,27% → 65%,30%]
+- shape filled #c0c0c0, outlined #ffffff [34%,34% → 35%,37%]
+- shape filled #c0c0c0, outlined #ffffff [38%,34% → 39%,37%]
+- shape filled #c0c0c0, outlined #ffffff [42%,34% → 44%,37%]
+- shape filled #c0c0c0, outlined #ffffff [46%,34% → 48%,37%]
+- shape filled #c0c0c0, outlined #ffffff [51%,34% → 52%,37%]
+- shape filled #c0c0c0, outlined #ffffff [55%,34% → 56%,37%]
+- shape filled #c0c0c0, outlined #ffffff [59%,34% → 61%,37%]
+- shape filled #c0c0c0, outlined #ffffff [63%,34% → 65%,37%]
+- shape filled #c0c0c0, outlined #ffffff [34%,40% → 35%,43%]
+- shape filled #c0c0c0, outlined #ffffff [38%,40% → 39%,43%]
+- shape filled #c0c0c0, outlined #ffffff [42%,40% → 44%,43%]
+- shape filled #c0c0c0, outlined #ffffff [46%,40% → 48%,43%]
+- shape filled #c0c0c0, outlined #ffffff [51%,40% → 52%,43%]
+- shape filled #c0c0c0, outlined #ffffff [55%,40% → 56%,43%]
+- shape filled #c0c0c0, outlined #ffffff [59%,40% → 61%,43%]
+- shape filled #c0c0c0, outlined #ffffff [63%,40% → 65%,43%]
+- shape filled #c0c0c0, outlined #ffffff [34%,47% → 35%,50%]
+- shape filled #c0c0c0, outlined #ffffff [38%,47% → 39%,50%]
+- shape filled #c0c0c0, outlined #ffffff [42%,47% → 44%,50%]
+- shape filled #c0c0c0, outlined #ffffff [46%,47% → 48%,50%]
+- shape filled #c0c0c0, outlined #ffffff [51%,47% → 52%,50%]
+- shape filled #c0c0c0, outlined #ffffff [55%,47% → 56%,50%]
+- shape filled #c0c0c0, outlined #ffffff [59%,47% → 61%,50%]
+- shape filled #c0c0c0, outlined #ffffff [63%,47% → 65%,50%]
+- shape filled #c0c0c0, outlined #ffffff [34%,54% → 35%,57%]
+- shape filled #c0c0c0, outlined #ffffff [38%,54% → 39%,57%]
+- shape filled #c0c0c0, outlined #ffffff [42%,54% → 44%,57%]
+- shape filled #c0c0c0, outlined #ffffff [46%,54% → 48%,57%]
+- shape filled #c0c0c0, outlined #ffffff [51%,54% → 52%,57%]
+- shape filled #c0c0c0, outlined #ffffff [55%,54% → 56%,57%]
+- shape filled #c0c0c0, outlined #ffffff [59%,54% → 61%,57%]
+- shape filled #c0c0c0, outlined #ffffff [63%,54% → 65%,57%]
+- shape filled #c0c0c0, outlined #ffffff [34%,60% → 35%,63%]
+- shape filled #c0c0c0, outlined #ffffff [38%,60% → 39%,63%]
+- shape filled #c0c0c0, outlined #ffffff [42%,60% → 44%,63%]
+- shape filled #c0c0c0, outlined #ffffff [46%,60% → 48%,63%]
+- shape filled #c0c0c0, outlined #ffffff [51%,60% → 52%,63%]
+- shape filled #c0c0c0, outlined #ffffff [55%,60% → 56%,63%]
+- shape filled #c0c0c0, outlined #ffffff [59%,60% → 61%,63%]
+- shape filled #c0c0c0, outlined #ffffff [63%,60% → 65%,63%]
+- shape filled #c0c0c0, outlined #ffffff [34%,67% → 35%,70%]
+- shape filled #c0c0c0, outlined #ffffff [38%,67% → 39%,70%]
+- shape filled #c0c0c0, outlined #ffffff [42%,67% → 44%,70%]
+- shape filled #c0c0c0, outlined #ffffff [46%,67% → 48%,70%]
+- shape filled #c0c0c0, outlined #ffffff [51%,67% → 52%,70%]
+- shape filled #c0c0c0, outlined #ffffff [55%,67% → 56%,70%]
+- shape filled #c0c0c0, outlined #ffffff [59%,67% → 61%,70%]
+- shape filled #c0c0c0, outlined #ffffff [63%,67% → 65%,70%]
+- shape filled #c0c0c0, outlined #ffffff [34%,74% → 35%,77%]
+- shape filled #c0c0c0, outlined #ffffff [38%,74% → 39%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,74% → 44%,77%]
+- shape filled #c0c0c0, outlined #ffffff [46%,74% → 48%,77%]
+- shape filled #c0c0c0, outlined #ffffff [51%,74% → 52%,77%]
+- shape filled #c0c0c0, outlined #ffffff [55%,74% → 56%,77%]
+- shape filled #c0c0c0, outlined #ffffff [59%,74% → 61%,77%]
+- shape filled #c0c0c0, outlined #ffffff [63%,74% → 65%,77%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 37
+- image `test-37294.svg` [23%,18% → 66%,93%]
+- image `test-37307.svg` [23%,18% → 66%,93%]
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- shape filled #c0c0c0, outlined #ffffff [34%,20% → 35%,23%]
+- shape filled #c0c0c0, outlined #ffffff [38%,20% → 39%,23%]
+- shape filled #c0c0c0, outlined #ffffff [42%,20% → 44%,23%]
+- shape filled #c0c0c0, outlined #ffffff [46%,20% → 48%,23%]
+- shape filled #c0c0c0, outlined #ffffff [51%,20% → 52%,23%]
+- shape filled #c0c0c0, outlined #ffffff [55%,20% → 56%,23%]
+- shape filled #c0c0c0, outlined #ffffff [59%,20% → 61%,23%]
+- shape filled #c0c0c0, outlined #ffffff [63%,20% → 65%,23%]
+- shape filled #c0c0c0, outlined #ffffff [34%,27% → 35%,30%]
+- shape filled #c0c0c0, outlined #ffffff [38%,27% → 39%,30%]
+- shape filled #c0c0c0, outlined #ffffff [42%,27% → 44%,30%]
+- shape filled #c0c0c0, outlined #ffffff [46%,27% → 48%,30%]
+- shape filled #c0c0c0, outlined #ffffff [51%,27% → 52%,30%]
+- shape filled #c0c0c0, outlined #ffffff [55%,27% → 56%,30%]
+- shape filled #c0c0c0, outlined #ffffff [59%,27% → 61%,30%]
+- shape filled #c0c0c0, outlined #ffffff [63%,27% → 65%,30%]
+- shape filled #c0c0c0, outlined #ffffff [34%,34% → 35%,37%]
+- shape filled #c0c0c0, outlined #ffffff [38%,34% → 39%,37%]
+- shape filled #c0c0c0, outlined #ffffff [42%,34% → 44%,37%]
+- shape filled #c0c0c0, outlined #ffffff [46%,34% → 48%,37%]
+- shape filled #c0c0c0, outlined #ffffff [51%,34% → 52%,37%]
+- shape filled #c0c0c0, outlined #ffffff [55%,34% → 56%,37%]
+- shape filled #c0c0c0, outlined #ffffff [59%,34% → 61%,37%]
+- shape filled #c0c0c0, outlined #ffffff [63%,34% → 65%,37%]
+- shape filled #c0c0c0, outlined #ffffff [34%,40% → 35%,43%]
+- shape filled #c0c0c0, outlined #ffffff [38%,40% → 39%,43%]
+- shape filled #c0c0c0, outlined #ffffff [42%,40% → 44%,43%]
+- shape filled #c0c0c0, outlined #ffffff [46%,40% → 48%,43%]
+- shape filled #c0c0c0, outlined #ffffff [51%,40% → 52%,43%]
+- shape filled #c0c0c0, outlined #ffffff [55%,40% → 56%,43%]
+- shape filled #c0c0c0, outlined #ffffff [59%,40% → 61%,43%]
+- shape filled #c0c0c0, outlined #ffffff [63%,40% → 65%,43%]
+- shape filled #c0c0c0, outlined #ffffff [34%,47% → 35%,50%]
+- shape filled #c0c0c0, outlined #ffffff [38%,47% → 39%,50%]
+- shape filled #c0c0c0, outlined #ffffff [42%,47% → 44%,50%]
+- shape filled #c0c0c0, outlined #ffffff [46%,47% → 48%,50%]
+- shape filled #c0c0c0, outlined #ffffff [51%,47% → 52%,50%]
+- shape filled #c0c0c0, outlined #ffffff [55%,47% → 56%,50%]
+- shape filled #c0c0c0, outlined #ffffff [59%,47% → 61%,50%]
+- shape filled #c0c0c0, outlined #ffffff [63%,47% → 65%,50%]
+- shape filled #c0c0c0, outlined #ffffff [34%,54% → 35%,57%]
+- shape filled #c0c0c0, outlined #ffffff [38%,54% → 39%,57%]
+- shape filled #c0c0c0, outlined #ffffff [42%,54% → 44%,57%]
+- shape filled #c0c0c0, outlined #ffffff [46%,54% → 48%,57%]
+- shape filled #c0c0c0, outlined #ffffff [51%,54% → 52%,57%]
+- shape filled #c0c0c0, outlined #ffffff [55%,54% → 56%,57%]
+- shape filled #c0c0c0, outlined #ffffff [59%,54% → 61%,57%]
+- shape filled #c0c0c0, outlined #ffffff [63%,54% → 65%,57%]
+- shape filled #c0c0c0, outlined #ffffff [34%,60% → 35%,63%]
+- shape filled #c0c0c0, outlined #ffffff [38%,60% → 39%,63%]
+- shape filled #c0c0c0, outlined #ffffff [42%,60% → 44%,63%]
+- shape filled #c0c0c0, outlined #ffffff [46%,60% → 48%,63%]
+- shape filled #c0c0c0, outlined #ffffff [51%,60% → 52%,63%]
+- shape filled #c0c0c0, outlined #ffffff [55%,60% → 56%,63%]
+- shape filled #c0c0c0, outlined #ffffff [59%,60% → 61%,63%]
+- shape filled #c0c0c0, outlined #ffffff [63%,60% → 65%,63%]
+- shape filled #c0c0c0, outlined #ffffff [34%,67% → 35%,70%]
+- shape filled #c0c0c0, outlined #ffffff [38%,67% → 39%,70%]
+- shape filled #c0c0c0, outlined #ffffff [42%,67% → 44%,70%]
+- shape filled #c0c0c0, outlined #ffffff [46%,67% → 48%,70%]
+- shape filled #c0c0c0, outlined #ffffff [51%,67% → 52%,70%]
+- shape filled #c0c0c0, outlined #ffffff [55%,67% → 56%,70%]
+- shape filled #c0c0c0, outlined #ffffff [59%,67% → 61%,70%]
+- shape filled #c0c0c0, outlined #ffffff [63%,67% → 65%,70%]
+- shape filled #c0c0c0, outlined #ffffff [34%,74% → 35%,77%]
+- shape filled #c0c0c0, outlined #ffffff [38%,74% → 39%,77%]
+- shape filled #c0c0c0, outlined #ffffff [42%,74% → 44%,77%]
+- shape filled #c0c0c0, outlined #ffffff [46%,74% → 48%,77%]
+- shape filled #c0c0c0, outlined #ffffff [51%,74% → 52%,77%]
+- shape filled #c0c0c0, outlined #ffffff [55%,74% → 56%,77%]
+- shape filled #c0c0c0, outlined #ffffff [59%,74% → 61%,77%]
+- shape filled #c0c0c0, outlined #ffffff [63%,74% → 65%,77%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [31%,78% → 69%,94%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [18%,14% → 33%,85%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [66%,13% → 81%,84%]
+- black cover-up box (Keynote crop hack; just crop the media instead) [31%,13% → 69%,19%]
+- text 36pt [71%,41% → 92%,57%]: {Now we can apply our discrete reachability algorithms to this abstraction to get an overapproximate reachable set! |#80b9ff}
+- **Builds:** click 1: text 36pt — fireworks
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 38
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- image `test-37377.svg` [14%,14% → 86%,89%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 39
+- heading (spaced caps) 36pt [30%,6% → 70%,10%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [35%,14% → 65%,18%]: finer partition $=$ less overapproximation
+- image `test-37404.svg` [6%,27% → 90%,82%]
+- **Transition to next:** Magic Move (shared objects glide; others fade)
+
+## Slide 40
+- text on a #80b9ff filled box 32pt [7%,24% → 11%,31%]: {1|#000000}
+- text on a #80b9ff filled box 32pt [7%,37% → 11%,44%]: {2|#000000}
+- line #ffffff [7%,15% → 40%,19%]
+- heading (spaced caps) 36pt [13%,25% → 92%,30%]: REACHABLE SETS
+- heading (spaced caps) 36pt [13%,39% → 87%,43%]: SATISFIABILITY
+- text on a #80b9ff filled box 32pt [7%,51% → 11%,58%]: {3|#000000}
+- heading (spaced caps) 36pt [13%,52% → 87%,57%]: PROBABILISTIC REACHABILITY
+- heading (spaced caps) 50pt [-14%,9% → 62%,15%]: PLAN FOR TODAY
+- text on a #80b9ff filled box 32pt [7%,64% → 11%,71%]: {4|#000000}
+- heading (spaced caps) 36pt [13%,65% → 86%,70%]: DISCRETE STATE ABSTRACTIONS
+- text 36pt [33%,39% → 43%,43%]: {(very briefly)|#80b9ff}
+- **Transition to next:** Magic Move (shared objects glide; others fade)
